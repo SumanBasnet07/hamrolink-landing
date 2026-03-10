@@ -1,7 +1,7 @@
-// proxy.ts (Next.js 16 Edge Proxy)
+// middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export const config = {
   matcher: [
@@ -31,7 +31,7 @@ function detectLang(req: NextRequest): Lang {
   return DEFAULT_LANG;
 }
 
-export function proxy(req: NextRequest) {
+export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Already has a valid language prefix → do nothing
