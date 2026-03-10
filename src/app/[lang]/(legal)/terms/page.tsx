@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 // app/[lang]/terms/page.tsx
 import {
   FileText,
