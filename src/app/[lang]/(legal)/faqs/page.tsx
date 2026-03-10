@@ -1,5 +1,6 @@
-// app/[lang]/faq/page.tsx
 "use client";
+
+export const runtime = 'edge';
 
 import { useState } from "react";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";

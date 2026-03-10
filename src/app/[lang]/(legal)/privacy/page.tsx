@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 // app/[lang]/privacy/page.tsx
 import {
   Shield,

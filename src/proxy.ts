@@ -1,6 +1,8 @@
 // proxy.ts (Next.js 16 Edge Proxy)
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = 'edge';
+
 export const config = {
   matcher: [
     // Run on every route EXCEPT _next, api, static files, and already-prefixed paths

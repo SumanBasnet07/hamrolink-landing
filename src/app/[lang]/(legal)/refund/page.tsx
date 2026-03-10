@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 // app/[lang]/refund/page.tsx
 import {
   CreditCard,
