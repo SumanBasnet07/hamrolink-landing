@@ -16,18 +16,16 @@ const DEFAULT_LANG: Lang = "en";
 
 /** Map Accept-Language subtags to supported languages */
 function detectLang(req: NextRequest): Lang {
-  const acceptLang = req.headers.get("accept-language") ?? "";
+  const acceptLang = req.headers.get("accept-language");
+  if (!acceptLang) return DEFAULT_LANG;
 
-  // Parse "ne,en-US;q=0.9,en;q=0.8" → ["ne", "en"]
-  const preferred = acceptLang
-    .split(",")
-    .map((s) => s.split(";")[1]?.includes("q=") ? s.split(";")[0].trim() : s.trim())
-    .map((s) => s.toLowerCase().split("-")[0])
-    .filter(Boolean);
-
-  for (const lang of preferred) {
+  // Split by comma and then semicolon to get just the language codes
+  const langs = acceptLang.split(',').map(part => part.split(';')[0].trim().split('-')[0].toLowerCase());
+  
+  for (const lang of langs) {
     if (SUPPORTED_LANGS.includes(lang as Lang)) return lang as Lang;
   }
+
   return DEFAULT_LANG;
 }
 
