@@ -1457,6 +1457,7 @@ export default function LandingPage({
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <HomeFAQSchema lang={lang} />
       <Navbar accent={slide.accent} lang={lang} nav={d.nav} />
 
       {/* Schema Markup for SEO */}
@@ -2635,5 +2636,32 @@ export default function LandingPage({
         </div>
       </footer>
     </div>
+  );
+}
+
+// ─── Home Schema (Global FAQ) ───
+function HomeFAQSchema({ lang }: { lang: string }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity":
+      lang === "ne"
+        ? [
+            { "@type": "Question", name: "के HamroLink नि:शुल्क छ?", acceptedAnswer: { "@type": "Answer", text: "हो। HamroLink मा सधैँका लागि नि:शुल्क योजना छ — क्रेडिट कार्ड आवश्यक छैन।" }},
+            { "@type": "Question", name: "के eSewa वा Khalti बाट भुक्तानी लिन सकिन्छ?", acceptedAnswer: { "@type": "Answer", text: "हो। Starter र Pro योजनामा eSewa र Khalti भुक्तानी समावेश छ।" }},
+            { "@type": "Question", name: "के कोडिङ जान्नु पर्छ?", acceptedAnswer: { "@type": "Answer", text: "होइन। HamroLink मा भिजुअल एडिटर र तयार टेम्प्लेटहरू छन्।" }},
+          ]
+        : [
+            { "@type": "Question", name: "Is HamroLink free?", acceptedAnswer: { "@type": "Answer", text: "Yes. HamroLink offers a Free plan forever — no credit card required." }},
+            { "@type": "Question", name: "Can I accept eSewa or Khalti payments?", acceptedAnswer: { "@type": "Answer", text: "Yes. eSewa and Khalti are built-in on Starter and Pro plans." }},
+            { "@type": "Question", name: "Do I need to know coding?", acceptedAnswer: { "@type": "Answer", text: "No. HamroLink provides a visual editor and ready-made templates." }},
+            { "@type": "Question", name: "Can I connect my own domain?", acceptedAnswer: { "@type": "Answer", text: "Yes. Custom domain is available on Starter and Pro plans." }},
+          ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 }
