@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getDictionary } from "@/lib/dictionaries";
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {

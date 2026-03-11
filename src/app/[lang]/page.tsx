@@ -2556,8 +2556,8 @@ export default function LandingPage({
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
             <div className="col-span-2">
-              <div className="font-black text-2xl text-white mb-3">
-                Hamro<span className="text-blue-500">Link</span>
+              <div className="mb-6">
+                <img src="/og-image.png" alt="HamroLink" className="h-12 w-auto transition-all" />
               </div>
               <p className="text-sm text-white/35 max-w-xs leading-relaxed mb-5">
                 {PRE_LAUNCH

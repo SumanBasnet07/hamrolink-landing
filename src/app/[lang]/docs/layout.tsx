@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/dictionaries";
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  // In Next.js 14/15, params is often a Promise or needs to be awaited/handled.
-  // But let's assume standard behavior for now based on project context.
-  const { lang } = params;
+export const dynamic = "force-static";
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
   const d = getDictionary(lang as any);
   
   const title = `${d.nav.docs} Hub | HamroLink — Nepal's #1 Website Builder`;

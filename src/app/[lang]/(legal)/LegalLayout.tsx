@@ -90,6 +90,9 @@ export default function LegalLayout({
 
       {/* ── Footer strip ────────────────────────────────────────────────── */}
       <div className="border-t border-gray-100 bg-white py-8">
+        <div className="max-w-5xl mx-auto px-6 mb-8">
+           <img src="/og-image.png" alt="HamroLink" className="h-8 w-auto transition-all" />
+        </div>
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
           <span>
             © {new Date().getFullYear()} HamroLink · Built in Nepal 🇳🇵

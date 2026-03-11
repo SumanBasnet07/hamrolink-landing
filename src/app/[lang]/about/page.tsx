@@ -210,7 +210,7 @@ export default function AboutPage({ params }: { params: any }) {
                 <img
                   src="/pakhribas.png"
                   alt="Nepal Dhankuta Landscape"
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  className="w-full h-full object-cover transition-all duration-1000"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white p-8 rounded-3xl shadow-xl border border-gray-50 max-w-[240px]">
@@ -450,7 +450,7 @@ export default function AboutPage({ params }: { params: any }) {
               </div>
 
               {/* MAP COMPONENT */}
-              <div className="h-[500px] lg:h-auto min-h-[600px] grayscale contrast-125 opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-1000">
+              <div className="h-[500px] lg:h-auto min-h-[600px] transition-all duration-1000">
                 <iframe
                   width="100%"
                   height="100%"
@@ -471,8 +471,8 @@ export default function AboutPage({ params }: { params: any }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-20">
             <div className="col-span-2">
-              <div className="font-black text-3xl text-white mb-6">
-                Hamro<span className="text-indigo-500">Link</span>
+              <div className="mb-6">
+                <img src="/og-image.png" alt="HamroLink" className="h-12 w-auto transition-all" />
               </div>
               <p className="text-lg text-white/35 max-w-sm leading-relaxed mb-8">
                 {d.footer.tagline}

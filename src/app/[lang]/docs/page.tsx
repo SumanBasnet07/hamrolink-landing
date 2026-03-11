@@ -580,8 +580,8 @@ export default function DocsPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-20">
             <div className="col-span-2">
-              <div className="font-black text-3xl text-white mb-6">
-                Hamro<span className="text-indigo-500">Link</span>
+              <div className="mb-6">
+                <img src="/og-image.png" alt="HamroLink" className="h-12 w-auto transition-all" />
               </div>
               <p className="text-lg text-white/35 max-w-sm leading-relaxed mb-8">
                 {d.footer.tagline}

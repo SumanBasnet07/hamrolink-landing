@@ -23,6 +23,7 @@ const devanagari = Noto_Sans_Devanagari({
 });
 
 // ─── Statics ──────────────────────────────────────────────────────────────────
+export const dynamic = "force-static";
 const SITE_URL  = "https://hamrolink.com";
 const SITE_NAME = "HamroLink";
 const SUPPORTED = ["en", "ne"] as const;
@@ -64,9 +65,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const lang = (SUPPORTED.includes(params.lang as Lang) ? params.lang : "en") as Lang;
+  const { lang: rawLang } = await params;
+  const lang = (SUPPORTED.includes(rawLang as Lang) ? rawLang : "en") as Lang;
   const m    = META[lang];
   const pageUrl = `${SITE_URL}/${lang}`;
 
@@ -138,6 +140,17 @@ export async function generateMetadata({
     appleWebApp:     { capable: true, title: SITE_NAME, statusBarStyle: "default" },
     formatDetection: { telephone: false },
     category:        "technology",
+    icons: {
+      apple: "/apple-touch-icon.png",
+      shortcut: "/favicon-32x32.png",
+      other: [
+        { rel: "icon", url: "/favicon.svg" },
+        { rel: "icon", type: "image/png", sizes: "96x96", url: "/favicon-96x96.png" },
+      ],
+    },
+    appLinks: {
+      web: { url: "https://app.hamrolink.com", should_fallback: true },
+    },
 
     other: {
       // Inject JSON-LD via <head> other meta — layout renders the <script> tag
@@ -234,17 +247,18 @@ function buildJsonLd(lang: Lang, desc: string) {
 }
 
 // ─── Layout component ─────────────────────────────────────────────────────────
-export default function LangLayout({
+export default async function LangLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
+  const { lang: rawLang } = await params;
   // Guard: reject unknown lang segments with 404
-  if (!SUPPORTED.includes(params.lang as Lang)) notFound();
+  if (!SUPPORTED.includes(rawLang as Lang)) notFound();
 
-  const lang     = params.lang as Lang;
+  const lang     = rawLang as Lang;
   const dict     = getDictionary(lang);
   const jsonLd   = buildJsonLd(lang, META[lang].desc);
 
@@ -273,8 +287,8 @@ export default function LangLayout({
         <link rel="dns-prefetch" href="https://app.hamrolink.com" />
 
         {/* ── Favicons ─────────────────────────────────────────────────── */}
-        <link rel="icon"             href="/favicon.ico"        sizes="any" />
-        <link rel="icon"             href="/icon.svg"           type="image/svg+xml" />
+        <link rel="icon"             href="/favicon.svg"        type="image/svg+xml" />
+        <link rel="icon"             href="/favicon-96x96.png"  type="image/png" sizes="96x96" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest"         href="/site.webmanifest" />
 
