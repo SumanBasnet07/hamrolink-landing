@@ -1467,30 +1467,30 @@ export default function LandingPage({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "HamroLink",
-            "operatingSystem": "Web",
-            "applicationCategory": "BusinessApplication",
-            "aggregateRating": {
+            name: "HamroLink",
+            operatingSystem: "Web",
+            applicationCategory: "BusinessApplication",
+            aggregateRating: {
               "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "ratingCount": "1250",
-              "bestRating": "5",
-              "worstRating": "1"
+              ratingValue: "4.9",
+              ratingCount: "1250",
+              bestRating: "5",
+              worstRating: "1",
             },
-            "offers": {
+            offers: {
               "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
+              price: "0",
+              priceCurrency: "USD",
             },
-            "publisher": {
+            publisher: {
               "@type": "Organization",
-              "name": "HamroLink",
-              "logo": {
+              name: "HamroLink",
+              logo: {
                 "@type": "ImageObject",
-                "url": "https://hamrolink.com/logo.png"
-              }
-            }
-          })
+                url: "https://hamrolink.com/logo.png",
+              },
+            },
+          }),
         }}
       />
 
@@ -1541,7 +1541,9 @@ export default function LandingPage({
 
               {/* Headline */}
               <div>
-                <h1 className={`font-black tracking-tight ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
+                <h1
+                  className={`font-black tracking-tight ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}
+                >
                   <motion.span
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -1589,46 +1591,53 @@ export default function LandingPage({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55 }}
-                className="flex flex-wrap gap-4"
+                className="space-y-8"
               >
-                <a
-                  href={ctaHref("/signup")}
-                  className="group flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-black text-white shadow-2xl transition-all hover:scale-105 hover:brightness-110"
-                  style={{
-                    background: slide.accent,
-                    boxShadow: `0 20px 50px ${slide.accent}55`,
-                  }}
-                >
-                  <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                  {PRE_LAUNCH
-                    ? hero.ctaPrimary
-                    : ((hero as any).ctaPrimaryPostLaunch ?? hero.ctaPrimary)}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a
-                  href="#examples"
-                  className="flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-bold text-white border border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
-                >
-                  {hero.ctaSecondary}
-                </a>
-              </motion.div>
-
-              {/* Trust strip */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="flex flex-wrap gap-5"
-              >
-                {hero.trust.map((t: string) => (
-                  <div
-                    key={t}
-                    className="flex items-center gap-1.5 text-sm text-white/50"
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href={ctaHref("/signup")}
+                    className="group flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-black text-white shadow-2xl transition-all hover:scale-105 hover:brightness-110"
+                    style={{
+                      background: slide.accent,
+                      boxShadow: `0 20px 50px ${slide.accent}55`,
+                    }}
                   >
-                    <Check className="w-4 h-4 text-green-400 shrink-0" />
-                    {t}
+                    <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                    {PRE_LAUNCH
+                      ? hero.ctaPrimary
+                      : ((hero as any).ctaPrimaryPostLaunch ?? hero.ctaPrimary)}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <a
+                    href="#examples"
+                    className="flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-bold text-white border border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
+                  >
+                    {hero.ctaSecondary}
+                  </a>
+                </div>
+
+                {/* Trust Line & Emotional Pitch */}
+                <div className="space-y-5">
+                  <div className="flex flex-wrap gap-5">
+                    {hero.trust.map((t: string) => (
+                      <div
+                        key={t}
+                        className="flex items-center gap-1.5 text-sm text-white/50"
+                      >
+                        <Check className="w-4 h-4 text-green-400 shrink-0" />
+                        {t}
+                      </div>
+                    ))}
                   </div>
-                ))}
+
+                  <div className="p-5 rounded-[28px] bg-white/5 border border-white/10 backdrop-blur-md max-w-lg shadow-2xl">
+                    <p className="text-white/80 text-sm italic leading-relaxed">
+                      {lang === "ne"
+                        ? "धेरैजसो नेपाली व्यवसायहरू अझै पनि फेसबुकमा मात्र निर्भर छन्। HamroLink ले उनीहरूलाई केही मिनेटमै आफ्नै वेबसाइट बनाउन मद्दत गर्दछ।"
+                        : "Most Nepali businesses still rely only on Facebook. HamroLink helps them build their own website in minutes."}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </div>
 
@@ -1806,6 +1815,7 @@ export default function LandingPage({
           </span>
           <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </motion.div>
+        <ProcessSection lang={lang} hero={hero} />
       </section>
 
       {/* ══ DEMO VIDEO ═════════════════════════════════════════════════════ */}
@@ -2560,7 +2570,11 @@ export default function LandingPage({
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
             <div className="col-span-2">
               <div className="mb-6">
-                <img src="/og-image.png" alt="HamroLink" className="h-12 w-auto transition-all" />
+                <img
+                  src="/og-image.png"
+                  alt="HamroLink"
+                  className="h-12 w-auto transition-all"
+                />
               </div>
               <p className="text-sm text-white/35 max-w-xs leading-relaxed mb-5">
                 {PRE_LAUNCH
@@ -2644,18 +2658,67 @@ function HomeFAQSchema({ lang }: { lang: string }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity":
+    mainEntity:
       lang === "ne"
         ? [
-            { "@type": "Question", name: "के HamroLink नि:शुल्क छ?", acceptedAnswer: { "@type": "Answer", text: "हो। HamroLink मा सधैँका लागि नि:शुल्क योजना छ — क्रेडिट कार्ड आवश्यक छैन।" }},
-            { "@type": "Question", name: "के eSewa वा Khalti बाट भुक्तानी लिन सकिन्छ?", acceptedAnswer: { "@type": "Answer", text: "हो। Starter र Pro योजनामा eSewa र Khalti भुक्तानी समावेश छ।" }},
-            { "@type": "Question", name: "के कोडिङ जान्नु पर्छ?", acceptedAnswer: { "@type": "Answer", text: "होइन। HamroLink मा भिजुअल एडिटर र तयार टेम्प्लेटहरू छन्।" }},
+            {
+              "@type": "Question",
+              name: "के HamroLink नि:शुल्क छ?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "हो। HamroLink मा सधैँका लागि नि:शुल्क योजना छ — क्रेडिट कार्ड आवश्यक छैन।",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "के eSewa वा Khalti बाट भुक्तानी लिन सकिन्छ?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "हो। Starter र Pro योजनामा eSewa र Khalti भुक्तानी समावेश छ।",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "के कोडिङ जान्नु पर्छ?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "होइन। HamroLink मा भिजुअल एडिटर र तयार टेम्प्लेटहरू छन्।",
+              },
+            },
           ]
         : [
-            { "@type": "Question", name: "Is HamroLink free?", acceptedAnswer: { "@type": "Answer", text: "Yes. HamroLink offers a Free plan forever — no credit card required." }},
-            { "@type": "Question", name: "Can I accept eSewa or Khalti payments?", acceptedAnswer: { "@type": "Answer", text: "Yes. eSewa and Khalti are built-in on Starter and Pro plans." }},
-            { "@type": "Question", name: "Do I need to know coding?", acceptedAnswer: { "@type": "Answer", text: "No. HamroLink provides a visual editor and ready-made templates." }},
-            { "@type": "Question", name: "Can I connect my own domain?", acceptedAnswer: { "@type": "Answer", text: "Yes. Custom domain is available on Starter and Pro plans." }},
+            {
+              "@type": "Question",
+              name: "Is HamroLink free?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. HamroLink offers a Free plan forever — no credit card required.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can I accept eSewa or Khalti payments?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. eSewa and Khalti are built-in on Starter and Pro plans.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Do I need to know coding?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. HamroLink provides a visual editor and ready-made templates.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can I connect my own domain?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Custom domain is available on Starter and Pro plans.",
+              },
+            },
           ],
   };
   return (
@@ -2663,5 +2726,46 @@ function HomeFAQSchema({ lang }: { lang: string }) {
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
+  );
+}
+
+// ─── Process Section (3 Steps) ───
+function ProcessSection({ lang, hero }: { lang: string; hero: any }) {
+  if (!hero.process) return null;
+  const icons = [MessageSquare, Maximize2, Rocket];
+
+  return (
+    <div className="relative mt-20 max-w-5xl mx-auto px-6">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[40px] p-8 md:p-12 shadow-2xl">
+        <h3 className="text-2xl font-black text-white text-center mb-10">
+          {hero.process.heading}
+        </h3>
+        <div className="grid md:grid-cols-3 gap-8 relative">
+          {/* Connector line */}
+          <div className="hidden md:block absolute top-[28px] left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          {hero.process.steps.map((s: any, i: number) => {
+            const Icon = icons[i];
+            return (
+              <div key={i} className="relative z-10 text-center space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-lg">{s.title}</h4>
+                  <p className="text-white/40 text-sm mt-1">{s.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-10 pt-8 border-t border-white/5 text-center">
+          <p className="text-white/60 font-medium flex items-center justify-center gap-2">
+            <Zap className="w-4 h-4 text-yellow-400" />
+            {hero.process.footer}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

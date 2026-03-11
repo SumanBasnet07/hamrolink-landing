@@ -195,6 +195,7 @@ function buildJsonLd(lang: Lang, desc: string) {
         contactPoint: {
           "@type":              "ContactPoint",
           email:                "support@hamrolink.com",
+          telephone:            "+9779816326639",
           contactType:          "customer support",
           availableLanguage:    ["English", "Nepali"],
         },

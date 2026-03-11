@@ -151,7 +151,7 @@ export const dictionaries = {
         "Have questions about HamroLink? Our team is ready to assist you.",
       businessInfo: {
         name: "HamroLink (HamroLink Nepal)",
-        phone: "+977-9800000000", // Placeholder - adjust if needed
+        phone: "+977-9816326639",
         email: "support@hamrolink.com",
         address: "Pakhribas-04, Dhankuta, Koshi Province, Nepal",
       },
@@ -654,7 +654,7 @@ export const dictionaries = {
         "HamroLink को बारेमा कुनै प्रश्न छ? हाम्रो टिम तपाईलाई मद्दत गर्न तयार छ।",
       businessInfo: {
         name: "हाम्रोलिंक (HamroLink Nepal)",
-        phone: "+९७७-९८००००००००",
+        phone: "+९७७-९८१६३२६६३९",
         email: "support@hamrolink.com",
         address: "पाख्रिबास-०४, धनकुटा, कोशी प्रदेश, नेपाल",
       },
@@ -762,7 +762,8 @@ export const dictionaries = {
     // ── Who it's for ─────────────────────────────────────────────────────────
     who: {
       badge: "हरेक नेपाली व्यवसायका लागि",
-      heading: "तपाईं जे गर्नुहुन्छ,\nHamroLink बाट त्यसैको वेबसाइट बनाउन सकिन्छ।",
+      heading:
+        "तपाईं जे गर्नुहुन्छ,\nHamroLink बाट त्यसैको वेबसाइट बनाउन सकिन्छ।",
       subtext:
         "प्राविधिक ज्ञान चाहिँदैन। व्यवसायको प्रकार छान्नुहोस् र वेबसाइट सुरु गर्नुहोस्।",
       cards: [
