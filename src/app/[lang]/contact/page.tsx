@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
   Sparkles,
   ArrowRight,
@@ -26,7 +27,43 @@ import { sendContactEmailSES } from "@/app/actions";
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
 const PRE_LAUNCH = true;
 
-// ─── Navbar (Consistent with home) ─────────────────────────────────────────────
+// ─── LangSwitcher ─────────────────────────────────────────────────────────────
+function LangSwitcher({
+  lang,
+  accent,
+  scrolled = false,
+}: {
+  lang: string;
+  accent: string;
+  scrolled?: boolean;
+}) {
+  const pathname = usePathname();
+  const segments = pathname.split("/");
+  const rest = segments.slice(2).join("/");
+
+  return (
+    <div className={`flex items-center gap-1 rounded-lg p-1 ${scrolled ? "bg-gray-100" : "bg-white/10"}`}>
+      {(["en", "ne"] as const).map((l) => (
+        <Link
+          key={l}
+          href={`/${l}${rest ? `/${rest}` : ""}`}
+          className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
+            lang === l
+              ? scrolled ? "bg-white shadow text-gray-900" : "bg-white text-gray-900"
+              : scrolled
+                ? "text-gray-400 hover:text-gray-700"
+                : "text-white/60 hover:text-white"
+          }`}
+          style={lang === l && !scrolled ? { background: accent, color: "white" } : {}}
+        >
+          {l === "en" ? "EN" : "नेपाली"}
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+// ─── Navbar ───────────────────────────────────────────────────────────────────
 function Navbar({
   accent,
   lang,
@@ -68,21 +105,7 @@ function Navbar({
           ))}
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-            {(["en", "ne"] as const).map((l) => (
-              <Link
-                key={l}
-                href={`/${l}/contact`}
-                className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
-                  lang === l
-                    ? "bg-white shadow text-gray-900"
-                    : "text-gray-400 hover:text-gray-700"
-                }`}
-              >
-                {l === "en" ? "EN" : "नेपाली"}
-              </Link>
-            ))}
-          </div>
+          <LangSwitcher lang={lang} accent={accent} scrolled={true} />
           <a
             href={`/${lang}#waitlist`}
             className="flex items-center gap-1.5 px-4 py-2 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 shadow-lg"
@@ -108,21 +131,7 @@ function Navbar({
             className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-2 shadow-xl"
           >
             <div className="pb-2">
-              <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-                {(["en", "ne"] as const).map((l) => (
-                  <Link
-                    key={l}
-                    href={`/${l}/contact`}
-                    className={`flex-1 text-center py-1.5 rounded-md text-xs font-bold transition-all ${
-                      lang === l
-                        ? "bg-white shadow text-gray-900"
-                        : "text-gray-400 hover:text-gray-700"
-                    }`}
-                  >
-                    {l === "en" ? "EN" : "नेपाली"}
-                  </Link>
-                ))}
-              </div>
+              <LangSwitcher lang={lang} accent={accent} scrolled={true} />
             </div>
             {[
               [`/${lang}#examples`, nav.templates],
@@ -224,7 +233,7 @@ export default function ContactPage({ params }: { params: any }) {
             {/* Left: Info Cards */}
             <div className="lg:col-span-12 xl:col-span-5 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-6">
-                {/* NAP Details - Crucial for SEO */}
+                {/* NAP Details */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}

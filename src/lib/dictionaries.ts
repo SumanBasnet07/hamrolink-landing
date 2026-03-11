@@ -487,16 +487,16 @@ export const dictionaries = {
       copyright: "All rights reserved · Built with ❤️ in Nepal 🇳🇵",
       sections: {
         Product: [
-          ["Templates", "#"],
-          ["Features", "#"],
-          ["Pricing", "#pricing"],
-          ["Docs", "/docs"],
+          ["Templates", "/#examples"],
+          ["Features", "/#features"],
+          ["Pricing", "/#pricing"],
+          ["Support", "/docs"],
           ["Contact", "/contact"],
         ],
         Company: [
           ["About", "/about"],
-          ["Blog", "/blog"],
-          ["Status", "/status"],
+          // ["Blog", "/blog"],
+          // ["Status", "/status"],
         ],
         Legal: [
           ["Privacy Policy", "/privacy"],
@@ -988,16 +988,16 @@ export const dictionaries = {
       copyright: "सर्वाधिकार सुरक्षित · नेपालमा ❤️ सँगै बनाइएको 🇳🇵",
       sections: {
         उत्पादन: [
-          ["टेम्प्लेट", "#"],
-          ["सुविधाहरू", "#"],
-          ["मूल्य", "#pricing"],
+          ["टेम्प्लेट", "/#examples"],
+          ["सुविधाहरू", "/#features"],
+          ["मूल्य", "/#pricing"],
           ["सहयोग", "/docs"],
           ["सम्पर्क", "/contact"],
         ],
         हाम्रोबारे: [
           ["हाम्रोबारे", "/about"],
-          ["ब्लग", "/blog"],
-          ["स्थिति", "/status"],
+          // ["ब्लग", "/blog"],
+          // ["स्थिति", "/status"],
         ],
         कानुनी: [
           ["गोपनीयता नीति", "/privacy"],

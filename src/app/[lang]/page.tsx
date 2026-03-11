@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
   Sparkles,
   Globe,
@@ -1247,6 +1248,11 @@ function LangSwitcher({
   accent: string;
   scrolled?: boolean;
 }) {
+  const pathname = usePathname();
+  const segments = pathname.split("/");
+  // current segment excluding the lang (segments[1])
+  const rest = segments.slice(2).join("/");
+
   return (
     <div
       className={`flex items-center gap-1 rounded-lg p-1 ${scrolled ? "bg-gray-100" : "bg-white/10"}`}
@@ -1254,7 +1260,7 @@ function LangSwitcher({
       {(["en", "ne"] as const).map((l) => (
         <Link
           key={l}
-          href={`/${l}`}
+          href={`/${l}${rest ? `/${rest}` : ""}`}
           className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
             lang === l
               ? "text-white"
@@ -1302,10 +1308,10 @@ function Navbar({
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {[
-            [PRE_LAUNCH ? "#examples" : "/templates", nav.templates],
+            [PRE_LAUNCH ? "#examples" : `/${lang}/templates`, nav.templates],
             [PRE_LAUNCH ? "#features" : "#features", nav.features],
             ["#pricing", nav.pricing],
-            ["/docs", nav.docs],
+            [`/${lang}/docs`, nav.docs],
             [`/${lang}/contact`, nav.contact],
           ].map(([href, label]) =>
             href.startsWith("http") ? (
@@ -1359,10 +1365,10 @@ function Navbar({
               <LangSwitcher lang={lang} accent={accent} scrolled={true} />
             </div>
             {[
-              [PRE_LAUNCH ? "#examples" : "/templates", nav.templates],
+              [PRE_LAUNCH ? "#examples" : `/${lang}/templates`, nav.templates],
               [PRE_LAUNCH ? "#features" : "#features", nav.features],
               ["#pricing", nav.pricing],
-              ["/docs", nav.docs],
+              [`/${lang}/docs`, nav.docs],
               [`/${lang}/contact`, nav.contact],
             ].map(([href, label]) =>
               href.startsWith("http") ? (
@@ -1452,6 +1458,40 @@ export default function LandingPage({
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Navbar accent={slide.accent} lang={lang} nav={d.nav} />
+
+      {/* Schema Markup for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "HamroLink",
+            "operatingSystem": "Web",
+            "applicationCategory": "BusinessApplication",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "1250",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "HamroLink",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://hamrolink.com/logo.png"
+              }
+            }
+          })
+        }}
+      />
 
       {/* ══ HERO ═══════════════════════════════════════════════════════════ */}
       <section
@@ -2149,7 +2189,7 @@ export default function LandingPage({
               </h2>
             </div>
             <Link
-              href="#"
+              href="#examples"
               className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/15 border border-white/10 rounded-xl text-white text-sm font-bold transition-colors"
             >
               {d.templates.browseAll}

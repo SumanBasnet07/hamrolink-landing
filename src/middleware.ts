@@ -1,8 +1,6 @@
 // middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = 'experimental-edge';
-
 export const config = {
   matcher: [
     // Run on every route EXCEPT _next, api, static files, and already-prefixed paths
