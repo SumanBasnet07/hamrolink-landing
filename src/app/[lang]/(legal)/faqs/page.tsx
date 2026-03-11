@@ -5,8 +5,8 @@ import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
 import LegalLayout from "../LegalLayout";
 import React from "react";
 
-const UPDATED_EN = "January 1, 2025";
-const UPDATED_NE = "जनवरी १, २०२५";
+const UPDATED_EN = "March 12, 2026";
+const UPDATED_NE = "मार्च १२, २०२६";
 
 // ─── FAQ data ─────────────────────────────────────────────────────────────────
 const faqs = {

@@ -98,8 +98,8 @@ function ArticleSchema({ lang }: { lang: string }) {
         "url": "https://hamrolink.com/icons/icon-192.png",
       },
     },
-    "datePublished": "2025-01-01",
-    "dateModified": "2025-07-01",
+    "datePublished": "2026-03-12",
+    "dateModified": "2026-03-12",
     "inLanguage": ne ? "ne" : "en",
     "url": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
     "mainEntityOfPage": {
@@ -192,7 +192,7 @@ const FAQ_EN = [
   },
   {
     q: "Can small businesses in Nepal easily create websites today?",
-    a: "Yes. New platforms like HamroLink make it possible for any small business owner in Nepal to create a professional website in minutes — without coding, without hiring a developer, and without a large budget. Plans start at NPR 399/month.",
+    a: "Yes. New platforms like HamroLink make it possible for any small business owner in Nepal to create a professional website in minutes — without coding, without hiring a developer, and without a large budget. Plans at NPR 399 (Starter) and NPR 899 (Pro) per month.",
   },
   {
     q: "What is the main difference between a Facebook page and a website?",
@@ -219,7 +219,7 @@ const FAQ_NE = [
   },
   {
     q: "के आज नेपालमा साना व्यवसायहरूले सजिलैसँग वेबसाइट बनाउन सक्छन्?",
-    a: "हो। HamroLink जस्ता नयाँ प्लेटफर्महरूले नेपालका जुनसुकै साना व्यापार मालिकलाई मिनेटमा व्यावसायिक वेबसाइट बनाउन सम्भव बनाउँछ — कोडिङ बिना, डेभलपर भाड्दा बिना, र ठूलो बजेट बिना। मूल्यहरू NPR ३९९/महिनाबाट सुरु हुन्छन्।",
+    a: "हो। HamroLink जस्ता नयाँ प्लेटफर्महरूले नेपालका जुनसुकै साना व्यापार मालिकलाई मिनेटमा व्यावसायिक वेबसाइट बनाउन सम्भव बनाउँछ — कोडिङ बिना, डेभलपर भाड्दा बिना, र ठूलो बजेट बिना। योजनाहरू NPR ३९९ (स्टार्टर) र NPR ८९९ (प्रो) प्रति महिना हुन्।",
   },
   {
     q: "फेसबुक पेज र वेबसाइटबीचको मुख्य फरक के हो?",
@@ -437,12 +437,12 @@ const CONTENT = {
         paras: [
           "For many small businesses in Nepal, building a website has traditionally been expensive and complicated — custom development costs NPR 30,000–2,00,000 or more, and the technical complexity puts many business owners off before they even start.",
           "That is one of the reasons we built HamroLink. HamroLink helps individuals and small businesses in Nepal create simple, professional websites without needing technical knowledge or large budgets. Choose from templates built for Nepali businesses — restaurants, schools, consultancies, shops, portfolios — fill in your details, and go live.",
-          "The goal is straightforward: help Nepali businesses move beyond social media alone and build a real, owned, searchable digital presence. With plans starting at NPR 399 per month, getting your own website is now within reach for every business in Nepal.",
+          "The goal is straightforward: help Nepali businesses move beyond social media alone and build a real, owned, searchable digital presence. With plans starting at NPR 399 and NPR 899 per month, getting your own website is now within reach for every business in Nepal.",
         ],
         highlights: [
           { icon: "🇳🇵", text: "Built for Nepal" },
           { icon: "⚡", text: "Live in under 60 minutes" },
-          { icon: "💰", text: "From NPR 399/month" },
+          { icon: "💰", text: "NPR 399 & 899/month" },
         ],
       },
     ],
@@ -641,12 +641,12 @@ const CONTENT = {
         paras: [
           "नेपालका धेरै साना व्यवसायहरूका लागि, वेबसाइट बनाउनु परम्परागत रूपमा महँगो र जटिल थियो — कस्टम विकास लागत NPR ३०,०००–२,००,००० वा बढी, र प्राविधिक जटिलताले धेरै व्यापार मालिकहरूलाई सुरु गर्नुअघि नै हतोत्साहित पार्छ।",
           "त्यसैले हामीले HamroLink बनायौं। HamroLink ले नेपालका व्यक्ति र साना व्यवसायहरूलाई प्राविधिक ज्ञान वा ठूलो बजेट बिना सरल, व्यावसायिक वेबसाइट बनाउन मद्दत गर्छ। नेपाली व्यवसायका लागि बनाइएका टेम्प्लेटहरू — रेस्टुरेन्ट, विद्यालय, परामर्श, पसल, पोर्टफोलियो — मध्ये छान्नुहोस्, विवरण भर्नुहोस् र लाइभ जानुहोस्।",
-          "लक्ष्य सरल छ: नेपाली व्यवसायहरूलाई केवल सामाजिक सञ्जालभन्दा बाहिर गएर वास्तविक, स्वामित्वमा रहेको, खोज्न सकिने डिजिटल उपस्थिति बनाउन मद्दत गर्नु। NPR ३९९ प्रति महिनाबाट सुरु हुने योजनाहरूसँग, आफ्नै वेबसाइट पाउनु नेपालको हरेक व्यवसायको पहुँचभित्र आएको छ।",
+          "लक्ष्य सरल छ: नेपाली व्यवसायहरूलाई केवल सामाजिक सञ्जालभन्दा बाहिर गएर वास्तविक, स्वामित्वमा रहेको, खोज्न सकिने डिजिटल उपस्थिति बनाउन मद्दत गर्नु। NPR ३९९ र NPR ८९९ प्रति महिनाका योजनाहरूसँग, आफ्नै वेबसाइट पाउनु नेपालको हरेक व्यवसायको पहुँचभित्र आएको छ।",
         ],
         highlights: [
           { icon: "🇳🇵", text: "नेपालका लागि बनाइएको" },
           { icon: "⚡", text: "६० मिनेटभित्र लाइभ" },
-          { icon: "💰", text: "NPR ३९९/महिनाबाट" },
+          { icon: "💰", text: "NPR ३९९ र ८९९/महिना" },
         ],
       },
     ],

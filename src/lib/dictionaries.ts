@@ -91,7 +91,7 @@ export const dictionaries = {
       perk2Title: "Priority access",
       perk2Desc: "Skip the queue and get access before the public launch.",
       perk3Title: "Locked-in early price",
-      perk3Desc: "Your plan price is frozen at launch pricing, forever.",
+      perk3Desc: "Your plan price is frozen at launch pricing (NPR 399/899), forever.",
 
       socialProof: "businesses already on the waitlist",
 
@@ -594,7 +594,7 @@ export const dictionaries = {
       perk2Desc: "सबैका लागि खुल्नु अगाडि नै तपाईंले साइट चलाउन पाउनुहुनेछ।",
       perk3Title: "सस्तो मूल्य सधैँका लागि",
       perk3Desc:
-        "अहिलेको लन्च मूल्य तपाईंको लागि सधैँका लागि स्थिर (Freeze) रहनेछ।",
+        "अहिलेको लन्च मूल्य (NPR ३९९/८९९) तपाईंको लागि सधैँका लागि स्थिर (Freeze) रहनेछ।",
 
       socialProof: "व्यवसायहरू प्रतीक्षासूचीमा",
 

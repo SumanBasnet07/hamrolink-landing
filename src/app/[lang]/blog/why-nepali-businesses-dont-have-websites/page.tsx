@@ -108,8 +108,8 @@ function ArticleSchema({ lang }: { lang: string }) {
         "url": "https://hamrolink.com/icons/icon-192.png",
       },
     },
-    "datePublished": "2025-01-01",
-    "dateModified": "2025-07-01",
+    "datePublished": "2026-03-12",
+    "dateModified": "2026-03-12",
     "inLanguage": ne ? "ne" : "en",
     "url": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/why-nepali-businesses-dont-have-websites`,
     "mainEntityOfPage": {
@@ -199,7 +199,7 @@ const FAQ_EN = [
   },
   {
     q: "How much does a website cost in Nepal?",
-    a: "A custom website built by a developer in Nepal typically costs NPR 30,000–200,000 or more. With a modern website builder Nepal like HamroLink, you can create a professional website for small business Nepal for as little as NPR 399 per month.",
+    a: "A custom website built by a developer in Nepal typically costs NPR 30,000–200,000 or more. With a modern website builder Nepal like HamroLink, you can create a professional website for small business Nepal for as little as NPR 399 and 899 per month.",
   },
   {
     q: "Can I build a website without knowing how to code?",
@@ -222,7 +222,7 @@ const FAQ_NE = [
   },
   {
     q: "नेपालमा वेबसाइट बनाउन कति खर्च लाग्छ?",
-    a: "नेपालमा डेभलपरमार्फत वेबसाइट बनाउँदा रु. ३०,००० भन्दा बढी पर्न सक्छ। तर HamroLink जस्ता वेबसाइट बिल्डर प्रयोग गरेर तपाईंले महिनाको मात्र रु. ३९९ मा आफ्नै व्यावसायिक वेबसाइट तयार पार्न सक्नुहुन्छ।",
+    a: "नेपालमा डेभलपरमार्फत वेबसाइट बनाउँदा रु. ३०,००० भन्दा बढी पर्न सक्छ। तर HamroLink जस्ता वेबसाइट बिल्डर प्रयोग गरेर तपाईंले महिनाको रु. ३९९ र ८९९ मा आफ्नै व्यावसायिक वेबसाइट तयार पार्न सक्नुहुन्छ।",
   },
   {
     q: "के म कोडिङ नजानिकन पनि वेबसाइट बनाउन सक्छु?",
