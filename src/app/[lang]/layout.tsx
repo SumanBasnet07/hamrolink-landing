@@ -33,7 +33,7 @@ type  Lang      = (typeof SUPPORTED)[number];
 const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = {
   en: {
     title:    `${SITE_NAME} — Build Your Website in Nepal, Free`,
-    desc:     "Nepal's fastest-growing website builder. Create professional websites for your business, school, consultancy or store — no coding required. Free plan with eSewa & Khalti payments.",
+    desc:     "Nepal's fastest-growing website builder. Create professional websites for your business, school, or store—no coding required. Start for free with local payments.",
     keywords: [
       "website builder Nepal","free website Nepal","create website Nepal",
       "Nepali website builder","hamrolink","HamroLink",
@@ -45,7 +45,7 @@ const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = 
   },
   ne: {
     title:    `${SITE_NAME} — नेपालमा नि:शुल्क वेबसाइट बनाउनुहोस्`,
-    desc:     "नेपालको सबैभन्दा तीव्र गतिले बढ्दो वेबसाइट बिल्डर। व्यवसाय, विद्यालय, परामर्श वा स्टोरका लागि पेशेवर वेबसाइट बनाउनुहोस् — कुनै कोडिङ आवश्यक छैन। eSewa र Khalti भुक्तानीसहित नि:शुल्क योजना।",
+    desc:     "नेपालको तीव्र गतिको वेबसाइट बिल्डर। व्यवसाय, विद्यालय, वा स्टोरका लागि सहजै वेबसाइट बनाउनुहोस्—कुनै कोडिङ आवश्यक छैन। स्थानीय भुक्तानीसहित निःशुल्क सुरु गर्नुहोस्।",
     keywords: [
       "वेबसाइट बिल्डर नेपाल","नि:शुल्क वेबसाइट नेपाल","वेबसाइट बनाउने",
       "हाम्रोलिंक","HamroLink","नेपाली वेबसाइट बिल्डर",

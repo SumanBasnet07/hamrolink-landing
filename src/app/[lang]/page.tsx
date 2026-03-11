@@ -1303,7 +1303,7 @@ function Navbar({
           href={`/${lang}`}
           className={`font-black flex items-center text-xl tracking-tight transition-colors duration-500 ${sc ? "text-gray-900" : "text-white"}`}
         >
-          <img src="/logo.png" className="w-8 h-8 mr-2" alt="" />
+          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Logo" />
           Hamro<span style={{ color: accent }}>Link</span>
         </Link>
         <div className="hidden md:flex items-center gap-6">
@@ -1540,35 +1540,37 @@ export default function LandingPage({
 
               {/* Headline */}
               <div>
-                <motion.h1
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.7 }}
-                  className={`font-black tracking-tight ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}
-                >
-                  {hero.line1}
-                </motion.h1>
-                <AnimatePresence mode="wait">
-                  <motion.h1
-                    key={idx}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -16 }}
-                    transition={{ duration: 0.35 }}
-                    className={`font-black tracking-tight mt-1 ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}
-                    style={{ color: slide.accent }}
+                <h1 className={`font-black tracking-tight ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
+                  <motion.span
+                    initial={{ opacity: 0, x: -40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7 }}
+                    className="block"
                   >
-                    {hero.slideLabels[idx]}
-                  </motion.h1>
-                </AnimatePresence>
-                <motion.h1
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.7, delay: 0.15 }}
-                  className={`font-black tracking-tight mt-1 ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}
-                >
-                  {hero.line3}
-                </motion.h1>
+                    {hero.line1}
+                  </motion.span>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={idx}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -16 }}
+                      transition={{ duration: 0.35 }}
+                      className="block mt-1"
+                      style={{ color: slide.accent }}
+                    >
+                      {hero.slideLabels[idx]}
+                    </motion.span>
+                  </AnimatePresence>
+                  <motion.span
+                    initial={{ opacity: 0, x: -40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7, delay: 0.15 }}
+                    className="block mt-1"
+                  >
+                    {hero.line3}
+                  </motion.span>
+                </h1>
               </div>
 
               {/* Subtext */}
