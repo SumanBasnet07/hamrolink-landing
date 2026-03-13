@@ -11,6 +11,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { getDictionary } from "@/lib/dictionaries";
+import { Footer } from "@/components/Footer";
 
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
 const PRE_LAUNCH = true;
@@ -576,37 +577,12 @@ export default function DocsPage() {
       </main>
 
       {/* ══ FOOTER ═══════════════════════════════════════════════════════ */}
-      <footer className="bg-slate-950 pt-24 pb-12 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-20">
-            <div className="col-span-2">
-              <div className="mb-6">
-                <img src="/og-image.png" alt="HamroLink" className="h-12 w-auto transition-all" />
-              </div>
-              <p className="text-lg text-white/35 max-w-sm leading-relaxed mb-8">
-                {d.footer.tagline}
-              </p>
-              <Link
-                href={`/${lang}#waitlist`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white text-sm font-bold rounded-2xl transition-all"
-              >
-                <Sparkles className="w-4 h-4" />
-                {d.footer.cta}
-              </Link>
-            </div>
-          </div>
-          <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row items-center justify-between gap-8 text-white/20">
-            <p className="text-sm">
-              © {new Date().getFullYear()} Hamrolink. {d.footer.copyright}
-            </p>
-            <div className="flex gap-8">
-              <Link href={`/${lang}/about`} className="hover:text-white transition-colors">About</Link>
-              <Link href={`/${lang}/contact`} className="hover:text-white transition-colors">Contact</Link>
-              <a href="mailto:support@hamrolink.com" className="hover:text-white transition-colors underline decoration-white/10">support@hamrolink.com</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer
+        lang={lang}
+        d={d}
+        PRE_LAUNCH={PRE_LAUNCH}
+        ctaHref={(href) => (PRE_LAUNCH ? `/${lang}#waitlist` : href)}
+      />
     </div>
   );
 }

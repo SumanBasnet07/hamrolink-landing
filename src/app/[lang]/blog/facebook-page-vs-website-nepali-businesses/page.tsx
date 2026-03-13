@@ -55,10 +55,11 @@ export async function generateMetadata(
       ],
     },
     alternates: {
-      canonical: `https://hamrolink.com/en/blog/${SLUG}`,
+      canonical: `https://hamrolink.com/${lang}/blog/${SLUG}`,
       languages: {
         "en": `https://hamrolink.com/en/blog/${SLUG}`,
         "ne": `https://hamrolink.com/ne/blog/${SLUG}`,
+        "x-default": `https://hamrolink.com/en/blog/${SLUG}`,
       },
     },
   };
@@ -98,8 +99,8 @@ function ArticleSchema({ lang }: { lang: string }) {
         "url": "https://hamrolink.com/icons/icon-192.png",
       },
     },
-    "datePublished": "2026-03-12",
-    "dateModified": "2026-03-12",
+    "datePublished": "2026-03-13",
+    "dateModified": "2026-03-13",
     "inLanguage": ne ? "ne" : "en",
     "url": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
     "mainEntityOfPage": {
@@ -265,7 +266,7 @@ const COMPARISON_NE = [
 // ─── Article content ──────────────────────────────────────────────────────────
 const CONTENT = {
   en: {
-    publishedLabel: "Published by HamroLink · Updated July 2025",
+    publishedLabel: "Published by HamroLink · Updated March 2026",
     readTime: "7 min read",
     tocTitle: "Table of Contents",
     toc: [
@@ -348,7 +349,7 @@ const CONTENT = {
             icon: "🔍",
             h3: "Customers Can't Easily Find You on Google",
             paras: [
-              "Many customers begin their search online — not on Facebook, but on Google. When someone types 'best restaurant Thamel' or 'school admission Kathmandu 2025' into Google, the results show websites, not Facebook pages. Without a website, your business is simply absent from that search.",
+              "Many customers begin their search online — not on Facebook, but on Google. When someone types 'best restaurant Thamel' or 'school admission Kathmandu 2026' into Google, the results show websites, not Facebook pages. Without a website, your business is simply absent from that search.",
               "That means every potential customer who searches on Google — and that is millions of searches every day in Nepal — might never find you. They will find your competitor who has a website, instead.",
             ],
           },
@@ -454,7 +455,7 @@ const CONTENT = {
         "Join early access to HamroLink and start building your own website — no coding required, no large upfront cost, and no technical team needed.",
       ],
       cta: "Join Early Access — It's Free",
-      ctaHref: "/en/waitlist",
+      ctaHref: "/en#waitlist",
       trust: ["Free to join", "No credit card required", "Unsubscribe anytime"],
     },
     faqTitle: "Frequently Asked Questions",
@@ -464,7 +465,7 @@ const CONTENT = {
     related: [
       { label: "Why Nepali Businesses Don't Have Websites", href: "/en/blog/why-nepali-businesses-dont-have-websites" },
       { label: "HamroLink Pricing", href: "/en#pricing" },
-      { label: "Join Waitlist", href: "/en/waitlist" },
+      { label: "Join Waitlist", href: "/en#waitlist" },
     ],
   },
 
@@ -658,7 +659,7 @@ const CONTENT = {
         "HamroLink को प्रारम्भिक पहुँचमा सामेल हुनुहोस् र आफ्नै वेबसाइट बनाउन सुरु गर्नुहोस् — कुनै कोडिङ आवश्यक छैन, ठूलो अग्रिम लागत छैन र प्राविधिक टोली आवश्यक छैन।",
       ],
       cta: "प्रारम्भिक पहुँचमा सामेल हुनुहोस् — निःशुल्क",
-      ctaHref: "/ne/waitlist",
+      ctaHref: "/ne#waitlist",
       trust: ["सामेल हुन निःशुल्क", "क्रेडिट कार्ड आवश्यक छैन", "जुनसुकै बेला अनसब्सक्राइब गर्नुहोस्"],
     },
     faqTitle: "बारम्बार सोधिने प्रश्नहरू",
@@ -668,7 +669,7 @@ const CONTENT = {
     related: [
       { label: "नेपाली व्यवसायसँग वेबसाइट किन छैन", href: "/ne/blog/why-nepali-businesses-dont-have-websites" },
       { label: "HamroLink मूल्य निर्धारण", href: "/ne#pricing" },
-      { label: "प्रतीक्षा सूचीमा सामेल हुनुहोस्", href: "/ne/waitlist" },
+      { label: "प्रतीक्षा सूचीमा सामेल हुनुहोस्", href: "/ne#waitlist" },
     ],
   },
 };
@@ -1111,22 +1112,36 @@ export default async function BlogFacebookVsWebsitePage({ params }: { params: Pr
         </div>
 
         {/* ── Footer ─────────────────────────────────────────────────────── */}
-        <div className="border-t border-gray-100 bg-white py-8">
-          <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-            <span>© {new Date().getFullYear()} HamroLink · Built in Nepal 🇳🇵</span>
-            <div className="flex gap-6">
-              {([
-                [ne ? "गोपनीयता" : "Privacy",  "privacy"],
-                [ne ? "सर्तहरू"  : "Terms",    "terms"],
-                [ne ? "फिर्ता"   : "Refund",   "refund"],
-                [ne ? "FAQ"      : "FAQ",      "faq"],
-              ] as [string,string][]).map(([label, slug]) => (
-                <Link key={slug} href={`/${lang}/${slug}`}
-                  className="hover:text-gray-700 transition-colors">{label}</Link>
-              ))}
+        <footer className="border-t border-gray-100 bg-white pt-12 pb-8">
+          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <div className="mb-6">
+                <img src="/og-image.png" alt="HamroLink" className="h-8 w-auto transition-all" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-gray-900 font-bold text-sm">Hamrolink Digital</h4>
+                <p className="text-xs text-gray-500">Pakhribas-4, Dhankuta, Nepal</p>
+                <p className="text-[10px] text-gray-400">
+                  Reg No: ध-९४५८/०८२/०८३  | PAN: ६२०२७७२२१
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col md:items-end justify-end space-y-4">
+              <div className="flex gap-6 text-sm text-gray-400">
+                {([
+                  [ne ? "गोपनीयता"  : "Privacy",  "privacy"],
+                  [ne ? "सर्तहरू"   : "Terms",    "terms"],
+                  [ne ? "FAQ"       : "FAQ",      "faq"],
+                ] as [string,string][]).map(([label, slug]) => (
+                  <Link key={slug} href={`/${lang}/${slug}`} className="hover:text-gray-700 transition-colors">{label}</Link>
+                ))}
+              </div>
+              <p className="text-xs text-gray-400">
+                © {new Date().getFullYear()} HamroLink · Built with ❤️ in Nepal
+              </p>
             </div>
           </div>
-        </div>
+        </footer>
 
       </div>
     </>

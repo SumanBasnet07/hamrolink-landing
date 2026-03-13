@@ -41,7 +41,23 @@ import {
   Clock,
   User,
   Maximize2,
+  UtensilsCrossed,
+  Briefcase,
+  Hospital,
+  Home,
+  Palette,
+  Package,
+  Coffee,
+  BookOpen,
+  Layout,
+  BriefcaseBusiness,
+  CheckCircle,
+  Gift,
+  Lock,
+  Calendar,
+  Smartphone,
 } from "lucide-react";
+import { Footer } from "@/components/Footer";
 import {
   Dialog,
   DialogContent,
@@ -78,15 +94,15 @@ import { sendWaitlistSES } from "@/app/actions";
 
 // ─── Business type options ────────────────────────────────────────────────────
 const BUSINESS_TYPES = [
-  { emoji: "🍛", label: "Restaurant / Café" },
-  { emoji: "🛍", label: "Retail / Shop" },
-  { emoji: "🎓", label: "School / Academy" },
-  { emoji: "✈️", label: "Consultancy / Travel" },
-  { emoji: "💼", label: "Professional / Freelance" },
-  { emoji: "🏥", label: "Health / Clinic" },
-  { emoji: "🏠", label: "Real Estate" },
-  { emoji: "🎨", label: "Creative / Portfolio" },
-  { emoji: "📦", label: "Other" },
+  { icon: UtensilsCrossed, label: "Restaurant / Café" },
+  { icon: ShoppingBag, label: "Retail / Shop" },
+  { icon: GraduationCap, label: "School / Academy" },
+  { icon: Plane, label: "Consultancy / Travel" },
+  { icon: Briefcase, label: "Professional / Freelance" },
+  { icon: Hospital, label: "Health / Clinic" },
+  { icon: Home, label: "Real Estate" },
+  { icon: Palette, label: "Creative / Portfolio" },
+  { icon: Package, label: "Other" },
 ];
 
 // ─── WaitlistForm — zero animation, always visible ───────────────────────────
@@ -136,11 +152,14 @@ function WaitlistForm({ d }: { d: any }) {
         className="text-center py-6"
       >
         <motion.div
-          className="text-5xl mb-4"
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          className="flex justify-center mb-4"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
-          🎉
+          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
+            <CheckCircle className="w-10 h-10 text-green-600" />
+          </div>
         </motion.div>
         <h3 className="text-2xl font-black text-gray-900 mb-2">
           {d.waitlist?.successTitle ?? "You're on the list!"}
@@ -199,22 +218,25 @@ function WaitlistForm({ d }: { d: any }) {
           Type of business
         </label>
         <div className="grid grid-cols-3 gap-1.5">
-          {BUSINESS_TYPES.map((bt) => (
-            <button
-              key={bt.label}
-              onClick={() =>
-                setBusinessType(businessType === bt.label ? "" : bt.label)
-              }
-              className={`flex flex-col items-center gap-1 py-2 px-1 rounded-xl border text-center transition-all text-xs font-medium ${
-                businessType === bt.label
-                  ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                  : "border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300"
-              }`}
-            >
-              <span className="text-base">{bt.emoji}</span>
-              <span className="leading-tight">{bt.label.split(" / ")[0]}</span>
-            </button>
-          ))}
+          {BUSINESS_TYPES.map((bt) => {
+            const Icon = (bt as any).icon;
+            return (
+              <button
+                key={bt.label}
+                onClick={() =>
+                  setBusinessType(businessType === bt.label ? "" : bt.label)
+                }
+                className={`flex flex-col items-center gap-1 py-2 px-1 rounded-xl border text-center transition-all text-xs font-medium ${
+                  businessType === bt.label
+                    ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                    : "border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300"
+                }`}
+              >
+                <Icon className={`w-4 h-4 ${businessType === bt.label ? "text-indigo-500" : "text-gray-400"}`} />
+                <span className="leading-tight">{bt.label.split(" / ")[0]}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -605,18 +627,18 @@ function SchoolScreen() {
       </div>
       <div className="px-3 mb-2 flex-1">
         {[
-          ["📗", "Nursery – Grade 5", "Primary"],
-          ["📘", "Grade 6 – 10", "Secondary"],
-          ["📙", "Grade 11 – 12", "Higher Sec."],
+          [<BookOpen className="w-3.5 h-3.5 text-emerald-600" />, "Nursery – Grade 5", "Primary"],
+          [<BookOpen className="w-3.5 h-3.5 text-blue-600" />, "Grade 6 – 10", "Secondary"],
+          [<GraduationCap className="w-3.5 h-3.5 text-orange-600" />, "Grade 11 – 12", "Higher Sec."],
         ].map(([e, n, d]) => (
           <div
-            key={n}
+            key={n as string}
             className="flex items-center gap-2 py-1.5 border-b border-gray-50"
           >
-            <span className="text-sm">{e}</span>
+            <span>{e}</span>
             <div>
-              <div className="text-[9px] font-bold text-gray-900">{n}</div>
-              <div className="text-[7px] text-gray-400">{d}</div>
+              <div className="text-[9px] font-bold text-gray-900">{n as string}</div>
+              <div className="text-[7px] text-gray-400">{d as string}</div>
             </div>
             <ArrowRight className="w-3 h-3 text-gray-300 ml-auto" />
           </div>
@@ -651,18 +673,18 @@ function ConsultancyScreen() {
       </div>
       <div className="px-3 pt-2.5 space-y-1.5 flex-1">
         {[
-          ["📋", "Visa Processing", "Expert guidance"],
-          ["🎓", "University Match", "200+ universities"],
-          ["💬", "Free Counseling", "Book today"],
+          [<CheckCircle className="w-4 h-4 text-violet-600" />, "Visa Processing", "Expert guidance"],
+          [<GraduationCap className="w-4 h-4 text-violet-600" />, "University Match", "200+ universities"],
+          [<MessageSquare className="w-4 h-4 text-violet-600" />, "Free Counseling", "Book today"],
         ].map(([e, t, d]) => (
           <div
-            key={t}
+            key={t as string}
             className="flex items-center gap-2 p-2 bg-violet-50 rounded-xl border border-violet-100"
           >
-            <span className="text-lg">{e}</span>
+            <span>{e}</span>
             <div>
-              <div className="text-[9px] font-bold text-gray-900">{t}</div>
-              <div className="text-[7px] text-gray-500">{d}</div>
+              <div className="text-[9px] font-bold text-gray-900">{t as string}</div>
+              <div className="text-[7px] text-gray-500">{d as string}</div>
             </div>
           </div>
         ))}
@@ -682,13 +704,20 @@ function ConsultancyScreen() {
   );
 }
 
+const RESTAURANT_ITEMS = [
+  { icon: <UtensilsCrossed className="w-4 h-4 text-amber-600" />, name: "Dal Bhat Set", price: "Rs 350" },
+  { icon: <UtensilsCrossed className="w-4 h-4 text-orange-600" />, name: "Thakali Thali", price: "Rs 550" },
+  { icon: <UtensilsCrossed className="w-4 h-4 text-amber-600" />, name: "Gundruk Soup", price: "Rs 180" },
+  { icon: <Coffee className="w-4 h-4 text-amber-600" />, name: "Sel Roti + Tea", price: "Rs 120" },
+];
+
 function RestaurantScreen() {
   return (
     <div className="w-full h-full bg-white flex flex-col overflow-hidden">
       <div className="bg-gradient-to-r from-amber-500 to-orange-600 px-3 pt-3 pb-2.5">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-2xl">
-            🍲
+          <div className="w-10 h-10 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center">
+            <UtensilsCrossed className="w-6 h-6 text-white" />
           </div>
           <div>
             <div className="text-white font-black text-[13px]">
@@ -711,37 +740,31 @@ function RestaurantScreen() {
         </div>
       </div>
       <div className="px-3 pt-2 flex-1">
-        {[
-          ["🍛", "Dal Bhat Set", "Rs 350"],
-          ["🥘", "Thakali Thali", "Rs 550"],
-          ["🫕", "Gundruk Soup", "Rs 180"],
-          ["🍜", "Sel Roti + Tea", "Rs 120"],
-        ].map(([e, n, p]) => (
+        {RESTAURANT_ITEMS.map((item) => (
           <div
-            key={n}
+            key={item.name}
             className="flex items-center gap-2 py-1.5 border-b border-gray-50"
           >
-            <span className="text-base">{e}</span>
+            <span>{item.icon}</span>
             <span className="flex-1 text-[9px] font-bold text-gray-900">
-              {n}
+              {item.name}
             </span>
-            <span className="text-[10px] font-black text-amber-600">{p}</span>
+            <span className="text-[10px] font-black text-amber-600">{item.price}</span>
           </div>
         ))}
       </div>
       <div className="grid grid-cols-2 gap-1.5 px-3 mt-2 mb-3">
         <button className="py-2 bg-amber-500 text-white rounded-xl text-[9px] font-black">
-          📅 Reserve Table
+          Calendar Reserve
         </button>
         <button className="py-2 border border-amber-400 text-amber-600 rounded-xl text-[9px] font-black">
-          📋 Full Menu
+          Menu List
         </button>
       </div>
     </div>
   );
 }
 
-// ─── Slide config ─────────────────────────────────────────────────────────────
 const SLIDES = [
   {
     id: "creator",
@@ -779,55 +802,6 @@ const SLIDES = [
     Screen: RestaurantScreen,
   },
 ];
-{
-  [
-    ["100+", "Menu Items"],
-    ["50K+", "Happy Guests"],
-    ["15+", "Years"],
-    ["12", "Awards"],
-  ].map(([v, l]) => (
-    <div key={l} className="text-center">
-      <div className="text-[9px] font-black text-orange-600">{v}</div>
-      <div className="text-[6px] text-gray-400">{l}</div>
-    </div>
-  ));
-}
-<div>
-  {/* Chef's Specials */}
-  <div className="px-2.5 pt-2">
-    <div className="text-[8px] font-black text-gray-700 mb-1.5">
-      Chef's Specialties
-    </div>
-    <div className="grid grid-cols-2 gap-1.5">
-      {[
-        { e: "🍲", n: "Jhal Momo", p: "Rs 280", tag: "Bestseller" },
-        { e: "🥘", n: "Khana Set", p: "Rs 450", tag: "Chef's Pick" },
-        { e: "🍛", n: "Dal Bhat", p: "Rs 320", tag: "Traditional" },
-        { e: "🍜", n: "Sel Roti", p: "Rs 150", tag: "Popular" },
-      ].map((i) => (
-        <div
-          key={i.n}
-          className="bg-orange-50 border border-orange-100 rounded-xl overflow-hidden"
-        >
-          <div className="bg-gradient-to-br from-orange-200 to-red-100 h-10 flex items-center justify-center text-xl">
-            {i.e}
-          </div>
-          <div className="p-1.5">
-            <div className="text-[8px] font-black text-gray-900">{i.n}</div>
-            <div className="flex items-center justify-between mt-0.5">
-              <span className="text-[8px] font-black text-orange-600">
-                {i.p}
-              </span>
-              <span className="text-[6px] bg-orange-500 text-white px-1 rounded-full font-bold">
-                {i.tag}
-              </span>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>;
 
 // ─── Template data ────────────────────────────────────────────────────────────
 const TEMPLATES = [
@@ -861,7 +835,7 @@ const TEMPLATES = [
             <h2 className="text-white font-black text-base leading-tight mb-2">
               Crafting digital
               <br />
-              experiences 🎨
+              experiences <Palette className="inline w-3.5 h-3.5" />
             </h2>
             <p className="text-[8px] text-white/50 mb-3 leading-relaxed">
               Based in Kathmandu.
@@ -880,12 +854,17 @@ const TEMPLATES = [
           </div>
         </div>
         <div className="px-4 pb-2 grid grid-cols-3 gap-1.5">
-          {["🎨 Branding", "💻 Web Dev", "📱 Mobile"].map((s) => (
+          {[
+            [<Palette className="w-2.5 h-2.5" />, "Branding"],
+            [<Code2 className="w-2.5 h-2.5" />, "Web Dev"],
+            [<Smartphone className="w-2.5 h-2.5" />, "Mobile"],
+          ].map(([icon, label], i) => (
             <div
-              key={s}
-              className="py-1.5 bg-white/5 rounded-lg text-center text-[7px] text-white/60 border border-white/5"
+              key={i}
+              className="py-1.5 bg-white/5 rounded-lg text-center text-[7px] text-white/60 border border-white/5 flex flex-col items-center gap-1"
             >
-              {s}
+              {icon}
+              {label as string}
             </div>
           ))}
         </div>
@@ -901,7 +880,8 @@ const TEMPLATES = [
       <div className="w-full h-full bg-white flex flex-col">
         <div className="bg-gradient-to-r from-orange-500 to-rose-500 px-3 py-2 flex items-center justify-between">
           <span className="text-white font-black text-[11px]">
-            🛍 Bazaar Store
+            <ShoppingBag className="w-3 h-3 text-white mr-1" />
+            Bazaar Store
           </span>
           <div className="relative">
             <ShoppingCart className="w-4 h-4 text-white" />
@@ -922,15 +902,15 @@ const TEMPLATES = [
         </div>
         <div className="flex-1 grid grid-cols-3 gap-1.5 p-2">
           {[
-            { e: "👜", n: "Bag", p: "Rs 1,200" },
-            { e: "🧣", n: "Shawl", p: "Rs 2,500" },
-            { e: "🏺", n: "Pot", p: "Rs 800" },
-          ].map((item) => (
+            { i: <ShoppingBag className="w-4 h-4 text-orange-600" />, n: "Bag", p: "Rs 1,200" },
+            { i: <Palette className="w-4 h-4 text-orange-600" />, n: "Shawl", p: "Rs 2,500" },
+            { i: <Package className="w-4 h-4 text-orange-600" />, n: "Pot", p: "Rs 800" },
+          ].map((item, i) => (
             <div
-              key={item.n}
-              className="rounded-lg border border-orange-100 bg-orange-50/50 p-1.5 flex flex-col items-center"
+              key={i}
+              className="rounded-lg border border-orange-100 bg-orange-50/50 p-1.5 flex flex-col items-center justify-center gap-1"
             >
-              <span className="text-xl mb-0.5">{item.e}</span>
+              {item.i}
               <div className="text-[8px] font-bold text-gray-800 text-center">
                 {item.n}
               </div>
@@ -994,17 +974,17 @@ const TEMPLATES = [
         </div>
         <div className="px-2.5 mt-2 flex-1 space-y-1">
           {[
-            ["📗", "Primary (Nur–5)"],
-            ["📘", "Secondary (6–10)"],
-            ["📙", "Higher Sec (11–12)"],
-          ].map(([e, n]) => (
+            [<BookOpen className="w-3 h-3 text-emerald-600" />, "Primary (Nur–5)"],
+            [<BookOpen className="w-3 h-3 text-blue-600" />, "Secondary (6–10)"],
+            [<GraduationCap className="w-3 h-3 text-orange-600" />, "Higher Sec (11–12)"],
+          ].map(([e, n], i) => (
             <div
-              key={n}
+              key={i}
               className="flex items-center gap-1.5 px-2 py-1.5 bg-emerald-50 rounded-lg"
             >
-              <span>{e}</span>
+              {e}
               <span className="text-[8px] font-semibold text-gray-800">
-                {n}
+                {n as string}
               </span>
             </div>
           ))}
@@ -1034,20 +1014,24 @@ const TEMPLATES = [
           <div className="text-white font-bold text-[10px]">
             UK · USA · Canada · Australia
           </div>
-          <div className="text-lg mt-1">🇬🇧🇺🇸🇨🇦🇦🇺</div>
+          <div className="flex gap-1 mt-1">
+            {["UK", "USA", "CAN", "AUS"].map((c) => (
+              <span key={c} className="text-[7px] bg-white/20 text-white px-1 rounded font-bold">{c}</span>
+            ))}
+          </div>
         </div>
         <div className="flex-1 px-2.5 pt-2 space-y-1.5">
           {[
-            ["📋", "Visa Processing"],
-            ["🎓", "University Match"],
-            ["💬", "Free Counseling"],
-          ].map(([e, t]) => (
+            [<CheckCircle className="w-3 h-3 text-violet-600" />, "Visa Processing"],
+            [<GraduationCap className="w-3 h-3 text-violet-600" />, "University Match"],
+            [<MessageSquare className="w-3 h-3 text-violet-600" />, "Free Counseling"],
+          ].map(([e, t], i) => (
             <div
-              key={t}
+              key={i}
               className="flex items-center gap-2 p-1.5 bg-violet-50 rounded-lg border border-violet-100"
             >
-              <span>{e}</span>
-              <span className="text-[8px] font-bold text-gray-800">{t}</span>
+              {e}
+              <span className="text-[8px] font-bold text-gray-800">{t as string}</span>
             </div>
           ))}
           <div className="flex items-center gap-1 pt-1">
@@ -1071,7 +1055,7 @@ const TEMPLATES = [
     preview: (
       <div className="w-full h-full bg-white flex flex-col">
         <div className="bg-gradient-to-r from-amber-500 to-orange-600 px-3 py-2 flex items-center gap-2">
-          <span className="text-2xl">🍲</span>
+          <UtensilsCrossed className="w-6 h-6 text-white" />
           <div>
             <div className="text-white font-black text-[11px]">
               Thakali Kitchen
@@ -1093,29 +1077,29 @@ const TEMPLATES = [
         </div>
         <div className="flex-1 px-2.5 pt-1.5">
           {[
-            ["🍛", "Dal Bhat", "Rs 350"],
-            ["🥘", "Thali", "Rs 550"],
-            ["🫕", "Gundruk", "Rs 180"],
-            ["🍜", "Sel Roti", "Rs 120"],
-          ].map(([e, n, p]) => (
+            { i: <UtensilsCrossed className="w-3 h-3 text-amber-600" />, n: "Dal Bhat", p: "Rs 350" },
+            { i: <UtensilsCrossed className="w-3 h-3 text-orange-600" />, n: "Thali", p: "Rs 550" },
+            { i: <UtensilsCrossed className="w-3 h-3 text-amber-600" />, n: "Gundruk", p: "Rs 180" },
+            { i: <Coffee className="w-3 h-3 text-amber-600" />, n: "Sel Roti", p: "Rs 120" },
+          ].map((item, i) => (
             <div
-              key={n}
+              key={i}
               className="flex items-center gap-1.5 border-b border-gray-50 py-1"
             >
-              <span>{e}</span>
+              {item.i}
               <span className="flex-1 text-[8px] font-semibold text-gray-800">
-                {n}
+                {item.n}
               </span>
-              <span className="text-[8px] font-black text-amber-600">{p}</span>
+              <span className="text-[8px] font-black text-amber-600">{item.p}</span>
             </div>
           ))}
         </div>
         <div className="grid grid-cols-2 gap-1 px-2.5 pb-2 mt-1">
           <button className="py-1.5 bg-amber-500 text-white rounded-lg text-[8px] font-black">
-            📅 Reserve
+            <Calendar className="w-3 h-3 mr-1" /> Reserve
           </button>
-          <button className="py-1.5 border border-amber-400 text-amber-600 rounded-lg text-[8px] font-black">
-            📋 Menu
+          <button className="py-1.5 border border-amber-400 text-amber-600 rounded-lg text-[8px] font-black flex items-center justify-center">
+            <Layout className="w-3 h-3 mr-1" /> Menu
           </button>
         </div>
       </div>
@@ -1130,7 +1114,7 @@ const TEMPLATES = [
       <div className="w-full h-full bg-white flex flex-col">
         <div className="bg-gradient-to-br from-pink-600 via-rose-600 to-orange-500 px-3 py-3 text-center">
           <div className="text-white font-black text-[13px] mb-0.5">
-            🚀 Nova Tech
+            <Rocket className="w-4 h-4 text-white mr-1" /> Nova Tech
           </div>
           <div className="text-pink-100 text-[8px] mb-2">
             Building Nepal's digital future
@@ -1141,16 +1125,16 @@ const TEMPLATES = [
         </div>
         <div className="flex-1 px-2.5 pt-2">
           {[
-            ["💡", "SaaS Products"],
-            ["📱", "Mobile Apps"],
-            ["🌐", "Web Platforms"],
-          ].map(([e, t]) => (
+            [<Zap className="w-3.5 h-3.5 text-pink-600" />, "SaaS Products"],
+            [<Smartphone className="w-3.5 h-3.5 text-pink-600" />, "Mobile Apps"],
+            [<Globe className="w-3.5 h-3.5 text-pink-600" />, "Web Platforms"],
+          ].map(([e, t], i) => (
             <div
-              key={t}
+              key={i}
               className="flex items-center gap-2 py-1.5 border-b border-gray-50"
             >
-              <span>{e}</span>
-              <span className="text-[8px] font-medium text-gray-700">{t}</span>
+              {e}
+              <span className="text-[8px] font-medium text-gray-700">{t as string}</span>
             </div>
           ))}
         </div>
@@ -1449,10 +1433,10 @@ export default function LandingPage({
 
   const hero = d.hero;
   const fu = (delay = 0) => ({
-    initial: { opacity: 0, y: 32 },
+    initial: { opacity: 0, y: 16 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6, delay },
+    viewport: { once: true, margin: "-10%" },
+    transition: { duration: 0.4, delay },
   });
 
   return (
@@ -1506,17 +1490,13 @@ export default function LandingPage({
             backgroundSize: "56px 56px",
           }}
         />
-        <motion.div
-          className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none"
+        <div
+          className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none"
           style={{ background: slide.glow }}
-          animate={{ scale: [1, 1.12, 1] }}
-          transition={{ duration: 7, repeat: Infinity }}
         />
-        <motion.div
+        <div
           className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[80px] opacity-10 pointer-events-none"
           style={{ background: slide.accent }}
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 9, repeat: Infinity, delay: 1.5 }}
         />
 
         <div className="relative max-w-7xl mx-auto px-6 pt-24 pb-20 w-full">
@@ -1530,11 +1510,9 @@ export default function LandingPage({
                 transition={{ duration: 0.6 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-sm font-semibold"
               >
-                <motion.span
+                <span
                   className="w-2 h-2 rounded-full shrink-0"
                   style={{ background: slide.accent }}
-                  animate={{ opacity: [1, 0.4, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
                 />
                 {hero.badge}
               </motion.div>
@@ -1651,15 +1629,7 @@ export default function LandingPage({
                 className="relative"
               >
                 {/* Floating badge top-left */}
-                <motion.div
-                  animate={{ y: [0, -14, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 3.5,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -top-7 -left-10 z-20 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-3.5 py-2.5 shadow-2xl hidden sm:flex items-center gap-2"
-                >
+                <div className="absolute -top-7 -left-10 z-20 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-3.5 py-2.5 shadow-2xl hidden sm:flex items-center gap-2">
                   <div
                     className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
                     style={{ background: slide.accent }}
@@ -1672,24 +1642,11 @@ export default function LandingPage({
                     </div>
                     <div className="text-sm font-black text-white">+127%</div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Floating badge bottom-right */}
-                <motion.div
-                  animate={{ y: [0, -9, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 4,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                  className="absolute -bottom-5 -right-8 z-20 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-3.5 py-2.5 shadow-2xl hidden sm:flex items-center gap-2"
-                >
-                  <motion.div
-                    className="w-2.5 h-2.5 rounded-full bg-green-400 shrink-0"
-                    animate={{ opacity: [1, 0.3, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
+                <div className="absolute -bottom-5 -right-8 z-20 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-3.5 py-2.5 shadow-2xl hidden sm:flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400 shrink-0" />
                   <div>
                     <div className="text-[9px] text-white/55">
                       {hero.floatingSites}
@@ -1698,7 +1655,7 @@ export default function LandingPage({
                       {PRE_LAUNCH ? "240+" : "5,000+"}
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Phone shell */}
                 <div
@@ -1870,7 +1827,7 @@ export default function LandingPage({
               <div className="space-y-4 mb-8">
                 {[
                   {
-                    icon: "🎁",
+                    icon: <Gift className="w-5 h-5 text-indigo-600" />,
                     title:
                       (d.waitlist as any).perk1Title ??
                       "Free 15-day Starter trial",
@@ -1879,7 +1836,7 @@ export default function LandingPage({
                       "Early signups get the Starter plan free for 15 days after launch.",
                   },
                   {
-                    icon: "⚡",
+                    icon: <Zap className="w-5 h-5 text-indigo-600" />,
                     title:
                       (d.waitlist as any).perk2Title ?? "Priority onboarding",
                     desc:
@@ -1887,7 +1844,7 @@ export default function LandingPage({
                       "Skip the queue — we'll set up your site personally.",
                   },
                   {
-                    icon: "🔒",
+                    icon: <Shield className="w-5 h-5 text-indigo-600" />,
                     title:
                       (d.waitlist as any).perk3Title ?? "Locked-in early price",
                     desc:
@@ -1896,7 +1853,7 @@ export default function LandingPage({
                   },
                 ].map((p) => (
                   <div key={p.title} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center text-xl shrink-0">
+                    <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center shrink-0">
                       {p.icon}
                     </div>
                     <div>
@@ -1914,12 +1871,12 @@ export default function LandingPage({
               {/* Social proof avatars */}
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
-                  {["🧑‍💼", "👩‍🍳", "👨‍💻", "👩‍🏫", "🧑‍🎨"].map((e, i) => (
+                  {[1, 2, 3, 4, 5].map((i) => (
                     <div
                       key={i}
-                      className="w-8 h-8 rounded-full border-2 border-white bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-sm"
+                      className="w-8 h-8 rounded-full border-2 border-white bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white"
                     >
-                      {e}
+                      <User className="w-4 h-4" />
                     </div>
                   ))}
                 </div>
@@ -1949,20 +1906,20 @@ export default function LandingPage({
                 <div className="mt-6 pt-5 border-t border-gray-100 flex flex-wrap gap-4">
                   {[
                     {
-                      icon: "🔒",
+                      icon: <Lock className="w-3.5 h-3.5" />,
                       text: (d.waitlist as any).trust1 ?? "No spam, ever",
                     },
                     {
-                      icon: "✅",
+                      icon: <CheckCircle className="w-3.5 h-3.5" />,
                       text: (d.waitlist as any).trust2 ?? "Unsubscribe anytime",
                     },
                     {
-                      icon: "🇳🇵",
+                      icon: <span className="text-xs">🇳🇵</span>,
                       text: (d.waitlist as any).trust3 ?? "Made for Nepal",
                     },
                   ].map((t) => (
                     <div key={t.text} className="flex items-center gap-1.5">
-                      <span className="text-sm">{t.icon}</span>
+                      <span className="text-gray-400">{t.icon}</span>
                       <span className="text-xs text-gray-400 font-medium">
                         {t.text}
                       </span>
@@ -1973,8 +1930,8 @@ export default function LandingPage({
 
               {/* Mini testimonial under form */}
               <div className="mt-4 p-4 bg-indigo-50 rounded-2xl flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-sm shrink-0">
-                  👩‍💼
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white shrink-0">
+                  <User className="w-4 h-4" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-700 font-medium leading-relaxed">
@@ -2123,9 +2080,13 @@ export default function LandingPage({
                   className={`rounded-2xl p-6 border-2 ${style.border} transition-all duration-300 hover:-translate-y-2 hover:shadow-xl`}
                 >
                   <div
-                    className={`w-12 h-12 rounded-xl ${style.bg} flex items-center justify-center text-2xl mb-4`}
+                    className={`w-12 h-12 rounded-xl ${style.bg} flex items-center justify-center mb-4`}
                   >
-                    {card.emoji}
+                    {(() => {
+                      const icons = [ShoppingBag, GraduationCap, Globe, Building2];
+                      const Icon = icons[i];
+                      return <Icon className={`w-6 h-6 ${style.tc}`} />;
+                    })()}
                   </div>
                   <p
                     className={`text-xs font-bold uppercase tracking-wide ${style.tc} mb-1`}
@@ -2280,8 +2241,12 @@ export default function LandingPage({
                 className="group rounded-2xl border-2 border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
                 <div className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                    {item.emoji}
+                  <div className={`w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    {(() => {
+                      const icons = [ShoppingBag, GraduationCap, UtensilsCrossed, Palette];
+                      const Icon = icons[i];
+                      return <Icon className="w-6 h-6 text-blue-500" />;
+                    })()}
                   </div>
                   <h3 className="font-black text-gray-900 text-base mb-1">
                     {item.name}
@@ -2565,90 +2530,7 @@ export default function LandingPage({
       </section>
 
       {/* ══ FOOTER ═══════════════════════════════════════════════════════ */}
-      <footer className="bg-slate-950 pt-16 pb-8 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
-            <div className="col-span-2">
-              <div className="mb-6">
-                <img
-                  src="/og-image.png"
-                  alt="HamroLink"
-                  className="h-12 w-auto transition-all"
-                />
-              </div>
-              <p className="text-sm text-white/35 max-w-xs leading-relaxed mb-5">
-                {PRE_LAUNCH
-                  ? d.footer.tagline
-                  : ((d.footer as any).taglinePostLaunch ?? d.footer.tagline)}
-              </p>
-              <Link
-                href={ctaHref("/signup")}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-colors"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                {PRE_LAUNCH
-                  ? d.footer.cta
-                  : ((d.footer as any).ctaPostLaunch ?? d.footer.cta)}
-              </Link>
-            </div>
-            {Object.entries(d.footer.sections).map(([title, links]: any) => (
-              <div key={title}>
-                <p className="text-[10px] font-bold text-white/25 uppercase tracking-widest mb-4">
-                  {title}
-                </p>
-                <ul className="space-y-2.5">
-                  {links.map(([label, href]: string[]) => {
-                    const isExternal = href.startsWith("http");
-                    return (
-                      <li key={label}>
-                        {isExternal ? (
-                          <a
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-white/45 hover:text-white transition-colors"
-                          >
-                            {label}
-                          </a>
-                        ) : (
-                          <Link
-                            href={
-                              href.startsWith("/") ? `/${lang}${href}` : href
-                            }
-                            className="text-sm text-white/45 hover:text-white transition-colors"
-                          >
-                            {label}
-                          </Link>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-white/25">
-              © {new Date().getFullYear()} Hamrolink. {d.footer.copyright}
-            </p>
-            <div className="flex items-center gap-5">
-              <a
-                href={ctaHref("/signup")}
-                className="flex items-center gap-1 text-xs text-white/25 hover:text-white/50 transition-colors"
-              >
-                <ExternalLink className="w-3 h-3" />
-                {PRE_LAUNCH ? "Join Early Access" : "Get Started"}
-              </a>
-              <a
-                href="mailto:support@hamrolink.com"
-                className="text-xs text-white/25 hover:text-white/50 transition-colors"
-              >
-                support@hamrolink.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer lang={lang} d={d} PRE_LAUNCH={PRE_LAUNCH} ctaHref={ctaHref} />
     </div>
   );
 }

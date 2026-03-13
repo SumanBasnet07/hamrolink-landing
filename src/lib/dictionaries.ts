@@ -440,7 +440,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "20 pages + 30 blog posts", ok: true },
-            { t: "50 images · 5 file uploads", ok: true },
+            { t: "70 images · 10 file uploads", ok: true },
             { t: "250 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 30 products", ok: true },
@@ -454,7 +454,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "50 pages + 150 blog posts", ok: true },
-            { t: "100 images · 10 file uploads", ok: true },
+            { t: "150 images · 10 file uploads", ok: true },
             { t: "600 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 300 products", ok: true },
@@ -485,6 +485,12 @@ export const dictionaries = {
       cta: "Join Early Access",
       ctaPostLaunch: "Get Started Free",
       copyright: "All rights reserved · Built with ❤️ in Nepal 🇳🇵",
+      businessName: "Hamrolink Digital",
+      address: "Pakhribas-4, Dhankuta, Nepal",
+      regIdLabel: "Reg No",
+      regIdValue: "ध-9458/082/083",
+      panLabel: "PAN",
+      panValue: "620277221",
       sections: {
         Product: [
           ["Templates", "/#examples"],
@@ -941,7 +947,7 @@ export const dictionaries = {
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "२० पेज + ३० ब्लग पोस्ट", ok: true },
-            { t: "५० इमेज · ५ फाइल अपलोड", ok: true },
+            { t: "७० इमेज · ५ फाइल अपलोड", ok: true },
             { t: "२५० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ३० उत्पादन", ok: true },
@@ -955,7 +961,7 @@ export const dictionaries = {
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "५० पेज + १५० ब्लग पोस्ट", ok: true },
-            { t: "१०० इमेज · १० फाइल अपलोड", ok: true },
+            { t: "१५० इमेज · १० फाइल अपलोड", ok: true },
             { t: "६०० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ३०० उत्पादन", ok: true },
@@ -987,6 +993,12 @@ export const dictionaries = {
       cta: "प्रतीक्षासूचीमा बस्नुहोस्",
       ctaPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
       copyright: "सर्वाधिकार सुरक्षित · नेपालमा ❤️ सँगै बनाइएको 🇳🇵",
+      businessName: "हाम्रोलिङ्क डिजिटल",
+      address: "पाख्रिबास-४, धनकुटा, नेपाल",
+      regIdLabel: "दर्ता नं",
+      regIdValue: "ध-९४५८/०८२/०८३",
+      panLabel: "प्यान नं",
+      panValue: "६२०२७७२२१",
       sections: {
         उत्पादन: [
           ["टेम्प्लेट", "/#examples"],

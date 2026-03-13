@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { getDictionary } from "@/lib/dictionaries";
 import { sendContactEmailSES } from "@/app/actions";
+import { Footer } from "@/components/Footer";
 
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
 const PRE_LAUNCH = true;
@@ -485,78 +486,19 @@ export default function ContactPage({ params }: { params: any }) {
               scrolling="no"
               marginHeight={0}
               marginWidth={0}
-              src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Pakhribas,%20Dhankuta,%20Nepal+(HamroLink)&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3553.1484384676914!2d87.2730996203742!3d27.057062114790092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sjp!4v1773411467670!5m2!1sen!2sjp"
             ></iframe>
           </motion.div>
         </div>
       </main>
 
       {/* ══ FOOTER ═══════════════════════════════════════════════════════ */}
-      <footer className="bg-slate-950 pt-24 pb-12 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-20">
-            <div className="col-span-2">
-              <div className="mb-6">
-                <img src="/og-image.png" alt="HamroLink" className="h-12 w-auto transition-all" />
-              </div>
-              <p className="text-lg text-white/35 max-w-sm leading-relaxed mb-8">
-                {d.footer.tagline}
-              </p>
-              <Link
-                href={`/${lang}#waitlist`}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-2xl transition-all shadow-lg shadow-indigo-500/20"
-              >
-                <Sparkles className="w-4 h-4" />
-                {d.footer.cta}
-              </Link>
-            </div>
-            {Object.entries(d.footer.sections).map(([title, links]: any) => (
-              <div key={title}>
-                <p className="text-xs font-bold text-white/20 uppercase tracking-[0.2em] mb-8">
-                  {title}
-                </p>
-                <ul className="space-y-4">
-                  {links.map(([label, href]: string[]) => (
-                    <li key={label}>
-                      <Link
-                        href={href.startsWith("/") ? `/${lang}${href}` : href}
-                        className="text-[15px] text-white/40 hover:text-white transition-colors"
-                      >
-                        {label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <p className="text-sm text-white/20">
-              © {new Date().getFullYear()} Hamrolink. {d.footer.copyright}
-            </p>
-            <div className="flex gap-10">
-              <Link
-                href={`/${lang}/about`}
-                className="text-sm text-white/30 hover:text-white transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href={`/${lang}/contact`}
-                className="text-sm text-white/30 hover:text-white transition-colors"
-              >
-                Contact
-              </Link>
-              <a
-                href="mailto:support@hamrolink.com"
-                className="text-sm text-white/30 hover:text-white transition-colors"
-              >
-                support@hamrolink.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer
+        lang={lang}
+        d={d}
+        PRE_LAUNCH={PRE_LAUNCH}
+        ctaHref={(href) => (PRE_LAUNCH ? `/${lang}#waitlist` : href)}
+      />
     </div>
   );
 }

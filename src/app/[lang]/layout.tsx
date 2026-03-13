@@ -28,6 +28,7 @@ const SITE_URL  = "https://hamrolink.com";
 const SITE_NAME = "HamroLink";
 const SUPPORTED = ["en", "ne"] as const;
 type  Lang      = (typeof SUPPORTED)[number];
+const GA_ID     = "G-WB92TMXQE7";
 
 // ─── Per-language metadata strings ────────────────────────────────────────────
 const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = {
@@ -290,11 +291,10 @@ export default async function LangLayout({
         {children}
 
         {/* ── Google Analytics 4 ───────────────────────────────────────── */}
-        {/* Set NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX in your .env.local           */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
+        {GA_ID && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               strategy="afterInteractive"
             />
             <Script id="ga4-init" strategy="afterInteractive">
@@ -302,7 +302,7 @@ export default async function LangLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                gtag('config', '${GA_ID}', {
                   page_path: window.location.pathname,
                   anonymize_ip: true,
                   cookie_flags: 'SameSite=None;Secure',

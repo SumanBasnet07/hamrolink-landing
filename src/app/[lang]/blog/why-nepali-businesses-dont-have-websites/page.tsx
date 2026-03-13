@@ -5,6 +5,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Globe, TrendingUp, Smartphone, Search, ShieldCheck,
   Sparkles, ArrowRight, ChevronDown, Wifi, DollarSign,
@@ -32,7 +33,7 @@ const SEARCH_EXAMPLES = [
   { en: "restaurant near patan",         ne: "पाटन नजिकैको रेस्टुरेन्ट",     volume: "High" },
   { en: "best momo lalitpur",           ne: "ललितपुरको उत्कृष्ट मःम",     volume: "High" },
   { en: "consultancy kathmandu",       ne: "काठमाडौँमा कन्सल्टेन्सी",      volume: "High" },
-  { en: "school admission nepal 2025", ne: "नेपाल विद्यालय भर्ना २०२५",    volume: "High" },
+  { en: "school admission nepal 2026", ne: "नेपाल विद्यालय भर्ना २०२६",    volume: "High" },
   { en: "boutique pokhara",            ne: "पोखरामा बुटिज",              volume: "Medium" },
   { en: "clinic near me kathmandu",    ne: "काठमाडौँमा मेरो नजिकैको क्लिनिक", volume: "High" },
 ];
@@ -71,12 +72,23 @@ export async function generateMetadata(
         ? "नेपालका धेरै व्यवसायहरू अझै फेसबुकमात्र भर पर्छन्।"
         : "Many businesses in Nepal still rely only on Facebook. Here's why that must change for a business website Nepal.",
       url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/why-nepali-businesses-dont-have-websites`,
+      images: [
+        {
+          url: "https://hamrolink.com/why-no-website.png",
+          width: 1200,
+          height: 630,
+          alt: ne
+            ? "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन?"
+            : "Why Most Nepali Businesses Still Don't Have Websites",
+        },
+      ],
     },
     alternates: {
-      canonical: `https://hamrolink.com/en/blog/why-nepali-businesses-dont-have-websites`,
+      canonical: `https://hamrolink.com/${lang}/blog/why-nepali-businesses-dont-have-websites`,
       languages: {
         "en": "https://hamrolink.com/en/blog/why-nepali-businesses-dont-have-websites",
         "ne": "https://hamrolink.com/ne/blog/why-nepali-businesses-dont-have-websites",
+        "x-default": "https://hamrolink.com/en/blog/why-nepali-businesses-dont-have-websites",
       },
     },
   };
@@ -94,7 +106,15 @@ function ArticleSchema({ lang }: { lang: string }) {
     "description": ne
       ? "नेपालका धेरै व्यवसायहरू अझै फेसबुकमात्र भर पर्छन्। वेबसाइट किन महत्त्वपूर्ण छ भनी जान्नुहोस्।"
       : "Many businesses in Nepal still rely only on Facebook. Learn why websites matter for small business website Nepal.",
-    "image": "https://hamrolink.com/og-image.png",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://hamrolink.com/why-no-website.png",
+      "width": 1200,
+      "height": 630,
+      "caption": ne
+        ? "नेपाली व्यवसाय र वेबसाइटको अभाव"
+        : "Lack of websites for Nepali businesses",
+    },
     "author": {
       "@type": "Organization",
       "name": "HamroLink",
@@ -108,8 +128,8 @@ function ArticleSchema({ lang }: { lang: string }) {
         "url": "https://hamrolink.com/icons/icon-192.png",
       },
     },
-    "datePublished": "2026-03-12",
-    "dateModified": "2026-03-12",
+    "datePublished": "2026-03-13",
+    "dateModified": "2026-03-13",
     "inLanguage": ne ? "ne" : "en",
     "url": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/why-nepali-businesses-dont-have-websites`,
     "mainEntityOfPage": {
@@ -594,22 +614,44 @@ export default async function BlogWhyNoWebsitesPage({ params }: { params: Promis
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-white">
-          <div className="max-w-5xl mx-auto px-6 py-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-white/80 mb-6">
-              <Globe className="w-3.5 h-3.5"/>
-              {ne ? "डिजिटल नेपाल" : "Digital Nepal"}
-            </div>
-            <h1 className={`font-black leading-tight mb-4 ${ne ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"}`}>
-              {ne ? "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन?" : "Why Most Nepali Businesses Still Don't Have Websites in Nepal"}
-            </h1>
-            <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-6">
-              {ne ? "नेपालका धेरै व्यवसायहरू अझै फेसबुकमात्र भर पर्छन् — र यो किन बदल्नुपर्छ।" : "Discover why websites for small business Nepal are essential. Learn how a business website Nepal can double your growth."}
-            </p>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-white/50">
-              <div className="flex items-center gap-1.5"> <Building2 className="w-4 h-4"/> <span>HamroLink</span> </div>
-              <div className="flex items-center gap-1.5"> <Clock className="w-4 h-4"/> <span>{c.readTime}</span> </div>
-              <div className="flex items-center gap-1.5"> <Users className="w-4 h-4"/> <span>{typeof c.publishedLabel === 'function' ? c.publishedLabel(updatedDate) : c.publishedLabel}</span> </div>
+        {/* ── Cinematic featured image hero ── */}
+        <div className="relative w-full overflow-hidden">
+          <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[520px]">
+            <Image
+              src="/why-no-website.png"
+              alt={ne
+                ? "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन?"
+                : "Why Most Nepali Businesses Still Don't Have Websites"}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            {/* Gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-700/20"/>
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 via-transparent to-transparent"/>
+          </div>
+
+          {/* Text overlay content */}
+          <div className="absolute inset-0 flex flex-col justify-end">
+            <div className="max-w-5xl mx-auto w-full px-6 pb-12 pt-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-white/80 backdrop-blur-sm mb-6">
+                <Globe className="w-3.5 h-3.5"/>
+                {ne ? "डिजिटल नेपाल" : "Digital Nepal"}
+              </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 leading-tight drop-shadow-xl text-white">
+                {ne ? "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन?" : "Why Most Nepali Businesses Still Don't Have Websites in Nepal"}
+              </h1>
+              <p className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed mb-6 drop-shadow">
+                {ne ? "नेपालका धेरै व्यवसायहरू अझै फेसबुकमात्र भर पर्छन् — र यो किन बदल्नुपर्छ।" : "Discover why websites for small business Nepal are essential. Learn how a business website Nepal can double your growth."}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-white/50">
+                <div className="flex items-center gap-1.5"><Building2 className="w-4 h-4"/><span>HamroLink</span></div>
+                <div className="w-px h-3 bg-white/20"/>
+                <div className="flex items-center gap-1.5"><Clock className="w-4 h-4"/><span>{c.readTime}</span></div>
+                <div className="w-px h-3 bg-white/20"/>
+                <div className="flex items-center gap-1.5"><Users className="w-4 h-4"/><span>{typeof c.publishedLabel === 'function' ? c.publishedLabel(updatedDate) : c.publishedLabel}</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -787,21 +829,36 @@ export default async function BlogWhyNoWebsitesPage({ params }: { params: Promis
           </div>
         </div>
 
-        <div className="border-t border-gray-100 bg-white py-8">
-          <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-            <span>© {new Date().getFullYear()} HamroLink · Built in Nepal 🇳🇵</span>
-            <div className="flex gap-6">
-              {([
-                [ne ? "गोपनीयता"  : "Privacy",  "privacy"],
-                [ne ? "सर्तहरू"   : "Terms",    "terms"],
-                [ne ? "FAQ"       : "FAQ",      "faq"],
-                [ne ? "ब्लग"      : "Blog",     "blog"],
-              ] as [string,string][]).map(([label, slug]) => (
-                <Link key={slug} href={`/${lang}/${slug}`} className="hover:text-gray-700 transition-colors">{label}</Link>
-              ))}
+        <footer className="border-t border-gray-100 bg-white pt-12 pb-8">
+          <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <div className="mb-6">
+                <img src="/og-image.png" alt="HamroLink" className="h-8 w-auto transition-all" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-gray-900 font-bold text-sm">Hamrolink Digital</h4>
+                <p className="text-xs text-gray-500">Pakhribas-4, Dhankuta, Nepal</p>
+                <p className="text-[10px] text-gray-400">
+                  Reg No: ध-९४५८/०८२/०८३  | PAN: ६२०२७७२२१
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col md:items-end justify-end space-y-4">
+              <div className="flex gap-6 text-sm text-gray-400">
+                {([
+                  [ne ? "गोपनीयता"  : "Privacy",  "privacy"],
+                  [ne ? "सर्तहरू"   : "Terms",    "terms"],
+                  [ne ? "FAQ"       : "FAQ",      "faq"],
+                ] as [string,string][]).map(([label, slug]) => (
+                  <Link key={slug} href={`/${lang}/${slug}`} className="hover:text-gray-700 transition-colors">{label}</Link>
+                ))}
+              </div>
+              <p className="text-xs text-gray-400">
+                © {new Date().getFullYear()} HamroLink · Built with ❤️ in Nepal
+              </p>
             </div>
           </div>
-        </div>
+        </footer>
       </div>
     </>
   );

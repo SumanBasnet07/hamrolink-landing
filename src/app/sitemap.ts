@@ -13,6 +13,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/refund',
     '/terms',
+    '/blog',
+    '/blog/why-nepali-businesses-dont-have-websites',
+    '/blog/facebook-page-vs-website-nepali-businesses',
+    '/blog/school-website-nepal-why-every-school-should-be-online',
   ];
 
   const languages = ['en', 'ne'];
