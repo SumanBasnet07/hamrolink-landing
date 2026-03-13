@@ -24,7 +24,7 @@ export async function generateMetadata(
   const ne = lang === "ne";
   return {
     title: ne
-      ? "फेसबुक पेज बनाम वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ"
+      ? "फेसबुक पेज vs वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ"
       : "Facebook Page vs Website for Nepali Businesses: Why You Need Both",
     description: ne
       ? "धेरै नेपाली व्यवसायहरू केवल फेसबुक पेजमा भर पर्छन्। तर के यो पर्याप्त छ? फेसबुक पेज र वेबसाइटको फरक बुझ्नुहोस् — र दुवै किन चाहिन्छ।"
@@ -265,7 +265,7 @@ const COMPARISON_NE = [
 // ─── Article content ──────────────────────────────────────────────────────────
 const CONTENT = {
   en: {
-    publishedLabel: "Published by HamroLink · Updated July 2025",
+    publishedLabel: "Published by HamroLink · Updated March 2026",
     readTime: "7 min read",
     tocTitle: "Table of Contents",
     toc: [
@@ -348,7 +348,7 @@ const CONTENT = {
             icon: "🔍",
             h3: "Customers Can't Easily Find You on Google",
             paras: [
-              "Many customers begin their search online — not on Facebook, but on Google. When someone types 'best restaurant Thamel' or 'school admission Kathmandu 2025' into Google, the results show websites, not Facebook pages. Without a website, your business is simply absent from that search.",
+              "Many customers begin their search online — not on Facebook, but on Google. When someone types 'best restaurant Thamel' or 'school admission Kathmandu 2026' into Google, the results show websites, not Facebook pages. Without a website, your business is simply absent from that search.",
               "That means every potential customer who searches on Google — and that is millions of searches every day in Nepal — might never find you. They will find your competitor who has a website, instead.",
             ],
           },
@@ -469,7 +469,7 @@ const CONTENT = {
   },
 
   ne: {
-    publishedLabel: "HamroLink द्वारा प्रकाशित · जुलाई २०२५ मा अपडेट",
+    publishedLabel: "HamroLink द्वारा प्रकाशित · मार्च २०२६ मा अपडेट",
     readTime: "७ मिनेट पढाइ",
     tocTitle: "सामग्री तालिका",
     toc: [
