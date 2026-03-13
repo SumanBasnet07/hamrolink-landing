@@ -85,13 +85,12 @@ export const dictionaries = {
         "Join thousands of Nepali businesses getting early access. We'll notify you the moment we go live.",
 
       // Fix #6: Safer promise for Perk 2
-      perk1Title: "Free 15-day Starter trial",
-      perk1Desc:
-        "Early signups get the Starter plan free for 15 days after launch.",
-      perk2Title: "Priority access",
-      perk2Desc: "Skip the queue and get access before the public launch.",
-      perk3Title: "Locked-in early price",
-      perk3Desc: "Your plan price is frozen at launch pricing (NPR 399/899), forever.",
+      perk1Title: "500 Early Access Credits",
+perk1Desc: "Early access users will receive 500 credits to use on your website features upon signup.",
+perk2Title: "Priority Access",
+perk2Desc: "Get access before the public launch and skip the queue.",
+perk3Title: "Locked-in Early Price",
+perk3Desc: "Your plan price is frozen at launch pricing (NPR 399/899), forever.",
 
       socialProof: "businesses already on the waitlist",
 
@@ -587,15 +586,12 @@ export const dictionaries = {
         "हजारौं नेपाली व्यवसायहरूसँगै अर्ली एक्सेस पाउनुहोस्। लन्च हुने बित्तिकै सूचना पाउनुहुन्छ।",
 
       // Fix #6: Safety
-      perk1Title: "१५ दिन Starter नि:शुल्क",
-      perk1Desc:
-        "अहिले साइनअप गर्नेहरूले लन्चपछि १५ दिनसम्म Starter योजना सित्तैमा पाउनेछन्।",
-      perk2Title: "प्राथमिकतामा एक्सेस",
-      perk2Desc: "सबैका लागि खुल्नु अगाडि नै तपाईंले साइट चलाउन पाउनुहुनेछ।",
-      perk3Title: "सस्तो मूल्य सधैँका लागि",
-      perk3Desc:
-        "अहिलेको लन्च मूल्य (NPR ३९९/८९९) तपाईंको लागि सधैँका लागि स्थिर (Freeze) रहनेछ।",
-
+      perk1Title: "अर्ली एक्सेस क्रेडिट ५००",
+perk1Desc: "अर्ली एक्सेस प्रयोगकर्ताहरूले आफ्नो खाता खोल्दा ५०० क्रेडिट पाउनेछन्, जुन तपाईंको वेबसाइटमा सुविधाहरू प्रयोग गर्न सकिन्छ।",
+perk2Title: "प्राथमिकतामा एक्सेस",
+perk2Desc: "सबैका लागि खुल्नु अगाडि नै तपाईंले साइट चलाउन पाउनुहुनेछ।",
+perk3Title: "सस्तो मूल्य सधैँका लागि",
+perk3Desc: "अहिलेको लन्च मूल्य (NPR ३९९/८९९) तपाईंको लागि सधैँका लागि स्थिर (Freeze) रहनेछ।",
       socialProof: "व्यवसायहरू प्रतीक्षासूचीमा",
 
       formTitle: "आफ्नो सिट सुरक्षित गर्नुहोस्",
