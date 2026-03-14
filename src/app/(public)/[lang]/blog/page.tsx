@@ -1,6 +1,5 @@
-// app/[lang]/blog/page.tsx
 // Bilingual (EN + NE) blog index — editorial magazine aesthetic
-// Deploy: app/[lang]/blog/page.tsx
+export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -8,8 +7,10 @@ import Image from "next/image";
 import {
   ArrowRight, Globe, GraduationCap, Share2,
   Clock, BookOpen, Search, Sparkles, TrendingUp,
-  ChevronRight, Rss,
+  ChevronRight, Rss, Building2,
 } from "lucide-react";
+import { connectDB } from "@/lib/mongodb";
+import BlogPost from "@/models/BlogPost";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 export async function generateMetadata(
@@ -68,80 +69,35 @@ export async function generateMetadata(
 }
 
 // ─── Blog post data ───────────────────────────────────────────────────────────
-const POSTS = [
-  {
-    slug: "why-nepali-businesses-dont-have-websites",
-    category: { en: "Digital Nepal",    ne: "डिजिटल नेपाल" },
-    categoryColor: "blue",
-    icon: Globe,
-    date: "March 2026",
-    date_ne: "मार्च २०२६",
-    readTime: { en: "8 min read", ne: "८ मिनेट" },
-    title: {
-      en: "Why Most Nepali Businesses Still Don't Have Websites",
-      ne: "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन?",
-    },
-    excerpt: {
-      en: "Over 78% of Nepali small businesses have no website — and rely entirely on Facebook. Here's why that's changing, and what every business owner needs to know.",
-      ne: "नेपालका ७८% भन्दा बढी साना व्यवसायहरूसँग वेबसाइट छैन — र पूर्णतः फेसबुकमा भर पर्छन्। यो किन बदलिँदैछ र हरेक व्यापार मालिकले के जान्नुपर्छ।",
-    },
-    tags: { en: ["Website", "SMB", "Facebook", "Google"], ne: ["वेबसाइट", "व्यवसाय", "फेसबुक", "Google"] },
-    featured: true,
-    accent: "#3b82f6",
-    emoji: "🌐",
-    image: "/why-no-website.png",
-  },
-  {
-    slug: "facebook-page-vs-website-nepali-businesses",
-    category: { en: "Strategy",          ne: "रणनीति" },
-    categoryColor: "violet",
-    icon: Share2,
-    date: "March 2026",
-    date_ne: "मार्च २०२६",
-    readTime: { en: "7 min read", ne: "७ मिनेट" },
-    title: {
-      en: "Facebook Page vs Website: Why Nepali Businesses Need Both",
-      ne: "फेसबुक पेज बनाम वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ",
-    },
-    excerpt: {
-      en: "A Facebook page is not a website. Understanding the difference — and using both together — is the smartest digital move any Nepali business can make.",
-      ne: "फेसबुक पेज वेबसाइट होइन। फरक बुझ्नु — र दुवैलाई सँगै प्रयोग गर्नु — नेपाली व्यवसायले गर्न सक्ने सबैभन्दा स्मार्ट डिजिटल कदम हो।",
-    },
-    tags: { en: ["Facebook", "Website", "Digital Strategy", "Nepal"], ne: ["फेसबुक", "वेबसाइट", "डिजिटल", "नेपाल"] },
-    featured: false,
-    accent: "#7c3aed",
-    emoji: "📘",
-    image: "/website_vs_fb.jpg",
-  },
-  {
-    slug: "school-website-nepal-why-every-school-should-be-online",
-    category: { en: "Education",         ne: "शिक्षा" },
-    categoryColor: "emerald",
-    icon: GraduationCap,
-    date: "March 2026",
-    date_ne: "मार्च २०२६",
-    readTime: { en: "8 min read", ne: "८ मिनेट" },
-    title: {
-      en: "Why Every School in Nepal Needs a Website in 2026",
-      ne: "नेपालको हरेक विद्यालयलाई २०२६ मा वेबसाइट किन चाहिन्छ",
-    },
-    excerpt: {
-      en: "Most Nepali schools still rely on Facebook and word-of-mouth. In 2026, that's no longer enough — parents search Google, and schools without websites are invisible to them.",
-      ne: "अधिकांश नेपाली विद्यालयहरू अझै फेसबुक र मुखको भरमा छन्। २०२६ मा, यो पर्याप्त छैन — अभिभावकहरूले Google खोज्छन्, र वेबसाइट नभएका विद्यालयहरू उनीहरूका लागि अदृश्य छन्।",
-    },
-    tags: { en: ["Schools", "Education", "Nepal", "Enrollment"], ne: ["विद्यालय", "शिक्षा", "नेपाल", "भर्ना"] },
-    featured: false,
-    accent: "#059669",
-    emoji: "🎓",
-    image: "/school-website-nepal.jpg",
-  },
-];
+// ─── Post Mapping ─────────────────────────────────────────────────────────────
+const ICON_MAP: Record<string, any> = {
+  blue:    Globe,
+  violet:  Share2,
+  emerald: GraduationCap,
+  orange:  TrendingUp,
+  pink:    Building2,
+  indigo:  Sparkles,
+  teal:    Rss,
+};
 
-// ─── Category color maps ──────────────────────────────────────────────────────
+const ACCENT_MAP: Record<string, string> = {
+  blue:    "#3b82f6",
+  violet:  "#7c3aed",
+  emerald: "#10b981",
+  orange:  "#f59e0b",
+  pink:    "#ec4899",
+  indigo:  "#6366f1",
+  teal:    "#14b8a6",
+};
+
 const CAT_COLORS: Record<string, { pill: string; pillText: string; border: string; glow: string }> = {
   blue:    { pill:"bg-blue-100",    pillText:"text-blue-700",    border:"border-blue-200",    glow:"shadow-blue-100"    },
   violet:  { pill:"bg-violet-100",  pillText:"text-violet-700",  border:"border-violet-200",  glow:"shadow-violet-100"  },
   emerald: { pill:"bg-emerald-100", pillText:"text-emerald-700", border:"border-emerald-200", glow:"shadow-emerald-100" },
+  orange:  { pill:"bg-orange-100",  pillText:"text-orange-700",  border:"border-orange-200",  glow:"shadow-orange-100"  },
+  pink:    { pill:"bg-pink-100",    pillText:"text-pink-700",    border:"border-pink-200",    glow:"shadow-pink-100"    },
+  indigo:  { pill:"bg-indigo-100",  pillText:"text-indigo-700",  border:"border-indigo-200",  glow:"shadow-indigo-100"  },
+  teal:    { pill:"bg-teal-100",    pillText:"text-teal-700",    border:"border-teal-200",    glow:"shadow-teal-100"    },
 };
 
 // ─── Coming-soon topics ───────────────────────────────────────────────────────
@@ -164,8 +120,42 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
   const ne   = lang === "ne";
   const comingSoon = ne ? COMING_SOON_NE : COMING_SOON_EN;
 
-  const featured = POSTS[0];
-  const rest     = POSTS.slice(1);
+  await connectDB();
+  const dbPosts = await BlogPost.find({ published: true })
+    .sort({ publishedAt: -1, createdAt: -1 })
+    .lean();
+
+  const posts = (dbPosts as any[]).map(p => ({
+    slug: p.slug,
+    category: { en: p.category_en, ne: p.category_ne },
+    categoryColor: p.categoryColor || "blue",
+    icon: ICON_MAP[p.categoryColor || "blue"] || Globe,
+    accent: ACCENT_MAP[p.categoryColor || "blue"] || "#3b82f6",
+    date: p.publishedAt ? new Date(p.publishedAt).toLocaleDateString("en-US", { month: "long", year: "numeric" }) : "",
+    date_ne: p.publishedAt ? new Date(p.publishedAt).toLocaleDateString("ne-NP", { month: "long", year: "numeric" }) : "",
+    readTime: { en: p.readTime_en, ne: p.readTime_ne },
+    title: { en: p.title_en, ne: p.title_ne },
+    excerpt: { en: p.excerpt_en, ne: p.excerpt_ne },
+    tags: { en: p.tags_en, ne: p.tags_ne },
+    emoji: p.emoji || "📝",
+    image: p.featuredImage || "/og-image.png",
+  }));
+
+  if (posts.length === 0) {
+    // Handle empty state if no posts in DB
+    return (
+      <div className="min-h-screen bg-[#0b0f1a] flex items-center justify-center p-6 text-center">
+        <div>
+          <h2 className="text-2xl font-black text-white mb-4">{ne ? "अझै कुनै लेखहरू छैनन्" : "No articles yet"}</h2>
+          <p className="text-white/40 mb-8">{ne ? "चाँडै केही रोचक सामग्री थप्नेछौं।" : "We'll be adding some interesting content soon."}</p>
+          <Link href={`/${lang}`} className="text-indigo-400 font-bold hover:underline">{ne ? "गृहपृष्ठ" : "Go Home"}</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const featured = posts[0];
+  const rest     = posts.slice(1);
 
   return (
     <div className="min-h-screen bg-[#0b0f1a]">
@@ -231,7 +221,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
           {/* Stats row */}
           <div className="flex flex-wrap items-center gap-6 mt-8 pt-8 border-t border-white/8">
             {[
-              { v: "3",     l: ne ? "लेखहरू"   : "Articles"       },
+              { v: posts.length.toString(), l: ne ? "लेखहरू"   : "Articles"       },
               { v: "2026+", l: ne ? "अपडेट"    : "Always updated" },
               { v: "EN+NE", l: ne ? "द्विभाषिक" : "Bilingual"      },
             ].map(s => (
@@ -292,7 +282,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {(ne ? featured.tags.ne : featured.tags.en).map(tag => (
+                    {(ne ? featured.tags.ne : featured.tags.en).map((tag: string) => (
                       <span key={tag} className="px-2.5 py-1 bg-white/5 border border-white/8 rounded-full text-white/40 text-xs font-medium">
                         {tag}
                       </span>
@@ -383,7 +373,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-5">
-                      {(ne ? post.tags.ne : post.tags.en).map(tag => (
+                      {(ne ? post.tags.ne : post.tags.en).map((tag: string) => (
                         <span key={tag} className="px-2 py-0.5 bg-white/5 border border-white/8 rounded-full text-white/30 text-[11px]">
                           {tag}
                         </span>
@@ -497,11 +487,11 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
             </span>
           </div>
           <div className="flex-1 h-px bg-white/6"/>
-          <span className="text-white/20 text-xs">{POSTS.length} {ne ? "लेखहरू" : "articles"}</span>
+          <span className="text-white/20 text-xs">{posts.length} {ne ? "लेखहरू" : "articles"}</span>
         </div>
 
         <div className="space-y-2">
-          {POSTS.map((post, i) => {
+          {posts.map((post, i) => {
             const Icon = post.icon;
             return (
               <Link key={post.slug} href={`/${lang}/blog/${post.slug}`} className="group flex items-center gap-4 p-4 rounded-2xl border border-transparent hover:border-white/8 hover:bg-white/3 transition-all">

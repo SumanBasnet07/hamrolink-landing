@@ -4,7 +4,7 @@ import Script from "next/script";
 import { DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
-import "../globals.css";
+import "@/app/globals.css";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const dmSans = DM_Sans({
