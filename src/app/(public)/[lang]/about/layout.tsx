@@ -1,77 +1,40 @@
-import type { Metadata } from "next";
-import { getDictionary } from "@/lib/dictionaries";
+import { Metadata } from 'next';
+import { getDictionary } from '@/lib/dictionaries';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
+type Props = {
+  params: Promise<{ lang: 'en' | 'ne' }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const d = getDictionary(lang);
-  const ap = d.aboutPage;
+  
+  const metadataMap = {
+    en: {
+      title: 'About HamroLink: Nepal ko AI Website Builder | Dhankuta',
+      description: 'Find out more about HamroLink. Nepal\'s first AI-powered business presence platform. Established in Pakhribas, Dhankuta. Mission: Making every Nepali business digital.',
+    },
+    ne: {
+      title: 'हाम्रोलिंकको बारेमा: नेपालको पहिलो AI-Powered डिजिटल प्लेटफर्म',
+      description: 'हाम्रोलिंकको जानकारी। पाख्रिबास, धनकुटाबाट सुरु भएको नेपालको पहिलो AI-Powered डिजिटल प्लेटफर्म। हाम्रो उद्देश्य: प्रत्येक नेपाली व्यवसायलाई डिजिटल बनाउने।',
+    }
+  };
+
+  const m = metadataMap[lang] || metadataMap.en;
 
   return {
-    title: ap.title,
-    description: ap.description,
+    title: m.title,
+    description: m.description,
     openGraph: {
-      title: ap.title,
-      description: ap.description,
-      type: "website",
-      images: ["/og-about.png"], // Suggesting an OG image
+      title: m.title,
+      description: m.description,
+      url: `https://hamrolink.com/${lang}/about`,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: ap.title,
-      description: ap.description,
-    },
+    alternates: {
+      canonical: `https://hamrolink.com/${lang}/about`,
+    }
   };
 }
 
-export default async function AboutLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ lang: string }>;
-}) {
-  const { lang } = await params;
-  const d = getDictionary(lang);
-  const ap = d.aboutPage;
-
-  // Schema.org Organization + AboutPage
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "AboutPage",
-        name: ap.title,
-        description: ap.description,
-        mainEntity: {
-          "@type": "Organization",
-          name: "HamroLink",
-          url: "https://hamrolink.com",
-          logo: "https://hamrolink.com/logo.png",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Pakhribas-04",
-            addressLocality: "Dhankuta",
-            addressRegion: "Koshi Province",
-            addressCountry: "NP",
-          },
-          areaServed: "Nepal",
-          description: ap.subheading,
-        },
-      },
-    ],
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
+export default function AboutLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

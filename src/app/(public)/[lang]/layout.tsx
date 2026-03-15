@@ -1,10 +1,10 @@
-// app/[lang]/layout.tsx
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
 import "@/app/globals.css";
+import { Analytics } from "@/components/SEO/Analytics";
+import SchemaScripts from "@/components/SEO/Schema";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const dmSans = DM_Sans({
@@ -14,7 +14,6 @@ const dmSans = DM_Sans({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-// Noto Sans Devanagari covers Nepali script beautifully
 const devanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-devanagari",
@@ -28,31 +27,30 @@ const SITE_URL  = "https://hamrolink.com";
 const SITE_NAME = "HamroLink";
 const SUPPORTED = ["en", "ne"] as const;
 type  Lang      = (typeof SUPPORTED)[number];
-const GA_ID     = "G-WB92TMXQE7";
 
 // ─── Per-language metadata strings ────────────────────────────────────────────
 const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = {
   en: {
-    title:    `${SITE_NAME} — Build Your Website in Nepal, Free`,
-    desc:     "Nepal's fastest-growing website builder. Create professional websites for your business, school, or store—no coding required. Start for free with local payments.",
+    title:    `${SITE_NAME} — Nepal's First AI-Powered Business Presence Platform`,
+    desc:     "Move beyond Facebook. Hire a 24/7 AI staff for your business. Build your professional presence in minutes with HamroLink's AI-powered platform. AI chatbots, eSewa payments, and local SEO included.",
     keywords: [
-      "website builder Nepal","free website Nepal","create website Nepal",
+      "AI website builder Nepal","AI chatbot for business Nepal","create website Nepal",
       "Nepali website builder","hamrolink","HamroLink",
-      "website for school Nepal","ecommerce Nepal","eSewa website",
+      "24/7 AI staff Nepal","ecommerce Nepal","eSewa website",
       "Khalti payment website","small business website Nepal",
-      "consultancy website Nepal","study abroad Nepal website",
-      "professional website Nepal","no code website Nepal",
+      "consultancy website Nepal","automated customer support Nepal",
+      "professional website Nepal","digital presence platform Nepal",
     ],
   },
   ne: {
-    title:    `${SITE_NAME} — नेपालमा नि:शुल्क वेबसाइट बनाउनुहोस्`,
-    desc:     "नेपालको तीव्र गतिको वेबसाइट बिल्डर। व्यवसाय, विद्यालय, वा स्टोरका लागि सहजै वेबसाइट बनाउनुहोस्—कुनै कोडिङ आवश्यक छैन। स्थानीय भुक्तानीसहित निःशुल्क सुरु गर्नुहोस्।",
+    title:    `${SITE_NAME} — नेपालको पहिलो AI-Powered व्यवसायिक डिजिटल प्लेटफर्म`,
+    desc:     "फेसबुक मात्र पर्याप्त छैन। आफ्नो व्यवसायका लागि २४/७ काम गर्ने AI कर्मचारी राख्नुहोस्। मिनेटमै प्रोफेसनल वेबसाइट बनाउनुहोस्—AI च्याटबोट, ई-सेवा र स्थानीय SEO सुविधाहरू सहित।",
     keywords: [
-      "वेबसाइट बिल्डर नेपाल","नि:शुल्क वेबसाइट नेपाल","वेबसाइट बनाउने",
+      "AI वेबसाइट बिल्डर नेपाल","AI च्याटबोट व्यवसाय","वेबसाइट बनाउने",
       "हाम्रोलिंक","HamroLink","नेपाली वेबसाइट बिल्डर",
-      "विद्यालय वेबसाइट नेपाल","ई-कमर्स नेपाल","eSewa वेबसाइट",
+      "डिजिटल व्यवसाय नेपाल","ई-कमर्स नेपाल","eSewa वेबसाइट",
       "Khalti भुक्तानी","साना व्यवसाय वेबसाइट","परामर्श वेबसाइट",
-      "विदेश अध्ययन वेबसाइट नेपाल","कोड बिना वेबसाइट",
+      "स्वचालित ग्राहक सेवा","डिजिटल मार्केटिङ नेपाल",
     ],
   },
 };
@@ -72,8 +70,6 @@ export async function generateMetadata({
   const lang = (SUPPORTED.includes(rawLang as Lang) ? rawLang : "en") as Lang;
   const m    = META[lang];
   const pageUrl = `${SITE_URL}/${lang}`;
-
-  const jsonLd = buildJsonLd(lang, m.desc);
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -107,8 +103,7 @@ export async function generateMetadata({
       title:           m.title,
       description:     m.desc,
       images: [
-        { url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: `${SITE_NAME} — Nepal's Website Builder`, type: "image/png" },
-        { url: `${SITE_URL}/og-image-square.png`, width: 600, height: 600, alt: SITE_NAME, type: "image/png" },
+        { url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: `${SITE_NAME} — Nepal's AI Business Platform`, type: "image/png" },
       ],
     },
 
@@ -127,9 +122,9 @@ export async function generateMetadata({
       googleBot: {
         index:                 true,
         follow:                true,
-        "max-video-preview":   -1,
-        "max-image-preview":   "large",
-        "max-snippet":         -1,
+        'max-video-preview':   -1,
+        'max-image-preview':   'large',
+        'max-snippet':         -1,
       },
     },
 
@@ -149,14 +144,6 @@ export async function generateMetadata({
         { rel: "icon", type: "image/png", sizes: "96x96", url: "/favicon-96x96.png" },
       ],
     },
-    appLinks: {
-      web: { url: "https://app.hamrolink.com", should_fallback: true },
-    },
-
-    other: {
-      // Inject JSON-LD via <head> other meta — layout renders the <script> tag
-      "json-ld": JSON.stringify(jsonLd),
-    },
   };
 }
 
@@ -171,67 +158,6 @@ export const viewport: Viewport = {
   ],
 };
 
-// ─── JSON-LD builder ──────────────────────────────────────────────────────────
-function buildJsonLd(lang: Lang, desc: string) {
-  const pageUrl = `${SITE_URL}/${lang}`;
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type":  "Organization",
-        "@id":    `${SITE_URL}/#organization`,
-        name:     SITE_NAME,
-        url:      SITE_URL,
-        logo: {
-          "@type": "ImageObject",
-          url:     `${SITE_URL}/logo.png`,
-          width:   120,
-          height:  40,
-        },
-        sameAs: [
-          "https://facebook.com/hamrolink",
-          "https://instagram.com/hamrolink",
-          "https://twitter.com/hamrolink",
-        ],
-        contactPoint: {
-          "@type":              "ContactPoint",
-          email:                "support@hamrolink.com",
-          telephone:            "+9779816326639",
-          contactType:          "customer support",
-          availableLanguage:    ["English", "Nepali"],
-        },
-      },
-      {
-        "@type":       "WebSite",
-        "@id":         `${SITE_URL}/#website`,
-        url:           SITE_URL,
-        name:          SITE_NAME,
-        description:   desc,
-        publisher:     { "@id": `${SITE_URL}/#organization` },
-        potentialAction: {
-          "@type":  "SearchAction",
-          target:   { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/search?q={search_term_string}` },
-          "query-input": "required name=search_term_string",
-        },
-        inLanguage: ["en-US", "ne-NP"],
-      },
-      {
-        "@type":               "SoftwareApplication",
-        name:                  SITE_NAME,
-        operatingSystem:       "Web",
-        applicationCategory:   "WebApplication",
-        description:           desc,
-        url:                   SITE_URL,
-        offers: [
-          { "@type": "Offer", name: "Free Plan",    price: "0",   priceCurrency: "NPR" },
-          { "@type": "Offer", name: "Starter Plan", price: "349", priceCurrency: "NPR", billingIncrement: "P1M" },
-          { "@type": "Offer", name: "Pro Plan",     price: "649", priceCurrency: "NPR", billingIncrement: "P1M" },
-        ],
-      },
-    ],
-  };
-}
-
 // ─── Layout component ─────────────────────────────────────────────────────────
 export default async function LangLayout({
   children,
@@ -241,26 +167,19 @@ export default async function LangLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang: rawLang } = await params;
-  // Guard: reject unknown lang segments with 404
   if (!SUPPORTED.includes(rawLang as Lang)) notFound();
 
   const lang     = rawLang as Lang;
-  const dict     = getDictionary(lang);
-  const jsonLd   = buildJsonLd(lang, META[lang].desc);
-
-  // For Nepali use Devanagari font, English uses DM Sans
+  
   const fontClass = lang === "ne"
-    ? `${dmSans.variable} ${devanagari.variable} font-devanagari`
-    : `${dmSans.variable} font-latin`;
+    ? `${dmSans.variable} ${devanagari.variable} font-devanagari font-sans`
+    : `${dmSans.variable} font-latin font-sans`;
 
   return (
     <html lang={lang === "ne" ? "ne" : "en"} dir="ltr" className={fontClass}>
       <head>
-        {/* ── JSON-LD ─────────────────────────────────────────────────── */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        {/* ── Schema ──────────────────────────────────────────────────── */}
+        <SchemaScripts />
 
         {/* ── hreflang for SEO ─────────────────────────────────────────── */}
         <link rel="alternate" hrefLang="en"        href={`https://hamrolink.com/en`} />
@@ -289,28 +208,7 @@ export default async function LangLayout({
       </head>
       <body className="antialiased">
         {children}
-
-        {/* ── Google Analytics 4 ───────────────────────────────────────── */}
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
-                  anonymize_ip: true,
-                  cookie_flags: 'SameSite=None;Secure',
-                });
-              `}
-            </Script>
-          </>
-        )}
+        <Analytics />
       </body>
     </html>
   );

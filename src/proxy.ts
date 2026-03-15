@@ -12,8 +12,13 @@ const SUPPORTED_LANGS = ["en", "ne"] as const;
 type Lang = (typeof SUPPORTED_LANGS)[number];
 const DEFAULT_LANG: Lang = "en";
 
-/** Map Accept-Language subtags to supported languages */
+/** Detect language based on location (Nepal) and browser headers */
 function detectLang(req: NextRequest): Lang {
+  // 1. Check for Country Header (Vercel)
+  const country = req.headers.get("x-vercel-ip-country");
+  if (country === "NP") return "ne";
+
+  // 2. Fallback to Accept-Language headers
   const acceptLang = req.headers.get("accept-language");
   if (!acceptLang) return DEFAULT_LANG;
 
@@ -27,7 +32,7 @@ function detectLang(req: NextRequest): Lang {
   return DEFAULT_LANG;
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Already has a valid language prefix → do nothing

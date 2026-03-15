@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: ['/dashboard/', '/api/', '/admin/'],
     },
     sitemap: 'https://hamrolink.com/sitemap.xml',
   };

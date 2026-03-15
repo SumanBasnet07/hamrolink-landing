@@ -1,45 +1,39 @@
-import { Metadata } from "next";
-import { getDictionary } from "@/lib/dictionaries";
+import { Metadata } from 'next';
 
-export const dynamic = "force-static";
+type Props = {
+  params: Promise<{ lang: 'en' | 'ne' }>;
+};
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const d = getDictionary(lang as any);
   
-  const title = `${d.nav.docs} Hub | HamroLink — Nepal's #1 Website Builder`;
-  const description = "Comprehensive documentation, step-by-step guides, and help articles for Hamrolink users in Nepal. Built for creators, shops, and businesses.";
-  
-  return {
-    title,
-    description,
-    keywords: ["Hamrolink documentation", "Nepali website builder guide", "how to build website Nepal"],
-    openGraph: {
-      title,
-      description,
-      url: `https://hamrolink.com/${lang}/docs`,
-      siteName: "HamroLink",
-      images: [
-        {
-          url: "https://hamrolink.com/og-image.png",
-          width: 1200,
-          height: 630,
-        },
-      ],
-      locale: lang === "ne" ? "ne_NP" : "en_US",
-      type: "website",
+  const metadataMap = {
+    en: {
+      title: 'HamroLink Documentation: Help Center & User Guides',
+      description: 'Learn how to use HamroLink, setup your AI chatbot, connect eSewa/Khalti, and add custom domains. Comprehensive guides and FAQs for your business website.',
     },
+    ne: {
+      title: 'हाम्रोलिंक दस्तावेजीकरण: सहायता केन्द्र र निर्देशिकाहरू',
+      description: 'हाम्रोलिंक कसरी प्रयोग गर्ने, AI च्याटबोट सेटअप गर्ने, ई-सेवा/खल्ती जडान गर्ने र आफ्नै डोमेन थप्ने तरिकाहरू सिक्नुहोस्।',
+    }
+  };
+
+  const m = metadataMap[lang] || metadataMap.en;
+
+  return {
+    title: m.title,
+    description: m.description,
+    openGraph: {
+      title: m.title,
+      description: m.description,
+      url: `https://hamrolink.com/${lang}/docs`,
+    },
+    alternates: {
+      canonical: `https://hamrolink.com/${lang}/docs`,
+    }
   };
 }
 
-export default function DocsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="docs-layout">
-      {children}
-    </div>
-  );
+export default function DocsLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

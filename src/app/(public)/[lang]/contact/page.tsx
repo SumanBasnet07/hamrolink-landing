@@ -90,10 +90,10 @@ function Navbar({
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {[
-            [`/${lang}#examples`, nav.templates],
+            [`/${lang}#ai-staff`, nav.templates],
             [`/${lang}#features`, nav.features],
             [`/${lang}#pricing`, nav.pricing],
-            [`/${lang}/docs`, nav.docs],
+            [`/${lang}#stories`, nav.docs],
             [`/${lang}/contact`, nav.contact],
           ].map(([href, label]) => (
             <Link
@@ -135,10 +135,10 @@ function Navbar({
               <LangSwitcher lang={lang} accent={accent} scrolled={true} />
             </div>
             {[
-              [`/${lang}#examples`, nav.templates],
+              [`/${lang}#ai-staff`, nav.templates],
               [`/${lang}#features`, nav.features],
               [`/${lang}#pricing`, nav.pricing],
-              [`/${lang}/docs`, nav.docs],
+              [`/${lang}#stories`, nav.docs],
               [`/${lang}/contact`, nav.contact],
             ].map(([href, label]) => (
               <Link
