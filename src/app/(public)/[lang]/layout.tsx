@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Noto_Sans_Devanagari } from "next/font/google";
+import { Outfit, Mukta } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
 import "@/app/globals.css";
@@ -7,18 +7,17 @@ import { Analytics } from "@/components/SEO/Analytics";
 import SchemaScripts from "@/components/SEO/Schema";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-const dmSans = DM_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-latin",
+  variable: "--font-outfit",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
-
-const devanagari = Noto_Sans_Devanagari({
-  subsets: ["devanagari"],
-  variable: "--font-devanagari",
+const mukta = Mukta({
+  subsets: ["devanagari", "latin"],
+  variable: "--font-mukta",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 // ─── Statics ──────────────────────────────────────────────────────────────────
@@ -172,8 +171,8 @@ export default async function LangLayout({
   const lang     = rawLang as Lang;
   
   const fontClass = lang === "ne"
-    ? `${dmSans.variable} ${devanagari.variable} font-devanagari font-sans`
-    : `${dmSans.variable} font-latin font-sans`;
+    ? `${outfit.variable} ${mukta.variable} font-mukta font-sans`
+    : `${outfit.variable} font-outfit font-sans`;
 
   return (
     <html lang={lang === "ne" ? "ne" : "en"} dir="ltr" className={fontClass}>
