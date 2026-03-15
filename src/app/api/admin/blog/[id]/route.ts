@@ -1,6 +1,7 @@
 // app/api/admin/blog/[id]/route.ts — get, update, delete single post
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/mongodb";
 import BlogPost from "@/models/BlogPost";
 import { slugify, estimateReadTime } from "@/lib/slugify";
@@ -40,6 +41,17 @@ export async function PUT(
 
     const post = await BlogPost.findByIdAndUpdate(id, data, { new: true }).lean();
     if (!post) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+    // On-demand revalidation
+    try {
+      revalidatePath("/en/blog");
+      revalidatePath("/ne/blog");
+      revalidatePath(`/en/blog/${(post as any).slug}`);
+      revalidatePath(`/ne/blog/${(post as any).slug}`);
+    } catch (e) {
+      console.error("Revalidation failed:", e);
+    }
+
     return NextResponse.json({ post: { ...(post as any), _id: (post as any)._id.toString() } });
   } catch (err: any) {
     if (err.code === 11000) {
@@ -57,7 +69,19 @@ export async function DELETE(
   try {
     await connectDB();
     const { id } = await params;
-    await BlogPost.findByIdAndDelete(id);
+    const post = await BlogPost.findByIdAndDelete(id).lean();
+    
+    if (post) {
+      try {
+        revalidatePath("/en/blog");
+        revalidatePath("/ne/blog");
+        revalidatePath(`/en/blog/${(post as any).slug}`);
+        revalidatePath(`/ne/blog/${(post as any).slug}`);
+      } catch (e) {
+        console.error("Revalidation failed:", e);
+      }
+    }
+
     return NextResponse.json({ success: true });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

@@ -1,6 +1,7 @@
 // app/api/admin/blog/route.ts — admin: list all posts, create new
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache"; 
 import { connectDB } from "@/lib/mongodb";
 import BlogPost from "@/models/BlogPost";
 import { slugify, estimateReadTime } from "@/lib/slugify";
@@ -61,6 +62,18 @@ export async function POST(req: NextRequest) {
       likedIps: [],
       comments: [],
     });
+
+    // On-demand revalidation for blog index and new post
+    try {
+      revalidatePath("/en/blog");
+      revalidatePath("/ne/blog");
+      if (post.published) {
+        revalidatePath(`/en/blog/${slug}`);
+        revalidatePath(`/ne/blog/${slug}`);
+      }
+    } catch (e) {
+      console.error("Revalidation failed:", e);
+    }
 
     return NextResponse.json({ post: { ...post.toJSON(), _id: post._id.toString() } }, { status: 201 });
   } catch (err: any) {

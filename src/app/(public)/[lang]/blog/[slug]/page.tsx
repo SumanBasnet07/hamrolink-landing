@@ -14,6 +14,7 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
+import rehypeRaw from "rehype-raw";
 import LikeCommentSection from "@/components/blog/LikeCommentSection";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -319,26 +320,31 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* Article body */}
             <article className="flex-1 min-w-0">
 
-              {/* ── Article HTML body ── */}
+              {/* ── Article Body ── */}
               <div className="prose prose-gray max-w-none
                   prose-headings:font-black prose-headings:text-gray-900 prose-headings:scroll-mt-24
-                  prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-                  prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2
-                  prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-4
-                  prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline
-                  prose-ul:text-gray-600 prose-ol:text-gray-600
-                  prose-li:mb-1 prose-li:leading-relaxed
+                  prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-100
+                  prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
+                  prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-5 prose-p:text-[17px]
+                  prose-a:text-indigo-600 prose-a:font-bold prose-a:no-underline hover:prose-a:underline
+                  prose-ul:text-gray-600 prose-ol:text-gray-600 prose-ul:my-6
+                  prose-li:mb-2 prose-li:leading-relaxed
                   prose-strong:text-gray-900 prose-strong:font-bold
-                  prose-blockquote:border-l-4 prose-blockquote:border-indigo-300
-                  prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-600
-                  prose-img:rounded-2xl prose-img:shadow-md
-                  prose-code:text-indigo-700 prose-code:bg-indigo-50 prose-code:px-1 prose-code:rounded">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeSlug]}
-                >
-                  {body as string}
-                </ReactMarkdown>
+                  prose-blockquote:border-l-4 prose-blockquote:border-indigo-400
+                  prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-700 prose-blockquote:bg-indigo-50/30 prose-blockquote:py-2 prose-blockquote:rounded-r-xl
+                  prose-img:rounded-3xl prose-img:shadow-2xl prose-img:my-10
+                  prose-code:text-indigo-700 prose-code:bg-indigo-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                  prose-table:my-10 prose-table:border-collapse prose-table:border prose-table:border-gray-100
+                  prose-th:bg-gray-50 prose-th:p-4 prose-th:text-left prose-th:text-xs prose-th:font-black prose-th:uppercase prose-th:tracking-wider prose-th:text-gray-500
+                  prose-td:p-4 prose-td:text-sm prose-td:border-t prose-td:border-gray-100 prose-td:text-gray-600">
+                <div className="overflow-x-auto">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw, rehypeSlug]}
+                  >
+                    {bodyWithIds}
+                  </ReactMarkdown>
+                </div>
               </div>
 
               {/* ── Tags ── */}
