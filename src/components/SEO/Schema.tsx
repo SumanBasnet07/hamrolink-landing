@@ -69,44 +69,6 @@ export const productSchema = {
   }
 };
 
-export const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Website बनाउन कति पैसा लाग्छ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HamroLink मा तपाईँ ३९९ प्रति महिनाबाट आफ्नो प्रोफेसनल वेबसाइट सुरु गर्न सक्नुहुन्छ। नि:शुल्क योजना पनि उपलब्ध छ।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "eSewa र Khalti बाट भुक्तानी लिन मिल्छ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "हो, HamroLink मा eSewa र Khalti गेटवे पहिले नै जडान गरिएको हुन्छ। तपाईँले सिधै आफ्नो खातामा पैसा लिन सक्नुहुन्छ।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "के मलाई कोडिङ आउनु पर्छ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "बिल्कुलै पर्दैन। HamroLink एक नो-कोड प्लेटफर्म हो। तपाईँले सजिलै ड्र्याग एण्ड ड्रप गरेर वा हाम्रा टेम्प्लेटहरू प्रयोग गरेर वेबसाइट बनाउन सक्नुहुन्छ।"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "AI chatbot ले कसरी काम गर्छ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "हाम्रो AI च्याटबोटले तपाईँको व्यवसायको २४/७ हेरचाह गर्छ। यसले ग्राहकका प्रश्नहरूको जवाफ दिन्छ, मूल्य बताउँछ र आवश्यक परे ह्वाट्सएपमा रिडाइरेक्ट गर्छ।"
-      }
-    }
-  ]
-};
 
 export default function SchemaScripts() {
   return (
@@ -122,10 +84,6 @@ export default function SchemaScripts() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
     </>
   );
