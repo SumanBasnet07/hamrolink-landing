@@ -94,10 +94,10 @@ function LikeButton({ slug, lang, initialLikes }: { slug: string; lang: Lang; in
       onClick={handleLike}
       disabled={loading}
       title={liked ? t.liked : t.like}
-      className={`group flex items-center gap-2 px-5 py-2.5 rounded-2xl border-2 font-bold text-sm transition-all
+      className={`group flex items-center gap-3 px-6 py-3 rounded-2xl border-2 font-bold text-base transition-all
         ${liked
-          ? "bg-red-50 border-red-200 text-red-600 hover:bg-red-100"
-          : "bg-white border-gray-200 text-gray-500 hover:border-red-200 hover:text-red-500 hover:bg-red-50"
+          ? "bg-red-50 border-red-200 text-red-600 hover:bg-red-100 shadow-sm"
+          : "bg-white border-slate-200 text-slate-500 hover:border-red-200 hover:text-red-500 hover:bg-red-50"
         } disabled:opacity-60`}>
       {loading
         ? <Loader2 className="w-5 h-5 animate-spin"/>
@@ -150,30 +150,30 @@ function CommentForm({ slug, lang, onSubmitted }: { slug: string; lang: Lang; on
   return (
     <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
       <h4 className="font-black text-gray-900">{t.leave}</h4>
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-bold text-gray-500 mb-1">{t.name}</label>
+          <label className="block text-sm font-bold text-slate-500 mb-2">{t.name}</label>
           <input
             value={name} onChange={(e) => setName(e.target.value)}
             required placeholder={t.namePlaceholder}
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
           />
         </div>
         <div>
-          <label className="block text-xs font-bold text-gray-500 mb-1">{t.email}</label>
+          <label className="block text-sm font-bold text-slate-500 mb-2">{t.email}</label>
           <input
             type="email" value={email} onChange={(e) => setEmail(e.target.value)}
             placeholder={t.emailPlaceholder}
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
           />
         </div>
       </div>
       <div>
-        <label className="block text-xs font-bold text-gray-500 mb-1">{t.comment}</label>
+        <label className="block text-sm font-bold text-slate-500 mb-2">{t.comment}</label>
         <textarea
           value={comment} onChange={(e) => setComment(e.target.value)}
-          required rows={4} placeholder={t.commentPlaceholder}
-          className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all resize-y"
+          required rows={5} placeholder={t.commentPlaceholder}
+          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all resize-y"
         />
       </div>
       {error && (
@@ -182,8 +182,8 @@ function CommentForm({ slug, lang, onSubmitted }: { slug: string; lang: Lang; on
         </div>
       )}
       <button type="submit" disabled={loading || !name.trim() || !comment.trim()}
-        className="flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-sm transition-colors disabled:opacity-50">
-        {loading ? <Loader2 className="w-4 h-4 animate-spin"/> : <Send className="w-4 h-4"/>}
+        className="flex items-center gap-3 px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-base transition-all hover:scale-[1.02] shadow-lg shadow-indigo-600/20 disabled:opacity-50 disabled:scale-100 italic-none">
+        {loading ? <Loader2 className="w-5 h-5 animate-spin"/> : <Send className="w-5 h-5"/>}
         {t.submit}
       </button>
     </form>
@@ -225,24 +225,23 @@ export default function LikeCommentSection({ slug, lang, initialLikes, initialCo
             <p className="text-gray-400 text-sm">{t.noComments}</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {comments.map((c) => (
-              <div key={c._id} className="bg-white border border-gray-100 rounded-2xl p-5 hover:border-gray-200 transition-colors">
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center shrink-0">
-                    <User className="w-4 h-4 text-indigo-500"/>
+              <div key={c._id} className="bg-white border border-slate-100 rounded-2xl p-6 hover:border-indigo-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0">
+                    <User className="w-6 h-6 text-indigo-500"/>
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="font-bold text-gray-900 text-sm">{c.name}</span>
-                      <span className="text-gray-300">·</span>
-                      <span className="text-gray-400 text-xs">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-extrabold text-slate-900 text-base">{c.name}</span>
+                      <span className="text-slate-400 text-xs font-medium">
                         {new Date(c.createdAt).toLocaleDateString(lang === "ne" ? "ne-NP" : "en-US", {
-                          year: "numeric", month: "short", day: "numeric",
+                          year: "numeric", month: "long", day: "numeric",
                         })}
                       </span>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed">{c.body}</p>
+                    <p className="text-slate-600 text-base leading-relaxed">{c.body}</p>
                   </div>
                 </div>
               </div>
