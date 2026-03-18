@@ -10,11 +10,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const metadataMap = {
     en: {
       title: 'Contact HamroLink | Support, Help, Partnership Nepal',
-      description: 'Get in touch with the HamroLink team. Support, questions, partnerships. Located in Dhankuta, Nepal. Phone: +977-9816326639, Email: support@hamrolink.com',
+      description: 'Get in touch with the HamroLink team. Support, questions, partnerships. Located in Dhankuta, Nepal. Phone: +977-9713101957, Email: support@hamrolink.com',
     },
     ne: {
       title: 'हाम्रोलिंक सम्पर्क | सहयोग र साझेदारी',
-      description: 'हाम्रोलिंक टोलीसँग सम्पर्क गर्नुहोस्। सहयोग, प्रश्न वा साझेदारीका लागि। धनकुटा, नेपाल। फोन: +९७७-९८१६३२६६३९, इमेल: support@hamrolink.com',
+      description: 'हाम्रोलिंक टोलीसँग सम्पर्क गर्नुहोस्। सहयोग, प्रश्न वा साझेदारीका लागि। धनकुटा, नेपाल। फोन: +९७७-९७१३१०१९५७, इमेल: support@hamrolink.com',
     }
   };
 

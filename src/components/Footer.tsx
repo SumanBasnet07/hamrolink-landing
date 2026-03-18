@@ -81,6 +81,9 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
           <div className="space-y-2">
             <h4 className="text-white font-bold text-sm">{d.footer.businessName}</h4>
             <p className="text-xs text-white/45">{d.footer.address}</p>
+            <p className="text-xs text-white/35">
+              {d.footer.proprietorLabel}: {d.footer.proprietorValue} | {d.footer.founderLabel}: {d.footer.founderValue}
+            </p>
             <p className="text-xs text-white/25">
               {d.footer.regIdLabel}: {d.footer.regIdValue}  | {d.footer.panLabel}: {d.footer.panValue}
             </p>
@@ -104,6 +107,13 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                 className="text-xs text-white/25 hover:text-white/50 transition-colors"
               >
                 support@hamrolink.com
+              </a>
+              <span className="text-xs text-white/10">|</span>
+              <a
+                href="tel:+9779713101957"
+                className="text-xs text-white/25 hover:text-white/50 transition-colors"
+              >
+                +977-9713101957
               </a>
             </div>
           </div>

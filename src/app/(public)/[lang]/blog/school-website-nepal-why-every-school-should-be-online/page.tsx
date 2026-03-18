@@ -1238,24 +1238,44 @@ export default async function BlogSchoolWebsiteNepalPage({ params }: { params: P
           <div className="max-w-5xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="space-y-2">
-                <h4 className="text-gray-900 font-black text-sm">Hamrolink Digital</h4>
-                <p className="text-xs text-gray-500">Pakhribas-4, Dhankuta, Nepal</p>
+                <h4 className="text-gray-900 font-black text-sm">
+                  {ne ? "हाम्रोलिङ्क डिजिटल" : "Hamrolink Digital"}
+                </h4>
+                <p className="text-xs text-gray-500">
+                  {ne
+                    ? "पाख्रिबास-०४, धनकुटा, कोशी प्रदेश, नेपाल"
+                    : "Pakhribas-04, Dhankuta, Koshi Province, Nepal"}
+                </p>
                 <p className="text-xs text-gray-400 font-medium">
-                  Reg No: ध-९४५८/०८२/०८३ | PAN: ६२०२७७२२१
+                  {ne
+                    ? "प्रोप्राइटर: लिला बस्नेत | संस्थापक: सुमन बस्नेत"
+                    : "Proprietor: Lila Basnet | Founder: Suman Basnet"}
+                </p>
+                <p className="text-xs text-gray-400 font-medium">
+                  {ne
+                    ? "दर्ता नं: ध-९४५८/०८२/०८३ | प्यान नं: ६२३२५११९१"
+                    : "Reg No: ध-९४५८/०८२/०८३ | PAN: ६२३२५११९१"}
                 </p>
               </div>
               <div className="flex flex-col md:items-end justify-center space-y-4">
-                <div className="flex flex-wrap gap-x-6 gap-y-2">
-                  {([
-                    [ne ? "गोपनीयता" : "Privacy",  "privacy"],
-                    [ne ? "सर्तहरू"  : "Terms",    "terms"],
-                    [ne ? "फिर्ता"   : "Refund",   "refund"],
-                    [ne ? "सम्पर्क"   : "Contact",  "contact"],
-                    [ne ? "ब्लग"     : "Blog",     "blog"],
-                  ] as [string,string][]).map(([label, slug]) => (
-                    <Link key={slug} href={`/${lang}/${slug}`}
-                      className="text-xs text-gray-400 hover:text-gray-900 font-bold transition-colors">{label}</Link>
-                  ))}
+                <div className="flex flex-col md:items-end gap-1">
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 mb-2">
+                    {([
+                      [ne ? "गोपनीयता" : "Privacy",  "privacy"],
+                      [ne ? "सर्तहरू"  : "Terms",    "terms"],
+                      [ne ? "फिर्ता"   : "Refund",   "refund"],
+                      [ne ? "सम्पर्क"   : "Contact",  "contact"],
+                      [ne ? "ब्लग"     : "Blog",     "blog"],
+                    ] as [string,string][]).map(([label, slug]) => (
+                      <Link key={slug} href={`/${lang}/${slug}`}
+                        className="text-xs text-gray-400 hover:text-gray-900 font-bold transition-colors lowercase">{label}</Link>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-3 text-xs text-gray-400">
+                    <a href="mailto:support@hamrolink.com" className="hover:text-gray-900 transition-colors font-medium">support@hamrolink.com</a>
+                    <span className="text-gray-200">|</span>
+                    <a href="tel:+9779713101957" className="hover:text-gray-900 transition-colors font-medium">+977-9713101957</a>
+                  </div>
                 </div>
                 <p className="text-xs text-gray-400">
                   © {new Date().getFullYear()} Hamrolink · Built with ❤️ for Nepal 🇳🇵
