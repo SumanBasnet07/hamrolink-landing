@@ -29,8 +29,8 @@ export async function generateMetadata(
       ? "नेपालको हरेक विद्यालयलाई २०२६ मा वेबसाइट किन चाहिन्छ"
       : "School Website in Nepal: Why Every School Should Be Online in 2026",
     description: ne
-      ? "नेपालका धेरै विद्यालयहरू केवल सामाजिक सञ्जाल वा मुखको भरमा चल्छन्। वेबसाइटले कसरी विश्वसनीयता, विद्यार्थी भर्ना र अभिभावकसँगको सञ्चार सुधार गर्न सक्छ भनी जान्नुहोस्।"
-      : "Many schools in Nepal rely only on social media or word-of-mouth. Discover why having a website can improve credibility, student enrollment, and communication with parents.",
+      ? "मुखको चर्चा मात्र पर्याप्त छैन। वेबसाइटले कसरी विद्यालयको विश्वसनीयता, भर्ना र अभिभावक सञ्चार सुधार गर्छ भनी जान्नुहोस्।"
+      : "Relying only on word-of-mouth? Learn why a professional website is crucial for Nepali schools to improve enrollment and parent communication.",
     keywords: ne
       ? ["विद्यालय वेबसाइट नेपाल", "नेपाली विद्यालय अनलाइन", "विद्यालय डिजिटल नेपाल", "HamroLink विद्यालय"]
       : ["school website Nepal", "Nepali school online presence", "how schools can go digital", "school marketing Nepal", "digital tools for schools Nepal"],

@@ -27,8 +27,8 @@ export async function generateMetadata(
       ? "फेसबुक पेज vs वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ"
       : "Facebook Page vs Website for Nepali Businesses: Why You Need Both",
     description: ne
-      ? "धेरै नेपाली व्यवसायहरू केवल फेसबुक पेजमा भर पर्छन्। तर के यो पर्याप्त छ? फेसबुक पेज र वेबसाइटको फरक बुझ्नुहोस् — र दुवै किन चाहिन्छ।"
-      : "Many Nepali businesses rely only on Facebook pages. But is that enough? Learn the difference between a Facebook page and a website—and why your business needs both.",
+      ? "धेरै नेपाली व्यवसायहरू केवल फेसबुकमा भर पर्छन्। फेसबुक पेज र वेबसाइटको फरक बुझ्नुहोस् — र दुवै किन चाहिन्छ।"
+      : "Relying only on Facebook? Learn the key differences between a Facebook page and a website—and why your Nepali business needs both to grow online.",
     keywords: ne
       ? ["फेसबुक पेज बनाम वेबसाइट नेपाल", "नेपाली व्यवसाय अनलाइन", "HamroLink", "साना व्यवसाय वेबसाइट नेपाल"]
       : ["facebook page vs website nepal", "why businesses need websites nepal", "nepali business online presence", "small business website nepal", "facebook business page limitations"],

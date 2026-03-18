@@ -31,7 +31,7 @@ type  Lang      = (typeof SUPPORTED)[number];
 const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = {
   en: {
     title:    `${SITE_NAME} — Nepal's First AI-Powered Business Presence Platform`,
-    desc:     "Move beyond Facebook. Hire a 24/7 AI staff for your business. Build your professional presence in minutes with HamroLink's AI-powered platform. AI chatbots, eSewa payments, and local SEO included.",
+    desc:     "Move beyond Facebook. Hire a 24/7 AI staff for your business. Build your professional presence in minutes with HamroLink's AI-powered platform & local SEO.",
     keywords: [
       "AI website builder Nepal","AI chatbot for business Nepal","create website Nepal",
       "Nepali website builder","hamrolink","HamroLink",
@@ -43,7 +43,7 @@ const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = 
   },
   ne: {
     title:    `${SITE_NAME} — नेपालको पहिलो AI-Powered व्यवसायिक डिजिटल प्लेटफर्म`,
-    desc:     "फेसबुक मात्र पर्याप्त छैन। आफ्नो व्यवसायका लागि २४/७ काम गर्ने AI कर्मचारी राख्नुहोस्। मिनेटमै प्रोफेसनल वेबसाइट बनाउनुहोस्—AI च्याटबोट, ई-सेवा र स्थानीय SEO सुविधाहरू सहित।",
+    desc:     "फेसबुक मात्र पर्याप्त छैन। आफ्नो व्यवसायका लागि २४/७ AI कर्मचारी राख्नुहोस्। मिनेटमै प्रोफेसनल वेबसाइट बनाउनुहोस्—AI च्याटबोट र ई-सेवा सुविधाहरू सहित।",
     keywords: [
       "AI वेबसाइट बिल्डर नेपाल","AI च्याटबोट व्यवसाय","वेबसाइट बनाउने",
       "हाम्रोलिंक","HamroLink","नेपाली वेबसाइट बिल्डर",

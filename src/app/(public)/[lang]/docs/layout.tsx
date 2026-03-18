@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const metadataMap = {
     en: {
       title: 'HamroLink Documentation: Help Center & User Guides',
-      description: 'Learn how to use HamroLink, setup your AI chatbot, connect eSewa/Khalti, and add custom domains. Comprehensive guides and FAQs for your business website.',
+      description: 'Learn how to use HamroLink, setup your AI chatbot, connect eSewa/Khalti, and add custom domains. Guides and FAQs for your business website.',
     },
     ne: {
       title: 'हाम्रोलिंक दस्तावेजीकरण: सहायता केन्द्र र निर्देशिकाहरू',
