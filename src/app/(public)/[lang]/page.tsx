@@ -149,7 +149,7 @@ function WaitlistForm({ d }: { d: any }) {
         <h3 className="text-2xl font-black text-gray-900 mb-2">
           {d.waitlist?.successTitle ?? "You're on the list!"}
         </h3>
-        <p className="text-gray-500">
+        <p className="text-gray-800">
           {d.waitlist?.successText ?? "We'll email you the moment HamroLink goes live."}
         </p>
       </motion.div>
@@ -159,25 +159,11 @@ function WaitlistForm({ d }: { d: any }) {
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Your name</label>
-        <div className="relative">
-          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Binod Shrestha"
-            className="w-full pl-9 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">
-          Email address <span className="text-red-400">*</span>
+        <label className="block text-sm font-black text-gray-950 uppercase tracking-widest mb-1.5">
+          Email address <span className="text-red-500">*</span>
         </label>
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-700 pointer-events-none" />
           <input
             type="email"
             value={email}
@@ -185,43 +171,20 @@ function WaitlistForm({ d }: { d: any }) {
             onKeyDown={(e) => { if (e.key === "Enter") submit(); }}
             placeholder="you@example.com"
             disabled={status === "loading"}
-            className="w-full pl-9 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all disabled:opacity-50"
+            className="w-full pl-10 pr-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_0_4px_rgba(79,70,229,0.1)] transition-all disabled:opacity-50 font-medium"
           />
         </div>
       </div>
 
-      <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Type of business</label>
-        <div className="grid grid-cols-3 gap-1.5">
-          {BUSINESS_TYPES.map((bt) => {
-            const Icon = (bt as any).icon;
-            return (
-              <button
-                key={bt.label}
-                onClick={() => setBusinessType(businessType === bt.label ? "" : bt.label)}
-                className={`flex flex-col items-center gap-1 py-2 px-1 rounded-xl border text-center transition-all text-xs font-medium ${
-                  businessType === bt.label
-                    ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                    : "border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300"
-                }`}
-              >
-                <Icon className={`w-4 h-4 ${businessType === bt.label ? "text-indigo-500" : "text-gray-400"}`} />
-                <span className="leading-tight">{bt.label.split(" / ")[0]}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {status === "error" && (
-        <p className="text-red-500 text-sm bg-red-50 border border-red-200 rounded-xl px-4 py-2">{errMsg}</p>
+        <p className="text-red-600 text-sm font-bold bg-red-50 border border-red-100 rounded-xl px-4 py-2">{errMsg}</p>
       )}
 
       <button
         onClick={submit}
         disabled={status === "loading" || !email.trim()}
-        className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-white font-black text-base transition-all hover:scale-[1.02] hover:shadow-xl active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 mt-2"
-        style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)", boxShadow: "0 12px 32px rgba(99,102,241,0.4)" }}
+        className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-white font-black text-lg transition-all hover:scale-[1.01] hover:shadow-xl active:scale-95 disabled:opacity-40 mt-2"
+        style={{ background: "linear-gradient(135deg,#4f46e5,#9333ea)", boxShadow: `0 10px 30px rgba(79,70,229,0.3)` }}
       >
         {status === "loading" ? (
           <>
@@ -229,15 +192,19 @@ function WaitlistForm({ d }: { d: any }) {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
             </svg>{" "}
-            {d.waitlist?.submitting ?? "Joining waitlist…"}
+            {d.waitlist?.submitting ?? "Joining…"}
           </>
         ) : (
           <>
             <Sparkles className="w-5 h-5" />{" "}
-            {d.waitlist?.cta ?? "Claim My Early Access Spot"} →
+            {d.waitlist?.cta ?? "Reserve My Spot"} →
           </>
         )}
       </button>
+
+      <p className="text-center text-[11px] text-gray-500 font-medium">
+        {(d.waitlist as any).formSub ?? "10 seconds. No credit card required."}
+      </p>
     </div>
   );
 }
@@ -263,12 +230,12 @@ function DemoVideo({ d }: { d: any }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-base font-semibold mb-4">
             <PlayCircle className="w-4 h-4" />
             {d.video.badge}
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-white mb-3">{d.video.heading}</h2>
-          <p className="text-white/40 max-w-lg mx-auto">{d.video.subtext}</p>
+          <p className="text-white/80 max-w-lg mx-auto">{d.video.subtext}</p>
         </motion.div>
 
         <motion.div
@@ -299,13 +266,13 @@ function DemoVideo({ d }: { d: any }) {
                   transition={{ duration: 0.3 }}
                   className="flex items-center gap-2"
                 >
-                  <span className="w-6 h-6 rounded-full bg-blue-500 text-white text-xs font-black flex items-center justify-center shrink-0">
+                  <span className="w-6 h-6 rounded-full bg-blue-500 text-white text-sm font-black flex items-center justify-center shrink-0">
                     {step + 1}
                   </span>
-                  <span className="text-white font-semibold text-sm">{steps[step]}</span>
+                  <span className="text-white font-semibold text-base">{steps[step]}</span>
                 </motion.div>
               </AnimatePresence>
-              <div className="flex items-center gap-1.5 text-white/40 text-xs">
+              <div className="flex items-center gap-1.5 text-white/80 text-sm">
                 <Clock className="w-3 h-3" />
                 ~9s
               </div>
@@ -315,7 +282,7 @@ function DemoVideo({ d }: { d: any }) {
             <p className="text-white font-black text-base">{d.video.finalFrame}</p>
             <a
               href="#waitlist"
-              className="flex items-center gap-2 px-5 py-2 bg-white text-indigo-700 rounded-xl text-sm font-black hover:scale-105 transition-transform shadow-lg"
+              className="flex items-center gap-2 px-5 py-2 bg-white text-indigo-700 rounded-xl text-base font-black hover:scale-105 transition-transform shadow-lg"
             >
               <Sparkles className="w-4 h-4" />
               {d.video.cta}
@@ -349,7 +316,7 @@ function CreatorScreen() {
         </div>
         <div className="flex gap-2.5">
           {["Travel", "Vlogs", "Contact"].map((t) => (
-            <span key={t} className="text-[8px] text-gray-500 font-medium">{t}</span>
+            <span key={t} className="text-[8px] text-gray-800 font-medium">{t}</span>
           ))}
         </div>
       </div>
@@ -362,7 +329,7 @@ function CreatorScreen() {
               <Check className="w-2 h-2 text-white" strokeWidth={3} />
             </div>
           </div>
-          <p className="text-[9px] text-gray-500">Digital Creator · Vlogger</p>
+          <p className="text-[9px] text-gray-800">Digital Creator · Vlogger</p>
           <span className="text-[8px] text-blue-500 font-medium">sara.hamrolink.com</span>
         </div>
       </div>
@@ -373,14 +340,14 @@ function CreatorScreen() {
           </div>
           <div>
             <div className="text-[10px] font-bold text-gray-900">Travel With Me</div>
-            <div className="text-[8px] text-gray-500">Explore destinations</div>
+            <div className="text-[8px] text-gray-800">Explore destinations</div>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-1">
           {[["24", "Districts"], ["125", "Vlogs"], ["240k", "Views"]].map(([v, l]) => (
             <div key={l} className="bg-white/70 rounded-lg py-1.5 text-center">
               <div className="text-[10px] font-black text-gray-900">{v}</div>
-              <div className="text-[7px] text-gray-500">{l}</div>
+              <div className="text-[7px] text-gray-800">{l}</div>
             </div>
           ))}
         </div>
@@ -397,7 +364,7 @@ function CreatorScreen() {
         {[["48", "Videos"], ["156", "Posts"], ["24", "Collabs"]].map(([v, l]) => (
           <div key={l} className="text-center">
             <div className="text-[10px] font-black text-gray-900">{v}</div>
-            <div className="text-[7px] text-gray-400">{l}</div>
+            <div className="text-[7px] text-gray-700">{l}</div>
           </div>
         ))}
         <div className="text-[7px] text-gray-300">© Sara</div>
@@ -417,10 +384,10 @@ function ShopScreen() {
         </div>
       </div>
       <div className="mx-3 my-2 bg-gray-100 rounded-lg px-2.5 py-1.5 flex items-center gap-1.5">
-        <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="w-3 h-3 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
         </svg>
-        <span className="text-[9px] text-gray-400">Search products…</span>
+        <span className="text-[9px] text-gray-700">Search products…</span>
       </div>
       <div className="flex gap-1.5 px-3 mb-2">
         {["All", "Bags", "Shawls", "Crafts"].map((c, i) => (
@@ -470,7 +437,7 @@ function SchoolScreen() {
         {[["1,200", "Students"], ["98%", "Pass Rate"], ["30 yrs", "Experience"]].map(([v, l]) => (
           <div key={l} className="bg-emerald-50 border border-emerald-100 rounded-xl py-2 text-center">
             <div className="text-[11px] font-black text-emerald-700">{v}</div>
-            <div className="text-[7px] text-gray-500">{l}</div>
+            <div className="text-[7px] text-gray-800">{l}</div>
           </div>
         ))}
       </div>
@@ -484,7 +451,7 @@ function SchoolScreen() {
             <span>{e}</span>
             <div>
               <div className="text-[9px] font-bold text-gray-900">{n as string}</div>
-              <div className="text-[7px] text-gray-400">{d as string}</div>
+              <div className="text-[7px] text-gray-700">{d as string}</div>
             </div>
             <ArrowRight className="w-3 h-3 text-gray-300 ml-auto" />
           </div>
@@ -519,7 +486,7 @@ function ConsultancyScreen() {
             <span>{e}</span>
             <div>
               <div className="text-[9px] font-bold text-gray-900">{t as string}</div>
-              <div className="text-[7px] text-gray-500">{d as string}</div>
+              <div className="text-[7px] text-gray-800">{d as string}</div>
             </div>
           </div>
         ))}
@@ -528,7 +495,7 @@ function ConsultancyScreen() {
         <button className="w-full py-2 bg-gradient-to-r from-violet-600 to-indigo-700 text-white rounded-xl text-[10px] font-black mb-1.5">Get Free Counseling →</button>
         <div className="flex items-center justify-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-[8px] text-gray-500">AI Chatbot available 24/7</span>
+          <span className="text-[8px] text-gray-800">AI Chatbot available 24/7</span>
         </div>
       </div>
     </div>
@@ -639,7 +606,7 @@ const TEMPLATES = [
             <span className="text-white font-bold text-[10px]">Sara.dev</span>
           </div>
           <div className="flex gap-3">
-            {["Work", "About", "Blog", "Contact"].map((t) => (<span key={t} className="text-[8px] text-white/50">{t}</span>))}
+            {["Work", "About", "Blog", "Contact"].map((t) => (<span key={t} className="text-[8px] text-white/90">{t}</span>))}
           </div>
         </div>
         <div className="flex-1 flex items-center gap-4 px-4">
@@ -693,7 +660,7 @@ const TEMPLATES = [
           {[["1,200", "Students"], ["98%", "Pass"], ["30", "Years"]].map(([v, l]) => (
             <div key={l} className="bg-emerald-50 border border-emerald-100 rounded-lg py-1.5 text-center">
               <div className="text-[10px] font-black text-emerald-700">{v}</div>
-              <div className="text-[7px] text-gray-500">{l}</div>
+              <div className="text-[7px] text-gray-800">{l}</div>
             </div>
           ))}
         </div>
@@ -720,7 +687,7 @@ const TEMPLATES = [
           ))}
           <div className="flex items-center gap-1 pt-1">
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[7px] text-gray-500">AI Chatbot 24/7</span>
+            <span className="text-[7px] text-gray-800">AI Chatbot 24/7</span>
           </div>
         </div>
         <div className="px-2.5 pb-2"><button className="w-full py-1.5 bg-violet-600 text-white rounded-lg text-[8px] font-black">Book Free Session →</button></div>
@@ -785,7 +752,7 @@ function LangSwitcher({ lang, accent, scrolled = false }: { lang: string; accent
         <Link
           key={l}
           href={`/${l}${rest ? `/${rest}` : ""}`}
-          className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${lang === l ? "text-white" : scrolled ? "text-gray-500 hover:text-gray-800" : "text-white/60 hover:text-white"}`}
+          className={`px-2.5 py-1 rounded-md text-sm font-bold transition-all ${lang === l ? "text-white" : scrolled ? "text-gray-800 hover:text-gray-800" : "text-white/60 hover:text-white"}`}
           style={lang === l ? { background: accent } : {}}
         >
           {l === "en" ? "EN" : "नेपाली"}
@@ -815,18 +782,18 @@ function Navbar({ accent, lang, nav }: { accent: string; lang: string; nav: any 
           {[
             ["#ai-staff", nav.templates],
             ["#features", nav.features],
-            ["#pricing", nav.pricing],
+            [`/${lang}/pricing`, nav.pricing],
             ["#stories", nav.docs],
             [`/${lang}/contact`, nav.contact],
           ].map(([href, label]) => (
-            <Link key={label} href={href} className={`text-sm font-medium transition-colors ${sc ? "text-gray-600 hover:text-gray-900" : "text-white/70 hover:text-white"}`}>{label}</Link>
+            <Link key={label} href={href} className={`text-base font-medium transition-colors ${sc ? "text-gray-600 hover:text-gray-900" : "text-white/70 hover:text-white"}`}>{label}</Link>
           ))}
         </div>
         <div className="hidden md:flex items-center gap-3">
           <LangSwitcher lang={lang} accent={accent} scrolled={sc} />
           <a
             href={ctaHref("/signup")}
-            className="flex items-center gap-1.5 px-4 py-2 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 shadow-lg"
+            className="flex items-center gap-1.5 px-4 py-2 text-white text-base font-bold rounded-xl transition-all hover:scale-105 shadow-lg"
             style={{ background: accent }}
           >
             <Sparkles className="w-3.5 h-3.5" /> {PRE_LAUNCH ? nav.cta : (nav.ctaPostLaunch ?? nav.cta)}
@@ -848,14 +815,14 @@ function Navbar({ accent, lang, nav }: { accent: string; lang: string; nav: any 
             {[
               ["#ai-staff", nav.templates],
               ["#features", nav.features],
-              ["#pricing", nav.pricing],
+              [`/${lang}/pricing`, nav.pricing],
               ["#stories", nav.docs],
               [`/${lang}/contact`, nav.contact],
             ].map(([href, label]) => (
-              <Link key={label} href={href} onClick={() => setOpen(false)} className="block py-2 text-sm font-medium text-gray-700">{label}</Link>
+              <Link key={label} href={href} onClick={() => setOpen(false)} className="block py-2 text-base font-medium text-gray-700">{label}</Link>
             ))}
             <div className="pt-2 border-t border-gray-100">
-              <a href={ctaHref("/signup")} className="block py-2.5 text-center text-white rounded-xl text-sm font-bold" style={{ background: accent }} onClick={() => setOpen(false)}>
+              <a href={ctaHref("/signup")} className="block py-2.5 text-center text-white rounded-xl text-base font-bold" style={{ background: accent }} onClick={() => setOpen(false)}>
                 {nav.cta}
               </a>
             </div>
@@ -889,7 +856,7 @@ function ProcessSection({ lang, hero }: { lang: string; hero: any }) {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 rounded-full text-blue-600 text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 rounded-full text-blue-600 text-base font-semibold mb-4">
             <Zap className="w-4 h-4 text-yellow-500 fill-yellow-500" />
             {lang === 'ne' ? 'छिटो र सजिलो' : 'Fast & Simple'}
           </div>
@@ -916,12 +883,12 @@ function ProcessSection({ lang, hero }: { lang: string; hero: any }) {
               >
                 <div className={`w-24 h-24 rounded-[32px] ${colorClass} border-2 flex items-center justify-center mb-8 shadow-xl shadow-gray-200/50 bg-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl`}>
                   <Icon className="w-10 h-10" />
-                  <div className="absolute -top-3 -right-3 w-10 h-10 rounded-2xl bg-gray-900 text-white flex items-center justify-center font-black text-sm shadow-lg border-4 border-white">
+                  <div className="absolute -top-3 -right-3 w-10 h-10 rounded-2xl bg-gray-900 text-white flex items-center justify-center font-black text-base shadow-lg border-4 border-white">
                     0{i + 1}
                   </div>
                 </div>
                 <h3 className="text-2xl font-black text-gray-900 mb-4">{s.title}</h3>
-                <p className="text-gray-500 text-lg leading-relaxed max-w-[300px]">
+                <p className="text-gray-800 text-lg leading-relaxed max-w-[300px]">
                   {s.desc}
                 </p>
                 
@@ -941,7 +908,7 @@ function ProcessSection({ lang, hero }: { lang: string; hero: any }) {
           transition={{ delay: 0.6 }}
           className="mt-20 pt-10 border-t border-gray-50 text-center"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-50 rounded-2xl text-gray-400 font-bold border border-gray-100">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-50 rounded-2xl text-gray-700 font-bold border border-gray-100">
             <Sparkles className="w-5 h-5 text-blue-500" />
             {hero.process.footer}
           </div>
@@ -956,7 +923,7 @@ function TheProblemSection({ d }: { d: any }) {
   const who = d.who;
   if (!who) return null;
   const cardConfig = [
-    { border: "border-gray-200 hover:border-gray-400", bg: "bg-gray-50", icon: <AlertTriangle className="w-6 h-6 text-gray-500" />, iconBg: "bg-gray-100" },
+    { border: "border-gray-200 hover:border-gray-400", bg: "bg-gray-50", icon: <AlertTriangle className="w-6 h-6 text-gray-800" />, iconBg: "bg-gray-100" },
     { border: "border-red-200 hover:border-red-400", bg: "bg-red-50", icon: <Search className="w-6 h-6 text-red-500" />, iconBg: "bg-red-100" },
     { border: "border-orange-200 hover:border-orange-400", bg: "bg-orange-50", icon: <Moon className="w-6 h-6 text-orange-500" />, iconBg: "bg-orange-100" },
     { border: "border-green-200 hover:border-green-400", bg: "bg-green-50", icon: <Trophy className="w-6 h-6 text-green-600" />, iconBg: "bg-green-100" },
@@ -972,14 +939,14 @@ function TheProblemSection({ d }: { d: any }) {
           transition={{ duration: 0.4 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-50 rounded-full text-red-600 text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-50 rounded-full text-red-600 text-base font-semibold mb-4">
             <AlertTriangle className="w-4 h-4" />
             {who.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight whitespace-pre-line mb-4">
             {who.heading}
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">{who.subtext}</p>
+          <p className="text-gray-800 max-w-2xl mx-auto text-lg leading-relaxed">{who.subtext}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -994,12 +961,12 @@ function TheProblemSection({ d }: { d: any }) {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className={`rounded-2xl p-6 border-2 ${cfg.border} transition-all duration-300 hover:-translate-y-2 hover:shadow-xl`}
               >
-                <div className={`w-12 h-12 rounded-xl ${cfg.iconBg} flex items-center justify-center mb-4`}>
-                  {cfg.icon}
-                </div>
-                <p className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-1">{card.label}</p>
-                <h3 className="font-black text-gray-900 text-lg mb-3 leading-tight">{card.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{card.desc}</p>
+                  <div className={`w-14 h-14 rounded-2xl ${cfg.iconBg} flex items-center justify-center mb-6`}>
+                    {cfg.icon}
+                  </div>
+                  <p className="text-sm font-black uppercase tracking-widest text-gray-700 mb-2">{card.label}</p>
+                  <h3 className="font-black text-gray-950 text-xl mb-4 leading-tight">{card.title}</h3>
+                  <p className="text-lg text-gray-800 leading-relaxed font-medium">{card.desc}</p>
               </motion.div>
             );
           })}
@@ -1060,14 +1027,14 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full text-violet-400 text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full text-violet-400 text-base font-semibold mb-4">
             <Bot className="w-4 h-4" />
             {ai.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight whitespace-pre-line mb-4">
             {ai.heading}
           </h2>
-          <p className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed">{ai.subtext}</p>
+          <p className="text-white/90 max-w-2xl mx-auto text-lg leading-relaxed">{ai.subtext}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -1080,13 +1047,13 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="p-5 rounded-2xl bg-white/5 border border-white/8 hover:border-white/15 transition-all duration-300 hover:-translate-y-1"
+                className="p-8 rounded-[2rem] bg-white/5 border border-white/8 hover:border-white/15 transition-all duration-300 hover:-translate-y-2 shadow-2xl"
               >
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-3 shadow-lg`}>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradients[i]} flex items-center justify-center mb-6 shadow-xl`}>
                   {iconMap[feat.icon]}
                 </div>
-                <h3 className="font-bold text-white mb-2 text-sm">{feat.title}</h3>
-                <p className="text-white/40 text-xs leading-relaxed">{feat.desc}</p>
+                <h3 className="font-black text-white mb-3 text-xl tracking-tight">{feat.title}</h3>
+                <p className="text-white/85 text-lg leading-relaxed font-medium">{feat.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -1109,7 +1076,7 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
                       <Bot className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <div className="text-white font-bold text-sm">Hamro Assistant</div>
+                      <div className="text-white font-bold text-base">Hamro Assistant</div>
                       <div className="flex items-center gap-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                         <span className="text-violet-200 text-[10px]">Online 24/7</span>
@@ -1120,32 +1087,32 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
                   <div className="p-4 space-y-3 bg-slate-900/50 min-h-[220px]">
                     {/* Customer message */}
                     <div className="flex justify-end">
-                      <div className="bg-violet-600 text-white text-xs rounded-2xl rounded-tr-sm px-3 py-2 max-w-[75%] whitespace-pre-wrap">
+                      <div className="bg-violet-600 text-white text-sm rounded-2xl rounded-tr-sm px-3 py-2 max-w-[75%] whitespace-pre-wrap">
                         {ai.mockup.user1}
                       </div>
                     </div>
                     {/* AI reply */}
                     <div className="flex gap-2">
-                      <div className="w-6 h-6 rounded-full bg-violet-500/20 flex items-center justify-center shrink-0 mt-1">
-                        <Bot className="w-3 h-3 text-violet-400" />
+                      <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center shrink-0 mt-1">
+                        <Bot className="w-4 h-4 text-violet-400" />
                       </div>
-                      <div className="bg-white/10 text-white/80 text-xs rounded-2xl rounded-tl-sm px-3 py-2 max-w-[80%] whitespace-pre-wrap">
+                      <div className="bg-white/10 text-white/90 text-base rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%] whitespace-pre-wrap font-medium">
                         {ai.mockup.ai1}
                       </div>
                     </div>
                     {/* Customer */}
                     <div className="flex justify-end">
-                      <div className="bg-violet-600 text-white text-xs rounded-2xl rounded-tr-sm px-3 py-2 max-w-[75%] whitespace-pre-wrap">
+                      <div className="bg-violet-600 text-white text-base rounded-2xl rounded-tr-sm px-4 py-3 max-w-[75%] whitespace-pre-wrap font-bold shadow-lg">
                         {ai.mockup.user2}
                       </div>
                     </div>
                     {/* AI reply with Booking Slots */}
                     <div className="flex gap-2">
-                      <div className="w-6 h-6 rounded-full bg-violet-500/20 flex items-center justify-center shrink-0 mt-1">
-                        <Bot className="w-3 h-3 text-violet-400" />
+                      <div className="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center shrink-0 mt-1">
+                        <Bot className="w-4 h-4 text-violet-400" />
                       </div>
                       <div className="space-y-3 flex-1 min-w-0">
-                        <div className="bg-white/10 text-white/80 text-xs rounded-2xl rounded-tl-sm px-3 py-2 whitespace-pre-wrap leading-relaxed">
+                        <div className="bg-white/10 text-white/90 text-base rounded-2xl rounded-tl-sm px-4 py-3 whitespace-pre-wrap leading-relaxed font-medium">
                           {ai.mockup.ai2}
                           <div className="mt-3 grid grid-cols-2 gap-2">
                             {ai.mockup.slots.map((time: string) => (
@@ -1177,7 +1144,7 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
                   <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center shrink-0">
                     <TrendingDown className="w-5 h-5 text-amber-400" />
                   </div>
-                  <p className="text-white/60 text-sm leading-relaxed">{ai.stat}</p>
+                  <p className="text-white/60 text-base leading-relaxed">{ai.stat}</p>
                 </div>
               </div>
 
@@ -1224,7 +1191,7 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
                   transition={{ delay: i * 0.15 }}
                   className="bg-white/5 p-5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors"
                 >
-                  <p className="text-white/70 text-sm leading-relaxed">
+                  <p className="text-white/70 text-base leading-relaxed">
                     {story}
                   </p>
                 </motion.div>
@@ -1258,7 +1225,7 @@ function AIStaffSection({ d, lang }: { d: any; lang: string }) {
                   <div className="shrink-0 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/30">
                     <CheckCircle className="w-5 h-5 text-green-400" />
                   </div>
-                  <span className="text-sm font-medium leading-snug">{p}</span>
+                  <span className="text-base font-medium leading-snug">{p}</span>
                 </motion.div>
               ))}
             </div>
@@ -1287,7 +1254,7 @@ function TransformationSection({ d, lang }: { d: any; lang: string }) {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 rounded-full text-green-600 text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 rounded-full text-green-600 text-base font-semibold mb-4">
             <TrendingUp className="w-4 h-4" />
             {t.badge}
           </div>
@@ -1308,7 +1275,7 @@ function TransformationSection({ d, lang }: { d: any; lang: string }) {
               >
                 {/* Metric banner */}
                 <div className={`${acc.metric} px-5 py-3 flex items-center justify-between`}>
-                  <span className="text-white text-xs font-semibold">{item.business}</span>
+                  <span className="text-white text-sm font-semibold">{item.business}</span>
                   <span className="text-white font-black text-base">{item.metric}</span>
                 </div>
                 <div className="p-5 space-y-4">
@@ -1316,18 +1283,18 @@ function TransformationSection({ d, lang }: { d: any; lang: string }) {
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-2 h-2 rounded-full bg-red-400" />
-                      <span className="text-xs font-bold text-red-500 uppercase tracking-wide">Before</span>
+                      <span className="text-sm font-bold text-red-500 uppercase tracking-wide">Before</span>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed">{item.before}</p>
+                    <p className="text-base text-gray-800 leading-relaxed">{item.before}</p>
                   </div>
                   <div className="border-t border-dashed border-gray-200" />
                   {/* After */}
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className={`w-2 h-2 rounded-full ${acc.dot}`} />
-                      <span className="text-xs font-bold text-green-600 uppercase tracking-wide">After HamroLink</span>
+                      <span className="text-sm font-bold text-green-600 uppercase tracking-wide">After HamroLink</span>
                     </div>
-                    <p className="text-sm text-gray-700 leading-relaxed font-medium">{item.after}</p>
+                    <p className="text-base text-gray-700 leading-relaxed font-medium">{item.after}</p>
                   </div>
                 </div>
               </motion.div>
@@ -1348,19 +1315,19 @@ function TransformationSection({ d, lang }: { d: any; lang: string }) {
             </div>
             <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 rounded-full text-red-500 text-xs font-bold uppercase tracking-tight">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 rounded-full text-red-500 text-sm font-bold uppercase tracking-tight">
                   {lang === 'ne' ? 'सावधानी' : 'Reality Check'}
                 </div>
                 <h3 className="text-2xl font-black text-gray-900 leading-tight italic">
                   "{t.lostClient.story}"
                 </h3>
-                <p className="text-gray-500 text-base leading-relaxed">
+                <p className="text-gray-800 text-base leading-relaxed">
                   {t.lostClient.moral}
                 </p>
               </div>
               <div className="shrink-0 text-center md:text-right">
                 <div className="text-4xl font-black text-red-500 mb-1">NPR 1,20,000</div>
-                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">{lang === 'ne' ? 'गुमेको व्यवसाय' : 'Estimated Loss'}</div>
+                <div className="text-sm font-bold text-gray-700 uppercase tracking-widest">{lang === 'ne' ? 'गुमेको व्यवसाय' : 'Estimated Loss'}</div>
               </div>
             </div>
           </motion.div>
@@ -1385,31 +1352,31 @@ function ObjectionSection({ d }: { d: any }) {
           <span className="text-red-500">Wait.</span> We heard this before:
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
-          {keys.map((key, i) => {
-            const Icon = icons[i];
-            const text = (obj as any)[key];
-            const question = (obj.questions as any)[key];
-            return (
-              <motion.div 
-                key={key} 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-[32px] bg-gray-50 border border-gray-100 relative group hover:border-blue-200 transition-all"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 group-hover:text-blue-500 transition-colors">
-                    <Icon className="w-5 h-5" />
+            {keys.map((key, i) => {
+              const Icon = icons[i];
+              const text = (obj as any)[key];
+              const question = (obj.questions as any)[key];
+              return (
+                <motion.div 
+                  key={key} 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-8 rounded-[32px] bg-indigo-50/30 border border-indigo-100 relative group hover:border-indigo-300 transition-all shadow-sm"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-indigo-100 flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform shadow-sm">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-black text-gray-950 text-lg">{question}</h3>
                   </div>
-                  <h3 className="font-bold text-gray-900">{question}</h3>
-                </div>
-                <p className="text-gray-500 leading-relaxed italic">
-                  "{text}"
-                </p>
-              </motion.div>
-            );
-          })}
+                  <p className="text-gray-800 text-lg leading-relaxed italic font-medium">
+                    "{text}"
+                  </p>
+                </motion.div>
+              );
+            })}
         </div>
       </div>
     </section>
@@ -1441,15 +1408,15 @@ function ExitIntentOverlay({ d, visible, onClose }: { d: any; visible: boolean; 
               <h2 className="text-xl font-black text-gray-900 leading-tight">
                 {exit.heading}
               </h2>
-              <p className="text-gray-400 text-xs leading-relaxed max-w-[280px] mx-auto">
+              <p className="text-gray-700 text-sm leading-relaxed max-w-[280px] mx-auto">
                 {exit.subheading}
               </p>
             </div>
 
-            <div className="flex items-center justify-center gap-2.5 py-1 text-gray-400">
+            <div className="flex items-center justify-center gap-2.5 py-1 text-gray-700">
               <Clock className="w-3.5 h-3.5" />
               <div className="flex items-center gap-1.5 whitespace-nowrap">
-                <span className="text-[10px] font-bold uppercase tracking-widest bg-gray-100 px-2 py-0.5 rounded text-gray-500">Remaining</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest bg-gray-100 px-2 py-0.5 rounded text-gray-800">Remaining</span>
                 <WaitlistCountdown />
               </div>
             </div>
@@ -1457,14 +1424,14 @@ function ExitIntentOverlay({ d, visible, onClose }: { d: any; visible: boolean; 
             <div className="flex items-center justify-center gap-6 pt-4">
               <button 
                 onClick={onClose}
-                className="text-gray-400 font-bold text-sm hover:text-gray-600 transition-colors uppercase tracking-wider"
+                className="text-gray-700 font-bold text-base hover:text-gray-600 transition-colors uppercase tracking-wider"
               >
                 {exit.alternative}
               </button>
               <a 
                 href="#waitlist" 
                 onClick={onClose}
-                className="text-blue-600 font-black text-sm hover:text-blue-700 transition-all uppercase tracking-wider"
+                className="text-blue-600 font-black text-base hover:text-blue-700 transition-all uppercase tracking-wider"
               >
                 {exit.cta}
               </a>
@@ -1488,14 +1455,14 @@ function EmailMarketingStrip({ d }: { d: any }) {
       
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
         <div className="md:w-1/2 space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-sm font-semibold">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-base font-semibold">
             <Mail className="w-4 h-4" />
             Coming Soon: Hamro Reach
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
             Stop begging for reach on Facebook.
           </h2>
-          <p className="text-white/50 text-lg leading-relaxed">
+          <p className="text-white/80 text-xl leading-relaxed font-medium">
             When you post on Facebook, only 2% of your followers see it. 
             With HamroLink's email engine, you own the list. 100% reach. 0% algorithms.
           </p>
@@ -1504,7 +1471,7 @@ function EmailMarketingStrip({ d }: { d: any }) {
               <div className="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center shrink-0">
                 <Users className="w-5 h-5 text-white" />
               </div>
-              <p className="text-white/70 text-sm leading-relaxed">
+              <p className="text-white/70 text-base leading-relaxed">
                 <span className="text-white font-black">Build your own asset.</span> Every visitor becomes an email subscriber you can reach anytime for FREE.
               </p>
             </div>
@@ -1529,7 +1496,7 @@ function EmailMarketingStrip({ d }: { d: any }) {
               ))}
             </div>
             <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-slate-900 to-transparent flex items-center justify-center pt-10 px-6 text-center">
-              <p className="text-white text-xs font-bold bg-indigo-600 px-4 py-2 rounded-full shadow-xl">
+              <p className="text-white text-sm font-bold bg-indigo-600 px-4 py-2 rounded-full shadow-xl">
                 Automatic collection from your website
               </p>
             </div>
@@ -1572,22 +1539,22 @@ function WaitlistCountdown() {
   return (
     <div className="flex gap-2 items-center whitespace-nowrap">
       <div className="flex items-baseline gap-0.5">
-        <span className="text-xs font-black text-gray-900">{timeLeft.d}</span>
-        <span className="text-[8px] font-bold text-gray-400 uppercase">d</span>
+        <span className="text-sm font-black text-gray-900">{timeLeft.d}</span>
+        <span className="text-[8px] font-bold text-gray-700 uppercase">d</span>
       </div>
-      <span className="text-xs font-black text-gray-200">:</span>
+      <span className="text-sm font-black text-gray-200">:</span>
       <div className="flex items-baseline gap-0.5">
-        <span className="text-xs font-black text-gray-900">{timeLeft.h.toString().padStart(2, '0')}</span>
-        <span className="text-[8px] font-bold text-gray-400 uppercase">h</span>
+        <span className="text-sm font-black text-gray-900">{timeLeft.h.toString().padStart(2, '0')}</span>
+        <span className="text-[8px] font-bold text-gray-700 uppercase">h</span>
       </div>
-      <span className="text-xs font-black text-gray-200">:</span>
+      <span className="text-sm font-black text-gray-200">:</span>
       <div className="flex items-baseline gap-0.5">
-        <span className="text-xs font-black text-gray-900">{timeLeft.m.toString().padStart(2, '0')}</span>
-        <span className="text-[8px] font-bold text-gray-400 uppercase">m</span>
+        <span className="text-sm font-black text-gray-900">{timeLeft.m.toString().padStart(2, '0')}</span>
+        <span className="text-[8px] font-bold text-gray-700 uppercase">m</span>
       </div>
-      <span className="text-xs font-black text-gray-200">:</span>
+      <span className="text-sm font-black text-gray-200">:</span>
       <div className="flex items-baseline gap-0.5">
-        <span className="text-xs font-black text-blue-600">{timeLeft.s.toString().padStart(2, '0')}</span>
+        <span className="text-sm font-black text-blue-600">{timeLeft.s.toString().padStart(2, '0')}</span>
         <span className="text-[8px] font-bold text-blue-400 uppercase">s</span>
       </div>
     </div>
@@ -1629,10 +1596,21 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const shown = localStorage.getItem("exit_intent_shown");
+      const joined = localStorage.getItem("waitlist_joined");
+      if (shown || joined) setExitFired(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !exitFired) {
         setExitShow(true);
         setExitFired(true);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("exit_intent_shown", "true");
+        }
       }
     };
     document.addEventListener("mouseleave", handleMouseLeave);
@@ -1696,14 +1674,14 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-sm font-semibold"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-base font-semibold"
               >
                 <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0" />
                 {hero.badge}
               </motion.div>
 
               <div>
-                <h1 className={`font-black tracking-tight ${lang === "ne" ? "text-4xl sm:text-5xl leading-snug" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
+                <h1 className={`font-black tracking-tight ${lang === "ne" ? "text-5xl sm:text-6xl leading-[1.15] mb-2" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
                   <motion.span initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="block">
                     {hero.line1}
                   </motion.span>
@@ -1729,7 +1707,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="mt-3 text-white/50 text-sm italic font-medium"
+                    className="mt-3 text-white/90 text-base italic font-medium"
                   >
                     "{hero.generationalHook}"
                   </motion.div>
@@ -1740,7 +1718,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
-                className={`text-white/65 max-w-lg leading-relaxed ${lang === "ne" ? "text-base leading-loose" : "text-lg"}`}
+                className={`text-white/95 max-w-lg leading-relaxed font-bold ${lang === "ne" ? "text-xl sm:text-2xl leading-loose" : "text-lg sm:text-xl"}`}
               >
                 {hero.subtext}
               </motion.p>
@@ -1767,8 +1745,8 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                 <div className="space-y-5">
                   <div className="flex flex-wrap gap-5">
                     {hero.trust.map((t: string) => (
-                      <div key={t} className="flex items-center gap-1.5 text-sm text-white/50">
-                        <Check className="w-4 h-4 text-green-400 shrink-0" />
+                      <div key={t} className="flex items-center gap-2 text-base text-white/90 font-bold">
+                        <Check className="w-5 h-5 text-green-400 shrink-0 stroke-[3px]" />
                         {t}
                       </div>
                     ))}
@@ -1778,7 +1756,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                   <div className="p-5 rounded-[28px] bg-white/5 border border-white/10 backdrop-blur-md max-w-lg shadow-2xl">
                     <div className="flex items-start gap-3">
                       <AlertTriangle className="w-5 h-5 text-yellow-400 shrink-0 mt-0.5" />
-                      <p className="text-white/80 text-sm leading-relaxed">
+                      <p className="text-white/80 text-base leading-relaxed">
                         {lang === "ne"
                           ? "तपाईंको प्रतिस्पर्धी अहिले पनि डिजिटल भइरहेको छ। पहिले लन्च गर्नेले अनलाइन ग्राहक जित्छन्।"
                           : "Your competitor is going digital right now. Whoever launches first wins the online customers."}
@@ -1804,14 +1782,14 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                   </div>
                   <div>
                     <div className="text-[9px] text-white/55">{hero.floatingClicks}</div>
-                    <div className="text-sm font-black text-white">+127%</div>
+                    <div className="text-base font-black text-white">+127%</div>
                   </div>
                 </div>
                 <div className="absolute -bottom-5 -right-8 z-20 bg-white/12 backdrop-blur-2xl border border-white/20 rounded-2xl px-3.5 py-2.5 shadow-2xl hidden sm:flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-green-400 shrink-0" />
                   <div>
                     <div className="text-[9px] text-white/55">{hero.floatingSites}</div>
-                    <div className="text-sm font-black text-white">{PRE_LAUNCH ? "240+" : "5,000+"}</div>
+                    <div className="text-base font-black text-white">{PRE_LAUNCH ? "240+" : "5,000+"}</div>
                   </div>
                 </div>
 
@@ -1867,7 +1845,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
 
               <div className="flex flex-wrap gap-2 justify-center">
                 {SLIDES.map((s, i) => (
-                  <button key={i} onClick={() => goTo(i)} className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all hover:scale-105"
+                  <button key={i} onClick={() => goTo(i)} className="px-3 py-1.5 rounded-full text-sm font-semibold border transition-all hover:scale-105"
                     style={i === idx
                       ? { borderColor: s.accent, background: s.accent + "22", color: s.accent }
                       : { borderColor: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.38)" }
@@ -1903,7 +1881,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
           {(PRE_LAUNCH ? ((d as any).preLaunchStats ?? d.stats) : d.stats).map((s: any, i: number) => (
             <motion.div key={s.label} {...fu(i * 0.1)} className="text-center">
               <div className="text-3xl font-black text-white mb-1">{s.value}</div>
-              <div className="text-sm text-white/35">{s.label}</div>
+              <div className="text-base text-white/35">{s.label}</div>
             </motion.div>
           ))}
         </div>
@@ -1920,98 +1898,35 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
 
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div {...fu()}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-red-50 rounded-full text-red-600 text-xs font-bold mb-4">
+            <motion.div {...fu()} className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-red-50 rounded-full text-red-600 text-sm font-bold">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                 {d.waitlist.launchLabel}
               </div>
-              <div className="text-red-500 text-xs font-black uppercase tracking-widest mb-4">
-                {(d.waitlist as any).urgencyMicro}
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight whitespace-pre-line mb-5">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-[1.1] tracking-tight">
                 {(d.waitlist as any).heading ?? "Don't let your\ncompetitor launch first."}
               </h2>
-              <p className="text-gray-500 text-lg leading-relaxed mb-8">
+              <p className="text-gray-800 text-xl leading-relaxed font-medium max-w-md">
                 {(d.waitlist as any).subheading ?? "240+ Nepali businesses have already claimed their spot."}
               </p>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  { icon: <Gift className="w-5 h-5 text-indigo-600" />, title: (d.waitlist as any).perk1Title, desc: (d.waitlist as any).perk1Desc },
-                  { icon: <Zap className="w-5 h-5 text-indigo-600" />, title: (d.waitlist as any).perk2Title, desc: (d.waitlist as any).perk2Desc },
-                  { icon: <Shield className="w-5 h-5 text-indigo-600" />, title: (d.waitlist as any).perk3Title, desc: (d.waitlist as any).perk3Desc },
-                ].map((p) => (
-                  <div key={p.title} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex items-center justify-center shrink-0">{p.icon}</div>
-                    <div>
-                      <div className="font-bold text-gray-900 text-sm">{p.title}</div>
-                      <div className="text-gray-500 text-sm leading-relaxed">{p.desc}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3">
+              
+              <div className="flex items-center gap-3 pt-4">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white">
-                      <User className="w-4 h-4" />
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="w-9 h-9 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center text-indigo-600 shadow-sm">
+                      <User className="w-4.5 h-4.5" />
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-500">
-                  <span className="font-black text-gray-900">240+</span>{" "}
+                <p className="text-base text-gray-800 font-bold">
                   {((d.waitlist as any).limitedSpot || "").replace("{n}", "3")}
                 </p>
               </div>
             </motion.div>
 
-            <motion.div {...fu(0.15)}>
-              <div className="bg-white rounded-3xl border border-gray-100 shadow-2xl shadow-indigo-500/10 p-8">
-                <div className="mb-6">
-                  <h3 className="text-xl font-black text-gray-900 mb-1">{(d.waitlist as any).formTitle ?? "Reserve your spot now"}</h3>
-                  <p className="text-gray-400 text-sm">{(d.waitlist as any).formSub ?? "10 seconds. No credit card. No commitment."}</p>
-                </div>
+            <motion.div {...fu(0.15)} className="w-full max-w-lg mx-auto lg:ml-auto">
+              <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl p-6 md:p-10">
                 <WaitlistForm d={d} />
-                
-                <div className="mt-6 pt-5 border-t border-gray-100 flex flex-wrap gap-4">
-                  {[
-                    { icon: <Lock className="w-3.5 h-3.5" />, text: (d.waitlist as any).trust1 ?? "No spam, ever" },
-                    { icon: <CheckCircle className="w-3.5 h-3.5" />, text: (d.waitlist as any).trust2 ?? "Unsubscribe anytime" },
-                    { icon: <span className="text-xs">🇳🇵</span>, text: (d.waitlist as any).trust3 ?? "Made for Nepal" },
-                  ].map((t) => (
-                    <div key={t.text} className="flex items-center gap-1.5">
-                      <span className="text-gray-400">{t.icon}</span>
-                      <span className="text-xs text-gray-400 font-medium">{t.text}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Countdown display */}
-                <div className="mt-4 px-4 py-2 border border-blue-100 bg-blue-50/50 rounded-xl flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-blue-600" />
-                    <span className="text-[11px] font-bold text-blue-700 uppercase">{(d.waitlist as any).countdownText}</span>
-                  </div>
-                  <WaitlistCountdown />
-                </div>
-              </div>
-
-              {/* Scrolling Signups */}
-              <div className="mt-6 overflow-hidden relative h-10">
-                <motion.div
-                  animate={{ y: [0, -320] }}
-                  transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-                  className="space-y-4"
-                >
-                  {[...(d.waitlist as any).recentSignups, ...(d.waitlist as any).recentSignups].map((text: string, i: number) => (
-                    <div key={i} className="flex items-center h-4 gap-2 text-xs text-gray-400 whitespace-nowrap">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
-                      <span className="font-bold text-gray-500">Just joined:</span> {text}
-                    </div>
-                  ))}
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none" />
               </div>
             </motion.div>
           </div>
@@ -2021,14 +1936,14 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
       {/* ══ MICRO PROOF ═════════════════════════════════════════════════════ */}
       <section id="examples" className="bg-white border-b border-gray-100 py-10">
         <motion.div {...fu()} className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center sm:text-left">
-          <span className="text-sm font-bold text-gray-400 shrink-0">{d.microProof.eyebrow}</span>
+          <span className="text-base font-bold text-gray-700 shrink-0">{d.microProof.eyebrow}</span>
           <div className="flex flex-wrap justify-center sm:justify-start gap-4">
             {d.microProof.domains.map((domain: string) => {
               const imgName = domain.split(".")[0];
               return (
                 <Dialog key={domain}>
                   <DialogTrigger asChild>
-                    <button className="group relative inline-flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm font-mono text-gray-700 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/50 transition-all cursor-zoom-in">
+                    <button className="group relative inline-flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-base font-mono text-gray-700 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50/50 transition-all cursor-zoom-in">
                       <span className="w-2 h-2 rounded-full bg-green-400 shrink-0 group-hover:scale-125 transition-transform" />
                       {domain}
                       <Maximize2 className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity ml-1" />
@@ -2048,7 +1963,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                             <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/20" />
                             <div className="w-2.5 h-2.5 rounded-full bg-green-400/20" />
                           </div>
-                          <div className="flex-1 bg-white rounded-md px-3 py-1 text-[10px] text-gray-400 font-mono">https://{domain}</div>
+                          <div className="flex-1 bg-white rounded-md px-3 py-1 text-[10px] text-gray-700 font-mono">https://{domain}</div>
                         </div>
                         <img src={`/${imgName}.png`} alt={`${domain} preview`} className="w-full h-auto block" loading="lazy" />
                       </div>
@@ -2058,7 +1973,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
               );
             })}
           </div>
-          <Link href={ctaHref("/signup")} className="shrink-0 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 whitespace-nowrap">
+          <Link href={ctaHref("/signup")} className="shrink-0 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-base font-bold rounded-xl transition-all hover:scale-105 whitespace-nowrap">
             {d.microProof.cta} →
           </Link>
         </motion.div>
@@ -2097,12 +2012,12 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
       <section className="py-24 bg-slate-950" id="features">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fu()} className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-base font-semibold mb-4">
               <Sparkles className="w-4 h-4" />
               {d.features.badge}
             </div>
             <h2 className="text-4xl font-black text-white mb-3 whitespace-pre-line">{d.features.heading}</h2>
-            <p className="text-white/40 max-w-xl mx-auto">{d.features.subtext}</p>
+            <p className="text-white/80 max-w-xl mx-auto text-lg font-medium">{d.features.subtext}</p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {d.features.items.map((item: any, i: number) => {
@@ -2116,8 +2031,8 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                   <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${FEAT_GRADS[i % FEAT_GRADS.length]} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
                     <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-white mb-1.5">{item.title}</h3>
-                  <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
+                  <h3 className="font-bold text-white mb-1.5 text-lg">{item.title}</h3>
+                  <p className="text-base text-white/70 leading-relaxed font-medium">{item.desc}</p>
                 </motion.div>
               );
             })}
@@ -2130,18 +2045,18 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fu()} className="flex items-end justify-between mb-4 flex-wrap gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full text-violet-400 text-sm font-semibold mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-500/10 border border-violet-500/20 rounded-full text-violet-400 text-base font-semibold mb-4">
                 <Sparkles className="w-4 h-4" />
                 {d.templates.badge}
               </div>
               <h2 className="text-4xl font-black text-white whitespace-pre-line">{d.templates.heading}</h2>
             </div>
-            <Link href="#examples" className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/15 border border-white/10 rounded-xl text-white text-sm font-bold transition-colors">
+            <Link href="#examples" className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/15 border border-white/10 rounded-xl text-white text-base font-bold transition-colors">
               {d.templates.browseAll}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
-          <p className="text-white/40 mb-10">{d.templates.subtext}</p>
+          <p className="text-white/80 mb-10 text-lg font-medium">{d.templates.subtext}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {TEMPLATES.map((t, i) => (
               <motion.div
@@ -2154,16 +2069,16 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                 <BrowserFrame url={t.url} accent={t.accent}>{t.preview}</BrowserFrame>
                 <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/80 backdrop-blur-sm rounded-2xl">
                   <p className="text-white font-black text-base mb-1">{t.name}</p>
-                  <p className="text-sm mb-4" style={{ color: t.accent }}>{t.cat}</p>
-                  <Link href="#waitlist" className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-bold hover:scale-105 transition-transform shadow-lg" style={{ background: t.accent }}>
+                  <p className="text-base mb-4" style={{ color: t.accent }}>{t.cat}</p>
+                  <Link href="#waitlist" className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-base font-bold hover:scale-105 transition-transform shadow-lg" style={{ background: t.accent }}>
                     {d.templates.hoverCta}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
                 <div className="px-4 py-3 border-t border-white/5 flex items-center justify-between">
                   <div>
-                    <p className="text-white text-sm font-bold">{t.name}</p>
-                    <p className="text-xs" style={{ color: t.accent }}>{t.cat}</p>
+                    <p className="text-white text-base font-bold">{t.name}</p>
+                    <p className="text-sm" style={{ color: t.accent }}>{t.cat}</p>
                   </div>
                   <div className="w-3 h-3 rounded-full" style={{ background: t.accent }} />
                 </div>
@@ -2177,12 +2092,12 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
       <section className="py-24 bg-white" id="examples">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div {...fu()} className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 rounded-full text-blue-600 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 rounded-full text-blue-600 text-base font-semibold mb-4">
               <Globe className="w-4 h-4" />
               {d.examples.badge}
             </div>
             <h2 className="text-4xl font-black text-gray-900 mb-3">{d.examples.heading}</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">{d.examples.subtext}</p>
+            <p className="text-gray-700 max-w-xl mx-auto">{d.examples.subtext}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
@@ -2195,14 +2110,14 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                 <div className="p-6">
                   <div className="text-3xl mb-4">{item.emoji}</div>
                   <h3 className="font-black text-gray-900 text-base mb-1">{item.name}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4">{item.desc}</p>
+                  <p className="text-base text-gray-800 leading-relaxed mb-4">{item.desc}</p>
                   {PRE_LAUNCH ? (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-mono text-gray-300 cursor-default select-none">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-mono text-gray-300 cursor-default select-none">
                       <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
                       {item.url}
                     </span>
                   ) : (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-500 hover:text-blue-700 transition-colors">
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-mono text-blue-500 hover:text-blue-700 transition-colors">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                       {item.url}
                     </a>
@@ -2213,7 +2128,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
           </div>
 
           <motion.div {...fu(0.2)} className="text-center">
-            <p className="text-gray-500 mb-5 text-base">{d.examples.closing}</p>
+            <p className="text-gray-800 mb-5 text-base">{d.examples.closing}</p>
             <Link href="#waitlist" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-2xl transition-all hover:scale-105 shadow-lg shadow-blue-500/20">
               <Sparkles className="w-5 h-5" />
               {d.examples.cta}
@@ -2227,7 +2142,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
       <section className="py-24 bg-slate-950">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div {...fu()} className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-white/50 text-sm font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-white/90 text-base font-semibold mb-6">
               <Users className="w-4 h-4" />
               {d.founder.badge}
             </div>
@@ -2245,9 +2160,9 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-black text-lg shrink-0">S</div>
               <div>
                 <div className="text-white font-black">{d.founder.signature}</div>
-                <div className="text-white/40 text-sm">{d.founder.role}</div>
+                <div className="text-white/80 text-base">{d.founder.role}</div>
               </div>
-              <Link href="#waitlist" className="ml-auto flex items-center gap-2 px-5 py-2.5 bg-white text-gray-900 text-sm font-black rounded-xl hover:scale-105 transition-transform shadow-lg shrink-0 hidden sm:flex">
+              <Link href="#waitlist" className="ml-auto flex items-center gap-2 px-5 py-2.5 bg-white text-gray-900 text-base font-black rounded-xl hover:scale-105 transition-transform shadow-lg shrink-0 hidden sm:flex">
                 {d.founder.cta} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -2259,23 +2174,23 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
       <section className="py-24 bg-white" id="pricing">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div {...fu()} className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 rounded-full text-green-600 text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 rounded-full text-green-600 text-base font-semibold mb-4">
               <Check className="w-4 h-4" />
               {d.pricing.badge}
             </div>
             <h2 className="text-4xl font-black text-gray-900 mb-3 whitespace-pre-line">{d.pricing.heading}</h2>
             <div className="mb-6 px-4 py-2 bg-blue-50 border border-blue-100 rounded-2xl inline-block">
-              <p className="text-blue-700 font-bold text-sm tracking-tight">
+              <p className="text-blue-700 font-bold text-base tracking-tight">
                 {(d.pricing as any).anchoring}
               </p>
             </div>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">{d.pricing.subtext}</p>
+            <p className="text-gray-700 mb-8 max-w-2xl mx-auto">{d.pricing.subtext}</p>
             <div className="inline-flex items-center gap-1 p-1 bg-gray-100 rounded-xl mb-8">
               {(["monthly", "yearly"] as const).map((b) => (
                 <button
                   key={b}
                   onClick={() => setBill(b)}
-                  className={`px-5 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${bill === b ? "bg-white shadow text-gray-900" : "text-gray-400"}`}
+                  className={`px-5 py-2 rounded-lg text-base font-bold transition-all flex items-center gap-2 ${bill === b ? "bg-white shadow text-gray-900" : "text-gray-700"}`}
                 >
                   {b === "yearly" ? (
                     <>{d.pricing.yearly} <span className="px-1.5 py-0.5 bg-green-100 text-green-600 text-[9px] font-black rounded-full">{d.pricing.save}</span></>
@@ -2293,16 +2208,20 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                 className="max-w-md mx-auto mb-12 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center gap-3"
               >
                 <Coffee className="w-5 h-5 text-amber-600 shrink-0" />
-                <p className="text-amber-800 text-sm font-bold">
+                <p className="text-amber-800 text-base font-bold">
                   {bill === 'yearly' ? d.pricing.priceMetaphor.weekly : d.pricing.priceMetaphor.daily}
                 </p>
               </motion.div>
             )}
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {d.pricing.plans.map((plan: any, i: number) => {
-              const prices = [{ monthly: 0, yearly: 0 }, { monthly: 399, yearly: 4213 }, { monthly: 899, yearly: 9493 }];
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {d.pricing.plans.slice(0, 3).map((plan: any, i: number) => {
+              const prices = [
+                { monthly: 0, yearly: 0 }, 
+                { monthly: 399, yearly: 4213 }, 
+                { monthly: 899, yearly: 9493 }
+              ];
               const price = bill === "yearly" ? prices[i % prices.length].yearly : prices[i % prices.length].monthly;
               const Icon = PLAN_ICONS[i % PLAN_ICONS.length];
               const hot = i === 1;
@@ -2313,7 +2232,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                   className={`relative rounded-3xl p-7 border-2 flex flex-col transition-all ${hot ? "border-blue-500 shadow-2xl shadow-blue-500/10 scale-[1.03]" : "border-gray-100 hover:shadow-xl hover:border-gray-200"}`}
                 >
                   {hot && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 text-white text-xs font-black rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-indigo-600">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 text-white text-sm font-black rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-indigo-600">
                       MOST POPULAR
                     </div>
                   )}
@@ -2323,7 +2242,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                     </div>
                     <div>
                       <div className="font-black text-gray-900 text-lg">{plan.name}</div>
-                      <div className="text-xs text-gray-400">{plan.desc}</div>
+                      <div className="text-sm text-gray-700">{plan.desc}</div>
                     </div>
                   </div>
                   <div className="mb-6">
@@ -2332,25 +2251,25 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                     ) : (
                       <div className="flex items-end gap-1">
                         <div className="text-4xl font-black text-gray-900">NPR {price.toLocaleString()}</div>
-                        <div className="text-gray-400 text-sm pb-1.5">{bill === "yearly" ? d.pricing.perYear : d.pricing.perMonth}</div>
+                        <div className="text-gray-700 text-base pb-1.5">{bill === "yearly" ? d.pricing.perYear : d.pricing.perMonth}</div>
                       </div>
                     )}
                     {bill === "yearly" && price > 0 && (
-                      <p className="text-xs text-green-600 font-semibold mt-0.5">
+                      <p className="text-sm text-green-600 font-semibold mt-0.5">
                         {d.pricing.approxMonth.replace("{n}", Math.round(price / 12).toLocaleString())}
                       </p>
                     )}
                   </div>
                   <a
                     href={PRE_LAUNCH ? "#waitlist" : i === 0 ? ctaHref("/signup") : ctaHref("/signup?plan=" + plan.name.toLowerCase())}
-                    className={`flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-sm font-black mb-6 transition-all ${hot ? "text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-xl hover:scale-105" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
+                    className={`flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-base font-black mb-6 transition-all ${hot ? "text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-xl hover:scale-105" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
                   >
                     {PRE_LAUNCH ? d.pricing.ctaFree : i === 0 ? d.pricing.ctaFree : d.pricing.ctaPaid}
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <ul className="space-y-2.5 flex-1">
                     {plan.feats.map((f: any) => (
-                      <li key={f.t} className={`flex items-start gap-2.5 text-sm ${f.ok ? "text-gray-700" : "text-gray-300"}`}>
+                      <li key={f.t} className={`flex items-start gap-2.5 text-base ${f.ok ? "text-gray-700" : "text-gray-300"}`}>
                         {f.ok ? <Check className="w-4 h-4 text-green-500 shrink-0 mt-0.5" /> : <X className="w-4 h-4 text-gray-200 shrink-0 mt-0.5" />}
                         {f.t}
                       </li>
@@ -2360,7 +2279,56 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
               );
             })}
           </div>
-          <p className="text-center text-sm text-gray-400 mt-8">{d.pricing.footer}</p>
+
+          {/* Local Starter for Home Page */}
+          {d.pricing.plans[3] && (
+            <motion.div
+              {...fu()}
+              className="relative rounded-3xl p-8 border-2 border-amber-100 bg-amber-50/10 flex flex-col md:flex-row items-center gap-8 transition-all hover:shadow-xl"
+            >
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow text-white">
+                    <Star className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="font-black text-gray-900 text-xl">{d.pricing.plans[3].name}</div>
+                    <div className="text-base text-amber-700 font-medium tracking-tight">Special local business plan</div>
+                  </div>
+                </div>
+                <p className="text-gray-800 mb-6 max-w-xl text-base leading-relaxed">{d.pricing.plans[3].desc}</p>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                  {d.pricing.plans[3].feats.slice(0, 4).map((f: any, fi: number) => (
+                    <div key={fi} className="flex items-center gap-2 text-sm font-bold text-gray-600">
+                      <div className="p-0.5 rounded-full bg-amber-100 text-amber-600">
+                        <Check className="w-3 h-3" strokeWidth={3} />
+                      </div>
+                      {f.t}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="shrink-0 text-center md:text-right border-t md:border-t-0 md:border-l border-amber-100 pt-6 md:pt-0 md:pl-8">
+                <div className="mb-4">
+                  <div className="text-3xl font-black text-gray-900 leading-none">
+                    NPR {bill === "yearly" ? 1990 : 199}
+                  </div>
+                  <div className="text-gray-700 text-sm font-bold mt-1 uppercase tracking-wider">
+                    {bill === "yearly" ? d.pricing.perYear : d.pricing.perMonth}
+                  </div>
+                </div>
+                <Link
+                  href={PRE_LAUNCH ? "#waitlist" : ctaHref("/signup?plan=local_starter")}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gray-900 text-white font-black rounded-xl hover:scale-105 transition-transform shadow-lg"
+                >
+                  {d.pricing.ctaPaid}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+
+          <p className="text-center text-base font-bold text-gray-700 mt-10">{d.pricing.footer}</p>
         </div>
       </section>
 
@@ -2375,22 +2343,21 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
           transition={{ duration: 0.7 }}
           className="relative max-w-4xl mx-auto px-6 text-center"
         >
-          <h2 className="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-8xl font-black text-white leading-[1.05] mb-8 tracking-tighter">
             {d.cta.line1}
             <br />
             <span className="text-yellow-300">{d.cta.line2}</span>
           </h2>
-          <p className="text-xl text-white/60 mb-10 max-w-xl mx-auto">{d.cta.subtext}</p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="#waitlist" className="flex items-center gap-2 px-10 py-5 bg-white text-indigo-700 rounded-2xl text-lg font-black hover:scale-105 transition-transform shadow-2xl">
-              <Sparkles className="w-5 h-5" />
+          <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
+            {d.cta.subtext}
+          </p>
+          <div className="flex flex-wrap gap-6 justify-center">
+            <Link href="#waitlist" className="flex items-center gap-2 px-10 py-5 bg-white text-indigo-700 rounded-2xl text-xl font-black hover:scale-105 transition-transform shadow-2xl">
+              <Sparkles className="w-6 h-6" />
               {d.cta.primary}
             </Link>
-            <Link href={ctaHref("#pricing")} className="flex items-center gap-2 px-10 py-5 border-2 border-white/30 text-white rounded-2xl text-lg font-bold hover:bg-white/10 transition-colors">
-              {d.cta.secondary}
-            </Link>
           </div>
-          <p className="text-white/35 text-sm mt-8">{d.cta.disclaimer}</p>
+          <p className="text-white/60 text-base mt-10 font-bold uppercase tracking-widest">{d.cta.disclaimer}</p>
         </motion.div>
       </section>
 

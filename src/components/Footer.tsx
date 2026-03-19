@@ -24,16 +24,16 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                 className="h-12 w-auto transition-all"
               />
             </div>
-            <p className="text-sm text-white/35 max-w-xs leading-relaxed mb-5">
+            <p className="text-base text-white/70 max-w-xs leading-relaxed mb-6 font-medium">
               {PRE_LAUNCH
                 ? d.footer.tagline
                 : ((d.footer as any).taglinePostLaunch ?? d.footer.tagline)}
             </p>
             <Link
               href={ctaHref("/signup")}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-black rounded-xl transition-all hover:scale-105 shadow-lg shadow-blue-500/20"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-4 h-4" />
               {PRE_LAUNCH
                 ? d.footer.cta
                 : ((d.footer as any).ctaPostLaunch ?? d.footer.cta)}
@@ -41,10 +41,10 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
           </div>
           {Object.entries(d.footer.sections).map(([title, links]: any) => (
             <div key={title}>
-              <p className="text-[10px] font-bold text-white/25 uppercase tracking-widest mb-4">
+              <p className="text-sm font-black text-white/90 uppercase tracking-widest mb-6">
                 {title}
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-4">
                 {links.map(([label, href]: string[]) => {
                   const isExternal = href.startsWith("http");
                   return (
@@ -54,7 +54,7 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-white/45 hover:text-white transition-colors"
+                          className="text-base text-white/60 hover:text-white transition-colors font-medium"
                         >
                           {label}
                         </a>
@@ -63,7 +63,7 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                           href={
                             href.startsWith("/") ? `/${lang}${href}` : href
                           }
-                          className="text-sm text-white/45 hover:text-white transition-colors"
+                          className="text-base text-white/60 hover:text-white transition-colors font-medium"
                         >
                           {label}
                         </Link>
@@ -77,41 +77,41 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
         </div>
 
         {/* Business Details Section */}
-        <div className="border-t border-white/5 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-2">
-            <h4 className="text-white font-bold text-sm">{d.footer.businessName}</h4>
-            <p className="text-xs text-white/45">{d.footer.address}</p>
-            <p className="text-xs text-white/35">
+        <div className="border-t border-white/10 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="space-y-3">
+            <h4 className="text-white font-black text-xl">{d.footer.businessName}</h4>
+            <p className="text-lg text-white/95 font-medium">{d.footer.address}</p>
+            <div className="text-base text-white/80 font-bold uppercase tracking-wide">
               {d.footer.proprietorLabel}: {d.footer.proprietorValue} | {d.footer.founderLabel}: {d.footer.founderValue}
-            </p>
-            <p className="text-xs text-white/25">
+            </div>
+            <div className="text-sm text-white/60 font-black uppercase tracking-widest bg-white/5 py-1.5 px-3 rounded inline-block">
               {d.footer.regIdLabel}: {d.footer.regIdValue}  | {d.footer.panLabel}: {d.footer.panValue}
-            </p>
+            </div>
           </div>
-          <div className="flex flex-col md:items-end justify-center space-y-2">
-            <p className="text-xs text-white/25">
+          <div className="flex flex-col md:items-end justify-center space-y-4">
+            <p className="text-sm text-white/40 font-bold">
               © {new Date().getFullYear()} Hamrolink. {d.footer.copyright}
             </p>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-wrap items-center gap-6">
               <a
                 href={ctaHref("/signup")}
-                className="flex items-center gap-1 text-xs text-white/25 hover:text-white/50 transition-colors"
+                className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors font-black"
               >
-                <ExternalLink className="w-3 h-3" />
+                <ExternalLink className="w-4 h-4" />
                 {PRE_LAUNCH
                   ? d.footer.cta
                   : (d.footer.ctaPostLaunch ?? (lang === "ne" ? "सुरु गर्नुहोस्" : "Get Started"))}
               </a>
               <a
                 href="mailto:support@hamrolink.com"
-                className="text-xs text-white/25 hover:text-white/50 transition-colors"
+                className="text-sm text-white/50 hover:text-white transition-colors font-bold"
               >
                 support@hamrolink.com
               </a>
-              <span className="text-xs text-white/10">|</span>
+              <span className="hidden md:inline text-white/10 text-xl font-thin">|</span>
               <a
                 href="tel:+9779713101957"
-                className="text-xs text-white/25 hover:text-white/50 transition-colors"
+                className="text-sm text-white/50 hover:text-white transition-colors font-bold"
               >
                 +977-9713101957
               </a>

@@ -119,22 +119,55 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  
+  html {
+    /* Set base font size explicitly */
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-gray-800 font-medium;
+    line-height: 1.6;
+    letter-spacing: -0.0125em;
+  }
+
+  /* Headings: The Bold "HamroLink" Look from the Pricing Page */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-950 font-black tracking-tight;
+    line-height: 1.1;
+  }
+
+  h1 { @apply text-4xl md:text-5xl lg:text-7xl tracking-tighter; }
+  h2 { @apply text-3xl md:text-4xl lg:text-5xl tracking-tight; }
+  h3 { @apply text-2xl md:text-3xl; }
+
+  /* Links */
+  a {
+    @apply transition-all duration-300;
+  }
+
+  /* Improved selection for better UI feel */
+  ::selection {
+    @apply bg-indigo-100 text-indigo-900;
+  }
+}
+
 @layer utilities {
   .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.85; }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }

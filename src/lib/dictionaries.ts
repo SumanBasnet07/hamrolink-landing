@@ -509,6 +509,21 @@ export const dictionaries = {
             { t: "Remove HamroLink branding", ok: true },
           ],
         },
+        {
+          name: "Local Starter",
+          desc: "Perfect for local shops. NPR 199/month.",
+          feats: [
+            { t: "1 website", ok: true },
+            { t: "10 pages + 10 blog posts", ok: true },
+            { t: "50 images · 5 file uploads", ok: true },
+            { t: "100 emails / month", ok: true },
+            { t: "Custom domain", ok: false },
+            { t: "Online store — 20 products (eSewa & Khalti)", ok: true },
+            { t: "AI chatbot — 1000 messages limit", ok: true },
+            { t: "5 bookings · 10 notices", ok: true },
+            { t: "Remove HamroLink branding", ok: false },
+          ],
+        },
       ],
       priceMetaphor: {
         daily: "NPR 13/day — less than a cup of milk tea",
@@ -687,7 +702,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         Product: [
           ["AI Staff", "/#ai-staff"],
           ["Features", "/#features"],
-          ["Pricing", "/#pricing"],
+          ["Pricing", "/pricing"],
           ["Success Stories", "/#stories"],
           ["Contact", "/contact"],
         ],
@@ -1240,6 +1255,21 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
             { t: "HamroLink ब्रान्डिङ हटाउने सुविधा", ok: true },
           ],
         },
+        {
+          name: "लोकल स्टार्टर",
+          desc: "स्थानीय पसलहरूको लागि उत्तम। रु १९९/महिना।",
+          feats: [
+            { t: "१ वेबसाइट", ok: true },
+            { t: "१० पेजहरू + १० ब्लग पोस्ट", ok: true },
+            { t: "५० इमेज · ५ फाइल अपलोड", ok: true },
+            { t: "१०० इमेल / महिना", ok: true },
+            { t: "कस्टम डोमेन", ok: false },
+            { t: "अनलाइन स्टोर — २० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
+            { t: "एआई च्याटबोट — १००० म्यासेज सीमा", ok: true },
+            { t: "५ बुकिङ · १० नोटिस", ok: true },
+            { t: "HamroLink ब्रान्डिङ हटाउने सुविधा", ok: false },
+          ],
+        },
       ],
       priceMetaphor: {
         daily: "मात्र रु १३/दिन — एक कप चियाभन्दा कम",
@@ -1399,7 +1429,7 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
         उत्पादन: [
           ["AI कर्मचारी", "/#ai-staff"],
           ["विशेषताहरू", "/#features"],
-          ["मूल्य", "/#pricing"],
+          ["मूल्य", "/pricing"],
           ["सफलताको कथा", "/#stories"],
           ["सम्पर्क", "/contact"],
         ],

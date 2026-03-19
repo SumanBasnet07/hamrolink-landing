@@ -463,7 +463,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
                 {ne ? "प्रारम्भिक पहुँचमा सामेल हुनुहोस्" : "Join Early Access — Free"}
                 <ArrowRight className="w-4 h-4"/>
               </Link>
-              <Link href={`/${lang}#pricing`}
+              <Link href={`/${lang}/pricing`}
                 className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-white/60 rounded-2xl font-semibold text-sm hover:border-white/30 hover:text-white/80 transition-colors">
                 {ne ? "मूल्य निर्धारण हेर्नुहोस्" : "View Pricing"}
               </Link>

@@ -88,7 +88,7 @@ function Navbar({
           {[
             [`/${lang}#ai-staff`, nav.templates],
             [`/${lang}#features`, nav.features],
-            [`/${lang}#pricing`, nav.pricing],
+            [`/${lang}/pricing`, nav.pricing],
             [`/${lang}#stories`, nav.docs],
             [`/${lang}/contact`, nav.contact],
           ].map(([href, label]) => (
@@ -133,7 +133,7 @@ function Navbar({
             {[
               [`/${lang}#ai-staff`, nav.templates],
               [`/${lang}#features`, nav.features],
-              [`/${lang}#pricing`, nav.pricing],
+              [`/${lang}/pricing`, nav.pricing],
               [`/${lang}#stories`, nav.docs],
               [`/${lang}/contact`, nav.contact],
             ].map(([href, label]) => (

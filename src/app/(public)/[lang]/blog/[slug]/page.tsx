@@ -220,19 +220,19 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* ── Sticky top bar ── */}
         <div className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-            <nav className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-500">
-              <Link href={`/${lang}`} className="hover:text-indigo-600 font-medium transition-colors">HamroLink</Link>
-              <span className="text-gray-300">/</span>
-              <Link href={`/${lang}/blog`} className="hover:text-indigo-600 transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
-              <span className="text-gray-300">/</span>
-              <span className="text-gray-900 font-semibold truncate max-w-[120px] sm:max-w-[200px]">
+            <nav className="flex items-center gap-1.5 text-sm sm:text-base text-gray-700">
+              <Link href={`/${lang}`} className="hover:text-indigo-600 font-bold transition-colors">HamroLink</Link>
+              <span className="text-gray-400 font-black">/</span>
+              <Link href={`/${lang}/blog`} className="hover:text-indigo-600 font-bold transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
+              <span className="text-gray-400 font-black">/</span>
+              <span className="text-gray-950 font-black truncate max-w-[120px] sm:max-w-[200px]">
                 {ne ? post.category_ne : post.category_en}
               </span>
             </nav>
-            <div className="flex items-center gap-1 bg-gray-100/80 rounded-full p-1 border border-gray-200/50">
+            <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1 border border-gray-200">
               {(["en","ne"] as const).map((l) => (
                 <Link key={l} href={`/${l}/blog/${post.slug}`}
-                  className={`px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold transition-all ${lang===l ? "bg-white shadow-sm text-indigo-700" : "text-gray-500 hover:text-gray-900"}`}>
+                  className={`px-3 py-1.5 rounded-full text-xs sm:text-sm font-black transition-all ${lang===l ? "bg-white shadow text-indigo-700" : "text-gray-600 hover:text-gray-950"}`}>
                   {l === "en" ? "EN" : "नेपाली"}
                 </Link>
               ))}
@@ -292,13 +292,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="sticky top-20">
                 {toc.length > 0 && (
                   <>
-                    <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-3">
+                    <p className="text-xs font-black text-gray-800 uppercase tracking-widest mb-3">
                       {ne ? "सामग्री तालिका" : "Contents"}
                     </p>
-                    <nav className="space-y-0.5 mb-8">
+                    <nav className="space-y-1 mb-8">
                       {toc.map((item) => (
                         <a key={item.id} href={`#${item.id}`}
-                          className="block text-xs text-gray-500 hover:text-gray-900 hover:bg-gray-100 px-2 py-1.5 rounded-lg transition-colors leading-snug">
+                          className="block text-sm font-bold text-gray-700 hover:text-gray-950 hover:bg-indigo-50 px-3 py-2 rounded-lg transition-colors leading-snug">
                           {item.label}
                         </a>
                       ))}
@@ -366,11 +366,11 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* ── Tags ── */}
               {((ne ? post.tags_ne : post.tags_en) ?? []).length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-10 pt-8 border-t border-gray-100">
-                  <span className="text-xs text-gray-400 font-bold uppercase tracking-widest self-center">
+                  <span className="text-sm text-gray-800 font-black uppercase tracking-widest self-center">
                     {ne ? "ट्यागहरू:" : "Tags:"}
                   </span>
                   {(ne ? post.tags_ne : post.tags_en).map((tag: string) => (
-                    <span key={tag} className={`px-3 py-1 ${col.bg} ${col.border} border ${col.text} rounded-full text-xs font-semibold`}>
+                    <span key={tag} className={`px-4 py-1.5 ${col.bg} ${col.border} border ${col.text} rounded-full text-sm font-black shadow-sm`}>
                       {tag}
                     </span>
                   ))}
@@ -391,14 +391,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <div className="space-y-4">
                     {faqs.map((faq: any, i: number) => (
                       <details key={i} className="group border border-slate-200 rounded-[2rem] overflow-hidden bg-white hover:border-indigo-200 transition-all duration-300">
-                        <summary className="flex items-center justify-between gap-4 px-8 py-6 cursor-pointer list-none select-none hover:bg-slate-50/50 transition-colors">
-                          <span className="font-extrabold text-slate-900 text-lg sm:text-xl leading-snug">
+                        <summary className="flex items-center justify-between gap-4 px-8 py-6 cursor-pointer list-none select-none hover:bg-indigo-50/50 transition-colors">
+                          <span className="font-black text-slate-950 text-xl sm:text-2xl leading-tight">
                             {ne ? faq.question_ne : faq.question_en}
                           </span>
-                          <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 group-open:rotate-180 transition-transform duration-300"/>
+                          <ChevronDown className="w-6 h-6 text-slate-600 shrink-0 group-open:rotate-180 transition-transform duration-300"/>
                         </summary>
-                        <div className="px-8 pb-6 pt-2 border-t border-slate-100">
-                          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                        <div className="px-8 pb-8 pt-4 border-t border-slate-100">
+                          <p className="text-slate-800 text-lg sm:text-xl leading-relaxed font-medium">
                             {ne ? faq.answer_ne : faq.answer_en}
                           </p>
                         </div>
