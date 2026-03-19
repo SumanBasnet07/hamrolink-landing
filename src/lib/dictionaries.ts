@@ -470,8 +470,8 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "5 pages", ok: true },
-            { t: "10 images · 2 file uploads", ok: true },
-            { t: "10 emails / month", ok: true },
+            { t: "25 images · 5 file uploads", ok: true },
+            { t: "50 emails / month", ok: true },
             { t: "yourname.hamrolink.com subdomain", ok: true },
             { t: "Custom domain", ok: false },
             { t: "Online store (eSewa/Khalti)", ok: false },
@@ -485,7 +485,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "20 pages + 30 blog posts", ok: true },
-            { t: "70 images · 10 file uploads", ok: true },
+            { t: "100 images · 5 file uploads", ok: true },
             { t: "250 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 30 products (eSewa & Khalti)", ok: true },
@@ -500,7 +500,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "50 pages + 150 blog posts", ok: true },
-            { t: "150 images · 10 file uploads", ok: true },
+            { t: "200 images · 10 file uploads", ok: true },
             { t: "600 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 300 products (eSewa & Khalti)", ok: true },
@@ -1216,8 +1216,8 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "५ पेजहरू", ok: true },
-            { t: "१० इमेज · २ फाइल अपलोड", ok: true },
-            { t: "१० इमेल / महिना", ok: true },
+            { t: "२५ इमेज · ५ फाइल अपलोड", ok: true },
+            { t: "५० इमेल / महिना", ok: true },
             { t: "yourname.hamrolink.com सब-डोमेन", ok: true },
             { t: "कस्टम डोमेन", ok: false },
             { t: "अनलाइन स्टोर (ई-सेवा/खल्ती)", ok: false },
@@ -1231,7 +1231,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "२० पेजहरू + ३० ब्लग पोस्ट", ok: true },
-            { t: "७० इमेज · १० फाइल अपलोड", ok: true },
+            { t: "१०० इमेज · ५ फाइल अपलोड", ok: true },
             { t: "२५० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ३० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
@@ -1246,7 +1246,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "५० पेजहरू + १५० ब्लग पोस्ट", ok: true },
-            { t: "१५० इमेज · १० फाइल अपलोड", ok: true },
+            { t: "२०० इमेज · १० फाइल अपलोड", ok: true },
             { t: "६०० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ३०० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },

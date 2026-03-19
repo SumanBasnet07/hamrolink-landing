@@ -20,7 +20,7 @@ const faqs = {
         },
         {
           q: "Is HamroLink free to use?",
-          a: "Yes! HamroLink has a free plan that lets you create a website with a yourname.hamrolink.com subdomain, up to 5 pages, 10 images and 2 file uploads, and 10 emails per month — forever free. Paid plans (Starter and Pro) unlock more features.",
+          a: "Yes! HamroLink has a free plan that lets you create a website with a yourname.hamrolink.com subdomain, up to 5 pages, 25 images and 5 file uploads, and 50 emails per month — forever free. Paid plans (Starter and Pro) unlock more features.",
         },
         {
           q: "When will HamroLink launch?",
@@ -41,11 +41,11 @@ const faqs = {
       items: [
         {
           q: "What is included in the Free plan?",
-          a: "The Free plan includes 1 website, 5 pages, 10 images and 2 file uploads, 10 emails per month, and a yourname.hamrolink.com subdomain. No credit card required.",
+          a: "The Free plan includes 1 website, 5 pages, 25 images and 5 file uploads, 50 emails per month, and a yourname.hamrolink.com subdomain. No credit card required.",
         },
         {
           q: "What is the difference between Starter and Pro?",
-          a: "Starter gives you 20 pages + 30 blog posts, 50 images and 5 file uploads, a custom domain, AI Chatbot, online store (30 products), 70 bookings, 10 events, and removal of HamroLink branding. Pro gives you 50 pages + 150 blog posts, 100 images and 10 file uploads, 600 emails/month, online store (300 products), 150 bookings, and 25 events. Both plans allow you to connect your own domain.",
+          a: "Starter gives you 20 pages + 30 blog posts, 100 images and 5 file uploads, a custom domain, AI Chatbot, online store (30 products), 70 bookings, 10 events, and removal of HamroLink branding. Pro gives you 50 pages + 150 blog posts, 200 images and 10 file uploads, 600 emails/month, online store (300 products), 150 bookings, and 25 events. Both plans allow you to connect your own domain.",
         },
         {
           q: "Can I upgrade or downgrade my plan?",
@@ -149,7 +149,7 @@ const faqs = {
         },
         {
           q: "के HamroLink नि:शुल्क छ?",
-          a: "हो! HamroLink मा नि:शुल्क योजना छ जसले तपाईंलाई yourname.hamrolink.com सबडोमेन, ५ पेजहरू, १० इमेज र २ फाइल अपलोड र मासिक १० इमेलसहित वेबसाइट बनाउन दिन्छ — सधैँ नि:शुल्क। भुक्तानी योजनाहरू (स्टार्टर र प्रो) थप सुविधाहरू अनलक गर्छन्।",
+          a: "हो! HamroLink मा नि:शुल्क योजना छ जसले तपाईंलाई yourname.hamrolink.com सबडोमेन, ५ पेजहरू, २५ इमेज र ५ फाइल अपलोड र मासिक ५० इमेलसहित वेबसाइट बनाउन दिन्छ — सधैँ नि:शुल्क। भुक्तानी योजनाहरू (स्टार्टर र प्रो) थप सुविधाहरू अनलक गर्छन्।",
         },
         {
           q: "HamroLink कहिले लन्च हुन्छ?",
@@ -170,11 +170,11 @@ const faqs = {
       items: [
         {
           q: "नि:शुल्क योजनामा के समावेश छ?",
-          a: "नि:शुल्क योजनामा १ वेबसाइट, ५ पेजहरू, १० इमेज र २ फाइल अपलोड, मासिक १० इमेल र yourname.hamrolink.com सबडोमेन समावेश छ। कुनै क्रेडिट कार्ड आवश्यक छैन।",
+          a: "नि:शुल्क योजनामा १ वेबसाइट, ५ पेजहरू, २५ इमेज र ५ फाइल अपलोड, मासिक ५० इमेल र yourname.hamrolink.com सबडोमेन समावेश छ। कुनै क्रेडिट कार्ड आवश्यक छैन।",
         },
         {
           q: "स्टार्टर र प्रोबीच के फरक छ?",
-          a: "स्टार्टरले तपाईंलाई २० पेज + ३० ब्लग पोस्ट, ५० इमेज र ५ फाइल अपलोड, कस्टम डोमेन, AI च्याटबट, अनलाइन स्टोर (३० उत्पादन), ७० बुकिङ, १० कार्यक्रम र HamroLink ब्र्यान्डिङ हटाउने सुविधा दिन्छ। प्रोले ५० पेज + १५० ब्लग पोस्ट, १०० इमेज र १० फाइल अपलोड, ६०० इमेल/महिना, अनलाइन स्टोर (३०० उत्पादन), १५० बुकिङ र २५ कार्यक्रम दिन्छ।",
+          a: "स्टार्टरले तपाईंलाई २० पेज + ३० ब्लग पोस्ट, १०० इमेज र ५ फाइल अपलोड, कस्टम डोमेन, AI च्याटबट, अनलाइन स्टोर (३० उत्पादन), ७० बुकिङ, १० कार्यक्रम र HamroLink ब्र्यान्डिङ हटाउने सुविधा दिन्छ। प्रोले ५० पेज + १५० ब्लग पोस्ट, २०० इमेज र १० फाइल अपलोड, ६०० इमेल/महिना, अनलाइन स्टोर (३०० उत्पादन), १५० बुकिङ र २५ कार्यक्रम दिन्छ।",
         },
         {
           q: "के म आफ्नो योजना अपग्रेड वा डाउनग्रेड गर्न सक्छु?",
