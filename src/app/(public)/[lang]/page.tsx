@@ -1681,7 +1681,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
               </motion.div>
 
               <div>
-                <h1 className={`font-black tracking-tight ${lang === "ne" ? "text-5xl sm:text-6xl leading-[1.15] mb-2" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
+                <h1 className={`text-white tracking-tight ${lang === "ne" ? "text-5xl sm:text-6xl leading-[1.15] mb-2" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
                   <motion.span initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="block">
                     {hero.line1}
                   </motion.span>
