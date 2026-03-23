@@ -1,0 +1,125 @@
+[{
+  "_id": {
+    "$oid": "507f1f77bcf86cd799439018"
+  },
+  "name": "institution",
+  "monthlyCredits": 899,
+  "yearlyCredits": 8990,
+  "limits": {
+    "sites": 3,
+    "pagesPerSite": 100,
+    "blogPages": 250,
+    "routing": true,
+    "chatbot": true,
+    "ecommerceSites": 1,
+    "maxProductsPerEcommerce": 500,
+    "customDomain": true,
+    "removeBranding": true,
+    "prioritySupport": true,
+    "freeAiEditsPerSite": 5,
+    "aiCostPerEdit": 2,
+    "imagesUploads": 500,
+    "fileUploads": 20,
+    "eventsLimit": 50,
+    "noticeLimit": 100,
+    "monthlyEmailLimit": 1000,
+    "notesLimit": 50,
+    "isBlogAllowed": true,
+    "blogPostsLimit": 250
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "507f1f77bcf86cd799439012"
+  },
+  "name": "business",
+  "monthlyCredits": 399,
+  "yearlyCredits": 3990,
+  "limits": {
+    "sites": 1,
+    "pagesPerSite": 40,
+    "blogPages": 100,
+    "routing": true,
+    "chatbot": true,
+    "ecommerceSites": 1,
+    "maxProductsPerEcommerce": 150,
+    "customDomain": true,
+    "removeBranding": true,
+    "prioritySupport": false,
+    "freeAiEditsPerSite": 3,
+    "aiCostPerEdit": 2,
+    "imagesUploads": 200,
+    "fileUploads": 10,
+    "eventsLimit": 25,
+    "noticeLimit": 50,
+    "monthlyEmailLimit": 500,
+    "notesLimit": 25,
+    "isBlogAllowed": true,
+    "blogPostsLimit": 100
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "507f1f77bcf86cd799439015"
+  },
+  "name": "free",
+  "monthlyCredits": 0,
+  "yearlyCredits": 0,
+  "limits": {
+    "sites": 1,
+    "pagesPerSite": 5,
+    "blogPages": 0,
+    "routing": true,
+    "chatbot": false,
+    "ecommerceSites": 0,
+    "maxProductsPerEcommerce": 0,
+    "customDomain": false,
+    "removeBranding": false,
+    "prioritySupport": false,
+    "freeAiEditsPerSite": 3,
+    "aiCostPerEdit": 2,
+    "imagesUploads": 25,
+    "fileUploads": 5,
+    "chatbotMessageLimit": 0,
+    "eventsLimit": 0,
+    "noticeLimit": 5,
+    "monthlyEmailLimit": 50,
+    "notesLimit": 0,
+    "isBlogAllowed": false,
+    "blogPostsLimit": 0
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69b8ede40f1a11aa60811df8"
+  },
+  "name": "local_start",
+  "monthlyCredits": 199,
+  "yearlyCredits": 1990,
+  "limits": {
+    "sites": 1,
+    "pagesPerSite": 20,
+    "blogPages": 30,
+    "routing": true,
+    "chatbot": true,
+    "ecommerceSites": 1,
+    "maxProductsPerEcommerce": 80,
+    "customDomain": true,
+    "removeBranding": false,
+    "prioritySupport": false,
+    "freeAiEditsPerSite": 3,
+    "aiCostPerEdit": 2,
+    "imagesUploads": 100,
+    "fileUploads": 5,
+    "eventsLimit": 10,
+    "noticeLimit": 20,
+    "monthlyEmailLimit": 250,
+    "notesLimit": 10,
+    "isBlogAllowed": true,
+    "blogPostsLimit": 30
+  },
+  "__v": 0
+}]

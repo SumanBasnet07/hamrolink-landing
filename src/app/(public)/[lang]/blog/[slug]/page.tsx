@@ -1,5 +1,5 @@
 // Fetches from MongoDB, shows body HTML, FAQs, likes, comments, JSON-LD schemas
-export const revalidate = 60; 
+export const revalidate = 600; 
 
 import type { Metadata } from "next";
 import Link from "next/link";

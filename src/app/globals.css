@@ -8,8 +8,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-jakarta), var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
-  --font-jakarta: var(--font-jakarta);
+  /* Outfit: default UI font */
+  --font-sans: var(--font-outfit), var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
+  --font-outfit: var(--font-outfit);
+  /* Sora: premium display font for hero headings */
+  --font-sora: var(--font-sora);
+  /* Mukta: Devanagari font for Nepali content */
   --font-mukta: var(--font-mukta);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -158,10 +162,25 @@
 }
 
 @layer utilities {
+  /* Sora display font — apply to hero h1s for maximum premium impact */
+  .font-display {
+    font-family: var(--font-sora), var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+
+  .font-outfit {
+    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-mukta {
+    font-family: var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
+  }
+
   .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   .text-balance {
     text-wrap: balance;
   }

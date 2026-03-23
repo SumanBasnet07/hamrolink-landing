@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Mukta } from "next/font/google";
+import { Outfit, Mukta, Sora } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
 import "@/app/globals.css";
@@ -7,12 +7,24 @@ import { Analytics } from "@/components/SEO/Analytics";
 import SchemaScripts from "@/components/SEO/Schema";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
+// Outfit: primary UI font (body, nav, pricing cards, buttons)
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
+
+// Sora: display font — used only for hero h1 headings for premium feel
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+  weight: ["700", "800"],
+});
+
+// Mukta: Devanagari font — always loaded so Nepali text renders correctly
+// even on English-language pages with mixed content
 const mukta = Mukta({
   subsets: ["devanagari", "latin"],
   variable: "--font-mukta",
@@ -170,9 +182,13 @@ export default async function LangLayout({
 
   const lang     = rawLang as Lang;
   
-  const fontClass = lang === "ne"
-    ? `${outfit.variable} ${mukta.variable} font-mukta font-sans`
-    : `${outfit.variable} font-outfit font-sans`;
+  // Always include all three font variables so:
+  // - Sora is available for .font-display (hero headings)
+  // - Mukta renders Devanagari correctly on any page (mixed content)
+  // - Outfit is the default UI font
+  const fontClass = `${outfit.variable} ${sora.variable} ${mukta.variable} ${
+    lang === "ne" ? "font-mukta" : "font-outfit"
+  } font-sans`;
 
   return (
     <html lang={lang === "ne" ? "ne" : "en"} dir="ltr" className={fontClass}>

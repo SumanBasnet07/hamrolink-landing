@@ -1681,7 +1681,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
               </motion.div>
 
               <div>
-                <h1 className={`text-white tracking-tight ${lang === "ne" ? "text-5xl sm:text-6xl leading-[1.15] mb-2" : "text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
+                <h1 className={`text-white tracking-tight ${lang === "ne" ? "font-mukta text-5xl sm:text-6xl leading-[1.15] mb-2" : "font-display text-5xl lg:text-6xl xl:text-7xl leading-[0.95]"}`}>
                   <motion.span initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} className="block">
                     {hero.line1}
                   </motion.span>
@@ -2218,9 +2218,9 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {d.pricing.plans.slice(0, 3).map((plan: any, i: number) => {
               const prices = [
-                { monthly: 0, yearly: 0 }, 
-                { monthly: 399, yearly: 4213 }, 
-                { monthly: 899, yearly: 9493 }
+                { monthly: 0, yearly: 0 },          // free
+                { monthly: 399, yearly: 3990 },      // business
+                { monthly: 899, yearly: 8990 }       // institution
               ];
               const price = bill === "yearly" ? prices[i % prices.length].yearly : prices[i % prices.length].monthly;
               const Icon = PLAN_ICONS[i % PLAN_ICONS.length];
@@ -2261,7 +2261,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                     )}
                   </div>
                   <a
-                    href={PRE_LAUNCH ? "#waitlist" : i === 0 ? ctaHref("/signup") : ctaHref("/signup?plan=" + plan.name.toLowerCase())}
+                    href={PRE_LAUNCH ? "#waitlist" : i === 0 ? ctaHref("/signup") : ctaHref("/signup?plan=" + (i === 1 ? "business" : "institution"))}
                     className={`flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-base font-black mb-6 transition-all ${hot ? "text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-xl hover:scale-105" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
                   >
                     {PRE_LAUNCH ? d.pricing.ctaFree : i === 0 ? d.pricing.ctaFree : d.pricing.ctaPaid}
@@ -2318,7 +2318,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
                   </div>
                 </div>
                 <Link
-                  href={PRE_LAUNCH ? "#waitlist" : ctaHref("/signup?plan=local_starter")}
+                  href={PRE_LAUNCH ? "#waitlist" : ctaHref("/signup?plan=local_start")}
                   className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gray-900 text-white font-black rounded-xl hover:scale-105 transition-transform shadow-lg"
                 >
                   {d.pricing.ctaPaid}
