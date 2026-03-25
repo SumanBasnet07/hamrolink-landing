@@ -19,7 +19,7 @@ export const organizationSchema = {
   "contactPoint": [
     {
       "@type": "ContactPoint",
-      "telephone": "+977-9713101957",
+      "telephone": "+977-9816326639",
       "contactType": "customer support",
       "email": "support@hamrolink.com",
       "availableLanguage": ["Nepali", "English"]

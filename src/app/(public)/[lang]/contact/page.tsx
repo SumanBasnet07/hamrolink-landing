@@ -249,7 +249,7 @@ export default function ContactPage({ params }: { params: any }) {
                         {cp.businessInfo.name}
                       </h3>
                       <p className="text-sm text-gray-400">
-                        Registered Business in Nepal
+                        {(cp.businessInfo as any).registeredLabel}
                       </p>
                     </div>
                   </div>

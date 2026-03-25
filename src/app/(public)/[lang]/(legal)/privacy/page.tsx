@@ -13,8 +13,8 @@ import {
 import LegalLayout from "../LegalLayout";
 import React from "react";
 
-const UPDATED_EN = "March 12, 2026";
-const UPDATED_NE = "मार्च १२, २०२६";
+const UPDATED_EN = "March 25, 2026";
+const UPDATED_NE = "मार्च २५, २०२६";
 
 // ─── Content ─────────────────────────────────────────────────────────────────
 const content = {
@@ -91,7 +91,7 @@ const content = {
       body: [
         "If you have any questions about this Privacy Policy, please contact us:",
         "Email: privacy@hamrolink.com",
-        "Address: Kathmandu, Nepal",
+        "Address: Pakhribas-04, Dhankuta, Nepal",
       ],
     },
   ],
@@ -169,7 +169,7 @@ const content = {
       body: [
         "यस गोपनीयता नीतिबारे कुनै प्रश्न भएमा, कृपया हामीलाई सम्पर्क गर्नुहोस्:",
         "इमेल: privacy@hamrolink.com",
-        "ठेगाना: काठमाडौं, नेपाल",
+        "ठेगाना: पाख्रिबास-०४, धनकुटा, नेपाल",
       ],
     },
   ],

@@ -263,7 +263,7 @@ export default function AboutPage({ params }: { params: any }) {
                   key={v.title}
                   {...fu()}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-10 rounded-[32px] border border-gray-100 shadow-xl shadow-gray-200/20 hover:shadow-indigo-500/5 transition-all"
+                  className="bg-white p-8 md:p-10 rounded-[32px] border border-gray-100 shadow-xl shadow-gray-200/20 hover:shadow-indigo-500/5 transition-all"
                 >
                   <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
                     {i === 0 ? (
@@ -286,6 +286,33 @@ export default function AboutPage({ params }: { params: any }) {
           </div>
         </section>
 
+        {/* Business Objective Section */}
+        <section className="max-w-7xl mx-auto px-6 mb-32">
+          <motion.div
+            {...fu()}
+            className="bg-indigo-600 rounded-[32px] md:rounded-[40px] p-8 md:p-16 lg:p-20 text-white relative overflow-hidden shadow-2xl shadow-indigo-200"
+          >
+            <div className="absolute top-0 right-0 p-12 opacity-10">
+              <Target className="w-64 h-64" />
+            </div>
+            <div className="relative z-10 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 rounded-full text-indigo-100 text-sm font-bold mb-8 uppercase tracking-widest">
+                <Target className="w-4 h-4" />
+                {(ap as any).businessObjectiveTitle}
+              </div>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight tracking-tight">
+                {(ap as any).businessObjective}
+              </h2>
+              <div className="flex items-center gap-4 text-indigo-100/80">
+                <div className="w-12 h-px bg-indigo-400" />
+                <p className="text-xl font-bold italic opacity-90">
+                  {(ap as any).legalProprietorLabel}: {d.footer.proprietorValue}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Team / Founder Section */}
         <section className="max-w-7xl mx-auto px-6 mb-32 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-full bg-gradient-to-r from-indigo-50/50 to-purple-50/50 blur-[120px] -z-10 pointer-events-none" />
@@ -302,7 +329,7 @@ export default function AboutPage({ params }: { params: any }) {
               <motion.div
                 key={member.name}
                 {...fu()}
-                className="relative bg-white/80 backdrop-blur-xl p-10 md:p-16 rounded-[60px] border border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] overflow-hidden"
+                className="relative bg-white/80 backdrop-blur-xl p-6 md:p-12 lg:p-16 rounded-[40px] md:rounded-[60px] border border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] overflow-hidden"
               >
                 {/* Decorative Elements */}
                 <div className="absolute top-0 right-0 p-12 opacity-[0.03] select-none pointer-events-none">
@@ -380,7 +407,7 @@ export default function AboutPage({ params }: { params: any }) {
           <div className="grid md:grid-cols-2 gap-16">
             <motion.div
               {...fu()}
-              className="bg-white p-12 rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200/20 relative overflow-hidden"
+              className="bg-white p-8 md:p-12 rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200/20 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <Target className="w-32 h-32" />
@@ -398,7 +425,7 @@ export default function AboutPage({ params }: { params: any }) {
 
             <motion.div
               {...fu()}
-              className="bg-white p-12 rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200/20 relative overflow-hidden"
+              className="bg-white p-8 md:p-12 rounded-[32px] md:rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200/20 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <Globe className="w-32 h-32" />
@@ -420,15 +447,15 @@ export default function AboutPage({ params }: { params: any }) {
         <section className="max-w-7xl mx-auto px-6">
           <div className="rounded-[60px] bg-slate-900 text-white overflow-hidden relative shadow-2xl">
             <div className="grid lg:grid-cols-2">
-              <div className="p-12 md:p-24 relative z-10">
+              <div className="p-8 md:p-16 lg:p-24 relative z-10">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 rounded-full text-indigo-300 text-xs font-bold mb-8 uppercase tracking-widest">
                   <MapPin className="w-3 h-3" />
                   {ap.location.title}
                 </div>
-                <h2 className="text-5xl md:text-6xl font-black mb-8 leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-8 leading-tight tracking-tight">
                   {ap.location.address}
                 </h2>
-                <p className="text-white/60 text-xl leading-relaxed mb-12">
+                <p className="text-white/70 text-lg md:text-xl leading-relaxed mb-12">
                   {ap.location.description}
                 </p>
                 <div className="space-y-6">

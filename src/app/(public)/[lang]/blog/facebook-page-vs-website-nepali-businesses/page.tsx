@@ -1153,7 +1153,7 @@ export default async function BlogFacebookVsWebsitePage({ params }: { params: Pr
                 <div className="flex items-center gap-3 text-xs text-gray-400">
                   <a href="mailto:support@hamrolink.com" className="hover:text-gray-900 transition-colors font-medium">support@hamrolink.com</a>
                   <span className="text-gray-200">|</span>
-                  <a href="tel:+9779713101957" className="hover:text-gray-900 transition-colors font-medium">+977-9713101957</a>
+                  <a href="tel:+9779816326639" className="hover:text-gray-900 transition-colors font-medium">+977-9816326639</a>
                 </div>
               </div>
               <p className="text-xs text-gray-400">

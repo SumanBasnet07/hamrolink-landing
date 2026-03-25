@@ -110,10 +110,10 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
               </a>
               <span className="hidden md:inline text-white/10 text-xl font-thin">|</span>
               <a
-                href="tel:+9779713101957"
+                href="tel:+9779816326639"
                 className="text-sm text-white/50 hover:text-white transition-colors font-bold"
               >
-                +977-9713101957
+                +977-9816326639
               </a>
             </div>
           </div>

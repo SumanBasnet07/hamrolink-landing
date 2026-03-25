@@ -10,8 +10,8 @@ import {
 import LegalLayout from "../LegalLayout";
 import React from "react";
 
-const UPDATED_EN = "March 12, 2026";
-const UPDATED_NE = "मार्च १२, २०२६";
+const UPDATED_EN = "March 25, 2026";
+const UPDATED_NE = "मार्च २५, २०२६";
 
 const content = {
   en: [
@@ -22,7 +22,7 @@ const content = {
         "If you are unsatisfied with our service, you may request a refund for your unused subscription time. Refunds are calculated based on your remaining usage and issued exclusively as internal HamroLink credits.",
         "One HamroLink credit is equivalent to one Nepalese Rupee (NPR). These credits can be used for future subscription renewals, new sites, or other premium services within the platform.",
         "If HamroLink experiences significant downtime (more than 24 consecutive hours) due to a fault on our side, you may be eligible for a pro-rated credit refund for the affected period.",
-        "If you were charged in error (duplicate charge, wrong amount), we will issue a full cash refund to your original payment method immediately upon verification.",
+        "If you were charged in error (duplicate charge, wrong amount), we will issue a full cash refund to your original payment method immediately upon verification. In cases where the original method is not available, manual refunds are processed via QR (eSewa/Khalti) or Bank Transfer.",
       ],
     },
     {
@@ -80,7 +80,7 @@ const content = {
         "यदि तपाईं हाम्रो सेवासँग असन्तुष्ट हुनुहुन्छ भने, तपाईंले प्रयोग गर्न बाँकी रहेको सदस्यता अवधिको लागि फिर्ता अनुरोध गर्न सक्नुहुन्छ। फिर्ता रकम तपाईंको बाँकी प्रयोगको आधारमा गणना गरिन्छ र HamroLink आन्तरिक क्रेडिटको रूपमा मात्र जारी गरिन्छ।",
         "एक HamroLink क्रेडिट एक नेपाली रुपैयाँ (NPR) बराबर हुन्छ। यी क्रेडिटहरू भविष्यमा सदस्यता नवीकरण वा अन्य सेवाहरूको लागि प्रयोग गर्न सकिन्छ।",
         "यदि हाम्रो तर्फबाट HamroLink मा महत्त्वपूर्ण अवरोध (लगातार २४ घण्टाभन्दा बढी) भयो भने, प्रभावित अवधिका लागि तपाईं अनुपातिक क्रेडिट फिर्ताको लागि योग्य हुन सक्नुहुन्छ।",
-        "यदि तपाईंलाई गलत शुल्क लगाइयो (जस्तै दोहोरो शुल्क) भने, प्रमाणीकरण पश्चात तुरुन्त तपाईंको मूल भुक्तानी विधिमा पूर्ण नगद फिर्ता गरिनेछ।",
+        "यदि तपाईंलाई गलत शुल्क लगाइयो (जस्तै दोहोरो शुल्क) भने, प्रमाणीकरण पश्चात तुरुन्त तपाईंको मूल भुक्तानी विधिमा पूर्ण नगद फिर्ता गरिनेछ। मूल भुक्तानी विधि उपलब्ध नभएको अवस्थामा, QR (eSewa/Khalti) वा बैंक ट्रान्सफर मार्फत म्यानुअल रूपमा फिर्ता गरिनेछ।",
       ],
     },
     {

@@ -580,10 +580,11 @@ export const dictionaries = {
       subheading:
         "Have questions about HamroLink? Our team is ready to assist you.",
       businessInfo: {
-        name: "HamroLink (HamroLink Nepal)",
-        phone: "+977-9713101957",
+        name: "HamroLink Digital",
+        phone: "+977-9816326639",
         email: "support@hamrolink.com",
         address: "Pakhribas-04, Dhankuta, Koshi Province, Nepal",
+        registeredLabel: "Registered Business in Nepal",
       },
       form: {
         name: "Full Name",
@@ -612,8 +613,11 @@ export const dictionaries = {
     aboutPage: {
       title: "About HamroLink — Nepal's First AI-Powered Business Presence Platform",
       description:
-        "HamroLink was built because talented Nepali businesses kept losing customers to competitors who simply looked more professional online. Founded in Pakhribas, Dhankuta.",
+        "HamroLink didn't start in a Kathmandu office. It was built in Pakhribas, Dhankuta because talented Nepali businesses kept losing customers to competitors who simply looked more professional online.",
       badge: "Our Story",
+      businessObjectiveTitle: "Business Objective",
+      businessObjective: "Software and website construction and other information technology related works",
+      legalProprietorLabel: "Legal Proprietor",
       heading: "Built because Nepal's businesses\ndeserve better.",
       subheading:
         "Every day, talented Nepali entrepreneurs lose customers to competitors who simply look more professional online. HamroLink exists to end that.",
@@ -656,6 +660,11 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
             name: "Suman Basnet",
             role: "Founder & CEO",
             bio: "Suman founded HamroLink after watching Nepali businesses consistently lose customers to competitors who simply looked more professional online. A full-stack engineer from Pakhribas, Dhankuta, he built HamroLink to give every Nepali business owner the digital tools previously only available to large companies — at a price they can actually afford.",
+          },
+          {
+            name: "Lila Basnet",
+            role: "Legal Proprietor",
+            bio: "Lila Basnet oversees the legal and administrative foundations of HamroLink Digital. Ensuring full compliance with Government of Nepal regulations, she is dedicated to building a platform that Nepali business owners can trust with their digital future.",
           },
         ],
       },
@@ -1313,10 +1322,11 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       subheading:
         "HamroLink को बारेमा कुनै प्रश्न छ? हाम्रो टिम तपाईंलाई सहयोग गर्न तयार छ।",
       businessInfo: {
-        name: "हाम्रोलिङ्क (HamroLink Nepal)",
-        phone: "+९७७-९७१३१०१९५७",
+        name: "हाम्रोलिङ्क डिजिटल",
+        phone: "+९७७-९८१६३२६६३९",
         email: "support@hamrolink.com",
         address: "पाख्रिबास-०४, धनकुटा, कोशी प्रदेश, नेपाल",
+        registeredLabel: "नेपालमा दर्ता भएको व्यवसाय",
       },
       form: {
         name: "पूरा नाम",
@@ -1345,8 +1355,11 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     aboutPage: {
       title: "हाम्रोबारे — HamroLink: नेपालको पहिलो AI-Powered Business Presence Platform",
       description:
-        "नेपालका प्रतिभाशाली व्यवसायहरूले अनलाइनमा प्रोफेसनल नदेखिएको कारणले मात्र ग्राहक गुमाइरहेको देखेर HamroLink बनाइएको हो। पाख्रिबास, धनकुटामा स्थापित।",
+        "HamroLink काठमाडौंको कुनै कर्पोरेट अफिसबाट सुरु भएको होइन। प्रतिभाशाली नेपाली व्यवसायीहरूले अनलाइनमा प्रोफेसनल नदेखिएको कारणले मात्र ग्राहक गुमाइरहेको देखेर यो पाख्रिबास, धनकुटामा बनाइएको हो।",
       badge: "हाम्रो कथा",
+      businessObjectiveTitle: "व्यापारिक उद्देश्य",
+      businessObjective: "सफ्टवेयर तथा वेबसाइट निर्माण र अन्य सूचना प्रविधिजन्य कार्यहरु",
+      legalProprietorLabel: "कानुनी प्रोप्राइटर",
       heading: "नेपालका व्यवसायहरू\nउत्कृष्टताका हकदार छन्।",
       subheading:
         "हरेक दिन, प्रतिभाशाली नेपाली उद्यमीहरूले आफ्ना ग्राहक गुमाउँछन्—केबल यसकारण कि उनीहरूका प्रतिस्पर्धीहरू अनलाइनमा बढी प्रोफेसनल देखिन्छन्। HamroLink यसैलाई रोक्न बनाइएको हो।",
@@ -1389,6 +1402,11 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
             name: "सुमन बस्नेत",
             role: "संस्थापक र CEO",
             bio: "सुमनले नेपाली व्यवसायहरू अनलाइनमा कम प्रोफेसनल देखिएको कारणले मात्र आफ्ना प्रतिस्पर्धीसँग ग्राहक गुमाइरहेको देखेर HamroLink को स्थापना गरेका हुन्। पाख्रिबास, धनकुटाका एक फुल-स्ट्याक इन्जिनियरका रूपमा, उनले हरेक नेपाली व्यवसायीलाई ती डिजिटल टुल्स उपलब्ध गराउन HamroLink बनाए, जुन पहिले ठूला कम्पनीले मात्र प्रयोग गर्न सक्थे—त्यो पनि उनीहरूले तिर्न सक्ने मूल्यमा।",
+          },
+          {
+            name: "लिला बस्नेत",
+            role: "कानुनी प्रोप्राइटर",
+            bio: "लिला बस्नेतले हाम्रोलिङ्क डिजिटलको कानुनी र प्रशासनिक आधारहरूको रेखदेख गर्नुहुन्छ। नेपाल सरकारको नियमहरूको पूर्ण पालना सुनिश्चित गर्दै, उहाँ नेपाली व्यवसायीहरूले आफ्नो डिजिटल भविष्यको लागि विश्वास गर्न सक्ने प्लेटफर्म निर्माण गर्न समर्पित हुनुहुन्छ।",
           },
         ],
       },
