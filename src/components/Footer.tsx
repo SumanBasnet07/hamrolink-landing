@@ -87,6 +87,11 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
             <div className="text-sm text-white/60 font-black uppercase tracking-widest bg-white/5 py-1.5 px-3 rounded inline-block">
               {d.footer.regIdLabel}: {d.footer.regIdValue}  | {d.footer.panLabel}: {d.footer.panValue}
             </div>
+            {d.footer.authorityLabel && (
+              <div className="text-xs text-white/40 font-bold uppercase tracking-tight">
+                {d.footer.authorityLabel}: {d.footer.authorityValue}
+              </div>
+            )}
           </div>
           <div className="flex flex-col md:items-end justify-center space-y-4">
             <p className="text-sm text-white/40 font-bold">

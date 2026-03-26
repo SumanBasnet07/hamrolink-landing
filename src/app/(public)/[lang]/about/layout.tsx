@@ -10,11 +10,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const metadataMap = {
     en: {
-      title: 'About HamroLink: Nepal ko AI Website Builder | Dhankuta',
+      title: 'हाम्रोलिङ्क डिजिटल | HamroLink Digital',
       description: 'Find out more about HamroLink, Nepal\'s first AI-powered business platform. Established in Dhankuta. Mission: Making every Nepali business digital.',
     },
     ne: {
-      title: 'हाम्रोलिंकको बारेमा: नेपालको पहिलो AI-Powered डिजिटल प्लेटफर्म',
+      title: 'हाम्रोलिङ्क डिजिटल | HamroLink Digital',
       description: 'हाम्रोलिंकको जानकारी। धनकुटाबाट सुरु भएको नेपालको पहिलो AI-Powered डिजिटल प्लेटफर्म। हाम्रो उद्देश्य: प्रत्येक नेपाली व्यवसायलाई डिजिटल बनाउने।',
     }
   };

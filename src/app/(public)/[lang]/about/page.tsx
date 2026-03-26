@@ -402,6 +402,44 @@ export default function AboutPage({ params }: { params: any }) {
           </div>
         </section>
 
+        {/* Grievance Redressal Section */}
+        <section className="max-w-7xl mx-auto px-6 mb-32">
+          <motion.div
+            {...fu()}
+            className="bg-white p-8 md:p-12 rounded-[40px] border border-gray-100 shadow-xl shadow-gray-200/20 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <ShieldCheck className="w-32 h-32" />
+            </div>
+            <div className="flex flex-col md:flex-row gap-10 items-center">
+              <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-3xl flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-10 h-10" />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-3xl font-black text-gray-900 mb-4">
+                  {(ap as any).grievance.title}
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6 text-lg">
+                  <div className="space-y-2">
+                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+                      Grievance Officer
+                    </p>
+                    <p className="font-black text-gray-900">{(ap as any).grievance.officer}</p>
+                    <p className="text-gray-500">{(ap as any).grievance.designation}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+                      Contact Details
+                    </p>
+                    <p className="text-gray-900 font-bold">{(ap as any).grievance.phone}</p>
+                    <p className="text-gray-500">{(ap as any).grievance.email}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Mission & Vision */}
         <section className="max-w-7xl mx-auto px-6 mb-32">
           <div className="grid md:grid-cols-2 gap-16">

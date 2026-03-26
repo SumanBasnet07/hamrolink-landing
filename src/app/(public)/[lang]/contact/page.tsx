@@ -20,6 +20,7 @@ import {
   Menu,
   Phone,
   Building,
+  ShieldCheck,
 } from "lucide-react";
 import { getDictionary } from "@/lib/dictionaries";
 import { sendContactEmailSES } from "@/app/actions";
@@ -468,6 +469,53 @@ export default function ContactPage({ params }: { params: any }) {
                     {status === "loading" ? cp.form.sending : cp.form.cta}
                   </button>
                 </form>
+              </motion.div>
+            </div>
+
+            {/* Grievance Redressal Section */}
+            <div className="lg:col-span-12 mt-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-white/70 backdrop-blur-md p-8 md:p-12 rounded-[40px] border border-white shadow-xl shadow-indigo-100/10"
+              >
+                <div className="flex flex-col md:flex-row gap-10 items-center">
+                  <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-8 h-8" />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h2 className="text-2xl font-black text-gray-900 mb-6 flex items-center justify-center md:justify-start gap-3">
+                      {(cp as any).grievance.title}
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                      <div className="space-y-1.5">
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                          {(cp as any).grievance.labelOfficer}
+                        </p>
+                        <p className="font-bold text-gray-900">{(cp as any).grievance.officer}</p>
+                      </div>
+                      <div className="space-y-1.5">
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                          {(cp as any).grievance.labelDesignation}
+                        </p>
+                        <p className="font-medium text-gray-600">{(cp as any).grievance.designation}</p>
+                      </div>
+                      <div className="space-y-1.5">
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                          {(cp as any).grievance.labelPhone}
+                        </p>
+                        <p className="font-bold text-indigo-600">{(cp as any).grievance.phone}</p>
+                      </div>
+                      <div className="space-y-1.5">
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                          {(cp as any).grievance.labelEmail}
+                        </p>
+                        <p className="font-medium text-gray-600">{(cp as any).grievance.email}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
