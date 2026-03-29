@@ -19,9 +19,9 @@ const content = {
       icon: CheckCircle,
       title: "When You're Eligible for a Refund",
       body: [
-        "If you are unsatisfied with our service, you may request a refund for your unused subscription time. Refunds are calculated based on your remaining usage and issued exclusively as internal HamroLink credits.",
-        "One HamroLink credit is equivalent to one Nepalese Rupee (NPR). These credits can be used for future subscription renewals, new sites, or other premium services within the platform.",
-        "If HamroLink experiences significant downtime (more than 24 consecutive hours) due to a fault on our side, you may be eligible for a pro-rated credit refund for the affected period.",
+        "If you are unsatisfied with our service, you may request a refund for your unused subscription time. Refunds are calculated based on your remaining usage and issued exclusively as internal HamroLink Digital credits.",
+        "One HamroLink Digital credit is equivalent to one Nepalese Rupee (NPR). These credits can be used for future subscription renewals, new sites, or other premium services within the platform.",
+        "If HamroLink Digital experiences significant downtime (more than 24 consecutive hours) due to a fault on our side, you may be eligible for a pro-rated credit refund for the affected period.",
         "If you were charged in error (duplicate charge, wrong amount), we will issue a full cash refund to your original payment method immediately upon verification. In cases where the original method is not available, manual refunds are processed via QR (eSewa/Khalti) or Bank Transfer.",
       ],
     },
@@ -47,7 +47,7 @@ const content = {
       icon: AlertTriangle,
       title: "Waitlist & Pre-Launch",
       body: [
-        "Joining the HamroLink waitlist is completely free and requires no payment. No charges will be made to you until you purchase credits after launch.",
+        "Joining the HamroLink Digital waitlist is completely free and requires no payment. No charges will be made to you until you purchase credits after launch.",
         "If you pre-paid for early access (if applicable), such payments are refundable as internal credits valid for use when the platform officially launches.",
       ],
     },
@@ -59,14 +59,14 @@ const content = {
         "• Your registered email address",
         "• Your plan name and purchase date",
         "• The reason for your refund request",
-        "We aim to process all refund requests within 3–5 business days. Approved refunds are credited directly to your HamroLink account balance.",
+        "We aim to process all refund requests within 3–5 business days. Approved refunds are credited directly to your HamroLink Digital account balance.",
       ],
     },
     {
       icon: CreditCard,
       title: "Payment Processing",
       body: [
-        "All payments on HamroLink are processed in Nepalese Rupees (NPR) through eSewa and Khalti to purchase internal HamroLink credits.",
+        "All payments on HamroLink Digital are processed in Nepalese Rupees (NPR) through eSewa and Khalti to purchase internal HamroLink Digital credits.",
         "Approved refunds for unused subscription time are processed strictly as internal credits. Cash processing times for incorrect duplicate charges back to your original payment method may vary (typically 3–7 business days).",
       ],
     },
@@ -77,9 +77,9 @@ const content = {
       icon: CheckCircle,
       title: "फिर्ताका लागि कहिले योग्य हुनुहुन्छ",
       body: [
-        "यदि तपाईं हाम्रो सेवासँग असन्तुष्ट हुनुहुन्छ भने, तपाईंले प्रयोग गर्न बाँकी रहेको सदस्यता अवधिको लागि फिर्ता अनुरोध गर्न सक्नुहुन्छ। फिर्ता रकम तपाईंको बाँकी प्रयोगको आधारमा गणना गरिन्छ र HamroLink आन्तरिक क्रेडिटको रूपमा मात्र जारी गरिन्छ।",
-        "एक HamroLink क्रेडिट एक नेपाली रुपैयाँ (NPR) बराबर हुन्छ। यी क्रेडिटहरू भविष्यमा सदस्यता नवीकरण वा अन्य सेवाहरूको लागि प्रयोग गर्न सकिन्छ।",
-        "यदि हाम्रो तर्फबाट HamroLink मा महत्त्वपूर्ण अवरोध (लगातार २४ घण्टाभन्दा बढी) भयो भने, प्रभावित अवधिका लागि तपाईं अनुपातिक क्रेडिट फिर्ताको लागि योग्य हुन सक्नुहुन्छ।",
+        "यदि तपाईं हाम्रो सेवासँग असन्तुष्ट हुनुहुन्छ भने, तपाईंले प्रयोग गर्न बाँकी रहेको सदस्यता अवधिको लागि फिर्ता अनुरोध गर्न सक्नुहुन्छ। फिर्ता रकम तपाईंको बाँकी प्रयोगको आधारमा गणना गरिन्छ र HamroLink Digital आन्तरिक क्रेडिटको रूपमा मात्र जारी गरिन्छ।",
+        "एक HamroLink Digital क्रेडिट एक नेपाली रुपैयाँ (NPR) बराबर हुन्छ। यी क्रेडिटहरू भविष्यमा सदस्यता नवीकरण वा अन्य सेवाहरूको लागि प्रयोग गर्न सकिन्छ।",
+        "यदि हाम्रो तर्फबाट HamroLink Digital मा महत्त्वपूर्ण अवरोध (लगातार २४ घण्टाभन्दा बढी) भयो भने, प्रभावित अवधिका लागि तपाईं अनुपातिक क्रेडिट फिर्ताको लागि योग्य हुन सक्नुहुन्छ।",
         "यदि तपाईंलाई गलत शुल्क लगाइयो (जस्तै दोहोरो शुल्क) भने, प्रमाणीकरण पश्चात तुरुन्त तपाईंको मूल भुक्तानी विधिमा पूर्ण नगद फिर्ता गरिनेछ। मूल भुक्तानी विधि उपलब्ध नभएको अवस्थामा, QR (eSewa/Khalti) वा बैंक ट्रान्सफर मार्फत म्यानुअल रूपमा फिर्ता गरिनेछ।",
       ],
     },
@@ -105,7 +105,7 @@ const content = {
       icon: AlertTriangle,
       title: "प्रतीक्षासूची र प्रि-लन्च",
       body: [
-        "HamroLink प्रतीक्षासूचीमा जोइन गर्न पूर्णतः नि:शुल्क छ र कुनै भुक्तानी आवश्यक छैन। लन्चपछि क्रेडिट खरिद नगरेसम्म तपाईंलाई कुनै शुल्क लगाइनेछैन।",
+        "HamroLink Digital प्रतीक्षासूचीमा जोइन गर्न पूर्णतः नि:शुल्क छ र कुनै भुक्तानी आवश्यक छैन। लन्चपछि क्रेडिट खरिद नगरेसम्म तपाईंलाई कुनै शुल्क लगाइनेछैन।",
         "यदि तपाईंले अर्ली एक्सेसका लागि अग्रिम भुक्तानी गर्नुभयो (यदि लागू भएमा) भने, प्लेटफर्म आधिकारिक रूपमा लन्च हुँदा प्रयोग गर्न मान्य हुने गरी त्यस्ता भुक्तानीहरू आन्तरिक क्रेडिटको रूपमा फिर्ता गर्न सकिन्छ।",
       ],
     },
@@ -117,14 +117,14 @@ const content = {
         "• तपाईंको दर्ता इमेल ठेगाना",
         "• तपाईंको योजनाको नाम र खरिद मिति",
         "• तपाईंको फिर्ता अनुरोधको कारण",
-        "हामी सबै फिर्ता अनुरोधहरू ३–५ व्यावसायिक दिनभित्र प्रशोधन गर्ने लक्ष्य राख्छौं। स्वीकृत फिर्ताहरू सिधै तपाईंको HamroLink खाताको ब्यालेन्समा जम्मा गरिन्छ।",
+        "हामी सबै फिर्ता अनुरोधहरू ३–५ व्यावसायिक दिनभित्र प्रशोधन गर्ने लक्ष्य राख्छौं। स्वीकृत फिर्ताहरू सिधै तपाईंको HamroLink Digital खाताको ब्यालेन्समा जम्मा गरिन्छ।",
       ],
     },
     {
       icon: CreditCard,
       title: "भुक्तानी प्रशोधन",
       body: [
-        "HamroLink मा सबै भुक्तानीहरू आन्तरिक क्रेडिट खरिद गर्न eSewa र Khalti मार्फत नेपाली रुपैयाँ (NPR) मा प्रशोधन गरिन्छ।",
+        "HamroLink Digital मा सबै भुक्तानीहरू आन्तरिक क्रेडिट खरिद गर्न eSewa र Khalti मार्फत नेपाली रुपैयाँ (NPR) मा प्रशोधन गरिन्छ।",
         "प्रयोग नगरिएको सदस्यता समयको लागि स्वीकृत फिर्ताहरू कडाइका साथ आन्तरिक क्रेडिटको रूपमा प्रशोधन गरिन्छ। गलत शुल्कको लागि तपाईंको मूल भुक्तानी विधिमा नगद फिर्ता हुन लाग्ने समय फरक हुन सक्छ (सामान्यतः ३–७ व्यावसायिक दिन)।",
       ],
     },
@@ -147,12 +147,12 @@ export default function RefundPage({
       gradient="from-emerald-600 to-teal-700"
       titleEn="Refund Policy"
       titleNe="फिर्ता नीति"
-      descEn="We want you to be happy with HamroLink. Here's our straightforward refund policy."
-      descNe="हामी चाहन्छौं कि तपाईं HamroLink सँग खुसी हुनुहोस्। यो हाम्रो सरल फिर्ता नीति हो।"
+      descEn="We want you to be happy with HamroLink Digital. Here's our straightforward refund policy."
+      descNe="हामी चाहन्छौं कि तपाईं HamroLink Digital सँग खुसी हुनुहोस्। यो हाम्रो सरल फिर्ता नीति हो।"
       updatedEn={`Last updated: ${UPDATED_EN}`}
       updatedNe={`अन्तिम अपडेट: ${UPDATED_NE}`}
-      backLabelEn="Back to HamroLink"
-      backLabelNe="HamroLink मा फर्कनुहोस्"
+      backLabelEn="Back to HamroLink Digital"
+      backLabelNe="HamroLink Digital मा फर्कनुहोस्"
       slug="refund"
     >
       <div className="space-y-10">

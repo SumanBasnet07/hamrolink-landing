@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       type: "article",
       locale: ne ? "ne_NP" : "en_US",
-      siteName: "HamroLink",
+      siteName: "HamroLink Digital",
       title:       ne ? post.title_ne : post.title_en,
       description: ne ? post.excerpt_ne : post.excerpt_en,
       url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${post.slug}`,
@@ -104,12 +104,12 @@ function ArticleJsonLd({ post, lang }: { post: any; lang: Lang }) {
     } : undefined,
     "author": {
       "@type": "Organization",
-      "name":  post.schema?.authorName || "HamroLink",
+      "name":  post.schema?.authorName || "HamroLink Digital",
       "url":   "https://hamrolink.com",
     },
     "publisher": {
       "@type": "Organization",
-      "name":  "HamroLink",
+      "name":  "HamroLink Digital",
       "logo":  { "@type": "ImageObject", "url": "https://hamrolink.com/icons/icon-192.png" },
     },
     "datePublished": post.schema?.datePublished || (post.publishedAt instanceof Date ? post.publishedAt.toISOString().slice(0, 10) : post.publishedAt?.slice(0, 10)) || (post.createdAt instanceof Date ? post.createdAt.toISOString().slice(0, 10) : post.createdAt?.slice(0, 10)),
@@ -133,7 +133,7 @@ function BreadcrumbJsonLd({ post, lang }: { post: any; lang: Lang }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "HamroLink",         "item": "https://hamrolink.com" },
+      { "@type": "ListItem", "position": 1, "name": "HamroLink Digital",         "item": "https://hamrolink.com" },
       { "@type": "ListItem", "position": 2, "name": ne ? "ब्लग" : "Blog", "item": `https://hamrolink.com/${lang}/blog` },
       { "@type": "ListItem", "position": 3, "name": ne ? post.title_ne : post.title_en,
         "item": `https://hamrolink.com/${lang}/blog/${post.slug}` },
@@ -221,7 +221,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
             <nav className="flex items-center gap-1.5 text-sm sm:text-base text-gray-700">
-              <Link href={`/${lang}`} className="hover:text-indigo-600 font-bold transition-colors">HamroLink</Link>
+              <Link href={`/${lang}`} className="hover:text-indigo-600 font-bold transition-colors">HamroLink Digital</Link>
               <span className="text-gray-400 font-black">/</span>
               <Link href={`/${lang}/blog`} className="hover:text-indigo-600 font-bold transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
               <span className="text-gray-400 font-black">/</span>
@@ -277,8 +277,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             <p className="text-xs sm:text-sm text-gray-500 italic flex items-center gap-2">
               <Camera className="w-3.5 h-3.5 shrink-0 text-indigo-400"/>
               {ne
-                ? (post.featuredImageAlt_ne || "माथिको तस्बिर — © HamroLink")
-                : (post.featuredImageAlt_en || "Above — © HamroLink")}
+                ? (post.featuredImageAlt_ne || "माथिको तस्बिर — © HamroLink Digital")
+                : (post.featuredImageAlt_en || "Above — © HamroLink Digital")}
             </p>
           </div>
         )}
@@ -309,7 +309,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <div className={`p-4 ${col.bg} ${col.border} border rounded-2xl text-center`}>
                   <Sparkles className={`w-5 h-5 mx-auto mb-2 ${col.text}`}/>
                   <p className={`text-xs font-black mb-3 leading-snug ${col.text}`}>
-                    {ne ? "HamroLink चाँडै आउँदैछ" : "HamroLink is launching soon"}
+                    {ne ? "HamroLink Digital चाँडै आउँदैछ" : "HamroLink Digital is launching soon"}
                   </p>
                   <a href={`/${lang}#waitlist`}
                     className={`block w-full py-2 ${col.ibg} ${col.text} rounded-xl text-xs font-black hover:opacity-80 transition-opacity`}>
@@ -417,7 +417,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <Sparkles className="w-8 h-8 text-indigo-200"/>
                   </div>
                   <h3 className="text-3xl sm:text-4xl font-black mb-6 tracking-tight">
-                    {ne ? "HamroLink — नेपालका लागि बनाइएको" : "HamroLink — Built for Nepal"}
+                    {ne ? "HamroLink Digital — नेपालका लागि बनाइएको" : "HamroLink Digital — Built for Nepal"}
                   </h3>
                   <p className="text-indigo-100 text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
                     {ne
@@ -466,7 +466,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* ── Footer ── */}
         <div className="border-t border-gray-100 bg-white py-12">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-base text-slate-500 font-medium">
-            <span>© {new Date().getFullYear()} HamroLink · Built in Nepal 🇳🇵</span>
+            <span>© {new Date().getFullYear()} HamroLink Digital · Built in Nepal 🇳🇵</span>
             <div className="flex gap-8">
               {([
                 [ne ? "ब्लग"      : "Blog",    `/${lang}/blog`],
@@ -514,7 +514,7 @@ function HeroContent({
       <div className={`flex flex-wrap items-center gap-y-4 gap-x-6 text-base sm:text-lg font-bold ${metaColor}`}>
         <span className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
           <Building2 className="w-5 h-5 text-indigo-300"/>
-          HamroLink
+          HamroLink Digital
         </span>
         <span className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
           <Clock className="w-5 h-5 text-emerald-300"/>
@@ -523,7 +523,7 @@ function HeroContent({
         {post.publishedAt && (
           <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
             <Users className="w-4 h-4 text-orange-400"/>
-            {ne ? "हाम्रोलिंक" : "HamroLink"}
+            {ne ? "हाम्रोलिङ्क डिजिटल" : "HamroLink Digital"}
           </span>
         )}
       </div>

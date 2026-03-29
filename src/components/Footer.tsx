@@ -19,10 +19,11 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
           <div className="col-span-2">
             <div className="mb-6">
               <img
-                src="/og-image.png"
+                src="/logo.png"
                 alt="HamroLink"
                 className="h-12 w-auto transition-all"
               />
+              <span className="text-white font-black text-xl">HamroLink Digital</span>
             </div>
             <p className="text-base text-white/70 max-w-xs leading-relaxed mb-6 font-medium">
               {PRE_LAUNCH
@@ -95,7 +96,7 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
           </div>
           <div className="flex flex-col md:items-end justify-center space-y-4">
             <p className="text-sm text-white/40 font-bold">
-              © {new Date().getFullYear()} Hamrolink. {d.footer.copyright}
+              © {new Date().getFullYear()} HamroLink Digital. {d.footer.copyright}
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <a

@@ -86,8 +86,8 @@ function Navbar({
           href={`/${lang}`}
           className={`font-black flex items-center text-xl tracking-tight text-gray-900`}
         >
-          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Logo" />
-          Hamro<span style={{ color: accent }}>Link</span>
+          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Digital Logo" />
+          Hamro<span style={{ color: accent }}>Link</span> Digital
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {[

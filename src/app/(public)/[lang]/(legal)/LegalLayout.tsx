@@ -74,7 +74,7 @@ export default function LegalLayout({
               <Icon className="w-6 h-6 text-white" />
             </div>
             <div className="text-sm font-medium text-white/60">
-              HamroLink · {title}
+              HamroLink Digital · {title}
             </div>
           </div>
           <h1 className="text-4xl font-black mb-3">{title}</h1>
@@ -93,11 +93,11 @@ export default function LegalLayout({
         <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8 mb-12">
           <div>
             <div className="mb-6">
-              <img src="/og-image.png" alt="HamroLink" className="h-8 w-auto transition-all" />
+              <img src="/logo.png" alt="HamroLink Digital" className="h-8 w-auto transition-all" />
             </div>
             <div className="space-y-1">
               <h4 className="text-gray-900 font-bold text-sm">
-                {ne ? "हाम्रोलिङ्क डिजिटल" : "Hamrolink Digital"}
+                {ne ? "हाम्रोलिङ्क डिजिटल" : "HamroLink Digital"}
               </h4>
               <p className="text-xs text-gray-500">
                 {ne
@@ -141,7 +141,7 @@ export default function LegalLayout({
               </div>
             </div>
             <p className="text-xs text-gray-400">
-              © {new Date().getFullYear()} HamroLink · Built with ❤️ in Nepal
+              © {new Date().getFullYear()} HamroLink Digital · Built with ❤️ in Nepal
             </p>
           </div>
         </div>

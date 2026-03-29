@@ -73,8 +73,8 @@ function Navbar({
           href={`/${lang}`}
           className={`font-black flex items-center text-xl tracking-tight text-gray-900`}
         >
-          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Logo" />
-          Hamro<span style={{ color: accent }}>Link</span>
+          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Digital Logo" />
+          Hamro<span style={{ color: accent }}>Link</span> Digital
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {[
@@ -225,7 +225,7 @@ function MarkdownContent({ content }: { content: string }) {
 // ─── Getting Started static content (RESTORED FROM BACKUP) ────────────────────
 
 const GETTING_STARTED_CONTENT = `
-# Welcome to Hamrolink Docs
+# Welcome to HamroLink Digital Docs
 
 Get your website live in minutes. This guide walks you through the essential steps.
 
@@ -243,7 +243,7 @@ After signing in, go to **Dashboard → Create Site**.
 - Choose your **site type**: General, E-Commerce, School, or Consultancy
 - Your site is live instantly — no deployment step required
 
-> [!NOTE] All plans include 1 site. The site type determines which dashboard features are shown (e.g., school sites show an Enrollment dashboard).
+> [!NOTE] All HamroLink Digital plans include 1 site. The site type determines which dashboard features are shown (e.g., school sites show an Enrollment dashboard).
 
 ## 3. Add Pages
 
@@ -494,7 +494,7 @@ export default function DocsPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "HamroLink",
+            "name": "HamroLink Digital",
             "operatingSystem": "Web",
             "applicationCategory": "BusinessApplication",
             "aggregateRating": {
@@ -517,7 +517,7 @@ export default function DocsPage() {
                 <BookOpen className="w-6 h-6 text-indigo-400" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-1">Hamrolink</span>
+                <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-1">HamroLink Digital</span>
                 <span className="text-2xl font-black text-white leading-none">Docs Hub</span>
               </div>
             </div>

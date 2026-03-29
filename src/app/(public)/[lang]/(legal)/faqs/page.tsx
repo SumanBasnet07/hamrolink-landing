@@ -15,24 +15,24 @@ const faqs = {
       category: "Getting Started",
       items: [
         {
-          q: "What is HamroLink?",
-          a: "HamroLink is Nepal's website builder — designed specifically for Nepali creators, shops, schools, consultancies, and local businesses. You can build a professional website in minutes with no coding or design skills needed.",
+          q: "What is HamroLink Digital?",
+          a: "HamroLink Digital is Nepal's website builder — designed specifically for Nepali creators, shops, schools, consultancies, and local businesses. You can build a professional website in minutes with no coding or design skills needed.",
         },
         {
-          q: "Is HamroLink free to use?",
-          a: "Yes! HamroLink has a free plan that lets you create a website with a yourname.hamrolink.com subdomain, up to 5 pages, 25 images and 5 file uploads, and 50 emails per month — forever free. Paid plans (Starter and Pro) unlock more features.",
+          q: "Is HamroLink Digital free to use?",
+          a: "Yes! HamroLink Digital has a free plan that lets you create a website with a yourname.hamrolink.com subdomain, up to 5 pages, 25 images and 5 file uploads, and 50 emails per month — forever free. Paid plans (Starter and Pro) unlock more features.",
         },
         {
-          q: "When will HamroLink launch?",
-          a: "HamroLink is launching soon. Join the early access waitlist to be among the first to build your website and receive a launch notification the moment we go live.",
+          q: "When will HamroLink Digital launch?",
+          a: "HamroLink Digital is launching soon. Join the early access waitlist to be among the first to build your website and receive a launch notification the moment we go live.",
         },
         {
           q: "Do I need to know how to code?",
-          a: "No. HamroLink is built so that anyone can create a beautiful website without writing a single line of code. Our drag-and-drop editor and ready-made templates do all the heavy lifting.",
+          a: "No. HamroLink Digital is built so that anyone can create a beautiful website without writing a single line of code. Our drag-and-drop editor and ready-made templates do all the heavy lifting.",
         },
         {
           q: "What kind of websites can I build?",
-          a: "You can build websites for online stores, schools and colleges, travel/study consultancies, restaurants, personal portfolios, small businesses, NGOs, and more. HamroLink has templates designed for every type of Nepali business.",
+          a: "You can build websites for online stores, schools and colleges, travel/study consultancies, restaurants, personal portfolios, small businesses, NGOs, and more. HamroLink Digital has templates designed for every type of Nepali business.",
         },
       ],
     },
@@ -45,7 +45,7 @@ const faqs = {
         },
         {
           q: "What is the difference between Starter and Pro?",
-          a: "Starter gives you 20 pages + 30 blog posts, 100 images and 5 file uploads, a custom domain, AI Chatbot, online store (30 products), 70 bookings, 10 events, and removal of HamroLink branding. Pro gives you 50 pages + 150 blog posts, 200 images and 10 file uploads, 600 emails/month, online store (300 products), 150 bookings, and 25 events. Both plans allow you to connect your own domain.",
+          a: "Starter gives you 20 pages + 30 blog posts, 100 images and 5 file uploads, a custom domain, AI Chatbot, online store (30 products), 70 bookings, 10 events, and removal of HamroLink Digital branding. Pro gives you 50 pages + 150 blog posts, 200 images and 10 file uploads, 600 emails/month, online store (300 products), 150 bookings, and 25 events. Both plans allow you to connect your own domain.",
         },
         {
           q: "Can I upgrade or downgrade my plan?",
@@ -53,7 +53,7 @@ const faqs = {
         },
         {
           q: "Are prices in Nepali Rupees?",
-          a: "Yes. All HamroLink prices are in Nepalese Rupees (NPR). Starter is NPR 399/month (NPR 4,213/year) and Pro is NPR 899/month (NPR 9,493/year). Annual plans save you 12%.",
+          a: "Yes. All HamroLink Digital prices are in Nepalese Rupees (NPR). Starter is NPR 399/month (NPR 4,213/year) and Pro is NPR 899/month (NPR 9,493/year). Annual plans save you 12%.",
         },
         {
           q: "What payment methods do you accept?",
@@ -91,7 +91,7 @@ const faqs = {
         },
         {
           q: "What is the QR Code feature?",
-          a: "Every HamroLink website automatically gets a print-ready QR code that links directly to your website. You can use it on business cards, banners, menus, or flyers to let people scan and visit your site instantly.",
+          a: "Every HamroLink Digital website automatically gets a print-ready QR code that links directly to your website. You can use it on business cards, banners, menus, or flyers to let people scan and visit your site instantly.",
         },
         {
           q: "Can visitors book appointments through my site?",
@@ -99,7 +99,7 @@ const faqs = {
         },
         {
           q: "Is my website mobile-friendly?",
-          a: "Yes. All HamroLink websites are fully responsive and look great on phones, tablets, and desktops automatically.",
+          a: "Yes. All HamroLink Digital websites are fully responsive and look great on phones, tablets, and desktops automatically.",
         },
       ],
     },
@@ -133,7 +133,7 @@ const faqs = {
         },
         {
           q: "How do I report a bug or give feedback?",
-          a: "Please email support@hamrolink.com or post in our community forum at app.hamrolink.com/community. We read every message and use your feedback to improve HamroLink.",
+          a: "Please email support@hamrolink.com or post in our community forum at app.hamrolink.com/community. We read every message and use your feedback to improve HamroLink Digital.",
         },
       ],
     },
@@ -144,24 +144,24 @@ const faqs = {
       category: "सुरु गर्दै",
       items: [
         {
-          q: "HamroLink के हो?",
-          a: "HamroLink नेपालको वेबसाइट बिल्डर हो — विशेष गरी नेपाली क्रिएटर, पसल, विद्यालय, परामर्श केन्द्र र स्थानीय व्यवसायहरूका लागि डिजाइन गरिएको। तपाईं कुनै कोडिङ वा डिजाइन सीप बिना मिनेटमै पेशेवर वेबसाइट बनाउन सक्नुहुन्छ।",
+          q: "HamroLink Digital के हो?",
+          a: "HamroLink Digital नेपालको वेबसाइट बिल्डर हो — विशेष गरी नेपाली क्रिएटर, पसल, विद्यालय, परामर्श केन्द्र र स्थानीय व्यवसायहरूका लागि डिजाइन गरिएको। तपाईं कुनै कोडिङ वा डिजाइन सीप बिना मिनेटमै पेशेवर वेबसाइट बनाउन सक्नुहुन्छ।",
         },
         {
-          q: "के HamroLink नि:शुल्क छ?",
-          a: "हो! HamroLink मा नि:शुल्क योजना छ जसले तपाईंलाई yourname.hamrolink.com सबडोमेन, ५ पेजहरू, २५ इमेज र ५ फाइल अपलोड र मासिक ५० इमेलसहित वेबसाइट बनाउन दिन्छ — सधैँ नि:शुल्क। भुक्तानी योजनाहरू (स्टार्टर र प्रो) थप सुविधाहरू अनलक गर्छन्।",
+          q: "के HamroLink Digital नि:शुल्क छ?",
+          a: "हो! HamroLink Digital मा नि:शुल्क योजना छ जसले तपाईंलाई yourname.hamrolink.com सबडोमेन, ५ पेजहरू, २५ इमेज र ५ फाइल अपलोड र मासिक ५० इमेलसहित वेबसाइट बनाउन दिन्छ — सधैँ नि:शुल्क। भुक्तानी योजनाहरू (स्टार्टर र प्रो) थप सुविधाहरू अनलक गर्छन्।",
         },
         {
-          q: "HamroLink कहिले लन्च हुन्छ?",
-          a: "HamroLink छिट्टै लन्च हुँदैछ। अर्ली एक्सेस प्रतीक्षासूचीमा जोइन गर्नुहोस् र हामी लाइभ हुने बित्तिकै लन्च सूचना पाउनुहोस्।",
+          q: "HamroLink Digital कहिले लन्च हुन्छ?",
+          a: "HamroLink Digital छिट्टै लन्च हुँदैछ। अर्ली एक्सेस प्रतीक्षासूचीमा जोइन गर्नुहोस् र हामी लाइभ हुने बित्तिकै लन्च सूचना पाउनुहोस्।",
         },
         {
           q: "के मलाई कोडिङ जान्नु पर्छ?",
-          a: "हैन। HamroLink यसरी बनाइएको छ कि जो कोहीले एउटा पनि कोड नलेखी सुन्दर वेबसाइट बनाउन सकोस्। हाम्रो ड्र्याग-एन्ड-ड्रप एडिटर र तयार टेम्प्लेटहरूले सबै गाह्रो काम गर्छन्।",
+          a: "हैन। HamroLink Digital यसरी बनाइएको छ कि जो कोहीले एउटा पनि कोड नलेखी सुन्दर वेबसाइट बनाउन सकोस्। हाम्रो ड्र्याग-एन्ड-ड्रप एडिटर र तयार टेम्प्लेटहरूले सबै गाह्रो काम गर्छन्।",
         },
         {
           q: "मैले कस्तो वेबसाइटहरू बनाउन सक्छु?",
-          a: "तपाईं अनलाइन स्टोर, विद्यालय र कलेज, ट्राभल/अध्ययन परामर्श, रेस्टुरेन्ट, व्यक्तिगत पोर्टफोलियो, साना व्यवसाय, NGO र थप धेरैका लागि वेबसाइटहरू बनाउन सक्नुहुन्छ।",
+          a: "तपाईं अनलाइन स्टोर, विद्यालय र कलेज, ट्राभल/अध्ययन परामर्श, रेस्टुरेन्ट, व्यक्तिगत पोर्टफोलियो, साना व्यवसाय, NGO र थप धेरैका लागि वेबसाइटहरू बनाउन सक्नुहुन्छ। HamroLink Digital मा हरेक प्रकारका नेपाली व्यवसायका लागि डिजाइन गरिएका टेम्प्लेटहरू छन्।",
         },
       ],
     },
@@ -174,7 +174,7 @@ const faqs = {
         },
         {
           q: "स्टार्टर र प्रोबीच के फरक छ?",
-          a: "स्टार्टरले तपाईंलाई २० पेज + ३० ब्लग पोस्ट, १०० इमेज र ५ फाइल अपलोड, कस्टम डोमेन, AI च्याटबट, अनलाइन स्टोर (३० उत्पादन), ७० बुकिङ, १० कार्यक्रम र HamroLink ब्र्यान्डिङ हटाउने सुविधा दिन्छ। प्रोले ५० पेज + १५० ब्लग पोस्ट, २०० इमेज र १० फाइल अपलोड, ६०० इमेल/महिना, अनलाइन स्टोर (३०० उत्पादन), १५० बुकिङ र २५ कार्यक्रम दिन्छ।",
+          a: "स्टार्टरले तपाईंलाई २० पेज + ३० ब्लग पोस्ट, १०० इमेज र ५ फाइल अपलोड, कस्टम डोमेन, AI च्याटबट, अनलाइन स्टोर (३० उत्पादन), ७० बुकिङ, १० कार्यक्रम र HamroLink Digital ब्र्यान्डिङ हटाउने सुविधा दिन्छ। प्रोले ५० पेज + १५० ब्लग पोस्ट, २०० इमेज र १० फाइल अपलोड, ६०० इमेल/महिना, अनलाइन स्टोर (३०० उत्पादन), १५० बुकिङ र २५ कार्यक्रम दिन्छ।",
         },
         {
           q: "के म आफ्नो योजना अपग्रेड वा डाउनग्रेड गर्न सक्छु?",
@@ -182,7 +182,7 @@ const faqs = {
         },
         {
           q: "के मूल्य नेपाली रुपैयाँमा छ?",
-          a: "हो। HamroLink का सबै मूल्यहरू नेपाली रुपैयाँ (NPR) मा छन्। स्टार्टर NPR ३९९/महिना (NPR ४,२१३/वर्ष) र प्रो NPR ८९९/महिना (NPR ९,४९३/वर्ष) हो। वार्षिक योजना लिंदा १२% बचत हुन्छ।",
+          a: "हो। HamroLink Digital का सबै मूल्यहरू नेपाली रुपैयाँ (NPR) मा छन्। स्टार्टर NPR ३९९/महिना (NPR ४,२१३/वर्ष) र प्रो NPR ८९९/महिना (NPR ९,४९३/वर्ष) हो। वार्षिक योजना लिंदा १२% बचत हुन्छ।",
         },
         {
           q: "तपाईंहरू कुन भुक्तानी विधिहरू स्वीकार गर्नुहुन्छ?",
@@ -220,7 +220,7 @@ const faqs = {
         },
         {
           q: "QR कोड सुविधा के हो?",
-          a: "प्रत्येक HamroLink वेबसाइटले स्वचालित रूपमा प्रिन्टका लागि तयार QR कोड पाउँछ जो सिधै तपाईंको वेबसाइटमा लिङ्क गर्छ। तपाईं यसलाई बिजनेस कार्ड, ब्यानर, मेनु वा फ्लायरमा राख्न सक्नुहुन्छ।",
+          a: "प्रत्येक HamroLink Digital वेबसाइटले स्वचालित रूपमा प्रिन्टका लागि तयार QR कोड पाउँछ जो सिधै तपाईंको वेबसाइटमा लिङ्क गर्छ। तपाईं यसलाई बिजनेस कार्ड, ब्यानर, मेनु वा फ्लायरमा राख्न सक्नुहुन्छ।",
         },
         {
           q: "के भिजिटरहरूले मेरो साइटबाट अपोइन्टमेन्ट बुक गर्न सक्छन्?",
@@ -228,7 +228,7 @@ const faqs = {
         },
         {
           q: "के मेरो वेबसाइट मोबाइलमा काम गर्छ?",
-          a: "हो। सबै HamroLink वेबसाइटहरू पूर्णतः प्रतिक्रियाशील छन् र फोन, ट्याब्लेट र डेस्कटपमा स्वचालित रूपमा राम्रोसँग देखिन्छन्।",
+          a: "हो। सबै HamroLink Digital वेबसाइटहरू पूर्णतः प्रतिक्रियाशील छन् र फोन, ट्याब्लेट र डेस्कटपमा स्वचालित रूपमा राम्रोसँग देखिन्छन्।",
         },
       ],
     },
@@ -262,7 +262,7 @@ const faqs = {
         },
         {
           q: "म बग रिपोर्ट वा प्रतिक्रिया कसरी दिने?",
-          a: "कृपया support@hamrolink.com मा इमेल गर्नुहोस् वा app.hamrolink.com/community मा हाम्रो समुदाय फोरममा पोस्ट गर्नुहोस्। हामी प्रत्येक सन्देश पढ्छौं र HamroLink सुधार गर्न तपाईंको प्रतिक्रिया प्रयोग गर्छौं।",
+          a: "कृपया support@hamrolink.com मा इमेल गर्नुहोस् वा app.hamrolink.com/community मा हाम्रो समुदाय फोरममा पोस्ट गर्नुहोस्। हामी प्रत्येक सन्देश पढ्छौं र HamroLink Digital सुधार गर्न तपाईंको प्रतिक्रिया प्रयोग गर्छौं।",
         },
       ],
     },
@@ -317,12 +317,12 @@ export default function FaqPage({
       gradient="from-violet-600 to-purple-700"
       titleEn="Frequently Asked Questions"
       titleNe="बारम्बार सोधिने प्रश्नहरू"
-      descEn="Everything you need to know about HamroLink — plans, features, payments, and more."
-      descNe="HamroLink बारे तपाईंले जान्न आवश्यक सबै कुरा — योजनाहरू, सुविधाहरू, भुक्तानीहरू र थप।"
+      descEn="Everything you need to know about HamroLink Digital — plans, features, payments, and more."
+      descNe="HamroLink Digital बारे तपाईंले जान्न आवश्यक सबै कुरा — योजनाहरू, सुविधाहरू, भुक्तानीहरू र थप।"
       updatedEn={`Last updated: ${UPDATED_EN}`}
       updatedNe={`अन्तिम अपडेट: ${UPDATED_NE}`}
-      backLabelEn="Back to HamroLink"
-      backLabelNe="HamroLink मा फर्कनुहोस्"
+      backLabelEn="Back to HamroLink Digital"
+      backLabelNe="HamroLink Digital मा फर्कनुहोस्"
       slug="faqs"
     >
       <div className="space-y-12">

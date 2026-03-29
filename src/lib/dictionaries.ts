@@ -34,7 +34,7 @@ export const dictionaries = {
 
       // FEAR + HOPE subtext
       subtext:
-        "Customers Google before they visit. International clients judge by your link. Every day without a website is a customer you never knew you lost. HamroLink fixes that in minutes.",
+        "Customers Google before they visit. International clients judge by your link. Every day without a website is a customer you never knew you lost. HamroLink Digital fixes that in minutes.",
 
       supportLine:
         "Look professional. Get found. Never miss a customer — even at 2am.",
@@ -95,10 +95,10 @@ export const dictionaries = {
       submitting: "Reserving your spot…",
       successTitle: "You're in! 🎉",
       successText:
-        "We'll email you the moment HamroLink launches. Your early access perks are reserved.",
+        "We'll email you the moment HamroLink Digital launches. Your early access perks are reserved.",
       errorDuplicate: "This email is already on the waitlist.",
       errorGeneric: "Something went wrong. Please try again.",
-      launchLabel: "HamroLink launches soon — limited early spots.",
+      launchLabel: "HamroLink Digital launches soon — limited early spots.",
       launchSub:
         "Your competitor might already be on the list. Claim your spot now.",
       countPrefix: "",
@@ -171,7 +171,7 @@ export const dictionaries = {
 
     // ── Micro-proof block ────────────────────────────────────────────────────
     microProof: {
-      eyebrow: "Real HamroLink websites →",
+      eyebrow: "Real HamroLink Digital websites →",
       domains: [
         "hamrostore.hamrolink.com",
         "hamroschool.hamrolink.com",
@@ -231,7 +231,7 @@ export const dictionaries = {
           emoji: "⛓️",
           title: "Facebook jailed you once",
           label: "It will happen again",
-          desc: "Remember when Facebook banned your page for 7 days? Your business stopped. With HamroLink, YOU control your presence. No algorithm, no bans, no begging for reach.",
+          desc: "Remember when Facebook banned your page for 7 days? Your business stopped. With HamroLink Digital, YOU control your presence. No algorithm, no bans, no begging for reach.",
         },
       ],
     },
@@ -298,7 +298,7 @@ export const dictionaries = {
     emailMarketing: {
       badge: "Most Nepali businesses don't know this exists",
       heading: "Your customer list is your biggest asset. Are you building it?",
-      desc: "Every visitor to your HamroLink site can become a subscriber. Collect emails, send offers, announce new products — automatically. While your competitors post on Facebook and hope the algorithm shows it, you're landing directly in your customers' inboxes.",
+      desc: "Every visitor to your HamroLink Digital site can become a subscriber. Collect emails, send offers, announce new products — automatically. While your competitors post on Facebook and hope the algorithm shows it, you're landing directly in your customers' inboxes.",
       cta: "Learn how it works",
     },
 
@@ -311,13 +311,13 @@ export const dictionaries = {
         {
           business: "Photographer, Kathmandu",
           before: "Facebook page with inconsistent posts. Lost international clients to others with portfolio websites.",
-          after: "Professional portfolio on HamroLink. Now shares one clean link with international clients. Increased rates by 35%.",
+          after: "Professional portfolio on HamroLink Digital. Now shares one clean link with international clients. Increased rates by 35%.",
           metric: "35% more per client → NPR 15,000/month extra",
         },
         {
           business: "Café, Pokhara",
           before: "Customers messaging on Facebook asking for hours and menu. Missed 10-15 messages a day. No WhatsApp automation.",
-          after: "AI chatbot on their HamroLink site answers menu, hours, and location questions automatically. WhatsApp redirect for reservations.",
+          after: "AI chatbot on their HamroLink Digital site answers menu, hours, and location questions automatically. WhatsApp redirect for reservations.",
           metric: "0 missed inquiries",
         },
         {
@@ -374,7 +374,7 @@ export const dictionaries = {
         },
         {
           title: "Google vs Facebook: The Truth",
-          desc: "Try Googling 'best momo in your city'. You'll see websites, not Facebook pages. Google prioritizes real websites. Your HamroLink site is built to rank. Your Facebook page is invisible to search engines.",
+          desc: "Try Googling 'best momo in your city'. You'll see websites, not Facebook pages. Google prioritizes real websites. Your HamroLink Digital site is built to rank. Your Facebook page is invisible to search engines.",
         },
       ],
     },
@@ -392,10 +392,10 @@ export const dictionaries = {
 
     // ── Examples section ─────────────────────────────────────────────────────
     examples: {
-      badge: "Real HamroLink websites",
+      badge: "Real HamroLink Digital websites",
       heading: "This is what your business could look like.",
       subtext:
-        "These are real websites built on HamroLink templates. Every one of them looks more professional than a Facebook page — and took less than 15 minutes to launch.",
+        "These are real websites built on HamroLink Digital templates. Every one of them looks more professional than a Facebook page — and took less than 15 minutes to launch.",
       items: [
         {
           emoji: "🛍️",
@@ -438,10 +438,10 @@ export const dictionaries = {
       paragraphs: [
         "I grew up watching talented Nepali business owners work incredibly hard — and still lose customers to competitors who simply looked more professional online. A restaurant with a website got the tourist. A photographer with a portfolio got the international client. A consultant with a professional page charged twice as much.",
         "The frustrating part? Building a website was expensive, complicated, and required technical knowledge most people don't have. So they stayed on Facebook. And kept losing customers they never knew they were losing.",
-        "HamroLink exists to end that. Not just a website builder — a complete digital presence that includes AI tools to answer customers 24/7, email marketing to build loyal relationships, and local payment integrations that actually work in Nepal. Professional. Automated. Affordable.",
+        "HamroLink Digital exists to end that. Not just a website builder — a complete digital presence that includes AI tools to answer customers 24/7, email marketing to build loyal relationships, and local payment integrations that actually work in Nepal. Professional. Automated. Affordable.",
       ],
       signature: "— Suman Basnet",
-      role: "Founder, HamroLink · Pakhribas, Dhankuta",
+      role: "Founder, HamroLink Digital · Pakhribas, Dhankuta",
       cta: "Join the Mission",
     },
 
@@ -449,9 +449,9 @@ export const dictionaries = {
     pricing: {
       badge: "Less than a dinner out — and it works 24/7",
       heading: "Your 24/7 business presence.\nStarting at NPR 399/month.",
-      anchoring: "A developer costs NPR 50,000. A freelancer costs NPR 15,000. HamroLink costs NPR 399 — and includes AI that works 24/7.",
+      anchoring: "A developer costs NPR 50,000. A freelancer costs NPR 15,000. HamroLink Digital costs NPR 399 — and includes AI that works 24/7.",
       subtext:
-        "A web developer charges NPR 30,000–80,000 to build a site. HamroLink gives you a better one — with AI tools included — for NPR 399/month. Join the waitlist now to lock in this price forever.",
+        "A web developer charges NPR 30,000–80,000 to build a site. HamroLink Digital gives you a better one — with AI tools included — for NPR 399/month. Join the waitlist now to lock in this price forever.",
       monthly: "Monthly",
       yearly: "Yearly",
       save: "SAVE 12%",
@@ -491,7 +491,7 @@ export const dictionaries = {
             { t: "Online store — 150 products (eSewa & Khalti)", ok: true },
             { t: "AI chatbot — 24/7 customer assistant", ok: true },
             { t: "25 bookings · 50 events", ok: true },
-            { t: "Remove HamroLink branding", ok: true },
+            { t: "Remove HamroLink Digital branding", ok: true },
           ],
         },
         {
@@ -506,7 +506,7 @@ export const dictionaries = {
             { t: "Online store — 500 products (eSewa & Khalti)", ok: true },
             { t: "AI chatbot — advanced customization", ok: true },
             { t: "50 bookings · 100 notices", ok: true },
-            { t: "Remove HamroLink branding", ok: true },
+            { t: "Remove HamroLink Digital branding", ok: true },
           ],
         },
         {
@@ -521,7 +521,7 @@ export const dictionaries = {
             { t: "Online store — 80 products (eSewa & Khalti)", ok: true },
             { t: "AI chatbot — 24/7 assistant", ok: true },
             { t: "10 bookings · 20 notices", ok: true },
-            { t: "Remove HamroLink branding", ok: false },
+            { t: "Remove HamroLink Digital branding", ok: false },
           ],
         },
       ],
@@ -532,13 +532,13 @@ export const dictionaries = {
       },
       freePlanHook: {
         heading: "Free forever? Yes. Limited forever? Also yes.",
-        desc: "Try HamroLink free. No card. No commitment. But if you're serious about your business, you'll upgrade in the first 15 minutes — because the free plan is just a taste of what professional looks like.",
+        desc: "Try HamroLink Digital free. No card. No commitment. But if you're serious about your business, you'll upgrade in the first 15 minutes — because the free plan is just a taste of what professional looks like.",
       },
       objections: {
         tooBusy: "It takes only 15 minutes. Less time than you spend scrolling Facebook tonight.",
-        notTechSavvy: "If you can use Facebook, you can use HamroLink. It's exactly that simple.",
+        notTechSavvy: "If you can use Facebook, you can use HamroLink Digital. It's exactly that simple.",
         expensive: "Losing one client is expensive. NPR 399/month is cheap compared to missed opportunities.",
-        alreadyOnFacebook: "Facebook is a rented space. HamroLink is your own digital property.",
+        alreadyOnFacebook: "Facebook is a rented space. HamroLink Digital is your own digital property.",
         questions: {
           tooBusy: "I'm too busy currently.",
           notTechSavvy: "I'm not good with tech.",
@@ -572,13 +572,13 @@ export const dictionaries = {
 
     // ── Contact Page ──────────────────────────────────────────────────────────
     contactPage: {
-      title: "Contact HamroLink — Nepal's Professional Website Platform",
+      title: "Contact HamroLink Digital — Nepal's Professional Website Platform",
       description:
-        "Get in touch with HamroLink. Questions, support, or partnerships — our team in Dhankuta is ready to help.",
+        "Get in touch with HamroLink Digital. Questions, support, or partnerships — our team in Dhankuta is ready to help.",
       badge: "Get in touch",
       heading: "We're here to help.",
       subheading:
-        "Have questions about HamroLink? Our team is ready to assist you.",
+        "Have questions about HamroLink Digital? Our team is ready to assist you.",
       businessInfo: {
         name: "HamroLink Digital",
         phone: "+977-9816326639",
@@ -624,23 +624,23 @@ export const dictionaries = {
 
     // ── About Page ────────────────────────────────────────────────────────────
     aboutPage: {
-      title: "About HamroLink — Nepal's First AI-Powered Business Presence Platform",
+      title: "About HamroLink Digital — Nepal's First AI-Powered Business Presence Platform",
       description:
-        "HamroLink didn't start in a Kathmandu office. It was built in Pakhribas, Dhankuta because talented Nepali businesses kept losing customers to competitors who simply looked more professional online.",
+        "HamroLink Digital didn't start in a Kathmandu office. It was built in Pakhribas, Dhankuta because talented Nepali businesses kept losing customers to competitors who simply looked more professional online.",
       badge: "Our Story",
       businessObjectiveTitle: "Business Objective",
       businessObjective: "Software and website construction and other information technology related works",
       legalProprietorLabel: "Legal Proprietor",
       heading: "Built because Nepal's businesses\ndeserve better.",
       subheading:
-        "Every day, talented Nepali entrepreneurs lose customers to competitors who simply look more professional online. HamroLink exists to end that.",
+        "Every day, talented Nepali entrepreneurs lose customers to competitors who simply look more professional online. HamroLink Digital exists to end that.",
       story: {
         title: "From Pakhribas to Every Corner of Nepal",
-        content: `HamroLink didn't start in a Kathmandu office. It started with a simple observation: in the hills of Pakhribas, Dhankuta — and in every district across Nepal — hardworking business owners were invisible online. Not because they weren't good at what they did. But because building a website required money, technical knowledge, or a developer who charged more than a month's revenue.
+        content: `HamroLink Digital didn't start in a Kathmandu office. It started with a simple observation: in the hills of Pakhribas, Dhankuta — and in every district across Nepal — hardworking business owners were invisible online. Not because they weren't good at what they did. But because building a website required money, technical knowledge, or a developer who charged more than a month's revenue.
 
 So they stayed on Facebook. And watched tourists choose the restaurant with a website. Watched international clients hire the photographer with a portfolio link. Watched more corporate-looking competitors take the contracts.
 
-HamroLink was built to fix this. Not just a website builder — a complete digital presence platform that gives every Nepali business the tools that were previously only available to large companies with big budgets: AI-powered 24/7 customer assistants, email marketing, local payment integration, professional templates, and Google visibility.
+HamroLink Digital was built to fix this. Not just a website builder — a complete digital presence platform that gives every Nepali business the tools that were previously only available to large companies with big budgets: AI-powered 24/7 customer assistants, email marketing, local payment integration, professional templates, and Google visibility.
 
 Because in the AI era, looking professional isn't optional anymore. It's survival.`,
       },
@@ -672,7 +672,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           {
             name: "Suman Basnet",
             role: "Founder & CEO",
-            bio: "Suman founded HamroLink after watching Nepali businesses consistently lose customers to competitors who simply looked more professional online. A full-stack engineer from Pakhribas, Dhankuta, he built HamroLink to give every Nepali business owner the digital tools previously only available to large companies — at a price they can actually afford.",
+            bio: "Suman founded HamroLink Digital after watching Nepali businesses consistently lose customers to competitors who simply looked more professional online. A full-stack engineer from Pakhribas, Dhankuta, he built HamroLink Digital to give every Nepali business owner the digital tools previously only available to large companies — at a price they can actually afford.",
           },
           {
             name: "Lila Basnet",
@@ -752,7 +752,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     legacy: {
       badge: "For businesses that last generations",
       heading: "Your website should outlast your Facebook account.",
-      desc: "Facebook pages die when you stop posting. Algorithms change. Accounts get hacked. Your HamroLink site is YOURS — permanently. Your children can update it when they take over the business.",
+      desc: "Facebook pages die when you stop posting. Algorithms change. Accounts get hacked. Your HamroLink Digital site is YOURS — permanently. Your children can update it when they take over the business.",
     },
     seasonal: {
       dashain: "Dashain is coming. Customers are searching. Be found.",
@@ -771,13 +771,13 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     },
     analogy: {
       heading: "Your 'Parcha' is now digital.",
-      desc: "Remember printing paper pamphlets (Parcha) and distributing? Costly, limited, one-time. Your HamroLink site is your digital Parcha — infinite reach, always available, constantly working.",
+      desc: "Remember printing paper pamphlets (Parcha) and distributing? Costly, limited, one-time. Your HamroLink Digital site is your digital Parcha — infinite reach, always available, constantly working.",
     },
     objections: {
       tooBusy: "Takes 15 minutes. Less time than you spend on Facebook this evening.",
-      notTechSavvy: "If you can use Facebook, you can use HamroLink. That's the bar.",
+      notTechSavvy: "If you can use Facebook, you can use HamroLink Digital. That's the bar.",
       expensive: "Losing customers is expensive. NPR 399 is cheaper than losing one.",
-      alreadyOnFacebook: "Facebook is renting. HamroLink is owning.",
+      alreadyOnFacebook: "Facebook is renting. HamroLink Digital is owning.",
     },
     localized: {
       kathmandu: "Kathmandu businesses are moving fast. Don't get left behind.",
@@ -830,7 +830,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
       // FEAR + HOPE — real, direct Nepali copy
       subtext:
-        "ग्राहकहरू तपाईंको व्यवसायमा आउनुअघि गुगलमा खोज्छन्। विदेशी क्लाइन्टले तपाईंको लिङ्क हेरेर मूल्याङ्कन गर्छन्। वेबसाइट नहुँदा तपाईंले दिनहुँ कति ग्राहक गुमाइरहनुभएको छ, तपाईंलाई पत्तो नै हुँदैन। HamroLink ले यो समस्या मिनेटमै समाधान गर्छ।",
+        "ग्राहकहरू तपाईंको व्यवसायमा आउनुअघि गुगलमा खोज्छन्। विदेशी क्लाइन्टले तपाईंको लिङ्क हेरेर मूल्याङ्कन गर्छन्। वेबसाइट नहुँदा तपाईंले दिनहुँ कति ग्राहक गुमाइरहनुभएको छ, तपाईंलाई पत्तो नै हुँदैन। HamroLink Digital ले यो समस्या मिनेटमै समाधान गर्छ।",
 
       supportLine:
         "प्रोफेसनल देखिनुहोस्। इन्टरनेटमा सजिलै भेटिनुहोस्। राति ११ बजे आएको सोधपुछ पनि नछुटाउनुहोस्।",
@@ -890,10 +890,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       submitting: "तपाईंको सिट सुरक्षित गरिँदैछ…",
       successTitle: "बधाई छ, तपाईं सूचीमा पर्नुभयो! 🎉",
       successText:
-        "HamroLink लन्च हुने बित्तिकै हामी तपाईंलाई इमेल गर्नेछौं। तपाईंका अर्ली एक्सेस सुविधाहरू सुरक्षित भइसकेका छन्।",
+        "HamroLink Digital लन्च हुने बित्तिकै हामी तपाईंलाई इमेल गर्नेछौं। तपाईंका अर्ली एक्सेस सुविधाहरू सुरक्षित भइसकेका छन्।",
       errorDuplicate: "यो इमेल पहिले नै वेटलिस्टमा दर्ता छ।",
       errorGeneric: "केही गडबडी भयो। कृपया फेरि प्रयास गर्नुहोस्।",
-      launchLabel: "HamroLink छिट्टै आउँदैछ — सुरुवाती सिटहरू सीमित छन्।",
+      launchLabel: "HamroLink Digital छिट्टै आउँदैछ — सुरुवाती सिटहरू सीमित छन्।",
       launchSub:
         "तपाईंका प्रतिस्पर्धीहरू सूचीमा दर्ता भइसकेका हुन सक्छन्। अहिल्यै आफ्नो सिट सुरक्षित गर्नुहोस्।",
       countPrefix: "",
@@ -963,7 +963,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
     // ── Micro-proof ──────────────────────────────────────────────────────────
     microProof: {
-      eyebrow: "वास्तविक HamroLink वेबसाइटहरू →",
+      eyebrow: "वास्तविक HamroLink Digital वेबसाइटहरू →",
       domains: [
         "hamrostore.hamrolink.com",
         "hamroschool.hamrolink.com",
@@ -1021,7 +1021,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           emoji: "⛓️",
           title: "फेसबुकले तपाईंलाई जेल हाल्यो?",
           label: "यो फेरि हुनेछ",
-          desc: "सम्झिनुहोस् जब फेसबुकले तपाईंको पेज ७ दिनका लागि बन्द गरिदिएको थियो? तपाईंको व्यवसाय नै ठप्प भयो। HamroLink मा, तपाईंको आफ्नो उपस्थितिमा तपाईंको आफ्नै नियन्त्रण हुन्छ। कुनै अल्गोरिदम वा प्रतिबन्धको डर हुँदैन।",
+          desc: "सम्झिनुहोस् जब फेसबुकले तपाईंको पेज ७ दिनका लागि बन्द गरिदिएको थियो? तपाईंको व्यवसाय नै ठप्प भयो। HamroLink Digital मा, तपाईंको आफ्नो उपस्थितिमा तपाईंको आफ्नै नियन्त्रण हुन्छ। कुनै अल्गोरिदम वा प्रतिबन्धको डर हुँदैन।",
         },
       ],
     },
@@ -1031,7 +1031,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       badge: "तपाईंको २४/७ अनलाइन स्टाफ — एआई (AI) द्वारा सञ्चालित",
       heading: "अब कुनै पनि ग्राहक नछुटाउनुहोस्।\nतपाईं सुतिरहेको बेला पनि।",
       subtext:
-        "धेरैजसो नेपाली व्यवसायले राति, बिदाको दिन वा व्यस्त समयमा तत्काल जवाफ दिन नसक्दा ग्राहक गुमाउने गर्छन्। HamroLink को एआई असिस्टेन्टले यो काम तपाईंको तर्फबाट स्वचालित रूपमा गर्छ।",
+        "धेरैजसो नेपाली व्यवसायले राति, बिदाको दिन वा व्यस्त समयमा तत्काल जवाफ दिन नसक्दा ग्राहक गुमाउने गर्छन्। HamroLink Digital को एआई असिस्टेन्टले यो काम तपाईंको तर्फबाट स्वचालित रूपमा गर्छ।",
       features: [
         {
           title: "प्रश्नहरूको तत्काल जवाफ",
@@ -1085,7 +1085,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     emailMarketing: {
       badge: "धेरैजसो नेपाली व्यवसायलाई यो सुविधाबारे थाहा नै छैन",
       heading: "ग्राहकहरूको सूची नै तपाईंको सबैभन्दा ठूलो सम्पत्ति हो। के तपाईं यसलाई सङ्कलन गर्दै हुनुहुन्छ?",
-      desc: "तपाईंको HamroLink साइटमा आउने हरेक भिजिटर (Visitor) तपाईंको सब्सक्राइबर बन्न सक्छ। इमेल सङ्कलन गर्नुहोस्, अफरहरू पठाउनुहोस् र नयाँ उत्पादनहरूको जानकारी दिनुहोस्—त्यो पनि स्वचालित रूपमा। तपाईंका प्रतिस्पर्धीहरू फेसबुकको अल्गोरिदमको भर परिरहँदा, तपाईं सिधै ग्राहकको इनबक्समा पुग्नुहुनेछ।",
+      desc: "तपाईंको HamroLink Digital साइटमा आउने हरेक भिजिटर (Visitor) तपाईंको सब्सक्राइबर बन्न सक्छ। इमेल सङ्कलन गर्नुहोस्, अफरहरू पठाउनुहोस् र नयाँ उत्पादनहरूको जानकारी दिनुहोस्—त्यो पनि स्वचालित रूपमा। तपाईंका प्रतिस्पर्धीहरू फेसबुकको अल्गोरिदमको भर परिरहँदा, तपाईं सिधै ग्राहकको इनबक्समा पुग्नुहुनेछ।",
       cta: "यो कसरी काम गर्छ, हेर्नुहोस्",
     },
 
@@ -1097,13 +1097,13 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         {
           business: "फोटोग्राफर, काठमाडौं",
           before: "फेसबुक पेजमा अस्तव्यस्त पोस्टहरू थिए। पोर्टफोलियो वेबसाइट भएका अन्य फोटोग्राफरसँग अन्तर्राष्ट्रिय ग्राहकहरू गुमाइरहेका थिए।",
-          after: "HamroLink मा प्रोफेसनल पोर्टफोलियो बनाए। अहिले अन्तर्राष्ट्रिय ग्राहकहरूसँग एउटा सफा लिङ्क सेयर गर्छन्। उनीहरूको शुल्क (Rates) ३५% ले बढेको छ।",
+          after: "HamroLink Digital मा प्रोफेसनल पोर्टफोलियो बनाए। अहिले अन्तर्राष्ट्रिय ग्राहकहरूसँग एउटा सफा लिङ्क सेयर गर्छन्। उनीहरूको शुल्क (Rates) ३५% ले बढेको छ।",
           metric: "हरेक ग्राहकबाट ३५% बढी → महिनाको रु १५,००० अतिरिक्त आम्दानी",
         },
         {
           business: "क्याफे, पोखरा",
           before: "ग्राहकहरूले फेसबुकमा समय र मेनु सोधिरहन्थे। दिनमै १०-१५ वटा मेसेज छुट्ने गर्थ्यो। ह्वाट्सएप अटोमेसन थिएन।",
-          after: "HamroLink साइटमा रहेको एआई च्याटबोटले मेनु, खुल्ने समय र लोकेसनसम्बन्धी प्रश्नहरूको स्वतः जवाफ दिन्छ। टेबल रिजर्भेसनका लागि सिधै ह्वाट्सएपमा पठाउँछ।",
+          after: "HamroLink Digital साइटमा रहेको एआई च्याटबोटले मेनु, खुल्ने समय र लोकेसनसम्बन्धी प्रश्नहरूको स्वतः जवाफ दिन्छ। टेबल रिजर्भेसनका लागि सिधै ह्वाट्सएपमा पठाउँछ।",
           metric: "० छुटेका सोधपुछ",
         },
         {
@@ -1170,10 +1170,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
     // ── Examples ─────────────────────────────────────────────────────────────
     examples: {
-      badge: "वास्तविक HamroLink वेबसाइटहरू",
+      badge: "वास्तविक HamroLink Digital वेबसाइटहरू",
       heading: "तपाईंको व्यवसाय यस्तो देखिन सक्छ।",
       subtext:
-        "यी HamroLink टेम्प्लेटहरू प्रयोग गरेर बनाइएका वास्तविक वेबसाइट हुन्। यहाँको हरेक वेबसाइट एउटा फेसबुक पेजभन्दा निकै प्रोफेसनल देखिन्छ—र यी तयार हुन १५ मिनेटभन्दा कम समय लागेको थियो।",
+        "यी HamroLink Digital टेम्प्लेटहरू प्रयोग गरेर बनाइएका वास्तविक वेबसाइट हुन्। यहाँको हरेक वेबसाइट एउटा फेसबुक पेजभन्दा निकै प्रोफेसनल देखिन्छ—र यी तयार हुन १५ मिनेटभन्दा कम समय लागेको थियो।",
       items: [
         {
           emoji: "🛍️",
@@ -1216,10 +1216,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       paragraphs: [
         "मैले धेरै प्रतिभाशाली नेपाली व्यवसायीहरूले अथक मेहनत गर्दागर्दै पनि ग्राहक गुमाएको देखेको छु—केवल यसकारण कि उनीहरूका प्रतिस्पर्धीहरू अनलाइनमा अलि बढी प्रोफेसनल देखिन्थे। वेबसाइट भएको रेस्टुरेन्टले विदेशी पर्यटक पायो। पोर्टफोलियो लिङ्क भएको फोटोग्राफरले अन्तर्राष्ट्रिय क्लाइन्ट पायो। प्रोफेसनल पेज भएको कन्सल्टेन्टले दोब्बर शुल्क लिन सक्यो।",
         "सबैभन्दा निराशाजनक कुरा के थियो भने, वेबसाइट बनाउन महँगो र झन्झटिलो थियो। एउटा वेब डेभलपरले एक महिनाको कमाइभन्दा बढी शुल्क माग्थ्यो। त्यसैले धेरैजना फेसबुकमै सीमित रहे। र, आफूलाई थाहै नभई अनगिन्ती ग्राहक गुमाइरहे।",
-        "HamroLink यही समस्याको अन्त्य गर्न बनाइएको हो। यो एउटा सामान्य वेबसाइट बिल्डर मात्र होइन—यो २४/७ ग्राहकलाई जवाफ दिने एआई टुल्स, इमेल मार्केटिङ र नेपालमा काम गर्ने पेमेन्ट इन्टिग्रेशनसहितको पूर्ण डिजिटल प्रेजेन्स (Digital Presence) हो। प्रोफेसनल। स्वचालित। र सबैको पहुँचमा पुग्ने मूल्यमा।",
+        "HamroLink Digital यही समस्याको अन्त्य गर्न बनाइएको हो। यो एउटा सामान्य वेबसाइट बिल्डर मात्र होइन—यो २४/७ ग्राहकलाई जवाफ दिने एआई टुल्स, इमेल मार्केटिङ र नेपालमा काम गर्ने पेमेन्ट इन्टिग्रेशनसहितको पूर्ण डिजिटल प्रेजेन्स (Digital Presence) हो। प्रोफेसनल। स्वचालित। र सबैको पहुँचमा पुग्ने मूल्यमा।",
       ],
       signature: "— सुमन बस्नेत",
-      role: "संस्थापक, HamroLink · पाख्रिबास, धनकुटा",
+      role: "संस्थापक, HamroLink Digital · पाख्रिबास, धनकुटा",
       cta: "हाम्रो अभियानमा जोडिनुहोस्",
     },
 
@@ -1227,9 +1227,9 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     pricing: {
       badge: "बाहिर एक छाक खाजा खाएको खर्चभन्दा कम — र यसले २४/७ काम गर्छ",
       heading: "तपाईंको २४/७ डिजिटल प्रेजेन्स।\nप्रति महिना मात्र रु ३९९ बाट सुरु।",
-      anchoring: "एउटा डेभलपरलाई रु ५०,००० लाग्छ। फ्रिल्यान्सरलाई रु १५,०००। HamroLink मात्र रु ३९९ मा उपलब्ध छ—जसमा २४/७ काम गर्ने एआई पनि समावेश छ।",
+      anchoring: "एउटा डेभलपरलाई रु ५०,००० लाग्छ। फ्रिल्यान्सरलाई रु १५,०००। HamroLink Digital मात्र रु ३९९ मा उपलब्ध छ—जसमा २४/७ काम गर्ने एआई पनि समावेश छ।",
       subtext:
-        "एउटा वेब डेभलपरले साइट बनाउन रु ३०,००० देखि ८०,००० सम्म लिन्छ। HamroLink ले तपाईंलाई एआई टुल्ससहितको त्योभन्दा राम्रो वेबसाइट दिन्छ—मात्र रु ३९९ प्रति महिनामा। यो मूल्यलाई सधैँका लागि लक गर्न अहिल्यै वेटलिस्टमा जोडिनुहोस्।",
+        "एउटा वेब डेभलपरले साइट बनाउन रु ३०,००० देखि ८०,००० सम्म लिन्छ। HamroLink Digital ले तपाईंलाई एआई टुल्ससहितको त्योभन्दा राम्रो वेबसाइट दिन्छ—मात्र रु ३९९ प्रति महिनामा। यो मूल्यलाई सधैँका लागि लक गर्न अहिल्यै वेटलिस्टमा जोडिनुहोस्।",
       monthly: "मासिक",
       yearly: "वार्षिक",
       save: "१२% बचत गर्नुहोस्",
@@ -1269,7 +1269,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
             { t: "अनलाइन स्टोर — १५० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
             { t: "एआई च्याटबोट — २४/७ ग्राहक सहायक", ok: true },
             { t: "२५ बुकिङ · ५० नोटिस", ok: true },
-            { t: "HamroLink ब्रान्डिङ हटाउने सुविधा", ok: true },
+            { t: "HamroLink Digital ब्रान्डिङ हटाउने सुविधा", ok: true },
           ],
         },
         {
@@ -1284,7 +1284,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
             { t: "अनलाइन स्टोर — ५०० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
             { t: "एआई च्याटबोट — एडभान्स कस्टमाइजेसन", ok: true },
             { t: "५० बुकिङ · १०० नोटिस", ok: true },
-            { t: "HamroLink ब्रान्डिङ हटाउने सुविधा", ok: true },
+            { t: "HamroLink Digital ब्रान्डिङ हटाउने सुविधा", ok: true },
           ],
         },
         {
@@ -1310,7 +1310,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       },
       freePlanHook: {
         heading: "सधैँका लागि नि:शुल्क? हो। तर सीमित पनि।",
-        desc: "HamroLink नि:शुल्क प्रयोग गर्नुहोस्। तर यदि व्यवसायमा गम्भीर हुनुहुन्छ भने, तपाईं १५ मिनेटमै अपग्रेड गर्नुहुनेछ—किनकि नि:शुल्क प्लान प्रोफेसनल कस्तो हुन्छ भन्ने स्वाद मात्र हो।",
+        desc: "HamroLink Digital नि:शुल्क प्रयोग गर्नुहोस्। तर यदि व्यवसायमा गम्भीर हुनुहुन्छ भने, तपाईं १५ मिनेटमै अपग्रेड गर्नुहुनेछ—किनकि नि:शुल्क प्लान प्रोफेसनल कस्तो हुन्छ भन्ने स्वाद मात्र हो।",
       },
       decisionHelper: {
         heading: "अझै सोच्दै हुनुहुन्छ? पर्खिँदा के हुन्छ, हेर्नुहोस्:",
@@ -1337,13 +1337,13 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
     // ── Contact Page ──────────────────────────────────────────────────────────
     contactPage: {
-      title: "सम्पर्क — HamroLink Nepal",
+      title: "सम्पर्क — HamroLink Digital Nepal",
       description:
-        "HamroLink सँग सम्पर्क गर्नुहोस्। कुनै प्रश्न, सहयोग, वा साझेदारीको कुरा छ भने धनकुटास्थित हाम्रो टिम तपाईंलाई मद्दत गर्न सधैँ तयार छ।",
+        "HamroLink Digital सँग सम्पर्क गर्नुहोस्। कुनै प्रश्न, सहयोग, वा साझेदारीको कुरा छ भने धनकुटास्थित हाम्रो टिम तपाईंलाई मद्दत गर्न सधैँ तयार छ।",
       badge: "सम्पर्क गर्नुहोस्",
       heading: "हामी तपाईंलाई मद्दत गर्न तयार छौं।",
       subheading:
-        "HamroLink को बारेमा कुनै प्रश्न छ? हाम्रो टिम तपाईंलाई सहयोग गर्न तयार छ।",
+        "HamroLink Digital को बारेमा कुनै प्रश्न छ? हाम्रो टिम तपाईंलाई सहयोग गर्न तयार छ।",
       businessInfo: {
         name: "हाम्रोलिङ्क डिजिटल",
         phone: "+९७७-९८१६३२६६३९",
@@ -1389,23 +1389,23 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
     // ── About Page ────────────────────────────────────────────────────────────
     aboutPage: {
-      title: "हाम्रोबारे — HamroLink: नेपालको पहिलो AI-Powered Business Presence Platform",
+      title: "हाम्रोबारे — HamroLink Digital: नेपालको पहिलो AI-Powered Business Presence Platform",
       description:
-        "HamroLink काठमाडौंको कुनै कर्पोरेट अफिसबाट सुरु भएको होइन। प्रतिभाशाली नेपाली व्यवसायीहरूले अनलाइनमा प्रोफेसनल नदेखिएको कारणले मात्र ग्राहक गुमाइरहेको देखेर यो पाख्रिबास, धनकुटामा बनाइएको हो।",
+        "HamroLink Digital काठमाडौंको कुनै कर्पोरेट अफिसबाट सुरु भएको होइन। प्रतिभाशाली नेपाली व्यवसायीहरूले अनलाइनमा प्रोफेसनल नदेखिएको कारणले मात्र ग्राहक गुमाइरहेको देखेर यो पाख्रिबास, धनकुटामा बनाइएको हो।",
       badge: "हाम्रो कथा",
       businessObjectiveTitle: "व्यापारिक उद्देश्य",
       businessObjective: "सफ्टवेयर तथा वेबसाइट निर्माण र अन्य सूचना प्रविधिजन्य कार्यहरु",
       legalProprietorLabel: "कानुनी प्रोप्राइटर",
       heading: "नेपालका व्यवसायहरू\nउत्कृष्टताका हकदार छन्।",
       subheading:
-        "हरेक दिन, प्रतिभाशाली नेपाली उद्यमीहरूले आफ्ना ग्राहक गुमाउँछन्—केबल यसकारण कि उनीहरूका प्रतिस्पर्धीहरू अनलाइनमा बढी प्रोफेसनल देखिन्छन्। HamroLink यसैलाई रोक्न बनाइएको हो।",
+        "हरेक दिन, प्रतिभाशाली नेपाली उद्यमीहरूले आफ्ना ग्राहक गुमाउँछन्—केबल यसकारण कि उनीहरूका प्रतिस्पर्धीहरू अनलाइनमा बढी प्रोफेसनल देखिन्छन्। HamroLink Digital यसैलाई रोक्न बनाइएको हो।",
       story: {
         title: "पाख्रिबासदेखि नेपालको हरेक कुनासम्म",
-        content: `HamroLink काठमाडौंको कुनै कर्पोरेट अफिसबाट सुरु भएको होइन। यो एउटा यथार्थ भोगाइबाट सुरु भयो: धनकुटाको पाख्रिबासका पहाडहरूमा—र नेपालका हरेक जिल्लाहरूमा—मेहनती व्यवसायीहरू अनलाइन संसारमा अदृश्य थिए। उनीहरूले राम्रो काम नगरेर होइन। एउटा वेबसाइट बनाउन ठूलो रकम, प्राविधिक ज्ञान वा एक महिनाको कमाइभन्दा बढी माग्ने डेभलपर चाहिन्थ्यो।
+        content: `HamroLink Digital काठमाडौंको कुनै कर्पोरेट अफिसबाट सुरु भएको होइन। यो एउटा यथार्थ भोगाइबाट सुरु भयो: धनकुटाको पाख्रिबासका पहाडहरूमा—र नेपालका हरेक जिल्लाहरूमा—मेहनती व्यवसायीहरू अनलाइन संसारमा अदृश्य थिए। उनीहरूले राम्रो काम नगरेर होइन। एउटा वेबसाइट बनाउन ठूलो रकम, प्राविधिक ज्ञान वा एक महिनाको कमाइभन्दा बढी माग्ने डेभलपर चाहिन्थ्यो।
 
 त्यसैले उनीहरू फेसबुकमै सीमित रहे। र, पर्यटकहरूले वेबसाइट भएको रेस्टुरेन्ट छानेको हेरिरहे। अन्तर्राष्ट्रिय क्लाइन्टहरूले पोर्टफोलियो लिङ्क भएको फोटोग्राफरलाई रोजेको देखे। बढी प्रोफेसनल देखिने कर्पोरेट प्रतिस्पर्धीहरूले ठेक्का (Contracts) लगेको टुलुटुलु हेर्न बाध्य भए।
 
-HamroLink यही अवस्था बदल्न बनाइएको हो। यो वेबसाइट बिल्डर मात्र नभई एउटा पूर्ण डिजिटल प्रेजेन्स प्लेटफर्म हो, जसले हरेक नेपाली व्यवसायलाई ती टुल्सहरू दिन्छ जुन पहिले ठूला बजेट भएका कम्पनीहरूले मात्र प्रयोग गर्थे: एआई-सञ्चालित २४/७ ग्राहक असिस्टेन्ट, इमेल मार्केटिङ, लोकल पेमेन्ट इन्टिग्रेशन, प्रोफेसनल टेम्प्लेट र गुगल भिजिबिलिटी (Google Visibility)।
+HamroLink Digital यही अवस्था बदल्न बनाइएको हो। यो वेबसाइट बिल्डर मात्र नभई एउटा पूर्ण डिजिटल प्रेजेन्स प्लेटफर्म हो, जसले हरेक नेपाली व्यवसायलाई ती टुल्सहरू दिन्छ जुन पहिले ठूला बजेट भएका कम्पनीहरूले मात्र प्रयोग गर्थे: एआई-सञ्चालित २४/७ ग्राहक असिस्टेन्ट, इमेल मार्केटिङ, लोकल पेमेन्ट इन्टिग्रेशन, प्रोफेसनल टेम्प्लेट र गुगल भिजिबिलिटी (Google Visibility)।
 
 किनकि एआईको यो युगमा, प्रोफेसनल देखिनु अब कुनै विकल्प (Option) होइन, यो व्यवसाय बचाउने (Survival) आधार हो।`,
       },
@@ -1437,7 +1437,7 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
           {
             name: "सुमन बस्नेत",
             role: "संस्थापक र CEO",
-            bio: "सुमनले नेपाली व्यवसायहरू अनलाइनमा कम प्रोफेसनल देखिएको कारणले मात्र आफ्ना प्रतिस्पर्धीसँग ग्राहक गुमाइरहेको देखेर HamroLink को स्थापना गरेका हुन्। पाख्रिबास, धनकुटाका एक फुल-स्ट्याक इन्जिनियरका रूपमा, उनले हरेक नेपाली व्यवसायीलाई ती डिजिटल टुल्स उपलब्ध गराउन HamroLink बनाए, जुन पहिले ठूला कम्पनीले मात्र प्रयोग गर्न सक्थे—त्यो पनि उनीहरूले तिर्न सक्ने मूल्यमा।",
+            bio: "सुमनले नेपाली व्यवसायहरू अनलाइनमा कम प्रोफेसनल देखिएको कारणले मात्र आफ्ना प्रतिस्पर्धीसँग ग्राहक गुमाइरहेको देखेर HamroLink Digital को स्थापना गरेका हुन्। पाख्रिबास, धनकुटाका एक फुल-स्ट्याक इन्जिनियरका रूपमा, उनले हरेक नेपाली व्यवसायीलाई ती डिजिटल टुल्स उपलब्ध गराउन HamroLink Digital बनाए, जुन पहिले ठूला कम्पनीले मात्र प्रयोग गर्न सक्थे—त्यो पनि उनीहरूले तिर्न सक्ने मूल्यमा।",
           },
           {
             name: "लिला बस्नेत",
@@ -1511,7 +1511,7 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
     legacy: {
         badge: "पुस्तापुस्तासम्म चल्ने व्यवसायका लागि",
         heading: "तपाईंको वेबसाइट तपाईंको फेसबुक अकाउन्टभन्दा धेरै टिक्नुपर्छ।",
-        desc: "फेसबुक पेजहरू तपाईंले पोस्ट गर्न छोडेपछि हराउँछन्। अल्गोरिदम परिवर्तन हुन्छन्। अकाउन्ट ह्याक हुन सक्छन्। तपाईंको HamroLink साइट सधैँका लागि तपाईंको नियममा चल्छ।",
+        desc: "फेसबुक पेजहरू तपाईंले पोस्ट गर्न छोडेपछि हराउँछन्। अल्गोरिदम परिवर्तन हुन्छन्। अकाउन्ट ह्याक हुन सक्छन्। तपाईंको HamroLink Digital साइट सधैँका लागि तपाईंको नियममा चल्छ।",
       },
       seasonal: {
         dashain: "दसैँ नजिकिँदैछ। ग्राहकहरूले अनलाइन खोजिरहेका छन्। अहिल्यै तयार हुनुहोस्।",
@@ -1530,13 +1530,13 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
       },
       analogy: {
         heading: "तपाईंको 'पर्चा' अब डिजिटल भयो।",
-        desc: "कागजको पर्चा छापेर बाँडेको सम्झिनुहोस्? महँगो, सीमित र एकपटक मात्र काम लाग्ने। तपाईंको HamroLink साइट तपाईंको डिजिटल पर्चा हो—जसको पहुँच असीमित छ र यसले सधैँ काम गर्छ।",
+        desc: "कागजको पर्चा छापेर बाँडेको सम्झिनुहोस्? महँगो, सीमित र एकपटक मात्र काम लाग्ने। तपाईंको HamroLink Digital साइट तपाईंको डिजिटल पर्चा हो—जसको पहुँच असीमित छ र यसले सधैँ काम गर्छ।",
       },
       objections: {
         tooBusy: "मात्र १५ मिनेट लाग्छ। आज साँझ फेसबुक चलाउने समयभन्दा कम।",
-        notTechSavvy: "यदि तपाईं फेसबुक चलाउन सक्नुहुन्छ भने, HamroLink पनि चलाउन सक्नुहुन्छ। यो त्यति नै सजिलो छ।",
+        notTechSavvy: "यदि तपाईं फेसबुक चलाउन सक्नुहुन्छ भने, HamroLink Digital पनि चलाउन सक्नुहुन्छ। यो त्यति नै सजिलो छ।",
         expensive: "ग्राहक गुमाउनु महँगो कुरा हो। महिनाको रु ३९९ त एउटा ग्राहक गुमाउनुभन्दा निकै सस्तो छ।",
-        alreadyOnFacebook: "फेसबुक त भाडाको घर जस्तै हो। HamroLink तपाईंको आफ्नै डिजिटल घर हो।",
+        alreadyOnFacebook: "फेसबुक त भाडाको घर जस्तै हो। HamroLink Digital तपाईंको आफ्नै डिजिटल घर हो।",
         questions: {
           tooBusy: "म अहिले निकै व्यस्त छु।",
           notTechSavvy: "म प्रविधिमा खासै जान्ने छैन।",

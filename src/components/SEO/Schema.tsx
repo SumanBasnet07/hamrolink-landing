@@ -4,8 +4,8 @@ import React from 'react';
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "HamroLink",
-  "alternateName": "हाम्रोलिङ्क",
+  "name": "HamroLink Digital",
+  "alternateName": "हाम्रोलिङ्क डिजिटल",
   "url": "https://hamrolink.com",
   "logo": "https://hamrolink.com/logo.png",
   "description": "Nepal's first AI-powered business presence platform. Website builder with eSewa/Khalti payments, AI chatbot, and professional templates.",
@@ -34,7 +34,7 @@ export const organizationSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "HamroLink",
+  "name": "HamroLink Digital",
   "url": "https://hamrolink.com",
   "potentialAction": {
     "@type": "SearchAction",
@@ -49,11 +49,11 @@ export const websiteSchema = {
 export const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "HamroLink AI Business Platform",
+  "name": "HamroLink Digital AI Business Platform",
   "description": "AI-powered digital presence platform for Nepali businesses with eSewa/Khalti payments and 24/7 AI staff.",
   "brand": {
     "@type": "Brand",
-    "name": "HamroLink"
+    "name": "HamroLink Digital"
   },
   "offers": {
     "@type": "AggregateOffer",

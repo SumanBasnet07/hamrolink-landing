@@ -35,8 +35,8 @@ const content = {
       title: "How We Use Your Information",
       body: [
         "To provide, maintain, and improve our services — including hosting your website, processing payments, and sending you important account notifications.",
-        "To personalise your experience on HamroLink and to send you promotional communications (only with your consent, and you may opt out at any time).",
-        "To detect, investigate, and prevent fraudulent transactions and other illegal activities to protect the rights and property of HamroLink and our users.",
+        "To personalise your experience on HamroLink Digital and to send you promotional communications (only with your consent, and you may opt out at any time).",
+        "To detect, investigate, and prevent fraudulent transactions and other illegal activities to protect the rights and property of HamroLink Digital and our users.",
       ],
     },
     {
@@ -113,7 +113,7 @@ const content = {
       title: "हामी तपाईंको जानकारी कसरी प्रयोग गर्छौं",
       body: [
         "तपाईंको वेबसाइट होस्ट गर्ने, भुक्तानी प्रशोधन गर्ने र महत्त्वपूर्ण खाता सूचनाहरू पठाउनेसहित हाम्रो सेवाहरू प्रदान गर्न, कायम राख्न र सुधार गर्न।",
-        "HamroLink मा तपाईंको अनुभव व्यक्तिगत बनाउन र प्रचारात्मक संचार पठाउन (केवल तपाईंको सहमतिमा, र तपाईंले जुनसुकै बेला लग आउट गर्न सक्नुहुन्छ)।",
+        "HamroLink Digital मा तपाईंको अनुभव व्यक्तिगत बनाउन र प्रचारात्मक संचार पठाउन (केवल तपाईंको सहमतिमा, र तपाईंले जुनसुकै बेला लग आउट गर्न सक्नुहुन्छ)।",
         "धोखाधडी लेनदेन र अन्य गैरकानुनी गतिविधिहरू पत्ता लगाउन, अनुसन्धान गर्न र रोक्न।",
       ],
     },
@@ -196,8 +196,8 @@ export default function PrivacyPage({
       descNe="हामी तपाईंको व्यक्तिगत जानकारी र गोपनीयताको अधिकार सुरक्षित गर्न प्रतिबद्ध छौं।"
       updatedEn={`Last updated: ${UPDATED_EN}`}
       updatedNe={`अन्तिम अपडेट: ${UPDATED_NE}`}
-      backLabelEn="Back to HamroLink"
-      backLabelNe="HamroLink मा फर्कनुहोस्"
+      backLabelEn="Back to HamroLink Digital"
+      backLabelNe="HamroLink Digital मा फर्कनुहोस्"
       slug="privacy"
     >
       <div className="space-y-10">

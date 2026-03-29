@@ -775,8 +775,8 @@ function Navbar({ accent, lang, nav }: { accent: string; lang: string; nav: any 
     <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${sc ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-200" : "bg-transparent"}`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href={`/${lang}`} className={`font-black flex items-center text-xl tracking-tight transition-colors duration-500 ${sc ? "text-gray-900" : "text-white"}`}>
-          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Logo" />
-          Hamro<span style={{ color: accent }}>Link</span>
+          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Digital Logo" />
+          Hamro<span style={{ color: accent }}>Link</span> Digital
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {[
@@ -1655,7 +1655,7 @@ export default function LandingPage({ params }: { params: Promise<{ lang: string
             operatingSystem: "Web",
             applicationCategory: "BusinessApplication",
             offers: { "@type": "Offer", price: "0", priceCurrency: "NPR" },
-            publisher: { "@type": "Organization", name: "HamroLink", logo: { "@type": "ImageObject", url: "https://hamrolink.com/logo.png" } },
+            publisher: { "@type": "Organization", name: "HamroLink Digital", logo: { "@type": "ImageObject", url: "https://hamrolink.com/logo.png" } },
           }),
         }}
       />

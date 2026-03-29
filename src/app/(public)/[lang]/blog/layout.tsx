@@ -9,11 +9,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const metadataMap = {
     en: {
-      title: 'HamroLink Blog: Digital Growth Insights for Nepal',
+      title: 'HamroLink Digital Blog: Digital Growth Insights for Nepal',
       description: 'Expert advice on building your digital presence in Nepal. AI trends, e-commerce tips, and local business growth stories.',
     },
     ne: {
-      title: 'हाम्रोलिंक ब्लग: नेपालको लागि डिजिटल वृद्धि अन्तर्दृष्टि',
+      title: 'हाम्रोलिङ्क डिजिटल ब्लग: नेपालको लागि डिजिटल वृद्धि अन्तर्दृष्टि',
       description: 'नेपालमा आफ्नो डिजिटल उपस्थितिको लागि विशेषज्ञ सल्लाह। AI ट्रेन्डहरू, ई-कमर्स सुझावहरू, र स्थानीय व्यवसाय वृद्धिका कथाहरू।',
     }
   };

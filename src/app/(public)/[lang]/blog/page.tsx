@@ -20,8 +20,8 @@ export async function generateMetadata(
   const ne = lang === "ne";
   return {
     title: ne
-      ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink"
-      : "Digital Guides for Nepali Businesses | HamroLink",
+      ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink Digital"
+      : "Digital Guides for Nepali Businesses | HamroLink Digital",
     description: ne
       ? "नेपाली व्यवसाय र विद्यालयहरूका लागि वेबसाइट, डिजिटल उपस्थिति र अनलाइन वृद्धिबारे व्यावहारिक गाइडहरू।"
       : "Practical guides on websites, digital presence, and online growth for Nepali businesses and schools.",
@@ -35,13 +35,13 @@ export async function generateMetadata(
     },
     openGraph: {
       title: ne
-        ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink"
-        : "Digital Guides for Nepali Businesses | HamroLink",
+        ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink Digital"
+        : "Digital Guides for Nepali Businesses | HamroLink Digital",
       description: ne
         ? "नेपाली व्यवसाय र विद्यालयहरूका लागि वेबसाइट, डिजिटल उपस्थिति र अनलाइन वृद्धिबारे व्यावहारिक गाइडहरू।"
         : "Practical guides on websites, digital presence, and online growth for Nepali businesses and schools.",
       url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog`,
-      siteName: "HamroLink",
+      siteName: "HamroLink Digital",
       images: [
         {
           url: "https://hamrolink.com/og-image.png",
@@ -58,8 +58,8 @@ export async function generateMetadata(
     twitter: {
       card: "summary_large_image",
       title: ne
-        ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink"
-        : "Digital Guides for Nepali Businesses | HamroLink",
+        ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink Digital"
+        : "Digital Guides for Nepali Businesses | HamroLink Digital",
       description: ne
         ? "नेपाली व्यवसाय र विद्यालयहरूका लागि वेबसाइट, डिजिटल उपस्थिति र अनलाइन वृद्धिबारे व्यावहारिक गाइडहरू।"
         : "Practical guides on websites, digital presence, and online growth for Nepali businesses and schools.",
@@ -165,7 +165,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
         <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href={`/${lang}`} className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium">
-              <span className="font-black text-white">HamroLink</span>
+              <span className="font-black text-white">HamroLink Digital</span>
               <ChevronRight className="w-3.5 h-3.5"/>
             </Link>
             <span className="text-white text-sm font-black tracking-tight">
@@ -203,7 +203,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
           <div className="flex items-center gap-3 mb-5">
             <div className="w-8 h-px bg-indigo-400"/>
             <span className="text-indigo-400 text-xs font-black uppercase tracking-[0.2em]">
-              {ne ? "HamroLink ब्लग" : "HamroLink Blog"}
+              {ne ? "HamroLink Digital ब्लग" : "HamroLink Digital Blog"}
             </span>
           </div>
           {/* Title */}
@@ -382,7 +382,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
 
                     {/* Footer CTA */}
                     <div className="flex items-center justify-between pt-4 border-t border-white/6">
-                      <span className="text-white/30 text-xs">{ne ? "HamroLink" : "HamroLink"}</span>
+                      <span className="text-white/30 text-xs">{ne ? "HamroLink Digital" : "HamroLink Digital"}</span>
                       <div className="flex items-center gap-1.5 text-xs font-black transition-all group-hover:gap-2.5"
                         style={{color: post.accent}}>
                         {ne ? "पढ्नुहोस्" : "Read"}
@@ -453,8 +453,8 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
             </h2>
             <p className="text-white/40 text-base max-w-md mx-auto mb-8">
               {ne
-                ? "HamroLink को प्रारम्भिक पहुँचमा सामेल हुनुहोस् — निःशुल्क ३ महिने Pro परीक्षण र प्राथमिकता अनबोर्डिङसहित।"
-                : "Join HamroLink early access and get a free 3-month Pro trial, priority onboarding, and a locked-in launch price."}
+                ? "HamroLink Digital को प्रारम्भिक पहुँचमा सामेल हुनुहोस् — निःशुल्क ३ महिने Pro परीक्षण र प्राथमिकता अनबोर्डिङसहित।"
+                : "Join HamroLink Digital early access and get a free 3-month Pro trial, priority onboarding, and a locked-in launch price."}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link href={`/${lang}/waitlist`}
@@ -523,7 +523,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
       {/* ── Footer ──────────────────────────────────────────────────────────── */}
       <div className="border-t border-white/6 py-8">
         <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-          <span className="text-white/25">© {new Date().getFullYear()} HamroLink · Built in Nepal 🇳🇵</span>
+          <span className="text-white/25">© {new Date().getFullYear()} HamroLink Digital · Built in Nepal 🇳🇵</span>
           <div className="flex gap-6">
             {([
               [ne ? "गृहपृष्ठ"   : "Home",    `/${lang}`],
