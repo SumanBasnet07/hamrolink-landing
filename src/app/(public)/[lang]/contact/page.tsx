@@ -110,7 +110,7 @@ export default function ContactPage({ params }: { params: any }) {
                     </div>
                     <div>
                       <h3 className="text-xl font-black text-gray-900">
-                        {cp.businessInfo.name}
+                        Hamrolink Digital
                       </h3>
                       <p className="text-sm text-gray-400">
                         {(cp.businessInfo as any).registeredLabel}

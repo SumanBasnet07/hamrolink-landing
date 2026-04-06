@@ -24,7 +24,7 @@ const SchemaOverrideSchema = new mongoose.Schema({
   datePublished:  { type: String, default: "" },
   keywords_en:    { type: String, default: "" },
   keywords_ne:    { type: String, default: "" },
-  authorName:     { type: String, default: "HamroLink Digital" },
+  authorName:     { type: String, default: "HamroLink" },
 }, { _id: false });
 
 // ─── Main schema ──────────────────────────────────────────────────────────────

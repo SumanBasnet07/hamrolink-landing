@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getDictionary } from '@/lib/dictionaries';
 
 type Props = {
   params: Promise<{ lang: 'en' | 'ne' }>;
@@ -6,26 +7,15 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  
-  const metadataMap = {
-    en: {
-      title: 'हाम्रोलिङ्क डिजिटल | HamroLink Digital',
-      description: 'Contact HamroLink Digital for support, questions, or partnerships. Located in Dhankuta, Nepal. Phone: +977-9816326639, Email: support@hamrolink.com',
-    },
-    ne: {
-      title: 'हाम्रोलिङ्क डिजिटल | HamroLink Digital',
-      description: 'हाम्रोलिङ्क डिजिटल टोलीसँग सम्पर्क गर्नुहोस्। सहयोग, प्रश्न वा साझेदारीका लागि। धनकुटा, नेपाल। फोन: +९७७-९७१३१०१९५७, इमेल: support@hamrolink.com',
-    }
-  };
-
-  const m = metadataMap[lang] || metadataMap.en;
+  const d = getDictionary(lang);
+  const cp = d.contactPage;
 
   return {
-    title: m.title,
-    description: m.description,
+    title: cp.title,
+    description: cp.description,
     openGraph: {
-      title: m.title,
-      description: m.description,
+      title: cp.title,
+      description: cp.description,
       url: `https://hamrolink.com/${lang}/contact`,
     },
     alternates: {

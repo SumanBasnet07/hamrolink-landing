@@ -35,7 +35,7 @@ const mukta = Mukta({
 // ─── Statics ──────────────────────────────────────────────────────────────────
 export const dynamic = "force-static";
 const SITE_URL  = "https://hamrolink.com";
-const SITE_NAME = "HamroLink Digital";
+const SITE_NAME = "HamroLink";
 const SUPPORTED = ["en", "ne"] as const;
 type  Lang      = (typeof SUPPORTED)[number];
 
@@ -43,10 +43,10 @@ type  Lang      = (typeof SUPPORTED)[number];
 const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = {
   en: {
     title:    `${SITE_NAME} — Nepal's First AI-Powered Business Presence Platform`,
-    desc:     "Move beyond Facebook. Hire a 24/7 AI staff for your business. Build your professional presence in minutes with HamroLink Digital's AI-powered platform & local SEO.",
+    desc:     "Move beyond Facebook. Hire a 24/7 AI staff for your business. Build your professional presence in minutes with HamroLink's AI-powered platform & local SEO.",
     keywords: [
       "AI website builder Nepal","AI chatbot for business Nepal","create website Nepal",
-      "Nepali website builder","hamrolink digital","HamroLink Digital",
+      "Nepali website builder","hamrolink","HamroLink",
       "24/7 AI staff Nepal","ecommerce Nepal","eSewa website",
       "Khalti payment website","small business website Nepal",
       "consultancy website Nepal","automated customer support Nepal",
@@ -55,10 +55,10 @@ const META: Record<Lang, { title: string; desc: string; keywords: string[] }> = 
   },
   ne: {
     title:    `${SITE_NAME} — नेपालको पहिलो AI-Powered व्यवसायिक डिजिटल प्लेटफर्म`,
-    desc:     "फेसबुक मात्र पर्याप्त छैन। आफ्नो व्यवसायका लागि २४/७ AI कर्मचारी राख्नुहोस्। मिनेटमै प्रोफेसनल वेबसाइट बनाउनुहोस्—HamroLink Digital च्याटबोट र ई-सेवा सुविधाहरू सहित।",
+    desc:     "फेसबुक मात्र पर्याप्त छैन। आफ्नो व्यवसायका लागि २४/७ AI कर्मचारी राख्नुहोस्। मिनेटमै प्रोफेसनल वेबसाइट बनाउनुहोस्—HamroLink च्याटबोट र ई-सेवा सुविधाहरू सहित।",
     keywords: [
       "AI वेबसाइट बिल्डर नेपाल","AI च्याटबोट व्यवसाय","वेबसाइट बनाउने",
-      "हाम्रोलिङ्क डिजिटल","HamroLink Digital","नेपाली वेबसाइट बिल्डर",
+      "हाम्रोलिङ्क","HamroLink","नेपाली वेबसाइट बिल्डर",
       "डिजिटल व्यवसाय नेपाल","ई-कमर्स नेपाल","eSewa वेबसाइट",
       "Khalti भुक्तानी","साना व्यवसाय वेबसाइट","परामर्श वेबसाइट",
       "स्वचालित ग्राहक सेवा","डिजिटल मार्केटिङ नेपाल",

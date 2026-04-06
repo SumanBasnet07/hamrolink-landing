@@ -423,7 +423,7 @@ function PhotographyMockup() {
     <div className="w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden relative">
       <Image 
         src="/images/mockups/photography.png" 
-        alt="Professional Photography Portfolio" 
+        alt="HamroLink Photography Site Template" 
         className="w-full h-full object-cover"
         fill
         unoptimized
@@ -446,7 +446,7 @@ function ShopMockup() {
     <div className="w-full h-full bg-white flex items-center justify-center overflow-hidden relative">
       <Image 
         src="/images/mockups/shop.png" 
-        alt="Modern Nepali Shop Mockup" 
+        alt="HamroLink Ecommerce Shop Interface" 
         className="w-full h-full object-cover"
         fill
         unoptimized
@@ -460,7 +460,7 @@ function SchoolMockup() {
     <div className="w-full h-full bg-emerald-50 flex items-center justify-center overflow-hidden relative">
       <Image 
         src="/images/mockups/school.png" 
-        alt="Elite School Website Mockup" 
+        alt="HamroLink Educational Institution Platform" 
         className="w-full h-full object-cover"
         fill
         unoptimized
@@ -617,7 +617,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
               <div className="flex-1 p-4 overflow-hidden bg-slate-900/50 relative">
                 <Image 
                   src="/images/mockups/ai-chat.png" 
-                  alt="Real AI Chat Mockup" 
+                  alt="HamroLink AI Chat Assistant Interface" 
                   className="w-full h-full object-cover rounded-3xl shadow- inner border border-white/5"
                   fill
                   unoptimized
@@ -647,8 +647,8 @@ function FeaturesTeaser({ d, lang }: { d: any; lang: string }) {
   return (
     <section className="py-24 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">Built for growth.</h2>
-        <p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">{f.subtext}</p>
+        <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">{d.features.teaser.heading}</h2>
+        <p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">{d.features.teaser.subtext}</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
            {f.items.slice(0, 4).map((item: any) => (
              <div key={item.title} className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
@@ -658,7 +658,7 @@ function FeaturesTeaser({ d, lang }: { d: any; lang: string }) {
            ))}
         </div>
         <Link href={`/${lang}/features`} className="inline-flex items-center gap-2 text-indigo-600 font-black hover:gap-4 transition-all">
-           See all 12 platform features <ArrowRight className="w-4 h-4" />
+           {d.features.teaser.allFeatures} <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
     </section>
@@ -791,8 +791,8 @@ function PricingTeaser({ d, lang }: { d: any; lang: string }) {
     <section className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Pricing that scales with you</h2>
-          <p className="text-gray-600 text-xl font-medium">From individual creators to large institutions.</p>
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">{d.pricing.teaser.heading}</h2>
+          <p className="text-gray-600 text-xl font-medium">{d.pricing.teaser.subheading}</p>
         </div>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div className="bg-white p-10 rounded-[3rem] border border-gray-100 shadow-xl group hover:border-indigo-100 transition-all">
@@ -800,7 +800,7 @@ function PricingTeaser({ d, lang }: { d: any; lang: string }) {
             <p className="text-gray-500 mb-6">Perfect for testing the platform.</p>
             <div className="text-4xl font-black mb-8 text-gray-900">Rs 0</div>
             <Link href={`/${lang}/pricing`} className="block w-full py-4 bg-gray-900 text-white text-center rounded-2xl font-black hover:bg-indigo-600 transition-all">
-               View Details
+               {d.pricing.teaser.viewDetails}
             </Link>
           </div>
           <div className="bg-white p-10 rounded-[3rem] border-2 border-amber-200 shadow-2xl relative overflow-hidden group">
@@ -809,12 +809,12 @@ function PricingTeaser({ d, lang }: { d: any; lang: string }) {
             <p className="text-gray-500 mb-6">Best for small businesses.</p>
             <div className="text-4xl font-black mb-8 text-amber-600">Rs 199<span className="text-sm text-gray-400">/mo</span></div>
             <Link href={`/${lang}/pricing`} className="block w-full py-4 bg-amber-500 text-white text-center rounded-2xl font-black hover:bg-amber-600 transition-all shadow-xl shadow-amber-200">
-               Learn More
+               {d.pricing.teaser.learnMore}
             </Link>
           </div>
         </div>
         <div className="text-center mt-12">
-          <Link href={`/${lang}/pricing`} className="text-indigo-600 font-bold hover:underline">Compare all 5 plans →</Link>
+          <Link href={`/${lang}/pricing`} className="text-indigo-600 font-bold hover:underline">{d.pricing.teaser.compareAll} →</Link>
         </div>
       </div>
     </section>
@@ -831,7 +831,7 @@ function ObjectionSection({ d }: { d: any }) {
     <section className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-3xl font-black text-center mb-16 text-gray-900">
-          Still thinking? <span className="text-red-500">Wait.</span>
+          {d.waitlist.decisionHelper?.heading || "Still thinking?"}
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {keys.map((key, i) => {
@@ -874,11 +874,11 @@ function EmailMarketingStrip({ d }: { d: any }) {
   return (
     <section className="py-24 bg-slate-950 overflow-hidden text-center">
        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Stop begging for reach.</h2>
-          <p className="text-white/70 text-xl leading-relaxed mb-12">Own your audience. 100% reach. 0% algorithms. Build your email list automatically with HamroLink.</p>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{d.emailMarketing.heading}</h2>
+          <p className="text-white/70 text-xl leading-relaxed mb-12">{d.emailMarketing.subtext}</p>
           <div className="w-full h-px bg-white/10 mb-12" />
           <div className="flex items-center justify-center gap-2 text-indigo-400 font-bold">
-             <Mail className="w-5 h-5" /> Incoming Feature: Hamro Reach
+             <Mail className="w-5 h-5" /> {d.emailMarketing.incoming}
           </div>
        </div>
     </section>
@@ -1026,7 +1026,7 @@ export default function LandingPage({ params }: { params: any }) {
                              <div key={i} className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-600 font-bold text-xs ring-2 ring-indigo-50 ring-offset-2 overflow-hidden shadow-md relative">
                                 <Image 
                                    src={`/avatars/${i}.jpg`} 
-                                   alt="User" 
+                                   alt="HamroLink User Avatar" 
                                    width={40} 
                                    height={40} 
                                    className="object-cover absolute inset-0" 

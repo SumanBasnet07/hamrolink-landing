@@ -7,26 +7,15 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  
-  const metadataMap = {
-    en: {
-      title: 'हाम्रोलिङ्क डिजिटल | HamroLink Digital',
-      description: 'Find out more about HamroLink Digital, Nepal\'s first AI-powered business platform. Established in Dhankuta. Mission: Making every Nepali business digital.',
-    },
-    ne: {
-      title: 'हाम्रोलिङ्क डिजिटल | HamroLink Digital',
-      description: 'हाम्रोलिङ्क डिजिटलको जानकारी। धनकुटाबाट सुरु भएको नेपालको पहिलो AI-Powered डिजिटल प्लेटफर्म। हाम्रो उद्देश्य: प्रत्येक नेपाली व्यवसायलाई डिजिटल बनाउने।',
-    }
-  };
-
-  const m = metadataMap[lang] || metadataMap.en;
+  const d = getDictionary(lang);
+  const ap = d.aboutPage;
 
   return {
-    title: m.title,
-    description: m.description,
+    title: ap.title,
+    description: ap.description,
     openGraph: {
-      title: m.title,
-      description: m.description,
+      title: ap.title,
+      description: ap.description,
       url: `https://hamrolink.com/${lang}/about`,
     },
     alternates: {
