@@ -1,8 +1,16 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import { Sparkles, ExternalLink } from "lucide-react";
+import { 
+  Sparkles, 
+  ExternalLink, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  ShieldCheck, 
+  Building2, 
+  Fingerprint,
+  User
+} from "lucide-react";
 
 interface FooterProps {
   lang: string;
@@ -13,114 +21,180 @@ interface FooterProps {
 
 export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
   return (
-    <footer className="bg-slate-950 pt-16 pb-8 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
-          <div className="col-span-2">
-            <div className="mb-6">
+    <footer className="bg-[#020617] pt-24 pb-12 border-t border-white/5 relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-24 bg-blue-500/5 blur-[80px] -translate-y-1/2" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+          <div className="md:col-span-4">
+            <Link href={`/${lang}`} className="inline-block mb-8 transition-opacity hover:opacity-90">
               <img
-                src="/logo.png"
+                src="/og-image.png"
                 alt="HamroLink"
-                className="h-12 w-auto transition-all"
+                className="h-12 w-auto"
               />
-              <span className="text-white font-black text-xl">HamroLink Digital</span>
-            </div>
-            <p className="text-base text-white/70 max-w-xs leading-relaxed mb-6 font-medium">
+            </Link>
+            <p className="text-lg text-slate-400 max-w-xs leading-relaxed mb-8 font-medium">
               {PRE_LAUNCH
                 ? d.footer.tagline
                 : ((d.footer as any).taglinePostLaunch ?? d.footer.tagline)}
             </p>
             <Link
               href={ctaHref("/signup")}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-black rounded-xl transition-all hover:scale-105 shadow-lg shadow-blue-500/20"
+              className="inline-flex items-center gap-2.5 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-black rounded-2xl transition-all hover:scale-105 shadow-xl shadow-blue-500/20 group"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               {PRE_LAUNCH
                 ? d.footer.cta
                 : ((d.footer as any).ctaPostLaunch ?? d.footer.cta)}
             </Link>
           </div>
-          {Object.entries(d.footer.sections).map(([title, links]: any) => (
-            <div key={title}>
-              <p className="text-sm font-black text-white/90 uppercase tracking-widest mb-6">
-                {title}
-              </p>
-              <ul className="space-y-4">
-                {links.map(([label, href]: string[]) => {
-                  const isExternal = href.startsWith("http");
-                  return (
-                    <li key={label}>
-                      {isExternal ? (
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-base text-white/60 hover:text-white transition-colors font-medium"
-                        >
-                          {label}
-                        </a>
-                      ) : (
-                        <Link
-                          href={
-                            href.startsWith("/") ? `/${lang}${href}` : href
-                          }
-                          className="text-base text-white/60 hover:text-white transition-colors font-medium"
-                        >
-                          {label}
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ))}
+
+          <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-10">
+            {Object.entries(d.footer.sections).map(([title, links]: any) => (
+              <div key={title}>
+                <p className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-8">
+                  {title}
+                </p>
+                <ul className="space-y-5">
+                  {links.map(([label, href]: string[]) => {
+                    const isExternal = href.startsWith("http");
+                    return (
+                      <li key={label}>
+                        {isExternal ? (
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-base text-slate-400 hover:text-white transition-colors font-semibold"
+                          >
+                            {label}
+                          </a>
+                        ) : (
+                          <Link
+                            href={href.startsWith("/") ? `/${lang}${href}` : href}
+                            className="text-base text-slate-400 hover:text-white transition-colors font-semibold"
+                          >
+                            {label}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Business Details Section */}
-        <div className="border-t border-white/10 py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="space-y-3">
-            <h4 className="text-white font-black text-xl">{d.footer.businessName}</h4>
-            <p className="text-lg text-white/95 font-medium">{d.footer.address}</p>
-            <div className="text-base text-white/80 font-bold uppercase tracking-wide">
-              {d.footer.proprietorLabel}: {d.footer.proprietorValue} | {d.footer.founderLabel}: {d.footer.founderValue}
-            </div>
-            <div className="text-sm text-white/60 font-black uppercase tracking-widest bg-white/5 py-1.5 px-3 rounded inline-block">
-              {d.footer.regIdLabel}: {d.footer.regIdValue}  | {d.footer.panLabel}: {d.footer.panValue}
-            </div>
-            {d.footer.authorityLabel && (
-              <div className="text-xs text-white/40 font-bold uppercase tracking-tight">
-                {d.footer.authorityLabel}: {d.footer.authorityValue}
+        {/* Structured Business Details */}
+        <div className="pt-16 border-t border-white/5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            <div className="lg:col-span-2 space-y-8">
+              <div>
+                <h4 className="text-xl font-black text-white mb-2 leading-tight tracking-tight">
+                  {d.footer.businessName}
+                </h4>
+                <div className="flex items-center gap-2 text-slate-400 font-medium hover:text-slate-200 transition-colors cursor-default">
+                  <MapPin className="w-4 h-4 text-blue-500" />
+                  <span>{d.footer.address}</span>
+                </div>
               </div>
-            )}
-          </div>
-          <div className="flex flex-col md:items-end justify-center space-y-4">
-            <p className="text-sm text-white/40 font-bold">
-              © {new Date().getFullYear()} HamroLink Digital. {d.footer.copyright}
-            </p>
-            <div className="flex flex-wrap items-center gap-6">
-              <a
-                href={ctaHref("/signup")}
-                className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors font-black"
-              >
-                <ExternalLink className="w-4 h-4" />
-                {PRE_LAUNCH
-                  ? d.footer.cta
-                  : (d.footer.ctaPostLaunch ?? (lang === "ne" ? "सुरु गर्नुहोस्" : "Get Started"))}
-              </a>
-              <a
-                href="mailto:support@hamrolink.com"
-                className="text-sm text-white/50 hover:text-white transition-colors font-bold"
-              >
-                support@hamrolink.com
-              </a>
-              <span className="hidden md:inline text-white/10 text-xl font-thin">|</span>
-              <a
-                href="tel:+9779816326639"
-                className="text-sm text-white/50 hover:text-white transition-colors font-bold"
-              >
-                +977-9816326639
-              </a>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-4 hover:bg-white/[0.07] transition-colors group">
+                  <div className="flex items-center gap-3 text-slate-200 font-bold tracking-tight">
+                    <ShieldCheck className="w-5 h-5 text-green-500" />
+                    <span>Legal Identifiers</span>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center text-slate-400 pb-2 border-b border-white/5">
+                      <span className="font-medium">{d.footer.regIdLabel}</span>
+                      <span className="font-black text-white">{d.footer.regIdValue}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-slate-400 pt-1">
+                      <span className="font-medium">{d.footer.panLabel}</span>
+                      <span className="font-black text-white">{d.footer.panValue}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/5 space-y-4 hover:bg-white/[0.07] transition-colors group">
+                  <div className="flex items-center gap-3 text-slate-200 font-bold tracking-tight">
+                    <Building2 className="w-5 h-5 text-blue-500" />
+                    <span>E-Commerce Compliance</span>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">
+                        {d.footer.authorityLabel}
+                      </span>
+                      <span className="font-black text-white leading-tight">
+                        {d.footer.authorityValue}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-8 text-sm">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
+                    <User className="w-4 h-4 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-0.5">{d.footer.proprietorLabel}</p>
+                    <p className="font-bold text-slate-200">{d.footer.proprietorValue}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
+                    <Fingerprint className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-0.5">{d.footer.founderLabel}</p>
+                    <p className="font-bold text-slate-200">{d.footer.founderValue}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-8 lg:text-right flex flex-col lg:items-end">
+              <div className="space-y-4 w-full">
+                <a
+                  href="mailto:support@hamrolink.com"
+                  className="flex items-center justify-start lg:justify-end gap-3 text-slate-400 hover:text-white transition-colors group"
+                >
+                  <span className="font-bold text-lg">support@hamrolink.com</span>
+                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                    <Mail className="w-5 h-5 text-slate-200" />
+                  </div>
+                </a>
+                <a
+                  href="tel:+9779816326639"
+                  className="flex items-center justify-start lg:justify-end gap-3 text-slate-400 hover:text-white transition-colors group"
+                >
+                  <span className="font-bold text-lg">+977-9816326639</span>
+                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                    <Phone className="w-5 h-5 text-slate-200" />
+                  </div>
+                </a>
+              </div>
+              
+              <div className="pt-8 border-t border-white/5 w-full">
+                <p className="text-sm text-slate-500 font-medium">
+                  © {new Date().getFullYear()} HamroLink Digital. {d.footer.copyright}
+                </p>
+                <Link
+                  href={ctaHref("/signup")}
+                  className="inline-flex items-center gap-2 mt-4 text-xs font-black text-blue-500 hover:text-blue-400 uppercase tracking-[0.2em] transition-colors"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Empowering Nepal's Digital Future
+                </Link>
+              </div>
             </div>
           </div>
         </div>

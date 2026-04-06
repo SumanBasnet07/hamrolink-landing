@@ -25,148 +25,11 @@ import {
 import { getDictionary } from "@/lib/dictionaries";
 import { sendContactEmailSES } from "@/app/actions";
 import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/landing/Navbar";
 
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
 const PRE_LAUNCH = true;
 
-// ─── LangSwitcher ─────────────────────────────────────────────────────────────
-function LangSwitcher({
-  lang,
-  accent,
-  scrolled = false,
-}: {
-  lang: string;
-  accent: string;
-  scrolled?: boolean;
-}) {
-  const pathname = usePathname();
-  const segments = pathname.split("/");
-  const rest = segments.slice(2).join("/");
-
-  return (
-    <div className={`flex items-center gap-1 rounded-lg p-1 ${scrolled ? "bg-gray-100" : "bg-white/10"}`}>
-      {(["en", "ne"] as const).map((l) => (
-        <Link
-          key={l}
-          href={`/${l}${rest ? `/${rest}` : ""}`}
-          className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
-            lang === l
-              ? scrolled ? "bg-white shadow text-gray-900" : "bg-white text-gray-900"
-              : scrolled
-                ? "text-gray-400 hover:text-gray-700"
-                : "text-white/60 hover:text-white"
-          }`}
-          style={lang === l && !scrolled ? { background: accent, color: "white" } : {}}
-        >
-          {l === "en" ? "EN" : "नेपाली"}
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-function Navbar({
-  accent,
-  lang,
-  nav,
-}: {
-  accent: string;
-  lang: string;
-  nav: any;
-}) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <nav
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100`}
-    >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link
-          href={`/${lang}`}
-          className={`font-black flex items-center text-xl tracking-tight text-gray-900`}
-        >
-          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Digital Logo" />
-          Hamro<span style={{ color: accent }}>Link</span> Digital
-        </Link>
-        <div className="hidden md:flex items-center gap-6">
-          {[
-            [`/${lang}#ai-staff`, nav.templates],
-            [`/${lang}#features`, nav.features],
-            [`/${lang}/pricing`, nav.pricing],
-            [`/${lang}#stories`, nav.docs],
-            [`/${lang}/contact`, nav.contact],
-          ].map(([href, label]) => (
-            <Link
-              key={label}
-              href={href}
-              className={`text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors`}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-        <div className="hidden md:flex items-center gap-3">
-          <LangSwitcher lang={lang} accent={accent} scrolled={true} />
-          <a
-            href={`/${lang}#waitlist`}
-            className="flex items-center gap-1.5 px-4 py-2 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 shadow-lg"
-            style={{ background: accent }}
-          >
-            <Sparkles className="w-3.5 h-3.5" />{" "}
-            {PRE_LAUNCH ? nav.cta : (nav.ctaPostLaunch ?? nav.cta)}
-          </a>
-        </div>
-        <button
-          onClick={() => setOpen((p) => !p)}
-          className={`md:hidden p-2 text-gray-700`}
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-      </div>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-2 shadow-xl"
-          >
-            <div className="pb-2">
-              <LangSwitcher lang={lang} accent={accent} scrolled={true} />
-            </div>
-            {[
-              [`/${lang}#ai-staff`, nav.templates],
-              [`/${lang}#features`, nav.features],
-              [`/${lang}/pricing`, nav.pricing],
-              [`/${lang}#stories`, nav.docs],
-              [`/${lang}/contact`, nav.contact],
-            ].map(([href, label]) => (
-              <Link
-                key={label}
-                href={href}
-                onClick={() => setOpen(false)}
-                className="block py-2 text-sm font-medium text-gray-700"
-              >
-                {label}
-              </Link>
-            ))}
-            <div className="pt-2 border-t border-gray-100">
-              <Link
-                href={`/${lang}#waitlist`}
-                className="block py-2.5 text-center text-white rounded-xl text-sm font-bold"
-                style={{ background: accent }}
-                onClick={() => setOpen(false)}
-              >
-                {nav.cta}
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
-}
 
 export default function ContactPage({ params }: { params: any }) {
   const { lang } = React.use(params) as any;
@@ -202,7 +65,7 @@ export default function ContactPage({ params }: { params: any }) {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <Navbar lang={lang} accent={accent} nav={d.nav} />
+      <Navbar lang={lang} accent={accent} nav={d.nav} forceScrolled={true} />
 
       <main className="flex-1 pt-32 pb-24 relative overflow-hidden">
         {/* Background Mesh */}
@@ -493,25 +356,33 @@ export default function ContactPage({ params }: { params: any }) {
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                           {(cp as any).grievance.labelOfficer}
                         </p>
-                        <p className="font-bold text-gray-900">{(cp as any).grievance.officer}</p>
+                        <p className="font-bold text-gray-900">
+                          {(cp as any).grievance.officer}
+                        </p>
                       </div>
                       <div className="space-y-1.5">
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                           {(cp as any).grievance.labelDesignation}
                         </p>
-                        <p className="font-medium text-gray-600">{(cp as any).grievance.designation}</p>
+                        <p className="font-medium text-gray-600">
+                          {(cp as any).grievance.designation}
+                        </p>
                       </div>
                       <div className="space-y-1.5">
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                           {(cp as any).grievance.labelPhone}
                         </p>
-                        <p className="font-bold text-indigo-600">{(cp as any).grievance.phone}</p>
+                        <p className="font-bold text-indigo-600">
+                          {(cp as any).grievance.phone}
+                        </p>
                       </div>
                       <div className="space-y-1.5">
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                           {(cp as any).grievance.labelEmail}
                         </p>
-                        <p className="font-medium text-gray-600">{(cp as any).grievance.email}</p>
+                        <p className="font-medium text-gray-600">
+                          {(cp as any).grievance.email}
+                        </p>
                       </div>
                     </div>
                   </div>

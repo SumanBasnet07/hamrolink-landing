@@ -71,6 +71,19 @@ function Navbar({
   nav: any;
 }) {
   const [open, setOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const navLinks = [
+    { href: `/${lang}#ai-staff`, label: nav.templates },
+    { href: `/${lang}#features`, label: nav.features },
+    { href: `/${lang}/pricing`, label: nav.pricing },
+    { href: `/${lang}#stories`, label: nav.docs },
+  ];
+
+  const companyLinks = [
+    { href: `/${lang}/about`, label: nav.about },
+    { href: `/${lang}/contact`, label: nav.contact },
+  ];
 
   return (
     <nav
@@ -79,27 +92,64 @@ function Navbar({
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href={`/${lang}`}
-          className={`font-black flex items-center text-xl tracking-tight text-gray-900`}
+          className={`flex items-center transition-opacity hover:opacity-90`}
         >
-          <img src="/logo.png" className="w-8 h-8 mr-2" alt="HamroLink Digital Logo" />
-          Hamro<span style={{ color: accent }}>Link</span> Digital
+          <img
+            src="/og-image.png"
+            className="h-10 md:h-12 w-auto"
+            alt="HamroLink"
+          />
         </Link>
         <div className="hidden md:flex items-center gap-6">
-          {[
-            [`/${lang}#ai-staff`, nav.templates],
-            [`/${lang}#features`, nav.features],
-            [`/${lang}/pricing`, nav.pricing],
-            [`/${lang}#stories`, nav.docs],
-            [`/${lang}/contact`, nav.contact],
-          ].map(([href, label]) => (
+          {navLinks.map(({ href, label }) => (
             <Link
               key={label}
               href={href}
-              className={`text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors`}
+              className={`text-sm font-bold text-gray-600 hover:text-gray-900 transition-colors`}
             >
               {label}
             </Link>
           ))}
+
+          {/* Company Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setDropdownOpen(true)}
+            onMouseLeave={() => setDropdownOpen(false)}
+          >
+            <button
+              className={`text-sm font-bold flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors`}
+            >
+              {nav.company}
+              <motion.span
+                animate={{ rotate: dropdownOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                ▼
+              </motion.span>
+            </button>
+
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute left-0 mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-2"
+                >
+                  {companyLinks.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="block px-5 py-3 text-sm font-bold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
         <div className="hidden md:flex items-center gap-3">
           <LangSwitcher lang={lang} accent={accent} scrolled={true} />
@@ -130,23 +180,32 @@ function Navbar({
             <div className="pb-2">
               <LangSwitcher lang={lang} accent={accent} scrolled={true} />
             </div>
-            {[
-              [`/${lang}#ai-staff`, nav.templates],
-              [`/${lang}#features`, nav.features],
-              [`/${lang}/pricing`, nav.pricing],
-              [`/${lang}#stories`, nav.docs],
-              [`/${lang}/contact`, nav.contact],
-            ].map(([href, label]) => (
+            {navLinks.map(({ href, label }) => (
               <Link
                 key={label}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="block py-2 text-sm font-medium text-gray-700"
+                className="block py-2 text-base font-bold text-gray-700 hover:text-indigo-600"
               >
                 {label}
               </Link>
             ))}
-            <div className="pt-2 border-t border-gray-100">
+            <div className="pt-2 border-t border-gray-100 space-y-1">
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1 py-1">
+                {nav.company}
+              </p>
+              {companyLinks.map(({ href, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-base font-bold text-gray-700 hover:text-indigo-600"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+            <div className="pt-4 border-t border-gray-100">
               <Link
                 href={`/${lang}#waitlist`}
                 className="block py-2.5 text-center text-white rounded-xl text-sm font-bold"
@@ -305,8 +364,8 @@ export default function AboutPage({ params }: { params: any }) {
               </h2>
               <div className="flex items-center gap-4 text-indigo-100/80">
                 <div className="w-12 h-px bg-indigo-400" />
-                <p className="text-xl font-bold italic opacity-90">
-                  {(ap as any).legalProprietorLabel}: {d.footer.proprietorValue}
+                <p className="text-xl font-medium italic opacity-80">
+                  Driven by passion · Built for Nepal
                 </p>
               </div>
             </div>
@@ -341,17 +400,39 @@ export default function AboutPage({ params }: { params: any }) {
                   <div className="shrink-0 group">
                     <div className="relative">
                       <div className="absolute inset-0 bg-indigo-500 rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500" />
-                      <div className="w-48 h-48 md:w-64 md:h-64 rounded-[40px] bg-gradient-to-br from-indigo-600 to-violet-700 flex items-center justify-center text-white text-7xl md:text-8xl font-black relative z-10 shadow-2xl">
-                        {member.name.charAt(0)}
+                      <div className="w-48 h-48 md:w-64 md:h-64 rounded-[40px] bg-gradient-to-br from-indigo-600 to-violet-700 overflow-hidden relative z-10 shadow-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                        {member.avatar ? (
+                          <img
+                            src={member.avatar}
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-white text-7xl md:text-8xl font-black">
+                            {member.name.charAt(0)}
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="mt-8 flex justify-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all cursor-pointer">
-                        <Globe className="w-5 h-5" />
-                      </div>
-                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all cursor-pointer">
-                        <Mail className="w-5 h-5" />
-                      </div>
+                      {member.website && (
+                        <a
+                          href={member.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all cursor-pointer"
+                        >
+                          <Globe className="w-5 h-5" />
+                        </a>
+                      )}
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all cursor-pointer"
+                        >
+                          <Mail className="w-5 h-5" />
+                        </a>
+                      )}
                     </div>
                   </div>
 
