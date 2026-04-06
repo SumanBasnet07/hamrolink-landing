@@ -141,6 +141,8 @@ export const dictionaries = {
       studentCountLabel: "Approximate student count",
       studentCountPlaceholder: "e.g. 250 students (helps us calculate your storage)",
       schoolHeader: "Reserve your School OS Spot",
+      nameLabel: "Your Name",
+      namePlaceholder: "e.g. Rajesh Hamal",
 
       trust1: "No spam, ever",
       trust2: "Unsubscribe anytime",
@@ -1069,6 +1071,8 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       studentCountLabel: "अनुमानित विद्यार्थी सङ्ख्या",
       studentCountPlaceholder: "उदा: २५० विद्यार्थी (यसले हामीलाई स्टोरेज पत्ता लगाउन मद्दत गर्छ)",
       schoolHeader: "आफ्नो School OS सिट सुरक्षित गर्नुहोस्",
+      nameLabel: "तपाईंको नाम",
+      namePlaceholder: "उदा: राजेश हमाल",
 
       trust1: "कुनै स्प्याम आउँदैन",
       trust2: "जुनसुकै बेला अनसब्सक्राइब गर्न सकिने",

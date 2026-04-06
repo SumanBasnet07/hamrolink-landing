@@ -144,22 +144,22 @@ function WaitlistForm({ d, businessType, setBusinessType }: { d: any; businessTy
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
-        className="text-center py-6"
+        className="text-center py-10"
       >
         <motion.div
-          className="flex justify-center mb-4"
+          className="flex justify-center mb-6"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
-          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
-            <CheckCircle className="w-10 h-10 text-green-600" />
+          <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center border-4 border-white shadow-lg">
+            <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
         </motion.div>
-        <h3 className="text-2xl font-black text-gray-900 mb-2">
+        <h3 className="text-3xl font-black text-gray-900 mb-3">
           {d.waitlist?.successTitle ?? "You're on the list!"}
         </h3>
-        <p className="text-gray-800">
+        <p className="text-gray-600 text-lg max-w-sm mx-auto leading-relaxed">
           {d.waitlist?.successText ??
             "We'll email you the moment HamroLink goes live."}
         </p>
@@ -168,68 +168,119 @@ function WaitlistForm({ d, businessType, setBusinessType }: { d: any; businessTy
   }
 
   return (
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-black text-gray-950 uppercase tracking-widest mb-1.5">
-          Email address <span className="text-red-500">*</span>
-        </label>
-        <div className="relative">
-          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-700 pointer-events-none" />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") submit();
-            }}
-            placeholder="you@example.com"
-            disabled={status === "loading"}
-            className="w-full pl-10 pr-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_0_4px_rgba(79,70,229,0.1)] transition-all disabled:opacity-50 font-medium"
-          />
-        </div>
+    <div className="space-y-6">
+      {/* Account Type Toggle */}
+      <div className="p-1.5 bg-gray-100 rounded-2xl flex items-center gap-1">
+        <button
+          onClick={() => setBusinessType("retail")}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all font-black text-sm uppercase tracking-wide ${
+            businessType !== "school"
+              ? "bg-white text-gray-900 shadow-md"
+              : "text-gray-500 hover:text-gray-700"
+          }`}
+        >
+          <ShoppingBag className={`w-4 h-4 ${businessType !== "school" ? "text-orange-500" : ""}`} />
+          {d.hero?.pathfinder?.business || "Business"}
+        </button>
+        <button
+          onClick={() => setBusinessType("school")}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all font-black text-sm uppercase tracking-wide ${
+            businessType === "school"
+              ? "bg-white text-gray-900 shadow-md"
+              : "text-gray-500 hover:text-gray-700"
+          }`}
+        >
+          <GraduationCap className={`w-4 h-4 ${businessType === "school" ? "text-emerald-500" : ""}`} />
+          {d.hero?.pathfinder?.school || "School / Org"}
+        </button>
       </div>
 
-      {businessType === "school" && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="overflow-hidden"
-        >
-          <label className="block text-sm font-black text-gray-950 uppercase tracking-widest mb-1.5 mt-2">
-            {d.waitlist?.studentCountLabel ?? "Approximate student count"}
+      <div className="space-y-4">
+        <div>
+          <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 px-1">
+            {d.waitlist?.nameLabel ?? "Your Name"}
           </label>
-          <div className="relative">
-            <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-700 pointer-events-none" />
+          <div className="relative group">
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors pointer-events-none" />
             <input
               type="text"
-              value={studentCount}
-              onChange={(e) => setStudentCount(e.target.value)}
-              placeholder={d.waitlist?.studentCountPlaceholder ?? "e.g. 250 students"}
-              className="w-full pl-10 pr-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_0_4px_rgba(79,70,229,0.1)] transition-all font-medium"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder={d.waitlist?.namePlaceholder ?? "Rajesh Hamal"}
+              disabled={status === "loading"}
+              className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all disabled:opacity-50 font-semibold"
             />
           </div>
-        </motion.div>
-      )}
+        </div>
+
+        <div>
+          <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 px-1">
+            Email address <span className="text-red-500">*</span>
+          </label>
+          <div className="relative group">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors pointer-events-none" />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") submit();
+              }}
+              placeholder="you@example.com"
+              disabled={status === "loading"}
+              className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all disabled:opacity-50 font-semibold"
+            />
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {businessType === "school" && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              className="overflow-hidden"
+            >
+              <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 px-1">
+                {d.waitlist?.studentCountLabel ?? "Approximate student count"}
+              </label>
+              <div className="relative group">
+                <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors pointer-events-none" />
+                <input
+                  type="text"
+                  value={studentCount}
+                  onChange={(e) => setStudentCount(e.target.value)}
+                  placeholder={d.waitlist?.studentCountPlaceholder ?? "e.g. 250 students"}
+                  className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all font-semibold"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {status === "error" && (
-        <p className="text-red-600 text-sm font-bold bg-red-50 border border-red-100 rounded-xl px-4 py-2">
+        <motion.p 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-red-600 text-sm font-bold bg-red-50 border border-red-100 rounded-xl px-4 py-3"
+        >
           {errMsg}
-        </p>
+        </motion.p>
       )}
 
       <button
         onClick={submit}
         disabled={status === "loading" || !email.trim()}
-        className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-white font-black text-lg transition-all hover:scale-[1.01] hover:shadow-xl active:scale-95 disabled:opacity-40 mt-2"
+        className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl text-white font-black text-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100 shadow-xl shadow-indigo-200"
         style={{
           background: "linear-gradient(135deg,#4f46e5,#9333ea)",
-          boxShadow: `0 10px 30px rgba(79,70,229,0.3)`,
         }}
       >
         {status === "loading" ? (
           <>
             <svg
-              className="w-4 h-4 animate-spin"
+              className="w-6 h-6 animate-spin"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -251,13 +302,14 @@ function WaitlistForm({ d, businessType, setBusinessType }: { d: any; businessTy
           </>
         ) : (
           <>
-            <Sparkles className="w-5 h-5" />{" "}
-            {d.waitlist?.cta ?? "Reserve My Spot"} →
+            <Sparkles className="w-6 h-6" />{" "}
+            {d.waitlist?.cta ?? "Reserve My Spot"}
+            <ArrowRight className="w-5 h-5" />
           </>
         )}
       </button>
 
-      <p className="text-center text-[11px] text-gray-400 font-medium leading-relaxed px-4">
+      <p className="text-center text-xs text-gray-400 font-bold leading-relaxed px-6">
         {d.waitlist?.antiSales ?? "No credit card required. Only 5 spots per week."}
       </p>
     </div>
@@ -960,7 +1012,7 @@ export default function LandingPage({ params }: { params: any }) {
       <StoriesTeaser d={d} lang={lang} />
       
       <section id="waitlist" className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 bg-gray-50 rounded-[4rem] p-12 md:p-20 border border-gray-100 shadow-2xl shadow-indigo-100/50">
+        <div className="max-w-7xl mx-auto px-6 bg-gray-50 rounded-[4rem] p-12 md:p-20 border border-gray-100 shadow-2xl shadow-indigo-100/50">
            <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                  <h2 className="text-4xl font-black text-gray-900 mb-6">
@@ -981,19 +1033,21 @@ export default function LandingPage({ params }: { params: any }) {
                                    unoptimized 
                                    onError={(e: any) => e.target.style.display = 'none'} 
                                 />
-                                <span className="relative z-10">U</span>
+                                <span className="relative z-10"></span>
                              </div>
                           ))}
                        </div>
                        <span className="text-indigo-600 font-black tracking-tight">{d.waitlist?.socialProofLong ?? "240+ Joined"}</span>
                     </div>
-                    <div className="flex items-center gap-2 p-3 bg-amber-50 border border-amber-100 rounded-2xl max-w-xs shadow-sm">
-                       <Clock className="w-4 h-4 text-amber-600" />
-                       <span className="text-[11px] font-black text-amber-900 uppercase tracking-widest">{d.waitlist?.urgencyMicro ?? "Joining…"}</span>
+                    <div className="flex items-center gap-2 p-3 bg-white border border-gray-100 rounded-2xl max-w-xs shadow-sm group hover:border-amber-200 transition-colors">
+                       <Clock className="w-4 h-4 text-amber-600 group-hover:animate-pulse" />
+                       <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest">{d.waitlist?.urgencyMicro ?? "Joining…"}</span>
                     </div>
                  </div>
               </div>
-              <WaitlistForm d={d} businessType={selectedPath} setBusinessType={setSelectedPath} />
+              <div className="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl border border-gray-100">
+                <WaitlistForm d={d} businessType={selectedPath} setBusinessType={setSelectedPath} />
+              </div>
            </div>
         </div>
       </section>

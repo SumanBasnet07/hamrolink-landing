@@ -1,5 +1,8 @@
 "use server";
 
+import { connectDB } from "@/lib/mongodb";
+import WaitlistUser from "@/models/WaitlistUser";
+
 // ─── SES Waitlist Server Action ───────────────────────────────────────────────
 
 const enc = (s: string) => new TextEncoder().encode(s);
@@ -131,66 +134,153 @@ export async function sendWaitlistSES(
   const from = "HamroLink <noreply@hamrolink.com>";
   const facebookUrl = "https://www.facebook.com/profile.php?id=61586183025522";
 
+  // 0. Database Persistence & Reward Assignment
+  await connectDB();
+  const lowerEmail = email.toLowerCase().trim();
+  
+  let user = await WaitlistUser.findOne({ email: lowerEmail });
+  if (user) {
+    console.log(`User ${email} already on waitlist.`);
+    return; // Avoid double emails
+  }
+
+  const count = await WaitlistUser.countDocuments();
+  const position = count + 1;
+  let rewardType = "STANDARD";
+  let rewardName = "Early Access";
+
+  if (position <= 50) {
+    rewardType = "LOCAL_START";
+    rewardName = "Free Local Start Plan";
+  } else if (position <= 150) {
+    rewardType = "100_CREDITS";
+    rewardName = "100 Bonus Credits";
+  }
+
+  user = await WaitlistUser.create({
+    email: lowerEmail,
+    name: name?.trim() || "",
+    businessType: businessType || "",
+    studentCount: studentCount || "",
+    position,
+    rewardType,
+  });
+
   // 1. Admin Notification
   await sendSESEmail({
     from,
     to: adminEmail,
-    subject: `🎉 New waitlist signup: ${email}`,
-    body: `New waitlist signup!\n\nEmail: ${email}\nName: ${name || "—"}\nBusiness type: ${businessType || "—"}\nApprox Students: ${studentCount || "—"}\nTime: ${new Date().toISOString()}\n\nHamroLink — Nepal's Website Builder`,
+    subject: `🎉 [Position #${position}] New signup: ${email}`,
+    body: `New waitlist signup!\n\nPosition: #${position}\nReward: ${rewardName}\nEmail: ${email}\nName: ${name || "—"}\nBusiness type: ${businessType || "—"}\nApprox Students: ${studentCount || "—"}\nTime: ${new Date().toISOString()}\n\nHamroLink — Nepal's Website Builder`,
   });
 
   // 2. User Confirmation (HTML)
-const htmlContent = `
+  const isSchool = businessType === "school";
+  const fullName = name?.trim() || "there";
+  const businessName = name?.trim() || (isSchool ? "Your School" : "Your Business");
+
+  // Define bonus strings based on business type
+  const bonusTitle = isSchool ? "7-Day Full Access Trial + 100 AI Credits" : "Free 'Local Start' Plan + 100 AI Credits";
+  const bonusDetail = isSchool 
+    ? "Complete School OS features for 7 days once we launch." 
+    : "Permanent access to our Local Start tier for being an early adopter.";
+
+  const htmlContent = `
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
-  <body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: sans-serif;">
-    <div style="background-color: #f3f4f6; padding: 40px 20px;">
-      <div style="max-width: 560px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb;">
+  <body style="margin: 0; padding: 0; background-color: #f9fafb; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    <div style="background-color: #f9fafb; padding: 20px;">
+      <div style="max-width: 580px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e5e7eb;">
         
-        <div style="background-color: #4f46e5; padding: 40px 20px; text-align: center;">
-          <a href="https://hamrolink.com" style="font-size: 28px; font-weight: 800; color: #ffffff; text-decoration: none; letter-spacing: -1px;">HamroLink</a>
+        <div style="padding: 30px 30px 20px 30px; text-align: center;">
+          <img src="https://hamrolink.com/og-image.png" alt="HamroLink" style="width: 160px; height: auto;">
         </div>
-        
-        <div style="padding: 40px 30px;">
-          <h1 style="font-size: 24px; font-weight: 700; color: #111827; margin: 0 0 16px 0;">You're on the list! 🚀</h1>
-          <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin-bottom: 20px;">Hi there,</p>
-          <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin-bottom: 24px;">
-            Thank you for joining the HamroLink waitlist. We are building a smarter, AI-powered way for Nepali businesses to grow online, and we're excited to have you with us from day one.
-          </p>
+
+        <div style="padding: 0 40px 40px 40px;">
+          <h1 style="font-size: 22px; font-weight: 800; color: #111827; margin: 0 0 12px 0; text-align: center; letter-spacing: -0.5px;">
+            Registration Confirmed for ${businessName}
+          </h1>
           
-          <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; padding: 24px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
-            <span style="text-transform: uppercase; font-size: 12px; font-weight: 700; color: #3b82f6; letter-spacing: 1px;">Exclusive Waitlist Bonus</span>
-            <div style="font-size: 32px; font-weight: 800; color: #1e40af; margin: 8px 0;">100 Credits</div>
-            <p style="font-size: 14px; margin: 0; color: #1e40af;">Reserved for: <strong>${email}</strong></p>
+          <div style="background-color: #4f46e5; border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 25px; color: #ffffff;">
+            <span style="text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #c7d2fe;">Your Early Adopter Reward</span>
+            <div style="font-size: 20px; font-weight: 800; margin: 8px 0;">${bonusTitle}</div>
+            <p style="font-size: 13px; opacity: 0.9; margin: 0;">${bonusDetail}</p>
           </div>
 
-          <p style="font-size: 16px; color: #4b5563; line-height: 1.6; margin-bottom: 20px;">We’ll notify you as soon as we open the doors. In the meantime, come say hi and see what we're building:</p>
-          
-          <a href="${facebookUrl}" style="display: block; text-align: center; padding: 16px 24px; background-color: #111827; color: #ffffff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">Follow our Journey on Facebook</a>
+          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+            <div style="font-size: 14px; color: #475569;">
+               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span><strong>Status:</strong></span>
+                  <span style="color: #10b981; font-weight: 700;">Waitlist Position #${position}</span>
+               </div>
+               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span><strong>Entity:</strong></span>
+                  <span>${businessName}</span>
+               </div>
+               <div style="display: flex; justify-content: space-between;">
+                  <span><strong>Registered Email:</strong></span>
+                  <span>${email}</span>
+               </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <h2 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 12px;">आदरणीय ${fullName} ज्यू,</h2>
+            <p style="font-size: 16px; color: #374151; line-height: 1.7; margin-bottom: 18px;">
+              ${businessName} लाई हाम्रो लिंक (HamroLink) को सुरुवाती सूचीमा दर्ता गर्नुभएकोमा धन्यवाद। 
+              <strong>हाम्रो तर्फबाट तपाईंको लागि एउटा उपहार:</strong> तपाईंले पालो पाउने बित्तिकै ${isSchool ? "७ दिनको लागि फ्री ट्रायल र १०० AI क्रेडिट्स" : "फ्री लोकल स्टार्ट (Local Start) प्लान र १०० AI क्रेडिट्स"} पाउनुहुनेछ।
+            </p>
+
+            <div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 4px;">
+              <p style="font-size: 14px; color: #92400e; margin: 0; line-height: 1.5;">
+                <strong>हामीले किन पर्खाएका छौँ?</strong><br>
+                हामी धेरै प्रयोगकर्ताहरूलाई एकैपटक भित्र्याउनु भन्दा थोरै-थोरै गर्दै गुणस्तरीय सेवा दिन चाहन्छौं। सिस्टमको गति र सुरक्षा सुनिश्चित गर्न हामीले साप्ताहिक रूपमा सिमित व्यवसायहरूलाई मात्र पहुँच दिइरहेका छौं।
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 10px;">What to expect next:</h3>
+            <ul style="padding-left: 20px; color: #4b5563; font-size: 14px; line-height: 1.6; margin: 0;">
+              <li>You will receive an email once we process your access.</li>
+              <li>Your exclusive bonus will be automatically credited to your account.</li>
+              <li>Stay tuned for our official launch updates on social media.</li>
+            </ul>
+          </div>
+
+          <a href="${facebookUrl}" style="display: block; text-align: center; background-color: #111827; color: #ffffff; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px;">
+            Follow our Journey on Facebook
+          </a>
         </div>
-        
-        <div style="text-align: center; padding: 30px; font-size: 12px; color: #9ca3af; background-color: #f9fafb;">
-          <p style="margin-bottom: 8px;">© ${new Date().getFullYear()} HamroLink • Nepal's Modern Website Builder</p>
-          <p>You received this because you requested early access to <a href="https://hamrolink.com" style="color: #4f46e5;">hamrolink.com</a></p>
+
+        <div style="background-color: #f9fafb; padding: 25px; text-align: center; border-top: 1px solid #f3f4f6;">
+          <p style="font-size: 12px; color: #9ca3af; margin: 0;">
+            Hand-crafted in Dhankuta, Nepal 🇳🇵<br>
+            © ${new Date().getFullYear()} HamroLink.
+          </p>
         </div>
       </div>
     </div>
   </body>
 </html>
 `;
-await sendSESEmail({
+
+  await sendSESEmail({
     from,
     to: email,
-    // Use a more professional yet exciting subject line
-    subject: "Welcome to the HamroLink Early Access! 🚀", 
-    // The 'body' is the plain-text fallback for old devices/slow connections
-    body: `Hi there,\n\nWelcome to the HamroLink waitlist! We are building a smarter, AI-powered way for Nepali businesses to grow online.\n\nExclusive Waitlist Bonus: You have reserved 100 free credits for when we go live! (Associated with: ${email})\n\nFollow our journey on Facebook: ${facebookUrl}\n\nWe'll notify you the moment we launch.\n\nBest regards,\nSuman Basnet\nFounder, HamroLink.com`,
-    html: htmlContent, // This is your beautiful new template
+    subject: `Waitlist Confirmed for ${businessName} 🚀`,
+    html: htmlContent,
+    body: `Hi ${fullName},\n\nThank you for choosing HamroLink. ${businessName} is officially on the list (#${position}).\n\nYour Reward: ${bonusTitle}\n- ${bonusDetail}\n\nWhat to expect next:\n- You will receive an email once we process your access.\n- Your exclusive bonus will be automatically credited to your account.\n\nFollow our journey on Facebook: ${facebookUrl}`,
   });
+
+  // Mark notified in DB
+  user.notified = true;
+  user.lastNotifiedAt = new Date();
+  await user.save();
 }
 
 export async function sendContactEmailSES(formData: {
