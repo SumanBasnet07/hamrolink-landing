@@ -102,10 +102,10 @@ const BUSINESS_TYPES = [
 ];
 
 // ─── WaitlistForm ─────────────────────────────────────────────────────────────
-function WaitlistForm({ d }: { d: any }) {
+function WaitlistForm({ d, businessType, setBusinessType }: { d: any; businessType: string; setBusinessType: (s: string) => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [businessType, setBusinessType] = useState("");
+  const [studentCount, setStudentCount] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -125,7 +125,7 @@ function WaitlistForm({ d }: { d: any }) {
     if (!trimmedEmail || status === "loading") return;
     setStatus("loading");
     try {
-      await sendWaitlistSES(trimmedEmail, name.trim(), businessType);
+      await sendWaitlistSES(trimmedEmail, name.trim(), businessType, studentCount);
       if (typeof window !== "undefined")
         localStorage.setItem("waitlist_joined", "true");
       setStatus("success");
@@ -189,6 +189,28 @@ function WaitlistForm({ d }: { d: any }) {
         </div>
       </div>
 
+      {businessType === "school" && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          className="overflow-hidden"
+        >
+          <label className="block text-sm font-black text-gray-950 uppercase tracking-widest mb-1.5 mt-2">
+            {d.waitlist?.studentCountLabel ?? "Approximate student count"}
+          </label>
+          <div className="relative">
+            <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-700 pointer-events-none" />
+            <input
+              type="text"
+              value={studentCount}
+              onChange={(e) => setStudentCount(e.target.value)}
+              placeholder={d.waitlist?.studentCountPlaceholder ?? "e.g. 250 students"}
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 border-2 border-gray-100 rounded-xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:shadow-[0_0_0_4px_rgba(79,70,229,0.1)] transition-all font-medium"
+            />
+          </div>
+        </motion.div>
+      )}
+
       {status === "error" && (
         <p className="text-red-600 text-sm font-bold bg-red-50 border border-red-100 rounded-xl px-4 py-2">
           {errMsg}
@@ -235,8 +257,8 @@ function WaitlistForm({ d }: { d: any }) {
         )}
       </button>
 
-      <p className="text-center text-[11px] text-gray-500 font-medium">
-        {(d.waitlist as any).formSub ?? "10 seconds. No credit card required."}
+      <p className="text-center text-[11px] text-gray-400 font-medium leading-relaxed px-4">
+        {d.waitlist?.antiSales ?? "No credit card required. Only 5 spots per week."}
       </p>
     </div>
   );
@@ -591,6 +613,93 @@ function FeaturesTeaser({ d, lang }: { d: any; lang: string }) {
   );
 }
 
+// ─── Facebook Comparison Section ──────────────────────────────────────────────
+function ComparisonSection({ d }: { d: any }) {
+  const c = d.comparison;
+  if (!c) return null;
+
+  return (
+    <section className="py-24 bg-white border-b border-gray-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+            {c.heading}
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            {c.subheading}
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8 relative max-w-5xl mx-auto">
+          {/* Facebook Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="p-8 rounded-[2.5rem] border-2 border-gray-100 bg-gray-50 opacity-80"
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center">
+                <X className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-black text-gray-900">
+                {c.facebook.title}
+              </h3>
+            </div>
+            <ul className="space-y-4">
+              {c.facebook.features.map((f: string, i: number) => (
+                <li key={i} className="flex items-start gap-3 text-gray-500 line-through">
+                  <X className="w-5 h-5 shrink-0 mt-0.5" />
+                  <span className="font-medium">{f}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* HamroLink Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="p-8 rounded-[2.5rem] border-2 border-indigo-600 bg-indigo-50/30 shadow-2xl shadow-indigo-100 relative z-10"
+          >
+            <div className="absolute -top-4 -right-4 bg-indigo-600 text-white text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl">
+              Recommended
+            </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center">
+                <Check className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-2xl font-black text-indigo-950">
+                {c.hamrolink.title}
+              </h3>
+            </div>
+            <ul className="space-y-4">
+              {c.hamrolink.features.map((f: string, i: number) => (
+                <li key={i} className="flex items-start gap-3 text-indigo-950">
+                  <CheckCircle className="w-5 h-5 shrink-0 mt-0.5 text-indigo-600" />
+                  <span className="font-bold">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#waitlist"
+              className="mt-10 block w-full py-4 bg-indigo-600 text-white text-center font-black rounded-2xl hover:scale-[1.02] transition-all shadow-xl shadow-indigo-200"
+            >
+              {c.cta}
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Stories Teaser ───────────────────────────────────────────────────────────
 function StoriesTeaser({ d, lang }: { d: any; lang: string }) {
   const t = d.transformation;
@@ -732,6 +841,7 @@ export default function LandingPage({ params }: { params: any }) {
   const accent = "#6366f1";
   const [idx, setIdx] = useState(0);
   const [exitVisible, setExitVisible] = useState(false);
+  const [selectedPath, setSelectedPath] = useState<string>("");
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -772,9 +882,34 @@ export default function LandingPage({ params }: { params: any }) {
                 <motion.p {...fu(0.1)} className="text-white/80 text-xl md:text-2xl font-medium max-w-xl leading-relaxed">
                    {hero.subtext}
                 </motion.p>
-                <motion.div {...fu(0.2)} className="flex flex-wrap gap-4">
-                   <a href="#waitlist" className="px-8 py-5 bg-white text-gray-900 text-lg font-black rounded-2xl hover:scale-105 transition-all shadow-2xl">{d.nav.cta} →</a>
-                   <Link href={`/${lang}/features`} className="px-8 py-5 bg-white/10 border border-white/20 text-white text-lg font-black rounded-2xl hover:bg-white/20 transition-all backdrop-blur-md">Explore Features</Link>
+                <motion.div {...fu(0.2)} className="space-y-6">
+                   <p className="text-white/60 text-xs font-black uppercase tracking-[0.2em]">
+                      {hero.pathfinder?.heading ?? "Choose your path to professional"}
+                   </p>
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+                      <a 
+                         href="#waitlist" 
+                         onClick={() => setSelectedPath("shop")}
+                         className="group p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white hover:border-white transition-all text-left"
+                      >
+                         <div className="w-12 h-12 rounded-2xl bg-orange-500/10 group-hover:bg-orange-500 flex items-center justify-center mb-4 transition-colors">
+                            <ShoppingBag className="w-6 h-6 text-orange-500 group-hover:text-white" />
+                          </div>
+                         <h3 className="text-white group-hover:text-gray-900 font-black text-xl mb-1">{hero.pathfinder?.business || "I am a Shop/Business"}</h3>
+                         <p className="text-white/40 group-hover:text-gray-500 text-xs font-bold">{hero.pathfinder?.businessSub || "Retail, food, services"}</p>
+                      </a>
+                      <a 
+                         href="#waitlist" 
+                         onClick={() => setSelectedPath("school")}
+                         className="group p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white hover:border-white transition-all text-left"
+                      >
+                         <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 group-hover:bg-emerald-500 flex items-center justify-center mb-4 transition-colors">
+                            <GraduationCap className="w-6 h-6 text-emerald-500 group-hover:text-white" />
+                         </div>
+                         <h3 className="text-white group-hover:text-gray-900 font-black text-xl mb-1">{hero.pathfinder?.school || "I am a School/Org"}</h3>
+                         <p className="text-white/40 group-hover:text-gray-500 text-xs font-bold">{hero.pathfinder?.schoolSub || "Advanced institutional tools"}</p>
+                      </a>
+                   </div>
                 </motion.div>
              </div>
              <div className="hidden lg:block relative group">
@@ -828,21 +963,43 @@ export default function LandingPage({ params }: { params: any }) {
         <div className="max-w-4xl mx-auto px-6 bg-gray-50 rounded-[4rem] p-12 md:p-20 border border-gray-100 shadow-2xl shadow-indigo-100/50">
            <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                 <h2 className="text-4xl font-black text-gray-900 mb-6">{d.waitlist.launchLabel}</h2>
+                 <h2 className="text-4xl font-black text-gray-900 mb-6">
+                   {selectedPath === "school" ? (d.waitlist?.schoolHeader ?? "Reserve your School OS Spot") : d.waitlist.launchLabel}
+                 </h2>
                  <p className="text-gray-600 text-lg leading-relaxed">{d.waitlist.subheading}</p>
-                 <div className="mt-8 flex items-center gap-3">
-                    <div className="flex -space-x-2">
-                       {[1,2,3].map(i => <div key={i} className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-600 font-bold">U</div>)}
+                 <div className="mt-8 flex flex-col gap-4">
+                    <div className="flex items-center gap-3">
+                       <div className="flex -space-x-2">
+                          {[1,2,3,4,5].map(i => (
+                             <div key={i} className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-600 font-bold text-xs ring-2 ring-indigo-50 ring-offset-2 overflow-hidden shadow-md relative">
+                                <Image 
+                                   src={`/avatars/${i}.jpg`} 
+                                   alt="User" 
+                                   width={40} 
+                                   height={40} 
+                                   className="object-cover absolute inset-0" 
+                                   unoptimized 
+                                   onError={(e: any) => e.target.style.display = 'none'} 
+                                />
+                                <span className="relative z-10">U</span>
+                             </div>
+                          ))}
+                       </div>
+                       <span className="text-indigo-600 font-black tracking-tight">{d.waitlist?.socialProofLong ?? "240+ Joined"}</span>
                     </div>
-                    <span className="text-gray-900 font-black">240+ Joined</span>
+                    <div className="flex items-center gap-2 p-3 bg-amber-50 border border-amber-100 rounded-2xl max-w-xs shadow-sm">
+                       <Clock className="w-4 h-4 text-amber-600" />
+                       <span className="text-[11px] font-black text-amber-900 uppercase tracking-widest">{d.waitlist?.urgencyMicro ?? "Joining…"}</span>
+                    </div>
                  </div>
               </div>
-              <WaitlistForm d={d} />
+              <WaitlistForm d={d} businessType={selectedPath} setBusinessType={setSelectedPath} />
            </div>
         </div>
       </section>
 
       <PricingTeaser d={d} lang={lang} />
+       <ComparisonSection d={d} />
       <ObjectionSection d={d} />
       <EmailMarketingStrip d={d} />
       <Footer lang={lang} d={d} PRE_LAUNCH={PRE_LAUNCH} ctaHref={ctaHref} />

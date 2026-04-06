@@ -338,13 +338,24 @@ export default function PricingPage({ params }: { params: Params }) {
   }, [d]);
 
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  const [persona, setPersona] = useState<"business" | "institution">("business");
 
-  const gridPlans = PLANS.filter((plan) => plan.name !== "local_start").sort((a, b) => {
-    const order: Record<string, number> = { free: 0, business: 1, institution_standard: 2, institution_pro: 3 };
+  const gridPlans = PLANS.filter((plan) => {
+    if (persona === "business") {
+      return ["free", "local_start", "business"].includes(plan.name);
+    } else {
+      return ["institution_standard", "institution_pro"].includes(plan.name);
+    }
+  }).sort((a, b) => {
+    const order: Record<string, number> = { 
+      free: 0, 
+      local_start: 1, 
+      business: 2, 
+      institution_standard: 3, 
+      institution_pro: 4 
+    };
     return (order[a.name] ?? 99) - (order[b.name] ?? 99);
   });
-
-  const localPlan = PLANS.find((plan) => plan.name === "local_start");
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
@@ -391,37 +402,76 @@ export default function PricingPage({ params }: { params: Params }) {
               {p.subtext}
             </motion.p>
 
-            {/* Toggle */}
-            <div className="flex items-center justify-center gap-6 mb-12">
-              <span className={`text-lg font-black transition-colors ${billing === "monthly" ? "text-gray-950" : "text-gray-500"}`}>
-                {p.monthly}
-              </span>
-              <button
-                onClick={() => setBilling(billing === "monthly" ? "yearly" : "monthly")}
-                className="w-16 h-8 bg-gray-300 rounded-full p-1 relative transition-colors duration-300 focus:outline-none ring-2 ring-gray-100"
-              >
-                <motion.div
-                  animate={{ x: billing === "monthly" ? 0 : 32 }}
-                  className="w-6 h-6 bg-white rounded-full shadow-md"
-                />
-              </button>
-              <div className="flex items-center gap-2">
-                <span className={`text-lg font-black transition-colors ${billing === "yearly" ? "text-gray-950" : "text-gray-500"}`}>
-                  {p.yearly}
+            {/* Persona Toggle */}
+            <div className="flex flex-col items-center gap-8 mb-16">
+              <div className="inline-flex p-1.5 bg-gray-200/50 backdrop-blur-md rounded-2xl border border-gray-200">
+                <button
+                  onClick={() => setPersona("business")}
+                  className={`px-8 py-3 rounded-xl text-sm font-black transition-all duration-300 ${
+                    persona === "business" 
+                      ? "bg-white text-indigo-600 shadow-xl shadow-indigo-100 scale-105" 
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  {p.persona.business}
+                </button>
+                <button
+                  onClick={() => setPersona("institution")}
+                  className={`px-8 py-3 rounded-xl text-sm font-black transition-all duration-300 ${
+                    persona === "institution" 
+                      ? "bg-white text-indigo-600 shadow-xl shadow-indigo-100 scale-105" 
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  {p.persona.institution}
+                </button>
+              </div>
+
+              {/* Billing Toggle */}
+              <div className="flex items-center justify-center gap-6">
+                <span className={`text-lg font-black transition-colors ${billing === "monthly" ? "text-gray-950" : "text-gray-500"}`}>
+                  {p.monthly}
                 </span>
-                <span className="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full border border-emerald-200">
-                  {p.save}
-                </span>
+                <button
+                  onClick={() => setBilling(billing === "monthly" ? "yearly" : "monthly")}
+                  className="w-16 h-8 bg-gray-300 rounded-full p-1 relative transition-colors duration-300 focus:outline-none ring-2 ring-gray-100"
+                >
+                  <motion.div
+                    animate={{ x: billing === "monthly" ? 0 : 32 }}
+                    className="w-6 h-6 bg-white rounded-full shadow-md"
+                  />
+                </button>
+                <div className="flex items-center gap-2">
+                  <span className={`text-lg font-black transition-colors ${billing === "yearly" ? "text-gray-950" : "text-gray-500"}`}>
+                    {p.yearly}
+                  </span>
+                  <span className="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full border border-emerald-200">
+                    {p.save}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Pricing Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className={`grid gap-8 mb-12 ${
+            persona === "business" ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2 max-w-4xl mx-auto"
+          }`}>
             {gridPlans.map((plan, i) => {
-              const dictPlan = p.plans[i] as DictionaryPlan;
+              // Map internal plan name to dictionary index
+              const planMapping: Record<string, number> = {
+                free: 0,
+                business: 1,
+                institution_standard: 2,
+                institution_pro: 3,
+                local_start: 4,
+              };
+              const dictPlan = p.plans[planMapping[plan.name]] as DictionaryPlan;
               const price = billing === "monthly" ? plan.monthlyCredits : Math.floor(plan.yearlyCredits / 12);
               const Icon = plan.icon;
+
+              const isPro = plan.name === "institution_pro";
+              const isStandard = plan.name === "institution_standard";
 
               return (
                 <motion.div
@@ -446,7 +496,7 @@ export default function PricingPage({ params }: { params: Params }) {
                   </div>
 
                   <h3 className="text-2xl font-black text-gray-950 mb-2 capitalize">
-                    {dictPlan?.name || plan.name}
+                    {dictPlan?.name || plan.name.replace("_", " ")}
                   </h3>
                   <p className="text-gray-600 text-base font-medium mb-6 leading-relaxed h-12 overflow-hidden">
                     {dictPlan?.desc}
@@ -457,20 +507,15 @@ export default function PricingPage({ params }: { params: Params }) {
                       <span className="text-4xl font-black text-gray-950">
                         {price === 0 ? p.free : `NPR ${price}`}
                       </span>
-                      {price > 0 && <span className="text-gray-600 text-base font-bold">{p.perMonth}</span>}
+                      {!isPro && price > 0 && <span className="text-gray-600 text-base font-bold">{p.perMonth}</span>}
                     </div>
-                    {billing === "yearly" && price > 0 && (
-                      <p className="text-emerald-600 text-xs font-bold mt-1 uppercase tracking-wider">
-                        Billed annually (NPR {plan.yearlyCredits}/yr)
-                      </p>
-                    )}
                   </div>
 
                   <div className="space-y-4 mb-10">
                     {dictPlan?.feats.map((feat, fi) => (
                       <div key={fi} className="flex gap-3 items-start group/feat">
                         {feat.ok ? (
-                          <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                          <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${isPro ? "text-violet-600" : "text-indigo-600 center"}`} />
                         ) : (
                           <XCircle className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
                         )}
@@ -482,14 +527,16 @@ export default function PricingPage({ params }: { params: Params }) {
                   </div>
 
                   <Link
-                    href={`/${lang}#waitlist`}
+                    href={isPro ? `/${lang}/contact` : `/${lang}#waitlist`}
                     className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-black transition-all hover:scale-[1.02] active:scale-95 ${
-                      plan.highlight
+                      plan.highlight || isPro
                         ? "bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700"
+                        : isStandard
+                        ? "bg-purple-600 text-white shadow-xl shadow-purple-100 hover:bg-purple-700"
                         : "bg-gray-50 text-gray-900 border border-gray-100 hover:bg-gray-100"
                     }`}
                   >
-                    {price === 0 ? p.ctaFree : p.ctaPaid}
+                    {isStandard ? p.ctaInstitutional : (price === 0 ? p.ctaFree : p.ctaPaid)}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </motion.div>
@@ -497,87 +544,6 @@ export default function PricingPage({ params }: { params: Params }) {
             })}
           </div>
 
-          {/* Featured Plan: Local Start */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-white rounded-[40px] p-8 md:p-12 border border-amber-100 shadow-2xl shadow-amber-50/50 relative overflow-hidden group"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl -z-10 opacity-60 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-orange-50 rounded-full blur-3xl -z-10 opacity-40" />
-
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-100 rounded-full text-amber-600 text-[10px] font-black uppercase tracking-wider mb-6">
-                  <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                  Special Local Plan
-                </div>
-                
-                <div className="flex items-center justify-center lg:justify-start gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-3xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-xl shadow-amber-200">
-                    <Star className="w-8 h-8 fill-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-3xl font-black text-gray-950">
-                      {p.plans[4]?.name || "Local Starter"}
-                    </h2>
-                    <div className="flex items-baseline justify-center lg:justify-start gap-1 mt-1">
-                      <span className="text-2xl font-black text-gray-950">
-                        NPR {billing === "monthly" ? localPlan?.monthlyCredits : Math.floor((localPlan?.yearlyCredits || 0) / 12)}
-                      </span>
-                      <span className="text-gray-600 text-base font-bold">{p.perMonth}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-gray-700 text-lg leading-relaxed mb-8 font-medium">
-                  {p.plans[4]?.desc}
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
-                  <Link
-                    href={`/${lang}#waitlist`}
-                    className="px-10 py-5 rounded-2xl bg-gray-900 text-white font-black hover:bg-gray-800 transition-all shadow-xl shadow-gray-200 flex items-center gap-3 group/btn"
-                  >
-                    {p.ctaPaid}
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
-                  </Link>
-                  <div className="flex items-center gap-4">
-                    <div className="bg-emerald-50 p-3 rounded-xl text-emerald-600">
-                      <Bot className="w-6 h-6" />
-                    </div>
-                    <div className="bg-blue-50 p-3 rounded-xl text-blue-600">
-                      <ShoppingCart className="w-6 h-6" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-7">
-                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-                  {p.plans[4]?.feats.map((feat: PlanFeat, fi: number) => (
-                    <div key={fi} className="flex gap-3 items-center">
-                      <div className={`p-1 rounded-full ${feat.ok ? "bg-amber-100 text-amber-700" : "bg-gray-200 text-gray-400"}`}>
-                        <Check className="w-4 h-4" strokeWidth={3} />
-                      </div>
-                      <span className={`text-base font-black ${feat.ok ? "text-gray-800" : "text-gray-400 line-through decoration-gray-300"}`}>
-                        {feat.t}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mt-8 p-5 bg-amber-100/50 border border-amber-200 rounded-2xl flex gap-4 items-start">
-                  <Info className="w-6 h-6 text-amber-700 shrink-0 mt-0.5" />
-                  <p className="text-sm text-amber-900/80 leading-relaxed font-bold">
-                    Designed for shops, boutiques, and small services who need a professional presence without the complexity. Includes eSewa/Khalti integration and basic AI chatbot.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
           {/* Comparison Table */}
           <motion.section 
@@ -607,32 +573,35 @@ export default function PricingPage({ params }: { params: Params }) {
                         <th className="p-8 text-xs font-black text-gray-500 uppercase tracking-[0.2em] w-[250px]">
                           {p.featureComparison.labels.features}
                         </th>
-                        <th className="p-8 text-sm font-black text-gray-900 uppercase tracking-wider text-center">
-                          {p.featureComparison.plans.free}
-                        </th>
-                        <th className="p-8 text-sm font-black text-emerald-600 uppercase tracking-wider text-center">
-                          {p.featureComparison.plans.local}
-                        </th>
-                        <th className="p-8 text-sm font-black text-blue-600 uppercase tracking-wider text-center">
-                          {p.featureComparison.plans.business}
-                        </th>
-                        <th className="p-8 text-sm font-black text-purple-600 uppercase tracking-wider text-center">
-                          {p.featureComparison.plans.standard}
-                        </th>
-                        <th className="p-8 text-sm font-black text-indigo-700 uppercase tracking-wider text-center">
-                          {p.featureComparison.plans.pro}
-                        </th>
+                        {persona === "business" ? (
+                          <>
+                            <th className="p-8 text-sm font-black text-gray-900 uppercase tracking-wider text-center">
+                              {p.featureComparison.plans.free}
+                            </th>
+                            <th className="p-8 text-sm font-black text-emerald-600 uppercase tracking-wider text-center">
+                              {p.featureComparison.plans.local}
+                            </th>
+                            <th className="p-8 text-sm font-black text-blue-600 uppercase tracking-wider text-center">
+                              {p.featureComparison.plans.business}
+                            </th>
+                          </>
+                        ) : (
+                          <>
+                            <th className="p-8 text-sm font-black text-purple-600 uppercase tracking-wider text-center">
+                              {p.featureComparison.plans.standard}
+                            </th>
+                            <th className="p-8 text-sm font-black text-indigo-700 uppercase tracking-wider text-center">
+                              {p.featureComparison.plans.pro}
+                            </th>
+                          </>
+                        )}
                       </tr>
                     </thead>
                     <tbody>
                       {rows.map((row: any, ri: number) => {
-                        const values = [
-                          row.free,
-                          row.local_start,
-                          row.business,
-                          row.institution_standard,
-                          row.institution_pro
-                        ];
+                        const values = persona === "business" 
+                          ? [row.free, row.local_start, row.business]
+                          : [row.institution_standard, row.institution_pro];
                         return (
                           <tr 
                             key={ri} 

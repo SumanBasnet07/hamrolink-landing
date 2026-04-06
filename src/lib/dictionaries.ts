@@ -63,6 +63,14 @@ export const dictionaries = {
         "a restaurant menu",
       ],
 
+      pathfinder: {
+        heading: "Choose your path to professional",
+        business: "I am a Shop / Business",
+        school: "I am a School / Organization",
+        businessSub: "Quick setup for retail, food, services",
+        schoolSub: "Advanced tools for institutional management",
+      },
+
       floatingClicks: "Clicks today",
       floatingSites: "Already waiting",
       scrollLabel: "Scroll",
@@ -126,6 +134,13 @@ export const dictionaries = {
       formTitle: "Reserve your spot now",
       formSub: "10 seconds. No credit card. No commitment.",
       urgency: "Early spots are limited. Latecomers pay full price.",
+
+      socialProofLong: "Join 240+ Nepali businesses securing their digital future.",
+      antiSales:
+        "No credit card required. We are onboarding 5 businesses a week to ensure every site gets 1-on-1 SEO setup from our team.",
+      studentCountLabel: "Approximate student count",
+      studentCountPlaceholder: "e.g. 250 students (helps us calculate your storage)",
+      schoolHeader: "Reserve your School OS Spot",
 
       trust1: "No spam, ever",
       trust2: "Unsubscribe anytime",
@@ -415,6 +430,32 @@ export const dictionaries = {
       ],
     },
 
+    // ── Facebook vs HamroLink ───────────────────────────────────────────────
+    comparison: {
+      heading: "Facebook vs. HamroLink",
+      subheading:
+        "Why 240+ businesses moved beyond just social media.",
+      facebook: {
+        title: "Facebook Page",
+        features: [
+          "You don't own the data",
+          "Ads distract your customers",
+          "No Google Search presence",
+          "Rented space (can be shut down)",
+        ],
+      },
+      hamrolink: {
+        title: "HamroLink Digital",
+        features: [
+          "Your Own Brand",
+          "0 Distractions",
+          "Found on Google 24/7",
+          "Owned asset (you are the king)",
+        ],
+      },
+      cta: "Build Your Owned Asset →",
+    },
+
     // ── Templates section ────────────────────────────────────────────────────
     templates: {
       badge: "120+ professional templates",
@@ -480,6 +521,11 @@ export const dictionaries = {
       approxMonth: "≈ NPR {n}/month",
       ctaFree: "Start Free",
       ctaPaid: "Claim Early Price",
+      ctaInstitutional: "Try for Free",
+      persona: {
+        business: "Local Business",
+        institution: "Schools & Institutions",
+      },
       footer:
         "Every plan includes: your website · hamrolink.com subdomain · drag & drop editor · QR code · Nepali & English dashboard",
       plans: [
@@ -530,7 +576,7 @@ export const dictionaries = {
         },
         {
           name: "Institution Pro",
-          desc: "For large organizations and high-traffic brands. NPR 2,500/month.",
+          desc: "Full School OS, Custom Sales AI, Infinite Storage. Let's build your system.",
           feats: [
             { t: "1 website", ok: true },
             { t: "200 pages + 500 blog posts", ok: true },
@@ -947,6 +993,14 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         "रेस्टुरेन्ट मेनु",
       ],
 
+      pathfinder: {
+        heading: "आफ्नो प्रोफेसनल बाटो रोज्नुहोस्",
+        business: "म एउटा पसल / व्यवसाय हुँ",
+        school: "म एउटा स्कुल / संस्था हुँ",
+        businessSub: "रिटेल, खाना, र सेवाहरूको छिटो सेटअप",
+        schoolSub: "संस्थागत व्यवस्थापनका लागि एडभान्स टुल्स",
+      },
+
       floatingClicks: "आजका क्लिकहरू",
       floatingSites: "पर्खाइमा रहेका व्यवसायहरू",
       scrollLabel: "तल स्क्रोल गर्नुहोस्",
@@ -1008,6 +1062,13 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       formTitle: "अहिल्यै आफ्नो सिट सुरक्षित गर्नुहोस्",
       formSub: "मात्र १० सेकेन्ड लाग्छ। क्रेडिट कार्ड चाहिँदैन। कुनै प्रतिबद्धता आवश्यक छैन।",
       urgency: "सुरुवाती सिटहरू सीमित छन्। ढिलो गर्नेले पूरा मूल्य तिर्नुपर्नेछ।",
+
+      socialProofLong: "२४०+ नेपाली व्यवसायहरूले आफ्नो डिजिटल भविष्य सुरक्षित गरिसकेका छन्।",
+      antiSales:
+        "क्रेडिट कार्ड चाहिँदैन। हामी हप्तामा ५ वटा व्यवसायलाई मात्र अनबोर्ड गर्छौं ताकि हरेक साइटले हाम्रो टिमबाट १०-अन-१ SEO सेटअप पाउन सकोस्।",
+      studentCountLabel: "अनुमानित विद्यार्थी सङ्ख्या",
+      studentCountPlaceholder: "उदा: २५० विद्यार्थी (यसले हामीलाई स्टोरेज पत्ता लगाउन मद्दत गर्छ)",
+      schoolHeader: "आफ्नो School OS सिट सुरक्षित गर्नुहोस्",
 
       trust1: "कुनै स्प्याम आउँदैन",
       trust2: "जुनसुकै बेला अनसब्सक्राइब गर्न सकिने",
@@ -1285,6 +1346,32 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       ],
     },
 
+    // ── Facebook vs HamroLink ───────────────────────────────────────────────
+    comparison: {
+      heading: "Facebook vs. HamroLink",
+      subheading:
+        "किन २४०+ स्थानीय व्यवसायहरू सामाजिक सञ्जालभन्दा अगाडि बढे।",
+      facebook: {
+        title: "फेसबुक पेज",
+        features: [
+          "फेसबुकमा तपाईंको नियन्त्रण हुँदैन",
+          "विज्ञापनले ग्राहकको ध्यान भड्काउँछ",
+          "गुगल सर्चमा उपस्थिति छैन",
+          "भाडाको ठाउँ (जुनसुकै बेला बन्द हुन सक्छ)",
+        ],
+      },
+      hamrolink: {
+        title: "HamroLink Digital",
+        features: [
+          "तपाईंको आफ्नै ब्रान्ड",
+          "० अवरोध (No Distractions)",
+          "गुगलमा २४/७ भेटिने",
+          "वेबसाइटमा तपाईं नै राजा (Owned asset)",
+        ],
+      },
+      cta: "आफ्नै डिजिटल सम्पत्ति बनाउनुहोस् →",
+    },
+
     // ── Templates ────────────────────────────────────────────────────────────
     templates: {
       badge: "१२०+ प्रोफेसनल टेम्प्लेटहरू",
@@ -1350,6 +1437,11 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       approxMonth: "≈ रु {n}/महिना",
       ctaFree: "नि:शुल्क सुरु गर्नुहोस्",
       ctaPaid: "अर्ली मूल्य दाबी गर्नुहोस्",
+      ctaInstitutional: "नि:शुल्क प्रयास गर्नुहोस्",
+      persona: {
+        business: "स्थानीय व्यवसाय",
+        institution: "विद्यालय र संस्थाहरू",
+      },
       footer:
         "हरेक प्लानमा समावेश: तपाईंको वेबसाइट · hamrolink.com सब-डोमेन · ड्र्याग एन्ड ड्रप (Drag & Drop) एडिटर · QR कोड · नेपाली र अङ्ग्रेजी ड्यासबोर्ड",
       plans: [
@@ -1400,7 +1492,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         },
         {
           name: "Institution Pro",
-          desc: "ठूला संस्था र धेरै ट्राफिक भएका ब्रान्डका लागि। रु २,५००/महिना।",
+          desc: "Full School OS, Custom Sales AI, Infinite Storage. Let's build your system.",
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "२०० पेज + ५०० ब्लग पोस्ट", ok: true },

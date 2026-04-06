@@ -1,4 +1,5 @@
-// src/components/SEO/Analytics.tsx
+"use client";
+
 import React from 'react';
 import Script from 'next/script';
 
@@ -29,6 +30,9 @@ export function Analytics() {
         data-domain="hamrolink.com"
         src="https://plausible.io/js/script.js"
         strategy="afterInteractive"
+        onError={(e) => {
+          console.log("Plausible Analytics was blocked by the browser. This is expected if an ad-blocker is active.");
+        }}
       />
       
       {/* Meta Pixel (Facebook) */}
@@ -42,6 +46,7 @@ export function Analytics() {
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
+          fbq.error = () => { console.log("Meta Pixel was blocked by the browser."); };
           fbq('init', '1406004940026269'); // Replace with actual Pixel ID if available
           fbq('track', 'PageView');
         `}

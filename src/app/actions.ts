@@ -125,6 +125,7 @@ export async function sendWaitlistSES(
   email: string,
   name?: string,
   businessType?: string,
+  studentCount?: string,
 ): Promise<void> {
   const adminEmail = "hamrolink3@gmail.com";
   const from = "HamroLink <noreply@hamrolink.com>";
@@ -135,7 +136,7 @@ export async function sendWaitlistSES(
     from,
     to: adminEmail,
     subject: `🎉 New waitlist signup: ${email}`,
-    body: `New waitlist signup!\n\nEmail: ${email}\nName: ${name || "—"}\nBusiness type: ${businessType || "—"}\nTime: ${new Date().toISOString()}\n\nHamroLink — Nepal's Website Builder`,
+    body: `New waitlist signup!\n\nEmail: ${email}\nName: ${name || "—"}\nBusiness type: ${businessType || "—"}\nApprox Students: ${studentCount || "—"}\nTime: ${new Date().toISOString()}\n\nHamroLink — Nepal's Website Builder`,
   });
 
   // 2. User Confirmation (HTML)
