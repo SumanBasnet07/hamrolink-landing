@@ -10,7 +10,6 @@ import {
   Globe,
   ShoppingBag,
   GraduationCap,
-  Users,
   MessageSquare,
   QrCode,
   BarChart3,
@@ -42,12 +41,7 @@ import {
   Clock,
   User,
   Maximize2,
-  UtensilsCrossed,
-  Briefcase,
-  Hospital,
   Home,
-  Palette,
-  Package,
   Coffee,
   BookOpen,
   Layout,
@@ -70,249 +64,84 @@ import {
 } from "lucide-react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Footer } from "@/components/Footer";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { getDictionary } from "@/lib/dictionaries";
 
-// ─── Pre-launch flag ───────────────────────────────────────────────────────────
-const PRE_LAUNCH = true;
+const PRE_LAUNCH = false;
+const APP_URL = "https://app.hamrolink.com";
 
 function ctaHref(href: string) {
-  return PRE_LAUNCH ? "#waitlist" : href;
+  if (PRE_LAUNCH) return "#waitlist";
+  if (href === "/signup") return APP_URL;
+  return href;
 }
 
-import { sendWaitlistSES } from "@/app/actions";
-
-// ─── Business type options ────────────────────────────────────────────────────
-const BUSINESS_TYPES = [
-  { icon: UtensilsCrossed, label: "Restaurant / Café" },
-  { icon: ShoppingBag, label: "Retail / Shop" },
-  { icon: GraduationCap, label: "School / Academy" },
-  { icon: Plane, label: "Consultancy / Travel" },
-  { icon: Briefcase, label: "Professional / Freelance" },
-  { icon: Hospital, label: "Health / Clinic" },
-  { icon: Home, label: "Real Estate" },
-  { icon: Palette, label: "Creative / Portfolio" },
-  { icon: Package, label: "Other" },
-];
-
-// ─── WaitlistForm ─────────────────────────────────────────────────────────────
-function WaitlistForm({ d, businessType, setBusinessType }: { d: any; businessType: string; setBusinessType: (s: string) => void }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [studentCount, setStudentCount] = useState("");
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
-  const [errMsg, setErrMsg] = useState("");
-
-  useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      localStorage.getItem("waitlist_joined") === "true"
-    ) {
-      setStatus("success");
-    }
-  }, []);
-
-  const submit = async () => {
-    const trimmedEmail = email.trim();
-    if (!trimmedEmail || status === "loading") return;
-    setStatus("loading");
-    try {
-      await sendWaitlistSES(trimmedEmail, name.trim(), businessType, studentCount);
-      if (typeof window !== "undefined")
-        localStorage.setItem("waitlist_joined", "true");
-      setStatus("success");
-    } catch {
-      setStatus("error");
-      setErrMsg(
-        d.waitlist?.errorGeneric ?? "Something went wrong. Please try again.",
-      );
-    }
-  };
-
-  if (status === "success") {
-    return (
-      <motion.div
-        key="success"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
-        className="text-center py-10"
-      >
-        <motion.div
-          className="flex justify-center mb-6"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        >
-          <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center border-4 border-white shadow-lg">
-            <CheckCircle className="w-12 h-12 text-green-600" />
-          </div>
-        </motion.div>
-        <h3 className="text-3xl font-black text-gray-900 mb-3">
-          {d.waitlist?.successTitle ?? "You're on the list!"}
-        </h3>
-        <p className="text-gray-600 text-lg max-w-sm mx-auto leading-relaxed">
-          {d.waitlist?.successText ??
-            "We'll email you the moment HamroLink goes live."}
-        </p>
-      </motion.div>
-    );
-  }
+function LaunchCtaCard({ d, selectedPath, lang }: { d: any; selectedPath: string; lang: string }) {
+  const schoolMode = selectedPath === "school";
+  const bullets = schoolMode
+    ? [
+        "Launch your school site and notices in minutes",
+        "Start free, then unlock School OS when ready",
+        "Instant setup on app.hamrolink.com",
+      ]
+    : [
+        "Launch your business site in under 15 minutes",
+        "No credit card required to get started",
+        "Upgrade only when you are getting results",
+      ];
 
   return (
-    <div className="space-y-6">
-      {/* Account Type Toggle */}
-      <div className="p-1.5 bg-gray-100 rounded-2xl flex items-center gap-1">
-        <button
-          onClick={() => setBusinessType("retail")}
-          className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all font-black text-sm uppercase tracking-wide ${
-            businessType !== "school"
-              ? "bg-white text-gray-900 shadow-md"
-              : "text-gray-500 hover:text-gray-700"
-          }`}
-        >
-          <ShoppingBag className={`w-4 h-4 ${businessType !== "school" ? "text-orange-500" : ""}`} />
-          {d.hero?.pathfinder?.business || "Business"}
-        </button>
-        <button
-          onClick={() => setBusinessType("school")}
-          className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl transition-all font-black text-sm uppercase tracking-wide ${
-            businessType === "school"
-              ? "bg-white text-gray-900 shadow-md"
-              : "text-gray-500 hover:text-gray-700"
-          }`}
-        >
-          <GraduationCap className={`w-4 h-4 ${businessType === "school" ? "text-emerald-500" : ""}`} />
-          {d.hero?.pathfinder?.school || "School / Org"}
-        </button>
-      </div>
+    <section id="get-started" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6 bg-gray-50 rounded-[4rem] p-12 md:p-20 border border-gray-100 shadow-2xl shadow-indigo-100/50">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl font-black text-gray-900 mb-6">
+              {schoolMode ? "Your school can go live today." : "Your business can go live today."}
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-8">
+              {schoolMode
+                ? "Admissions, announcements, and your digital presence in one place."
+                : "Stop losing customers to competitors with better online presence. Build yours now."}
+            </p>
+            <div className="space-y-3">
+              {bullets.map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-600" />
+                  <span className="text-gray-800 font-semibold">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 px-1">
-            {d.waitlist?.nameLabel ?? "Your Name"}
-          </label>
-          <div className="relative group">
-            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors pointer-events-none" />
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={d.waitlist?.namePlaceholder ?? "Rajesh Hamal"}
-              disabled={status === "loading"}
-              className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all disabled:opacity-50 font-semibold"
-            />
+          <div className="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl border border-gray-100">
+            <h3 className="text-3xl font-black text-gray-900 mb-4">
+              {d.nav?.ctaPostLaunch ?? "Start for Free"}
+            </h3>
+            <p className="text-gray-600 font-medium mb-8">
+              Launch your first version now at app.hamrolink.com.
+            </p>
+            <div className="space-y-4">
+              <a
+                href={APP_URL}
+                className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-2xl bg-indigo-600 text-white font-black text-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-200"
+              >
+                <Sparkles className="w-5 h-5" />
+                Start for Free
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <Link
+                href={`/${lang}/pricing`}
+                className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-2xl border-2 border-gray-900 text-gray-900 font-black text-lg hover:bg-gray-900 hover:text-white transition-colors"
+              >
+                See Pricing Plans
+              </Link>
+            </div>
+            <p className="text-center text-xs text-gray-500 font-bold mt-6">
+              Live product. Start free. Upgrade only when you are ready.
+            </p>
           </div>
         </div>
-
-        <div>
-          <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 px-1">
-            Email address <span className="text-red-500">*</span>
-          </label>
-          <div className="relative group">
-            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-600 transition-colors pointer-events-none" />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") submit();
-              }}
-              placeholder="you@example.com"
-              disabled={status === "loading"}
-              className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all disabled:opacity-50 font-semibold"
-            />
-          </div>
-        </div>
-
-        <AnimatePresence>
-          {businessType === "school" && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: "auto", marginTop: 16 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              className="overflow-hidden"
-            >
-              <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 px-1">
-                {d.waitlist?.studentCountLabel ?? "Approximate student count"}
-              </label>
-              <div className="relative group">
-                <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors pointer-events-none" />
-                <input
-                  type="text"
-                  value={studentCount}
-                  onChange={(e) => setStudentCount(e.target.value)}
-                  placeholder={d.waitlist?.studentCountPlaceholder ?? "e.g. 250 students"}
-                  className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-100 rounded-2xl text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all font-semibold"
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
-
-      {status === "error" && (
-        <motion.p 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-red-600 text-sm font-bold bg-red-50 border border-red-100 rounded-xl px-4 py-3"
-        >
-          {errMsg}
-        </motion.p>
-      )}
-
-      <button
-        onClick={submit}
-        disabled={status === "loading" || !email.trim()}
-        className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl text-white font-black text-xl transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100 shadow-xl shadow-indigo-200"
-        style={{
-          background: "linear-gradient(135deg,#4f46e5,#9333ea)",
-        }}
-      >
-        {status === "loading" ? (
-          <>
-            <svg
-              className="w-6 h-6 animate-spin"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8z"
-              />
-            </svg>{" "}
-            {d.waitlist?.submitting ?? "Joining…"}
-          </>
-        ) : (
-          <>
-            <Sparkles className="w-6 h-6" />{" "}
-            {d.waitlist?.cta ?? "Reserve My Spot"}
-            <ArrowRight className="w-5 h-5" />
-          </>
-        )}
-      </button>
-
-      <p className="text-center text-xs text-gray-400 font-bold leading-relaxed px-6">
-        {d.waitlist?.antiSales ?? "No credit card required. Only 5 spots per week."}
-      </p>
-    </div>
+    </section>
   );
 }
 
@@ -394,11 +223,11 @@ function DemoVideo({ d }: { d: any }) {
               {d.video.finalFrame}
             </p>
             <a
-              href="#waitlist"
+              href={APP_URL}
               className="flex items-center gap-2 px-5 py-2 bg-white text-indigo-700 rounded-xl text-base font-black hover:scale-105 transition-transform shadow-lg"
             >
               <Sparkles className="w-4 h-4" />
-              {d.video.cta}
+              {d.nav?.ctaPostLaunch ?? "Start for Free"}
             </a>
           </div>
         </motion.div>
@@ -740,10 +569,10 @@ function ComparisonSection({ d }: { d: any }) {
               ))}
             </ul>
             <a
-              href="#waitlist"
+              href={APP_URL}
               className="mt-10 block w-full py-4 bg-indigo-600 text-white text-center font-black rounded-2xl hover:scale-[1.02] transition-all shadow-xl shadow-indigo-200"
             >
-              {c.cta}
+              {d.nav?.ctaPostLaunch ?? "Start for Free"}
             </a>
           </motion.div>
         </div>
@@ -831,7 +660,7 @@ function ObjectionSection({ d }: { d: any }) {
     <section className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-3xl font-black text-center mb-16 text-gray-900">
-          {d.waitlist.decisionHelper?.heading || "Still thinking?"}
+          {d.pricing?.decisionHelper?.heading || "Still thinking?"}
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {keys.map((key, i) => {
@@ -862,7 +691,7 @@ function ExitIntentOverlay({ d, visible, onClose }: { d: any; visible: boolean; 
          <p className="text-gray-600 mb-8">{d.exitIntent.subheading}</p>
          <div className="flex gap-4">
             <button onClick={onClose} className="flex-1 py-4 font-bold text-gray-400">{d.exitIntent.alternative}</button>
-            <a href="#waitlist" onClick={onClose} className="flex-1 py-4 bg-indigo-600 text-white rounded-2xl font-black shadow-lg shadow-indigo-200">{d.exitIntent.cta}</a>
+            <a href={APP_URL} onClick={onClose} className="flex-1 py-4 bg-indigo-600 text-white rounded-2xl font-black shadow-lg shadow-indigo-200">{d.nav?.ctaPostLaunch ?? d.exitIntent.cta}</a>
          </div>
       </motion.div>
     </div>
@@ -893,14 +722,12 @@ export default function LandingPage({ params }: { params: any }) {
   const accent = "#6366f1";
   const [idx, setIdx] = useState(0);
   const [exitVisible, setExitVisible] = useState(false);
-  const [selectedPath, setSelectedPath] = useState<string>("");
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      // Show only once per user, and only if they haven't joined the waitlist
+      // Show only once per user.
       const shown = localStorage.getItem("exit_intent_shown");
-      const joined = localStorage.getItem("waitlist_joined");
-      if (e.clientY < 20 && !shown && !joined) {
+      if (e.clientY < 20 && !shown) {
         setExitVisible(true);
         localStorage.setItem("exit_intent_shown", "true");
       }
@@ -917,7 +744,7 @@ export default function LandingPage({ params }: { params: any }) {
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col font-sans">
-      <Navbar lang={lang} accent={accent} nav={d.nav} />
+      <Navbar lang={lang} accent={accent} nav={d.nav} preLaunch={PRE_LAUNCH} />
 
       <section className="relative min-h-screen pt-28 pb-20 flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
@@ -940,8 +767,7 @@ export default function LandingPage({ params }: { params: any }) {
                    </p>
                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
                       <a 
-                         href="#waitlist" 
-                         onClick={() => setSelectedPath("shop")}
+                         href={APP_URL}
                          className="group p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white hover:border-white transition-all text-left"
                       >
                          <div className="w-12 h-12 rounded-2xl bg-orange-500/10 group-hover:bg-orange-500 flex items-center justify-center mb-4 transition-colors">
@@ -951,8 +777,7 @@ export default function LandingPage({ params }: { params: any }) {
                          <p className="text-white/40 group-hover:text-gray-500 text-xs font-bold">{hero.pathfinder?.businessSub || "Retail, food, services"}</p>
                       </a>
                       <a 
-                         href="#waitlist" 
-                         onClick={() => setSelectedPath("school")}
+                         href={APP_URL}
                          className="group p-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white hover:border-white transition-all text-left"
                       >
                          <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 group-hover:bg-emerald-500 flex items-center justify-center mb-4 transition-colors">
@@ -1008,49 +833,6 @@ export default function LandingPage({ params }: { params: any }) {
       <TheProblemSection d={d} />
       
       <AIStaffTeaser d={d} lang={lang} />
-      <FeaturesTeaser d={d} lang={lang} />
-      <StoriesTeaser d={d} lang={lang} />
-      
-      <section id="waitlist" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 bg-gray-50 rounded-[4rem] p-12 md:p-20 border border-gray-100 shadow-2xl shadow-indigo-100/50">
-           <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                 <h2 className="text-4xl font-black text-gray-900 mb-6">
-                   {selectedPath === "school" ? (d.waitlist?.schoolHeader ?? "Reserve your School OS Spot") : d.waitlist.launchLabel}
-                 </h2>
-                 <p className="text-gray-600 text-lg leading-relaxed">{d.waitlist.subheading}</p>
-                 <div className="mt-8 flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                       <div className="flex -space-x-2">
-                          {[1,2,3,4,5].map(i => (
-                             <div key={i} className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-600 font-bold text-xs ring-2 ring-indigo-50 ring-offset-2 overflow-hidden shadow-md relative">
-                                <Image 
-                                   src={`/avatars/${i}.jpg`} 
-                                   alt="HamroLink User Avatar" 
-                                   width={40} 
-                                   height={40} 
-                                   className="object-cover absolute inset-0" 
-                                   unoptimized 
-                                   onError={(e: any) => e.target.style.display = 'none'} 
-                                />
-                                <span className="relative z-10"></span>
-                             </div>
-                          ))}
-                       </div>
-                       <span className="text-indigo-600 font-black tracking-tight">{d.waitlist?.socialProofLong ?? "240+ Joined"}</span>
-                    </div>
-                    <div className="flex items-center gap-2 p-3 bg-white border border-gray-100 rounded-2xl max-w-xs shadow-sm group hover:border-amber-200 transition-colors">
-                       <Clock className="w-4 h-4 text-amber-600 group-hover:animate-pulse" />
-                       <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest">{d.waitlist?.urgencyMicro ?? "Joining…"}</span>
-                    </div>
-                 </div>
-              </div>
-              <div className="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl border border-gray-100">
-                <WaitlistForm d={d} businessType={selectedPath} setBusinessType={setSelectedPath} />
-              </div>
-           </div>
-        </div>
-      </section>
 
       <PricingTeaser d={d} lang={lang} />
        <ComparisonSection d={d} />

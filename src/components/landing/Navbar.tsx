@@ -10,7 +10,7 @@ export function Navbar({
   accent,
   lang,
   nav,
-  preLaunch = true,
+  preLaunch = false,
   forceScrolled = false,
 }: {
   accent: string;
@@ -30,7 +30,7 @@ export function Navbar({
     return () => window.removeEventListener("scroll", fn);
   }, [forceScrolled]);
 
-  const ctaHref = preLaunch ? `/${lang}#waitlist` : `/${lang}/signup`;
+  const ctaHref = preLaunch ? `/${lang}#waitlist` : "https://app.hamrolink.com";
 
   const navLinks = [
     { href: `/${lang}/ai`, label: nav.templates },
@@ -179,7 +179,7 @@ export function Navbar({
                 style={{ background: accent }}
                 onClick={() => setOpen(false)}
               >
-                {nav.cta}
+                {preLaunch ? nav.cta : (nav.ctaPostLaunch ?? nav.cta)}
               </Link>
             </div>
           </motion.div>
