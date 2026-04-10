@@ -122,7 +122,7 @@ export default function AISitePage({ params }: { params: any }) {
                  {ai.tagline}
                </h2>
                <div className="flex flex-wrap justify-center gap-4 relative z-10">
-                 <Link href={`/${lang}#waitlist`} className="flex items-center gap-2 px-8 py-4 bg-white text-violet-700 rounded-2xl text-lg font-black transition-all hover:scale-105 shadow-xl">
+                 <Link href={`https://app.hamrolink.com`} className="flex items-center gap-2 px-8 py-4 bg-white text-violet-700 rounded-2xl text-lg font-black transition-all hover:scale-105 shadow-xl">
                    <Sparkles className="w-5 h-5" />
                    {ai.cta}
                  </Link>
@@ -131,7 +131,7 @@ export default function AISitePage({ params }: { params: any }) {
         </div>
       </main>
 
-      <Footer lang={lang} d={d} PRE_LAUNCH={true} ctaHref={(href: string) => `/${lang}#waitlist`} />
+      <Footer lang={lang} d={d} PRE_LAUNCH={false} ctaHref={(href: string) => `https://app.hamrolink.com`} />
     </div>
   );
 }

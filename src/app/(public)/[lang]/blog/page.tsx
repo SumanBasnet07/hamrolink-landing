@@ -181,10 +181,10 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
                 </Link>
               ))}
             </div>
-            <Link href={`/${lang}/waitlist`}
+            <Link href={`https://app.hamrolink.com`}
               className="hidden sm:flex items-center gap-1.5 px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 transition-colors rounded-lg text-xs font-black text-white">
               <Sparkles className="w-3 h-3"/>
-              {ne ? "प्रारम्भिक पहुँच" : "Early Access"}
+              {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
             </Link>
           </div>
         </div>
@@ -432,7 +432,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
         </div>
       </div>
 
-      {/* ── Newsletter / Waitlist CTA ────────────────────────────────────────── */}
+      {/* ── Newsletter / Signup CTA ─────────────────────────────────────────── */}
       <div className="max-w-6xl mx-auto px-6 pb-16">
         <div className="relative rounded-3xl overflow-hidden">
           {/* Background */}
@@ -444,7 +444,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
           <div className="relative px-8 py-12 sm:px-16 sm:py-16 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/15 rounded-full text-xs font-bold text-white/70 mb-6">
               <Sparkles className="w-3.5 h-3.5 text-indigo-300"/>
-              {ne ? "नेपालमा चाँडै सुरु हुँदैछ" : "Launching soon in Nepal"}
+              {ne ? "नेपालमा चाँडै सुरु हुँदैछ" : "Now live in Nepal"}
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">
               {ne
@@ -453,14 +453,14 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
             </h2>
             <p className="text-white/40 text-base max-w-md mx-auto mb-8">
               {ne
-                ? "HamroLink Digital को प्रारम्भिक पहुँचमा सामेल हुनुहोस् — निःशुल्क ३ महिने Pro परीक्षण र प्राथमिकता अनबोर्डिङसहित।"
-                : "Join HamroLink Digital early access and get a free 3-month Pro trial, priority onboarding, and a locked-in launch price."}
+                ? "HamroLink Digital अहिले लाइभ छ। नि:शुल्क सुरु गर्नुहोस् र केही मिनेटमै आफ्नो वेबसाइट तयार पार्नुहोस्।"
+                : "HamroLink Digital is now live. Start for free and launch your website in minutes."}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href={`/${lang}/waitlist`}
+              <Link href={`https://app.hamrolink.com`}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#0b0f1a] rounded-2xl font-black text-sm hover:bg-indigo-50 transition-colors shadow-2xl">
                 <Sparkles className="w-4 h-4"/>
-                {ne ? "प्रारम्भिक पहुँचमा सामेल हुनुहोस्" : "Join Early Access — Free"}
+                {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
                 <ArrowRight className="w-4 h-4"/>
               </Link>
               <Link href={`/${lang}/pricing`}
@@ -470,8 +470,8 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
             </div>
             <p className="text-white/20 text-xs mt-5">
               {ne
-                ? "सामेल हुन निःशुल्क · क्रेडिट कार्ड आवश्यक छैन · जुनसुकै बेला अनसब्सक्राइब"
-                : "Free to join · No credit card · Unsubscribe anytime"}
+                ? "नि:शुल्क सुरु गर्नुहोस् · क्रेडिट कार्ड आवश्यक छैन · जुनसुकै बेला रद्द गर्न सकिन्छ"
+                : "Start for Free · No credit card required · Cancel anytime"}
             </p>
           </div>
         </div>

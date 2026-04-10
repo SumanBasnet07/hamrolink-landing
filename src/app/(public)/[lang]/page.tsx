@@ -70,7 +70,7 @@ const PRE_LAUNCH = false;
 const APP_URL = "https://app.hamrolink.com";
 
 function ctaHref(href: string) {
-  if (PRE_LAUNCH) return "#waitlist";
+  if (PRE_LAUNCH) return "https://app.hamrolink.com";
   if (href === "/signup") return APP_URL;
   return href;
 }
@@ -391,6 +391,7 @@ function TheProblemSection({ d }: { d: any }) {
 // ─── AI Staff Teaser ───────────────────────────────────────────────────────────
 function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
   const ai = d.aiStaff;
+  const ne = lang === "ne";
   return (
     <section className="py-24 bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -407,7 +408,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
               {ai.subtext}
             </p>
             <Link href={`/${lang}/ai`} className="inline-flex items-center gap-2 px-8 py-4 bg-violet-600 text-white rounded-2xl font-black hover:scale-105 transition-all shadow-xl shadow-violet-500/20">
-              Explore AI Staff Capabilities
+              {ne ? "AI क्षमताहरू हेर्नुहोस्" : "Explore AI Staff Capabilities"}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -430,7 +431,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white text-[12px] font-black">AI Business Assistant</h4>
+                    <h4 className="text-white text-[12px] font-black">{ne ? "AI व्यवसाय सहायक" : "AI Business Assistant"}</h4>
                     <span className="flex items-center gap-1 text-[9px] text-green-400 font-bold uppercase tracking-widest">
                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                        Active
@@ -456,7 +457,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
               {/* Input Area Overlay */}
               <div className="p-4 bg-white/5 border-t border-white/10">
                  <div className="h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center px-4 justify-between">
-                    <span className="text-white/40 text-xs font-medium">Type a message...</span>
+                    <span className="text-white/40 text-xs font-medium">{ne ? "सन्देश लेख्नुहोस्..." : "Type a message..."}</span>
                     <div className="w-8 h-8 rounded-xl bg-violet-600 flex items-center justify-center">
                       <ArrowRight className="w-4 h-4 text-white" />
                     </div>
@@ -495,8 +496,9 @@ function FeaturesTeaser({ d, lang }: { d: any; lang: string }) {
 }
 
 // ─── Facebook Comparison Section ──────────────────────────────────────────────
-function ComparisonSection({ d }: { d: any }) {
+function ComparisonSection({ d, lang }: { d: any; lang: string }) {
   const c = d.comparison;
+  const ne = lang === "ne";
   if (!c) return null;
 
   return (
@@ -550,7 +552,7 @@ function ComparisonSection({ d }: { d: any }) {
             className="p-8 rounded-[2.5rem] border-2 border-indigo-600 bg-indigo-50/30 shadow-2xl shadow-indigo-100 relative z-10"
           >
             <div className="absolute -top-4 -right-4 bg-indigo-600 text-white text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl">
-              Recommended
+              {ne ? "सिफारिस" : "Recommended"}
             </div>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center">
@@ -616,6 +618,7 @@ function StoriesTeaser({ d, lang }: { d: any; lang: string }) {
 
 // ─── Pricing Teaser ─────────────────────────────────────────────────────────
 function PricingTeaser({ d, lang }: { d: any; lang: string }) {
+  const ne = lang === "ne";
   return (
     <section className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
@@ -625,17 +628,17 @@ function PricingTeaser({ d, lang }: { d: any; lang: string }) {
         </div>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div className="bg-white p-10 rounded-[3rem] border border-gray-100 shadow-xl group hover:border-indigo-100 transition-all">
-            <h3 className="text-2xl font-black mb-2">Free Forever</h3>
-            <p className="text-gray-500 mb-6">Perfect for testing the platform.</p>
+            <h3 className="text-2xl font-black mb-2">{ne ? "सधैं नि:शुल्क" : "Free Forever"}</h3>
+            <p className="text-gray-500 mb-6">{ne ? "प्लेटफर्म सुरु गरेर परीक्षण गर्न उपयुक्त।" : "Perfect for testing the platform."}</p>
             <div className="text-4xl font-black mb-8 text-gray-900">Rs 0</div>
             <Link href={`/${lang}/pricing`} className="block w-full py-4 bg-gray-900 text-white text-center rounded-2xl font-black hover:bg-indigo-600 transition-all">
                {d.pricing.teaser.viewDetails}
             </Link>
           </div>
           <div className="bg-white p-10 rounded-[3rem] border-2 border-amber-200 shadow-2xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 px-4 py-1 bg-amber-500 text-white text-[10px] font-black uppercase tracking-widest rounded-bl-2xl">Popular</div>
+            <div className="absolute top-0 right-0 px-4 py-1 bg-amber-500 text-white text-[10px] font-black uppercase tracking-widest rounded-bl-2xl">{ne ? "लोकप्रिय" : "Popular"}</div>
             <h3 className="text-2xl font-black mb-2">Local Start</h3>
-            <p className="text-gray-500 mb-6">Best for small businesses.</p>
+            <p className="text-gray-500 mb-6">{ne ? "सानो व्यवसायका लागि उत्तम।" : "Best for small businesses."}</p>
             <div className="text-4xl font-black mb-8 text-amber-600">Rs 199<span className="text-sm text-gray-400">/mo</span></div>
             <Link href={`/${lang}/pricing`} className="block w-full py-4 bg-amber-500 text-white text-center rounded-2xl font-black hover:bg-amber-600 transition-all shadow-xl shadow-amber-200">
                {d.pricing.teaser.learnMore}
@@ -718,6 +721,7 @@ function EmailMarketingStrip({ d }: { d: any }) {
 export default function LandingPage({ params }: { params: any }) {
   const { lang } = React.use(params) as any;
   const d = getDictionary(lang);
+  const ne = lang === "ne";
   const hero = d.hero;
   const accent = "#6366f1";
   const [idx, setIdx] = useState(0);
@@ -787,6 +791,17 @@ export default function LandingPage({ params }: { params: any }) {
                          <p className="text-white/40 group-hover:text-gray-500 text-xs font-bold">{hero.pathfinder?.schoolSub || "Advanced institutional tools"}</p>
                       </a>
                    </div>
+                   <div className="flex flex-wrap items-center gap-2 pt-2">
+                     <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/85 text-xs font-bold">
+                       {ne ? "क्रेडिट कार्ड बिना सुरु" : "Start free, no card"}
+                     </span>
+                     <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/85 text-xs font-bold">
+                       {ne ? "नेपाली सपोर्ट उपलब्ध" : "Nepali support available"}
+                     </span>
+                     <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/85 text-xs font-bold">
+                       eSewa + Khalti
+                     </span>
+                   </div>
                 </motion.div>
              </div>
              <div className="hidden lg:block relative group">
@@ -835,7 +850,7 @@ export default function LandingPage({ params }: { params: any }) {
       <AIStaffTeaser d={d} lang={lang} />
 
       <PricingTeaser d={d} lang={lang} />
-       <ComparisonSection d={d} />
+        <ComparisonSection d={d} lang={lang} />
       <ObjectionSection d={d} />
       <EmailMarketingStrip d={d} />
       <Footer lang={lang} d={d} PRE_LAUNCH={PRE_LAUNCH} ctaHref={ctaHref} />

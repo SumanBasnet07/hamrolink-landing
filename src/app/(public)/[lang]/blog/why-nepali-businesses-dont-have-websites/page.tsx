@@ -268,7 +268,7 @@ const CONTENT = {
       { id: "cost-comparison",     label: "Website vs Facebook: The Cost" },
       { id: "why-website",         label: "Why a Website Changes Everything" },
       { id: "simpler-future",      label: "A Simpler Future for Nepali Businesses" },
-      { id: "early-access",        label: "Join the Early Access List" },
+      { id: "early-access",        label: "Start for Free" },
       { id: "faq",                 label: "Frequently Asked Questions" },
     ],
     sections: [
@@ -394,15 +394,15 @@ const CONTENT = {
       },
     ],
     earlyAccess: {
-      badge: "🚀 Launching Soon in Nepal",
-      h2: "Create Your Website in Minutes\nJoin the Early Access List",
+      badge: "🚀 Now Live in Nepal",
+      h2: "Create Your Website in Minutes\nStart for Free",
       paras: [
-        "HamroLink is Nepal's first website builder Nepal designed from the ground up for Nepali businesses. Early access is limited to the first 500 businesses.",
-        "Businesses across Kathmandu, Pokhara and Butwal are already joining the waitlist. Join now to lock in early pricing and get personal onboarding support.",
+        "HamroLink is Nepal's first website builder designed from the ground up for Nepali businesses.",
+        "Businesses across Kathmandu, Pokhara and Butwal are already launching websites with HamroLink. Start now and publish in minutes.",
       ],
-      cta: "Join Early Access — It's Free",
-      ctaHref: "/en#waitlist",
-      trust: ["Free to join", "No credit card required", "Unsubscribe anytime"],
+      cta: "Start for Free",
+      ctaHref: "https://app.hamrolink.com",
+      trust: ["Start for Free", "No credit card required", "Cancel anytime"],
     },
     faqTitle: "Frequently Asked Questions",
     faqSubtitle: "Everything you need to know about websites for Nepali businesses.",
@@ -544,8 +544,8 @@ const CONTENT = {
         "काठमाडौं, पोखरा र बुटवलका व्यवसायीहरू सामेल भइसकेका छन्। अहिले नै आफ्नो नाम दर्ता गर्नुहोस्।",
       ],
       cta: "अहिले नै सामेल हुनुहोस् — यो निःशुल्क छ",
-      ctaHref: "/ne#waitlist",
-      trust: ["सामेल हुन निःशुल्क", "कार्ड आवश्यक छैन", "जुनसुकै बेला हट्न सकिने"],
+      ctaHref: "https://app.hamrolink.com",
+      trust: ["नि:शुल्क सुरु गर्नुहोस्", "क्रेडिट कार्ड आवश्यक छैन", "जुनसुकै बेला रद्द गर्न सकिन्छ"],
     },
     faqTitle: "बारम्बार सोधिने प्रश्नहरू",
     faqSubtitle: "वेबसाइटका बारेमा बारम्बार सोधिने प्रश्नहरू।",
@@ -668,8 +668,8 @@ export default async function BlogWhyNoWebsitesPage({ params }: { params: Promis
                 </nav>
                 <div className="mt-8 p-4 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl text-white text-center">
                   <Sparkles className="w-6 h-6 mx-auto mb-2 opacity-80"/>
-                  <p className="text-xs font-black mb-3 leading-snug">{ne ? "HamroLink चाँडै आउँदैछ" : "HamroLink is launching soon"}</p>
-                  <a href={c.earlyAccess.ctaHref || "#waitlist"} className="block w-full py-2 bg-white text-indigo-700 rounded-xl text-xs font-black hover:bg-indigo-50 transition-colors">{ne ? "प्रतीक्षा सूचीमा सामेल" : "Join Waitlist"}</a>
+                  <p className="text-xs font-black mb-3 leading-snug">{ne ? "HamroLink अब लाइभ छ" : "HamroLink is now live"}</p>
+                  <a href={c.earlyAccess.ctaHref || "https://app.hamrolink.com"} className="block w-full py-2 bg-white text-indigo-700 rounded-xl text-xs font-black hover:bg-indigo-50 transition-colors">{ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}</a>
                 </div>
               </div>
             </aside>
@@ -799,7 +799,7 @@ export default async function BlogWhyNoWebsitesPage({ params }: { params: Promis
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/15 border border-white/25 rounded-full text-xs font-bold mb-4"> {c.earlyAccess?.badge} </div>
                     <h2 className="text-3xl font-black mb-4 whitespace-pre-line">{c.earlyAccess?.h2}</h2>
                     {c.earlyAccess?.paras?.map((p: string, i: number) => ( <p key={i} className="text-white/75 text-base leading-relaxed mb-3 max-w-xl mx-auto">{p}</p> ))}
-                    <a href={c.earlyAccess?.ctaHref || "#waitlist"} className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-white text-indigo-700 rounded-2xl font-black text-base hover:scale-105 transition-transform shadow-2xl">
+                    <a href={c.earlyAccess?.ctaHref || "https://app.hamrolink.com"} className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-white text-indigo-700 rounded-2xl font-black text-base hover:scale-105 transition-transform shadow-2xl">
                       <Sparkles className="w-5 h-5"/> {c.earlyAccess?.cta} <ArrowRight className="w-4 h-4"/>
                     </a>
                     <div className="flex flex-wrap items-center justify-center gap-5 mt-5">

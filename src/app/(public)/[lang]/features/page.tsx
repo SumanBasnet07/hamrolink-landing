@@ -104,7 +104,7 @@ export default function FeaturesSitePage({ params }: { params: any }) {
                    <p className="text-white/80 text-xl leading-relaxed mb-10 font-medium">
                      {(f as any).items[8]?.desc || "Every feature is designed around one goal: making your business look and work more professionally than your competitors."}
                    </p>
-                   <Link href={`/${lang}#waitlist`} className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-2xl text-lg font-black hover:scale-105 transition-all shadow-xl shadow-indigo-500/20">
+                   <Link href={`https://app.hamrolink.com`} className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-2xl text-lg font-black hover:scale-105 transition-all shadow-xl shadow-indigo-500/20">
                      <Sparkles className="w-5 h-5" />
                      {d.nav.cta}
                    </Link>
@@ -127,7 +127,7 @@ export default function FeaturesSitePage({ params }: { params: any }) {
         </div>
       </main>
 
-      <Footer lang={lang} d={d} PRE_LAUNCH={true} ctaHref={(href: string) => `/${lang}#waitlist`} />
+      <Footer lang={lang} d={d} PRE_LAUNCH={false} ctaHref={(href: string) => `https://app.hamrolink.com`} />
     </div>
   );
 }

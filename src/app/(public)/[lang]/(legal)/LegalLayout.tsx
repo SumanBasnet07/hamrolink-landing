@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { getDictionary } from "@/lib/dictionaries";
 
-const PRE_LAUNCH = true;
+const PRE_LAUNCH = false;
 
 type LegalLayoutProps = {
   lang: string;
@@ -97,7 +97,7 @@ export default function LegalLayout({
         lang={lang}
         d={d}
         PRE_LAUNCH={PRE_LAUNCH}
-        ctaHref={(href) => (PRE_LAUNCH ? `/${lang}#waitlist` : href)}
+        ctaHref={(href) => (PRE_LAUNCH ? `https://app.hamrolink.com` : href)}
       />
     </div>
   );

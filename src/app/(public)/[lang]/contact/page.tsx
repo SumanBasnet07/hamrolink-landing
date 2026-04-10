@@ -28,7 +28,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/landing/Navbar";
 
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
-const PRE_LAUNCH = true;
+const PRE_LAUNCH = false;
 
 
 export default function ContactPage({ params }: { params: any }) {
@@ -416,7 +416,7 @@ export default function ContactPage({ params }: { params: any }) {
         lang={lang}
         d={d}
         PRE_LAUNCH={PRE_LAUNCH}
-        ctaHref={(href) => (PRE_LAUNCH ? `/${lang}#waitlist` : href)}
+        ctaHref={(href) => (PRE_LAUNCH ? `https://app.hamrolink.com` : href)}
       />
     </div>
   );

@@ -606,11 +606,11 @@ const CONTENT = {
       h2: "Start Building Your School's Website Today",
       paras: [
         "If your school currently relies only on Facebook or WhatsApp, now is the time to build a real digital presence. With HamroLink, your school can be online in under an hour — with a professional website that shows programs, accepts inquiries, and helps parents find you on Google.",
-        "Join early access to HamroLink and get a free 3-month Pro trial, priority onboarding, and your school's website ready before admissions season.",
+        "Start for free on HamroLink and get your school's website ready before admissions season.",
       ],
-      cta: "Join Early Access — It's Free",
-      ctaHref: "/en#waitlist",
-      trust: ["Free to join", "No credit card required", "Live in under 60 minutes"],
+      cta: "Start for Free",
+      ctaHref: "https://app.hamrolink.com",
+      trust: ["Start for Free", "No credit card required", "Live in under 60 minutes"],
     },
     faqTitle: "Frequently Asked Questions",
     faqSubtitle: "Everything school administrators ask about going online in Nepal.",
@@ -619,7 +619,7 @@ const CONTENT = {
     related: [
       { label: "Why Nepali Businesses Don't Have Websites", href: "/en/blog/why-nepali-businesses-dont-have-websites" },
       { label: "Facebook vs Website for Nepali Businesses",  href: "/en/blog/facebook-page-vs-website-nepali-businesses" },
-      { label: "Join Waitlist",                              href: "/en#waitlist" },
+      { label: "Start for Free",                              href: "https://app.hamrolink.com" },
     ],
   },
 
@@ -814,11 +814,11 @@ const CONTENT = {
       h2: "आज नै आफ्नो विद्यालयको वेबसाइट बनाउन सुरु गर्नुहोस्",
       paras: [
         "यदि तपाईंको विद्यालय हाल केवल फेसबुक वा WhatsApp मा भर पर्छ भने, अहिले वास्तविक डिजिटल उपस्थिति बनाउने समय हो। HamroLink सँग, तपाईंको विद्यालय एक घण्टाभित्र अनलाइन हुन सक्छ — कार्यक्रमहरू देखाउने, सोधपुछ स्वीकार गर्ने र अभिभावकहरूलाई Google मा तपाईंलाई भेट्टाउन मद्दत गर्ने व्यावसायिक वेबसाइटसँग।",
-        "HamroLink को प्रारम्भिक पहुँचमा सामेल हुनुहोस् र निःशुल्क ३ महिने Pro परीक्षण, प्राथमिकता अनबोर्डिङ पाउनुहोस् — र भर्ना मौसमअघि नै तपाईंको विद्यालयको वेबसाइट तयार गर्नुहोस्।",
+        "HamroLink मा नि:शुल्क सुरु गर्नुहोस् र भर्ना मौसमअघि नै तपाईंको विद्यालयको वेबसाइट तयार गर्नुहोस्।",
       ],
-      cta: "प्रारम्भिक पहुँचमा सामेल हुनुहोस् — निःशुल्क",
-      ctaHref: "/ne#waitlist",
-      trust: ["सामेल हुन निःशुल्क", "क्रेडिट कार्ड आवश्यक छैन", "६० मिनेटभित्र लाइभ"],
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
+      ctaHref: "https://app.hamrolink.com",
+      trust: ["नि:शुल्क सुरु गर्नुहोस्", "क्रेडिट कार्ड आवश्यक छैन", "६० मिनेटभित्र लाइभ"],
     },
     faqTitle: "बारम्बार सोधिने प्रश्नहरू",
     faqSubtitle: "नेपालमा अनलाइन जाने बारे विद्यालय प्रशासकहरूले सोध्ने सबै कुरा।",
@@ -827,7 +827,7 @@ const CONTENT = {
     related: [
       { label: "नेपाली व्यवसायसँग वेबसाइट किन छैन", href: "/ne/blog/why-nepali-businesses-dont-have-websites" },
       { label: "फेसबुक vs वेबसाइट",                href: "/ne/blog/facebook-page-vs-website-nepali-businesses" },
-      { label: "प्रतीक्षा सूचीमा सामेल हुनुहोस्",    href: "/ne#waitlist" },
+      { label: "नि:शुल्क सुरु गर्नुहोस्",    href: "https://app.hamrolink.com" },
     ],
   },
 };
@@ -944,7 +944,7 @@ export default async function BlogSchoolWebsiteNepalPage({ params }: { params: P
                   </p>
                   <a href={c.earlyAccess.ctaHref}
                     className="block w-full py-2 bg-white text-emerald-700 rounded-xl text-xs font-black hover:bg-emerald-50 transition-colors">
-                    {ne ? "प्रतीक्षा सूचीमा सामेल" : "Join Waitlist"}
+                    {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
                   </a>
                 </div>
               </div>

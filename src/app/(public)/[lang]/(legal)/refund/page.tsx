@@ -45,10 +45,10 @@ const content = {
     },
     {
       icon: AlertTriangle,
-      title: "Waitlist & Pre-Launch",
+      title: "Signup & Access",
       body: [
-        "Joining the HamroLink Digital waitlist is completely free and requires no payment. No charges will be made to you until you purchase credits after launch.",
-        "If you pre-paid for early access (if applicable), such payments are refundable as internal credits valid for use when the platform officially launches.",
+        "Creating a HamroLink account is free and requires no payment. You are only charged when you choose a paid plan or purchase credits.",
+        "If you paid in advance under any legacy promotional offer, those amounts remain available as internal credits in your account.",
       ],
     },
     {

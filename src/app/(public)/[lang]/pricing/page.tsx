@@ -155,7 +155,7 @@ export default function PricingPage({ params }: { params: Params }) {
   const { lang } = React.use(params);
   const d = getDictionary(lang);
   const p = d.pricing;
-  const PRE_LAUNCH = true;
+  const PRE_LAUNCH = false;
   const accent = "#6366f1";
 
   const t = (key: string) => {
@@ -527,7 +527,7 @@ export default function PricingPage({ params }: { params: Params }) {
                   </div>
 
                   <Link
-                    href={isPro ? `/${lang}/contact` : `/${lang}#waitlist`}
+                    href={isPro ? `/${lang}/contact` : `https://app.hamrolink.com`}
                     className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-black transition-all hover:scale-[1.02] active:scale-95 ${
                       plan.highlight || isPro
                         ? "bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700"
@@ -679,7 +679,7 @@ export default function PricingPage({ params }: { params: Params }) {
         lang={lang}
         d={d}
         PRE_LAUNCH={PRE_LAUNCH}
-        ctaHref={(href) => (PRE_LAUNCH ? `/${lang}#waitlist` : href)}
+        ctaHref={(href) => (PRE_LAUNCH ? `https://app.hamrolink.com` : href)}
       />
     </div>
   );

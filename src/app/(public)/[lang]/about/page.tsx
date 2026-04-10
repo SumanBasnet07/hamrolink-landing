@@ -22,7 +22,7 @@ import { getDictionary } from "@/lib/dictionaries";
 import { Footer } from "@/components/Footer";
 
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
-const PRE_LAUNCH = true;
+const PRE_LAUNCH = false;
 
 // ─── LangSwitcher ─────────────────────────────────────────────────────────────
 function LangSwitcher({
@@ -154,7 +154,7 @@ function Navbar({
         <div className="hidden md:flex items-center gap-3">
           <LangSwitcher lang={lang} accent={accent} scrolled={true} />
           <a
-            href={`/${lang}#waitlist`}
+            href={`https://app.hamrolink.com`}
             className="flex items-center gap-1.5 px-4 py-2 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 shadow-lg"
             style={{ background: accent }}
           >
@@ -207,7 +207,7 @@ function Navbar({
             </div>
             <div className="pt-4 border-t border-gray-100">
               <Link
-                href={`/${lang}#waitlist`}
+                href={`https://app.hamrolink.com`}
                 className="block py-2.5 text-center text-white rounded-xl text-sm font-bold"
                 style={{ background: accent }}
                 onClick={() => setOpen(false)}
@@ -624,7 +624,7 @@ export default function AboutPage({ params }: { params: any }) {
         lang={lang}
         d={d}
         PRE_LAUNCH={PRE_LAUNCH}
-        ctaHref={(href) => (PRE_LAUNCH ? `/${lang}#waitlist` : href)}
+        ctaHref={(href) => (PRE_LAUNCH ? `https://app.hamrolink.com` : href)}
       />
     </div>
   );

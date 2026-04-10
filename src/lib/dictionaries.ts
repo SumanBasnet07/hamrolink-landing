@@ -20,7 +20,7 @@ export const dictionaries = {
       about: "About",
       contact: "Contact",
       signIn: "Sign In",
-      cta: "Claim Early Access",
+      cta: "Start for Free",
       ctaPostLaunch: "Get Started Free",
     },
 
@@ -41,7 +41,7 @@ export const dictionaries = {
       supportLine:
         "Look professional. Get found. Never miss a customer — even at 2am.",
 
-      ctaPrimary: "Claim Early Access",
+      ctaPrimary: "Start for Free",
       ctaPrimaryPostLaunch: "Get Started Free",
       ctaSecondary: "See Real Examples",
 
@@ -101,39 +101,39 @@ export const dictionaries = {
     // ── Waitlist form ────────────────────────────────────────────────────────
     waitlist: {
       placeholder: "Enter your email",
-      cta: "Claim My Early Access Spot",
-      submitting: "Reserving your spot…",
+      cta: "Start for Free",
+      submitting: "Creating your account…",
       successTitle: "You're in! 🎉",
       successText:
-        "We'll email you the moment HamroLink launches. Your early access perks are reserved.",
-      errorDuplicate: "This email is already on the waitlist.",
+        "Your account is ready. Start building your business website now.",
+      errorDuplicate: "This email is already registered.",
       errorGeneric: "Something went wrong. Please try again.",
-      launchLabel: "HamroLink launches soon — limited early spots.",
+      launchLabel: "HamroLink is live — start in minutes.",
       launchSub:
-        "Your competitor might already be on the list. Claim your spot now.",
+        "Your competitor might already be online. Launch your website now.",
       countPrefix: "",
       countSuffix: " businesses already ahead of you",
 
       // FEAR-driven headline
       heading: "Don't let your\ncompetitor launch first.",
       subheading:
-        "240+ Nepali businesses have already claimed their spot. Join them — and get exclusive early access perks.",
+        "240+ Nepali businesses have already started. Join them and launch your website today.",
 
       // HOPE + STATUS perks
       perk1Title: "500 AI Response Credits",
       perk1Desc:
         "That's 500 customer conversations handled automatically while you sleep. Free users pay per response after 100.",
-      perk2Title: "Priority Access",
-      perk2Desc: "Get access before the public launch and skip the queue.",
-      perk3Title: "Launch Price Locked Forever",
+      perk2Title: "Priority Onboarding",
+      perk2Desc: "Get setup guidance and go live faster.",
+      perk3Title: "Start at NPR 199/month",
       perk3Desc:
-        "NPR 399/month locked in permanently. Price goes up after public launch.",
+        "Affordable plans with AI tools included from day one.",
 
-      socialProof: "businesses already on the list",
+      socialProof: "businesses already using HamroLink",
 
       formTitle: "Reserve your spot now",
       formSub: "10 seconds. No credit card. No commitment.",
-      urgency: "Early spots are limited. Latecomers pay full price.",
+      urgency: "Every week you wait, competitors look more professional online.",
 
       socialProofLong: "Join 240+ Nepali businesses securing their digital future.",
       antiSales:
@@ -151,8 +151,8 @@ export const dictionaries = {
       // Real social proof framing
       quote:
         '"My customers kept asking for my website. I didn\'t have one. Now I do — and it took 12 minutes."',
-      quoteAuthor: "Early waitlist member, Kathmandu",
-      urgencyMicro: "Only 47 early access spots remaining this month",
+      quoteAuthor: "HamroLink customer, Kathmandu",
+      urgencyMicro: "New businesses are launching every week",
       limitedSpot: "Your competitor #{n} is already on the list",
       recentSignups: [
         "Sita Gurung, Beauty Studio - Pokhara",
@@ -166,7 +166,7 @@ export const dictionaries = {
         "Sunita Biswakarma, Tailoring - Nepalgunj",
         "Binod Katwal, Furniture Workshop - Jhapa",
       ],
-      countdownText: "Early access closes in 10 days",
+      countdownText: "Get your business online today",
     },
 
     // ── Demo video section ───────────────────────────────────────────────────
@@ -196,12 +196,12 @@ export const dictionaries = {
         "hamroschool.hamrolink.com",
         "hamrokhajaghar.hamrolink.com",
       ],
-      cta: "Claim Early Access",
+      cta: "Start for Free",
     },
 
     // ── Stats bar ────────────────────────────────────────────────────────────
     preLaunchStats: [
-      { value: "240+", label: "Businesses on waitlist" },
+      { value: "240+", label: "Businesses started" },
       { value: "120+", label: "Ready-made templates" },
       { value: "99.9%", label: "Uptime guaranteed" },
       { value: "< 15 min", label: "Avg. time to go live" },
@@ -470,7 +470,7 @@ export const dictionaries = {
       subtext:
         "Every template is designed to make your business look credible, trustworthy, and professional — from the first second a customer lands on your page.",
       browseAll: "Browse all templates",
-      useThis: "Claim Early Access",
+      useThis: "Start for Free",
       hoverCta: "Use this template →",
     },
 
@@ -495,7 +495,7 @@ export const dictionaries = {
           icon: "Utensils"
         },
       ],
-      cta: "Claim My Early Access Spot",
+      cta: "Start for Free",
     },
 
     // ── Founder trust section ────────────────────────────────────────────────
@@ -515,12 +515,12 @@ export const dictionaries = {
     // ── Pricing ──────────────────────────────────────────────────────────────
     pricing: {
       title: "Pricing Plans | HamroLink — Professional & Affordable",
-      description: "Transparent pricing for every stage of your business. From individual creators to large institutions. Start for free. Lock in early access price forever.",
+      description: "Transparent pricing for every stage of your business. From individual creators to large institutions. Start for free and upgrade anytime.",
       badge: "Less than a dinner out — and it works 24/7",
-      heading: "Your 24/7 business presence.\nStarting at NPR 399/month.",
-      anchoring: "A developer costs NPR 50,000. A freelancer costs NPR 15,000. HamroLink costs NPR 399 — and includes AI that works 24/7.",
+      heading: "Your 24/7 business presence.\nStarting at NPR 199/month.",
+      anchoring: "A developer costs NPR 50,000. A freelancer costs NPR 15,000. HamroLink starts at NPR 199 — with AI tools included.",
       subtext:
-        "A web developer charges NPR 30,000–80,000 to build a site. HamroLink gives you a better one — with AI tools included — for NPR 399/month. Join the waitlist now to lock in this price forever.",
+        "A web developer charges NPR 30,000–80,000 to build a site. HamroLink gives you a better one — with AI tools included — starting at NPR 199/month.",
       monthly: "Monthly",
       yearly: "Yearly",
       save: "SAVE 12%",
@@ -529,7 +529,7 @@ export const dictionaries = {
       perYear: "/yr",
       approxMonth: "≈ NPR {n}/month",
       ctaFree: "Start Free",
-      ctaPaid: "Claim Early Price",
+      ctaPaid: "Start for NPR 199/mo",
       ctaInstitutional: "Try for Free",
       persona: {
         business: "Local Business",
@@ -651,7 +651,7 @@ export const dictionaries = {
       priceMetaphor: {
         daily: "NPR 13/day — less than a cup of milk tea",
         weekly: "NPR 93/week — less than a plate of momo",
-        monthly: "NPR 399/month — one less dinner out",
+        monthly: "NPR 199/month — less than one dinner out",
       },
       teaser: {
         heading: "Pricing that scales with you",
@@ -696,7 +696,7 @@ export const dictionaries = {
       decisionHelper: {
         heading: "Still thinking? Here's what happens if you wait:",
         points: [
-          "Early access price expires → Pay 25% more",
+          "Competitors launch before you and win online customers",
           "Your competitor claims your business name first",
           "240+ businesses start looking more professional than you",
         ],
@@ -723,10 +723,10 @@ export const dictionaries = {
       line2: "digital right now.",
       subtext:
         "Join 240+ Nepali businesses who've already claimed their spot. The ones who launch first win the online customers. Don't be the last one.",
-      primary: "Claim My Early Access Spot",
+      primary: "Start for Free",
       secondary: "See Pricing",
       disclaimer:
-        "Free to join · No credit card · Launch price locked forever for early members",
+        "Start for free · No credit card required · Upgrade or cancel anytime",
     },
 
     // ── Contact Page ──────────────────────────────────────────────────────────
@@ -862,10 +862,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     // ── Footer ───────────────────────────────────────────────────────────────
     footer: {
       tagline:
-        "Nepal's first AI-powered business presence platform — launching soon.",
+        "Nepal's first AI-powered business presence platform.",
       taglinePostLaunch:
         "Nepal's first AI-powered business presence platform.",
-      cta: "Claim Early Access",
+      cta: "Start for Free",
       ctaPostLaunch: "Get Started Free",
       copyright: "All rights reserved · Built with ❤️ in Nepal 🇳🇵",
       businessName: "HamroLink Digital",
@@ -972,7 +972,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       about: "हाम्रोबारे",
       contact: "सम्पर्क",
       signIn: "साइन इन",
-      cta: "अर्ली एक्सेस लिनुहोस्",
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
       ctaPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
     },
 
@@ -992,7 +992,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       supportLine:
         "प्रोफेसनल देखिनुहोस्। इन्टरनेटमा सजिलै भेटिनुहोस्। राति ११ बजे आएको सोधपुछ पनि नछुटाउनुहोस्।",
 
-      ctaPrimary: "अर्ली एक्सेस लिनुहोस्",
+      ctaPrimary: "नि:शुल्क सुरु गर्नुहोस्",
       ctaPrimaryPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
       ctaSecondary: "उदाहरणहरू हेर्नुहोस्",
 
@@ -1051,38 +1051,38 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     // ── Waitlist ─────────────────────────────────────────────────────────────
     waitlist: {
       placeholder: "आफ्नो इमेल राख्नुहोस्",
-      cta: "मेरो अर्ली एक्सेस सिट सुरक्षित गर्नुहोस्",
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
       submitting: "तपाईंको सिट सुरक्षित गरिँदैछ…",
       successTitle: "बधाई छ, तपाईं सूचीमा पर्नुभयो! 🎉",
       successText:
-        "HamroLink लन्च हुने बित्तिकै हामी तपाईंलाई इमेल गर्नेछौं। तपाईंका अर्ली एक्सेस सुविधाहरू सुरक्षित भइसकेका छन्।",
-      errorDuplicate: "यो इमेल पहिले नै वेटलिस्टमा दर्ता छ।",
+        "तपाईंको खाता तयार छ। अब आफ्नाे व्यवसाय वेबसाइट बनाउन सुरु गर्नुहोस्।",
+      errorDuplicate: "यो इमेल पहिले नै दर्ता भइसकेको छ।",
       errorGeneric: "केही गडबडी भयो। कृपया फेरि प्रयास गर्नुहोस्।",
-      launchLabel: "HamroLink छिट्टै आउँदैछ — सुरुवाती सिटहरू सीमित छन्।",
+      launchLabel: "HamroLink लाइभ छ — केही मिनेटमै सुरु गर्नुहोस्।",
       launchSub:
-        "तपाईंका प्रतिस्पर्धीहरू सूचीमा दर्ता भइसकेका हुन सक्छन्। अहिल्यै आफ्नो सिट सुरक्षित गर्नुहोस्।",
+        "तपाईंका प्रतिस्पर्धीहरू पहिले नै अनलाइन हुन सक्छन्। आजै आफ्नाे वेबसाइट लन्च गर्नुहोस्।",
       countPrefix: "",
       countSuffix: " व्यवसायहरू तपाईंभन्दा अगाडि छन्",
 
       // FEAR headline
       heading: "प्रतिस्पर्धीलाई पहिले\nलन्च गर्न नदिनुहोस्।",
       subheading:
-        "२४०+ नेपाली व्यवसायहरूले आफ्नो सिट सुरक्षित गरिसकेका छन्। उनीहरूसँगै जोडिनुहोस् र विशेष अर्ली एक्सेस सुविधाहरू प्राप्त गर्नुहोस्।",
+        "२४०+ नेपाली व्यवसायहरूले सुरु गरिसकेका छन्। उनीहरूसँग जोडिनुहोस् र आजै आफ्नाे वेबसाइट लन्च गर्नुहोस्।",
 
       perk1Title: "५०० एआई रिस्पोन्स क्रेडिट",
       perk1Desc:
         "यसको अर्थ तपाईं सुतिरहेको बेला पनि ५०० ग्राहकका प्रश्नहरूको जवाफ स्वतः दिइनेछ। नि:शुल्क प्रयोगकर्ताले १०० पछि प्रति जवाफ शुल्क तिर्नुपर्छ।",
-      perk2Title: "प्राथमिकता पहुँच (Priority Access)",
-      perk2Desc: "सार्वजनिक लन्च हुनु अगावै पहुँच पाउनुहोस् र पालो नकुरी सिधै सुरु गर्नुहोस्।",
-      perk3Title: "लन्च मूल्य सधैँका लागि लक",
+      perk2Title: "प्राथमिकता अनबोर्डिङ (Priority Onboarding)",
+      perk2Desc: "सेटअप सहयोग पाउनुहोस् र छिटो लाइभ जानुहोस्।",
+      perk3Title: "रु १९९/महिना बाट सुरु",
       perk3Desc:
-        "प्रति महिना मात्र रु ३९९ सधैँका लागि लक गर्नुहोस्। सार्वजनिक लन्चपछि यसको मूल्य बढ्नेछ।",
+        "पहिलो दिनदेखि AI टुल्ससहित किफायती प्लानहरू उपलब्ध छन्।",
 
-      socialProof: "व्यवसायहरू पहिले नै वेटलिस्टमा छन्",
+      socialProof: "व्यवसायहरू HamroLink प्रयोग गरिरहेका छन्",
 
       formTitle: "अहिल्यै आफ्नो सिट सुरक्षित गर्नुहोस्",
       formSub: "मात्र १० सेकेन्ड लाग्छ। क्रेडिट कार्ड चाहिँदैन। कुनै प्रतिबद्धता आवश्यक छैन।",
-      urgency: "सुरुवाती सिटहरू सीमित छन्। ढिलो गर्नेले पूरा मूल्य तिर्नुपर्नेछ।",
+      urgency: "जति पर्खिनुहुन्छ, उति प्रतिस्पर्धीहरू अनलाइनमा अघि बढ्छन्।",
 
       socialProofLong: "२४०+ नेपाली व्यवसायहरूले आफ्नो डिजिटल भविष्य सुरक्षित गरिसकेका छन्।",
       antiSales:
@@ -1099,8 +1099,8 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
       quote:
         '"मेरा ग्राहकहरूले वेबसाइट मागिरहन्थे। मसँग थिएन। अहिले छ—र यो बनाउन मलाई मात्र १२ मिनेट लाग्यो।"',
-      quoteAuthor: "सुरुवाती वेटलिस्ट सदस्य, काठमाडौं",
-      urgencyMicro: "यस महिनाका लागि मात्र ४७ वटा अर्ली एक्सेस सिट बाँकी छन्",
+      quoteAuthor: "HamroLink प्रयोगकर्ता, काठमाडौं",
+      urgencyMicro: "हरेक हप्ता नयाँ व्यवसायहरू लन्च भइरहेका छन्",
       limitedSpot: "तपाईंको प्रतिस्पर्धी #{n} पहिले नै सूचीमा छ",
       recentSignups: [
         "सीता गुरुङ, ब्युटी पार्लर - पोखरा",
@@ -1114,7 +1114,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         "सुनीता विश्वकर्मा, टेलरिङ - नेपालगन्ज",
         "विनोद कट्वाल, फर्निचर वर्कशप - झापा",
       ],
-      countdownText: "अर्ली एक्सेस १० दिनमा बन्द हुँदैछ",
+      countdownText: "आजै आफ्नो व्यवसाय अनलाइन सुरु गर्नुहोस्",
     },
 
     // ── Demo video ───────────────────────────────────────────────────────────
@@ -1143,12 +1143,12 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         "hamroschool.hamrolink.com",
         "hamrokhajaghar.hamrolink.com",
       ],
-      cta: "अर्ली एक्सेस दाबी गर्नुहोस्",
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
     },
 
     // ── Stats ────────────────────────────────────────────────────────────────
     preLaunchStats: [
-      { value: "२४०+", label: "वेटलिस्टमा रहेका व्यवसायहरू" },
+      { value: "२४०+", label: "सुरु गरिसकेका व्यवसायहरू" },
       { value: "१२०+", label: "रेडिमेड टेम्प्लेटहरू" },
       { value: "९९.९%", label: "अपटाइम ग्यारेन्टी" },
       { value: "< १५ मिनेट", label: "औसत लाइभ हुने समय" },
@@ -1407,7 +1407,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       subtext:
         "हरेक टेम्प्लेट तपाईंको व्यवसायलाई पहिलो सेकेन्डदेखि नै विश्वसनीय र प्रोफेसनल देखाउनका लागि डिजाइन गरिएको छ।",
       browseAll: "सबै टेम्प्लेटहरू हेर्नुहोस्",
-      useThis: "अर्ली एक्सेस लिनुहोस्",
+      useThis: "नि:शुल्क सुरु गर्नुहोस्",
       hoverCta: "यो टेम्प्लेट प्रयोग गर्नुहोस् →",
     },
 
@@ -1432,7 +1432,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           icon: "Utensils"
         },
       ],
-      cta: "मेरो अर्ली एक्सेस सिट सुरक्षित गर्नुहोस्",
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
     },
 
     // ── Founder ──────────────────────────────────────────────────────────────
@@ -1454,10 +1454,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       title: "मूल्य र योजनाहरू | HamroLink — व्यवसाय वृद्धिको लागि सुलभ दर",
       description: "आफ्नो व्यवसायिक आवश्यकता अनुसारको प्लान छान्नुहोस्। सस्तो, सुलभ र पारदर्शी मूल्य। कुनै लुकेको शुल्क छैन।",
       badge: "बाहिर एक छाक खाजा खाएको खर्चभन्दा कम — र यसले २४/७ काम गर्छ",
-      heading: "तपाईंको २४/७ डिजिटल प्रेजेन्स।\nप्रति महिना मात्र रु ३९९ बाट सुरु।",
-      anchoring: "एउटा डेभलपरलाई रु ५०,००० लाग्छ। फ्रिल्यान्सरलाई रु १५,०००। HamroLink मात्र रु ३९९ मा उपलब्ध छ—जसमा २४/७ काम गर्ने एआई पनि समावेश छ।",
+      heading: "तपाईंको २४/७ डिजिटल प्रेजेन्स।\nप्रति महिना मात्र रु १९९ बाट सुरु।",
+      anchoring: "एउटा डेभलपरलाई रु ५०,००० लाग्छ। फ्रिल्यान्सरलाई रु १५,०००। HamroLink रु १९९ बाट सुरु हुन्छ—जसमा AI टुल्स पनि समावेश छन्।",
       subtext:
-        "एउटा वेब डेभलपरले साइट बनाउन रु ३०,००० देखि ८०,००० सम्म लिन्छ। HamroLink ले तपाईंलाई एआई टुल्ससहितको त्योभन्दा राम्रो वेबसाइट दिन्छ—मात्र रु ३९९ प्रति महिनामा। यो मूल्यलाई सधैँका लागि लक गर्न अहिल्यै वेटलिस्टमा जोडिनुहोस्।",
+        "एउटा वेब डेभलपरले साइट बनाउन रु ३०,००० देखि ८०,००० सम्म लिन्छ। HamroLink ले तपाईंलाई AI टुल्ससहितको त्योभन्दा राम्रो वेबसाइट दिन्छ—रु १९९/महिना बाट सुरु।",
       monthly: "मासिक",
       yearly: "वार्षिक",
       save: "१२% बचत गर्नुहोस्",
@@ -1466,7 +1466,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       perYear: "/वर्ष",
       approxMonth: "≈ रु {n}/महिना",
       ctaFree: "नि:शुल्क सुरु गर्नुहोस्",
-      ctaPaid: "अर्ली मूल्य दाबी गर्नुहोस्",
+      ctaPaid: "रु १९९/महिना बाट सुरु गर्नुहोस्",
       ctaInstitutional: "नि:शुल्क प्रयास गर्नुहोस्",
       persona: {
         business: "स्थानीय व्यवसाय",
@@ -1588,7 +1588,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       priceMetaphor: {
         daily: "मात्र रु १३/दिन — एक कप चियाभन्दा कम",
         weekly: "रु ९३/हप्ता — एक प्लेट मःमभन्दा कम",
-        monthly: "रु ३९९/महिना — एक पटक बाहिर खाजा खाए जति",
+        monthly: "रु १९९/महिना — एक पटक बाहिर खाजा खाएको भन्दा कम",
       },
       teaser: {
         heading: "तपाईंको व्यवसाय अनुसारको मूल्य",
@@ -1633,7 +1633,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       decisionHelper: {
         heading: "अझै सोच्दै हुनुहुन्छ? पर्खिँदा के हुन्छ, हेर्नुहोस्:",
         points: [
-          "अर्ली एक्सेस मूल्य सकिन्छ → २५% बढी तिर्नुपर्नेछ",
+          "तपाईंले पर्खँदा प्रतिस्पर्धी अनलाइनमा अघि बढ्छ",
           "तपाईंको प्रतिस्पर्धीले तपाईंको व्यवसायको नाम पहिले नै ओगट्नेछ",
           "२४०+ व्यवसायहरू तपाईंभन्दा बढी प्रोफेसनल देखिन सुरु गर्नेछन्",
         ],
@@ -1647,10 +1647,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       line2: "डिजिटल बन्दैछन्।",
       subtext:
         "आफ्नो सिट सुरक्षित गरिसकेका २४०+ नेपाली व्यवसायहरूसँग जोडिनुहोस्। जसले पहिले लन्च गर्छ, अनलाइन ग्राहक उसैले जित्छ। पछि नपर्नुहोस्।",
-      primary: "मेरो अर्ली एक्सेस सिट सुरक्षित गर्नुहोस्",
+      primary: "नि:शुल्क सुरु गर्नुहोस्",
       secondary: "मूल्य हेर्नुहोस्",
       disclaimer:
-        "जोडिन नि:शुल्क · क्रेडिट कार्ड चाहिँदैन · अर्ली सदस्यहरूका लागि लन्च मूल्य सधैँका लागि लक",
+        "नि:शुल्क सुरु गर्नुहोस् · क्रेडिट कार्ड चाहिँदैन · जुनसुकै बेला अपग्रेड वा रद्द गर्न सकिन्छ",
     },
 
     // ── Contact Page ──────────────────────────────────────────────────────────
@@ -1786,10 +1786,10 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
     // ── Footer ───────────────────────────────────────────────────────────────
     footer: {
       tagline:
-        "नेपालको पहिलो AI-powered business presence platform — छिट्टै आउँदैछ।",
+        "नेपालको पहिलो AI-powered business presence platform।",
       taglinePostLaunch:
         "नेपालको पहिलो AI-powered business presence platform।",
-      cta: "अर्ली एक्सेस लिनुहोस्",
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
       ctaPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
       copyright: "Crafted with Love in Nepal | सर्वाधिकार सुरक्षित",
       businessName: "हाम्रोलिङ्क डिजिटल",

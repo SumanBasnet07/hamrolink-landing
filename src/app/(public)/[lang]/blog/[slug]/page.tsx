@@ -309,11 +309,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <div className={`p-4 ${col.bg} ${col.border} border rounded-2xl text-center`}>
                   <Sparkles className={`w-5 h-5 mx-auto mb-2 ${col.text}`}/>
                   <p className={`text-xs font-black mb-3 leading-snug ${col.text}`}>
-                    {ne ? "HamroLink Digital चाँडै आउँदैछ" : "HamroLink Digital is launching soon"}
+                    {ne ? "HamroLink Digital अब लाइभ छ" : "HamroLink Digital is now live"}
                   </p>
-                  <a href={`/${lang}#waitlist`}
+                  <a href={`https://app.hamrolink.com`}
                     className={`block w-full py-2 ${col.ibg} ${col.text} rounded-xl text-xs font-black hover:opacity-80 transition-opacity`}>
-                    {ne ? "प्रतीक्षा सूचीमा सामेल" : "Join Waitlist"}
+                    {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
                   </a>
                 </div>
               </div>
@@ -424,10 +424,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                       ? "कुनै कोडिङ बिना NPR ३९९/महिनाबाट आफ्नो व्यावसायिक वेबसाइट बनाउनुहोस्।"
                       : "Build your professional website from NPR 399/month — no coding required."}
                   </p>
-                  <a href={`/${lang}#waitlist`}
+                  <a href={`https://app.hamrolink.com`}
                     className="inline-flex items-center gap-3 px-10 py-5 bg-white text-indigo-700 rounded-2xl font-black text-lg hover:scale-105 active:scale-95 transition-all shadow-xl shadow-black/20">
                     <Sparkles className="w-6 h-6"/>
-                    {ne ? "प्रारम्भिक पहुँचमा सामेल हुनुहोस्" : "Join Early Access — Free"}
+                    {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
                     <ArrowRight className="w-6 h-6"/>
                   </a>
                 </div>

@@ -24,7 +24,7 @@ const faqs = {
         },
         {
           q: "When will HamroLink Digital launch?",
-          a: "HamroLink Digital is launching soon. Join the early access waitlist to be among the first to build your website and receive a launch notification the moment we go live.",
+          a: "HamroLink Digital is now live. Start for free and publish your website in minutes.",
         },
         {
           q: "Do I need to know how to code?",

@@ -448,15 +448,15 @@ const CONTENT = {
       },
     ],
     earlyAccess: {
-      badge: "🚀 Launching Soon in Nepal",
+      badge: "🚀 Now Live in Nepal",
       h2: "Start Building Your Online Presence",
       paras: [
         "If your business currently relies only on Facebook, now is a good time to expand your online presence. With a website, customers can discover your business on Google, learn about your services anytime, and contact you with confidence.",
-        "Join early access to HamroLink and start building your own website — no coding required, no large upfront cost, and no technical team needed.",
+        "Start for free on HamroLink and build your own website — no coding required, no large upfront cost, and no technical team needed.",
       ],
-      cta: "Join Early Access — It's Free",
-      ctaHref: "/en#waitlist",
-      trust: ["Free to join", "No credit card required", "Unsubscribe anytime"],
+      cta: "Start for Free",
+      ctaHref: "https://app.hamrolink.com",
+      trust: ["Start for Free", "No credit card required", "Cancel anytime"],
     },
     faqTitle: "Frequently Asked Questions",
     faqSubtitle: "Everything Nepali business owners ask about Facebook pages vs websites.",
@@ -465,7 +465,7 @@ const CONTENT = {
     related: [
       { label: "Why Nepali Businesses Don't Have Websites", href: "/en/blog/why-nepali-businesses-dont-have-websites" },
       { label: "HamroLink Pricing", href: "/en#pricing" },
-      { label: "Join Waitlist", href: "/en#waitlist" },
+      { label: "Start for Free", href: "https://app.hamrolink.com" },
     ],
   },
 
@@ -652,15 +652,15 @@ const CONTENT = {
       },
     ],
     earlyAccess: {
-      badge: "🚀 नेपालमा चाँडै सुरु हुँदैछ",
+      badge: "🚀 अब नेपालमा लाइभ",
       h2: "तपाईंको अनलाइन उपस्थिति निर्माण सुरु गर्नुहोस्",
       paras: [
         "यदि तपाईंको व्यवसाय हाल केवल फेसबुकमा भर पर्छ भने, अहिले तपाईंको अनलाइन उपस्थिति विस्तार गर्ने राम्रो समय हो। वेबसाइटसँग, ग्राहकहरूले Google मा तपाईंको व्यवसाय पत्ता लगाउन सक्छन्, जुनसुकै बेला तपाईंको सेवाहरूबारे जान्न सक्छन् र आत्मविश्वासका साथ सम्पर्क गर्न सक्छन्।",
-        "HamroLink को प्रारम्भिक पहुँचमा सामेल हुनुहोस् र आफ्नै वेबसाइट बनाउन सुरु गर्नुहोस् — कुनै कोडिङ आवश्यक छैन, ठूलो अग्रिम लागत छैन र प्राविधिक टोली आवश्यक छैन।",
+        "HamroLink मा नि:शुल्क सुरु गर्नुहोस् र आफ्नै वेबसाइट बनाउन सुरु गर्नुहोस् — कुनै कोडिङ आवश्यक छैन, ठूलो अग्रिम लागत छैन र प्राविधिक टोली आवश्यक छैन।",
       ],
-      cta: "प्रारम्भिक पहुँचमा सामेल हुनुहोस् — निःशुल्क",
-      ctaHref: "/ne#waitlist",
-      trust: ["सामेल हुन निःशुल्क", "क्रेडिट कार्ड आवश्यक छैन", "जुनसुकै बेला अनसब्सक्राइब गर्नुहोस्"],
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
+      ctaHref: "https://app.hamrolink.com",
+      trust: ["नि:शुल्क सुरु गर्नुहोस्", "क्रेडिट कार्ड आवश्यक छैन", "जुनसुकै बेला रद्द गर्न सकिन्छ"],
     },
     faqTitle: "बारम्बार सोधिने प्रश्नहरू",
     faqSubtitle: "फेसबुक पेज बनाम वेबसाइटबारे नेपाली व्यापार मालिकहरूले सोध्ने सबै कुरा।",
@@ -669,7 +669,7 @@ const CONTENT = {
     related: [
       { label: "नेपाली व्यवसायसँग वेबसाइट किन छैन", href: "/ne/blog/why-nepali-businesses-dont-have-websites" },
       { label: "HamroLink मूल्य निर्धारण", href: "/ne#pricing" },
-      { label: "प्रतीक्षा सूचीमा सामेल हुनुहोस्", href: "/ne#waitlist" },
+      { label: "नि:शुल्क सुरु गर्नुहोस्", href: "https://app.hamrolink.com" },
     ],
   },
 };
@@ -876,11 +876,11 @@ export default async function BlogFacebookVsWebsitePage({ params }: { params: Pr
                 <div className="mt-8 p-4 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl text-white text-center">
                   <Sparkles className="w-6 h-6 mx-auto mb-2 opacity-80"/>
                   <p className="text-xs font-black mb-3 leading-snug">
-                    {ne ? "HamroLink चाँडै आउँदैछ" : "HamroLink is launching soon"}
+                    {ne ? "HamroLink अब लाइभ छ" : "HamroLink is now live"}
                   </p>
                   <a href={c.earlyAccess.ctaHref}
                     className="block w-full py-2 bg-white text-indigo-700 rounded-xl text-xs font-black hover:bg-indigo-50 transition-colors">
-                    {ne ? "प्रतीक्षा सूचीमा सामेल" : "Join Waitlist"}
+                    {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
                   </a>
                 </div>
               </div>

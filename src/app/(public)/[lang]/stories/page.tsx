@@ -188,7 +188,7 @@ export default function StoriesSitePage({ params }: { params: any }) {
                   {t.imagineThis.alternative}
                 </p>
                 <Link
-                  href={`/${lang}#waitlist`}
+                  href={`https://app.hamrolink.com`}
                   className="inline-flex items-center gap-3 px-10 py-5 bg-indigo-600 text-white rounded-2xl text-lg font-black hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-600/40"
                 >
                   <Sparkles className="w-5 h-5" />
@@ -254,7 +254,7 @@ export default function StoriesSitePage({ params }: { params: any }) {
         </div>
       </main>
 
-      <Footer lang={lang} d={d} PRE_LAUNCH={true} ctaHref={(href: string) => `/${lang}#waitlist`} />
+      <Footer lang={lang} d={d} PRE_LAUNCH={false} ctaHref={(href: string) => `https://app.hamrolink.com`} />
     </div>
   );
 }
