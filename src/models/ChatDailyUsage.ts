@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const CHAT_USAGE_TTL_SECONDS = 30 * 24 * 60 * 60;
+
 const ChatDailyUsageSchema = new mongoose.Schema(
   {
     fingerprint: {
@@ -29,6 +31,10 @@ const ChatDailyUsageSchema = new mongoose.Schema(
 );
 
 ChatDailyUsageSchema.index({ fingerprint: 1, dayKey: 1 }, { unique: true });
+ChatDailyUsageSchema.index(
+  { createdAt: 1 },
+  { expireAfterSeconds: CHAT_USAGE_TTL_SECONDS }
+);
 
 const ChatDailyUsage =
   mongoose.models.ChatDailyUsage ||

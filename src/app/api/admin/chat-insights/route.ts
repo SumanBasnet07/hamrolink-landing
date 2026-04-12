@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import ChatLead from "@/models/ChatLead";
+import { requireAdminSessionOrHeaderSecret } from "@/lib/adminAuth";
 
 export const runtime = "nodejs";
 
@@ -14,13 +15,10 @@ function normalizeDayKey(value: string | null) {
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const secret = searchParams.get("secret") || req.headers.get("x-insights-secret");
-    const expectedSecret = process.env.CHAT_INSIGHTS_SECRET || process.env.ADMIN_SECRET;
+    const authError = requireAdminSessionOrHeaderSecret(req);
+    if (authError) return authError;
 
-    if (expectedSecret && secret !== expectedSecret) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const { searchParams } = new URL(req.url);
 
     const dayKey = normalizeDayKey(searchParams.get("date"));
     const limit = Math.min(Number(searchParams.get("limit") || 30), 100);

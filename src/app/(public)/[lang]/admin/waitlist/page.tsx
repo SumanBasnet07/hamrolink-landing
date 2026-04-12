@@ -28,7 +28,13 @@ export default function AdminWaitlistPage({ params }: { params: any }) {
     setError("");
     const sec = inputSecret || secret;
     try {
-      const res = await fetch(`/api/admin/waitlist?secret=${sec}`);
+      const headers: Record<string, string> = {};
+      if (sec.trim()) headers["x-admin-secret"] = sec.trim();
+
+      const res = await fetch("/api/admin/waitlist", {
+        method: "GET",
+        headers,
+      });
       const data = await res.json();
       
       if (data.error === "Unauthorized") {

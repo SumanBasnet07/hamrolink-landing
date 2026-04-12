@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import ChatDailyUsage from "@/models/ChatDailyUsage";
 import ChatLead from "@/models/ChatLead";
+import { getRelevantKnowledgeSnippets } from "@/lib/chatbotKnowledge";
 
 export const runtime = "nodejs";
 
@@ -16,8 +17,7 @@ function getFingerprint(req: NextRequest) {
   const xff = req.headers.get("x-forwarded-for") || "";
   const ip = xff.split(",")[0]?.trim() || "unknown-ip";
   const ua = req.headers.get("user-agent") || "unknown-ua";
-  const clientId = req.headers.get("x-client-id") || "anon-client";
-  return `${clientId}::${ip}::${ua.slice(0, 120)}`;
+  return `${ip}::${ua.slice(0, 120)}`;
 }
 
 type ChatMessage = {
@@ -25,20 +25,9 @@ type ChatMessage = {
   content: string;
 };
 
-function sanitizeSnippetList(input: unknown, maxItems = 6, maxChars = 500) {
-  if (!Array.isArray(input)) return [] as string[];
-
-  return input
-    .filter((item): item is string => typeof item === "string")
-    .map((item) => item.trim())
-    .filter(Boolean)
-    .slice(0, maxItems)
-    .map((item) => item.slice(0, maxChars));
-}
-
-function parseBoolean(input: unknown, fallback = false) {
-  if (typeof input === "boolean") return input;
-  return fallback;
+function sanitizeContextText(input: unknown, fallback: string, maxChars = 80) {
+  const raw = (input || fallback).toString().trim().slice(0, maxChars);
+  return raw.replace(/[^a-zA-Z0-9_\-:/ ]/g, "") || fallback;
 }
 
 function inferBusinessIntent(text: string) {
@@ -74,11 +63,8 @@ export async function POST(req: NextRequest) {
     const lang = body?.lang === "ne" ? "ne" : "en";
     const history = Array.isArray(body?.history) ? (body.history as ChatMessage[]) : [];
     const context = body?.context ?? {};
-    const page = (context?.page || "landing").toString().slice(0, 60);
-    const planFocus = (context?.planFocus || "LOCAL_START_TRIAL_15_DAYS").toString().slice(0, 80);
-    const sourceDocuments = sanitizeSnippetList(context?.sourceDocuments, 4, 80);
-    const docSnippets = sanitizeSnippetList(context?.docSnippets, 6, 500);
-    const hasKnowledgeMatch = parseBoolean(context?.hasKnowledgeMatch, docSnippets.length > 0);
+    const page = sanitizeContextText(context?.page, "landing", 60);
+    const planFocus = sanitizeContextText(context?.planFocus, "LOCAL_START_TRIAL_15_DAYS", 80);
 
     if (!message) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -91,48 +77,113 @@ export async function POST(req: NextRequest) {
 
     const fingerprint = getFingerprint(req);
     const dayKey = getDayKeyUTC();
+    const nowDate = new Date();
+    const cooldownCutoff = new Date(nowDate.getTime() - COOLDOWN_MS);
 
-    const existing = await ChatDailyUsage.findOne({ fingerprint, dayKey }).lean();
-    const used = existing?.count ?? 0;
+    let existing = await ChatDailyUsage.findOne({ fingerprint, dayKey }).lean();
+    let createdNewUsage = false;
 
-    const lastMessageAt = existing?.lastMessageAt ? new Date(existing.lastMessageAt).getTime() : 0;
-    const now = Date.now();
-    const delta = now - lastMessageAt;
-    if (lastMessageAt && delta < COOLDOWN_MS) {
-      const retryAfterSec = Math.ceil((COOLDOWN_MS - delta) / 1000);
-      return NextResponse.json(
-        {
-          error: lang === "ne" ? "कृपया केही सेकेन्ड पर्खिनुहोस्।" : "Please wait a moment before sending again.",
-          retryAfterSec,
-          remaining: Math.max(0, DAILY_LIMIT - used),
-          limit: DAILY_LIMIT,
-        },
-        { status: 429 }
-      );
+    if (!existing) {
+      try {
+        const created = await ChatDailyUsage.create({
+          fingerprint,
+          dayKey,
+          count: 1,
+          lastMessageAt: nowDate,
+        });
+        existing = created.toObject();
+        createdNewUsage = true;
+      } catch (error: any) {
+        if (error?.code === 11000) {
+          existing = await ChatDailyUsage.findOne({ fingerprint, dayKey }).lean();
+        } else {
+          throw error;
+        }
+      }
     }
 
-    if (used >= DAILY_LIMIT) {
-      return NextResponse.json(
-        {
-          error: lang === "ne" ? "आजको सन्देश सीमा पुगेको छ।" : "Daily message limit reached.",
-          remaining: 0,
-          limit: DAILY_LIMIT,
-        },
-        { status: 429 }
-      );
-    }
+    let updated = existing;
 
-    const updated = await ChatDailyUsage.findOneAndUpdate(
-      { fingerprint, dayKey },
-      {
-        $inc: { count: 1 },
-        $set: { lastMessageAt: new Date() },
-        $setOnInsert: { fingerprint, dayKey },
-      },
-      { new: true, upsert: true }
-    ).lean();
+    if (existing && existing.count > 0 && !createdNewUsage) {
+      const used = existing.count;
+      const lastMessageAt = existing.lastMessageAt ? new Date(existing.lastMessageAt).getTime() : 0;
+      const delta = nowDate.getTime() - lastMessageAt;
+
+      if (used >= DAILY_LIMIT) {
+        return NextResponse.json(
+          {
+            error: lang === "ne" ? "आजको सन्देश सीमा पुगेको छ।" : "Daily message limit reached.",
+            remaining: 0,
+            limit: DAILY_LIMIT,
+          },
+          { status: 429 }
+        );
+      }
+
+      if (lastMessageAt && delta < COOLDOWN_MS) {
+        const retryAfterSec = Math.ceil((COOLDOWN_MS - delta) / 1000);
+        return NextResponse.json(
+          {
+            error: lang === "ne" ? "कृपया केही सेकेन्ड पर्खिनुहोस्।" : "Please wait a moment before sending again.",
+            retryAfterSec,
+            remaining: Math.max(0, DAILY_LIMIT - used),
+            limit: DAILY_LIMIT,
+          },
+          { status: 429 }
+        );
+      }
+
+      if (used >= 1) {
+        updated = await ChatDailyUsage.findOneAndUpdate(
+          {
+            _id: existing._id,
+            count: { $lt: DAILY_LIMIT },
+            $or: [{ lastMessageAt: { $lte: cooldownCutoff } }, { lastMessageAt: { $exists: false } }],
+          },
+          {
+            $inc: { count: 1 },
+            $set: { lastMessageAt: nowDate },
+          },
+          { new: true }
+        ).lean();
+
+        if (!updated) {
+          const latest = await ChatDailyUsage.findOne({ fingerprint, dayKey }).lean();
+          const latestCount = latest?.count ?? used;
+          const latestLast = latest?.lastMessageAt ? new Date(latest.lastMessageAt).getTime() : 0;
+          const latestDelta = latestLast ? nowDate.getTime() - latestLast : 0;
+
+          if (latestCount >= DAILY_LIMIT) {
+            return NextResponse.json(
+              {
+                error: lang === "ne" ? "आजको सन्देश सीमा पुगेको छ।" : "Daily message limit reached.",
+                remaining: 0,
+                limit: DAILY_LIMIT,
+              },
+              { status: 429 }
+            );
+          }
+
+          const retryAfterSec = Math.max(1, Math.ceil((COOLDOWN_MS - latestDelta) / 1000));
+          return NextResponse.json(
+            {
+              error: lang === "ne" ? "कृपया केही सेकेन्ड पर्खिनुहोस्।" : "Please wait a moment before sending again.",
+              retryAfterSec,
+              remaining: Math.max(0, DAILY_LIMIT - latestCount),
+              limit: DAILY_LIMIT,
+            },
+            { status: 429 }
+          );
+        }
+      }
+    }
 
     const remaining = Math.max(0, DAILY_LIMIT - (updated?.count ?? DAILY_LIMIT));
+
+    const knowledge = getRelevantKnowledgeSnippets({ message, lang, maxSnippets: 4 });
+    const sourceDocuments = knowledge.sourceDocuments;
+    const docSnippets = knowledge.snippets;
+    const hasKnowledgeMatch = knowledge.hasKnowledgeMatch;
 
     const inferredIntent = inferBusinessIntent(message);
 

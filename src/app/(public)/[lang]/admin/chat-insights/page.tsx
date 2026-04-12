@@ -35,7 +35,13 @@ export default function AdminChatInsightsPage() {
     const currentSecret = nextSecret ?? secret;
 
     try {
-      const res = await fetch(`/api/admin/chat-insights?date=${date}&limit=50&secret=${encodeURIComponent(currentSecret)}`);
+      const headers: Record<string, string> = {};
+      if (currentSecret.trim()) headers["x-admin-secret"] = currentSecret.trim();
+
+      const res = await fetch(`/api/admin/chat-insights?date=${date}&limit=50`, {
+        method: "GET",
+        headers,
+      });
       const data = await res.json();
 
       if (!res.ok) {

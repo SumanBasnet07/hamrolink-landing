@@ -5,15 +5,19 @@ import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/mongodb";
 import BlogPost from "@/models/BlogPost";
 import { slugify, estimateReadTime } from "@/lib/slugify";
+import { requireAdminSession } from "@/lib/adminAuth";
 
 export const runtime = "nodejs";
 
 // ─── GET ─────────────────────────────────────────────────────────────────────
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminSession(req);
+    if (authError) return authError;
+
     await connectDB();
     const { id } = await params;
     const post = await BlogPost.findById(id).lean();
@@ -30,6 +34,9 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminSession(req);
+    if (authError) return authError;
+
     await connectDB();
     const data = await req.json();
     const { id } = await params;
@@ -63,10 +70,13 @@ export async function PUT(
 
 // ─── DELETE ───────────────────────────────────────────────────────────────────
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminSession(req);
+    if (authError) return authError;
+
     await connectDB();
     const { id } = await params;
     const post = await BlogPost.findByIdAndDelete(id).lean();
@@ -94,6 +104,9 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = requireAdminSession(req);
+    if (authError) return authError;
+
     await connectDB();
     const { id } = await params;
     const { action, commentId } = await req.json();
