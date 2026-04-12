@@ -8,32 +8,74 @@ export default function AdminAuthGate({
 }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [checking, setChecking] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setMounted(true);
-    const auth = sessionStorage.getItem("adminAuth");
-    if (auth === "true") {
-      setIsAuthenticated(true);
+    let active = true;
+
+    async function checkSession() {
+      setMounted(true);
+      try {
+        const res = await fetch("/api/admin/auth", { method: "GET", cache: "no-store" });
+        const data = await res.json();
+        if (!active) return;
+        setIsAuthenticated(Boolean(data?.authenticated));
+        if (!res.ok && data?.error) setError(data.error);
+      } catch {
+        if (active) setError("Unable to verify admin session");
+      } finally {
+        if (active) setChecking(false);
+      }
     }
+
+    checkSession();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const ADMIN_ID = "blog@hamrolink.com";
-    const ADMIN_PASS = "HamroLinkSuman@2026";
+    setSubmitting(true);
+    setError("");
 
-    if (id === ADMIN_ID && pass === ADMIN_PASS) {
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id, password: pass }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data?.error || "Invalid ID or Password");
+        return;
+      }
+
       setIsAuthenticated(true);
-      sessionStorage.setItem("adminAuth", "true");
-    } else {
-      setError("Invalid ID or Password");
+    } catch {
+      setError("Login failed. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   if (!mounted) return null;
+
+  if (checking) {
+    return (
+      <div className="bg-[#0b0f1a] text-white flex items-center justify-center min-h-screen p-6 font-sans">
+        <div className="text-sm font-black text-white/70">Checking admin session...</div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
@@ -58,7 +100,7 @@ export default function AdminAuthGate({
                   value={id}
                   onChange={(e) => setId(e.target.value)}
                   className="w-full px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 focus:border-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all text-sm"
-                  placeholder="blog@hamrolink.com"
+                  placeholder="Enter admin email"
                   required
                 />
               </div>
@@ -83,9 +125,10 @@ export default function AdminAuthGate({
               
               <button
                 type="submit"
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-indigo-900/20 mt-4 flex items-center justify-center gap-2"
+                disabled={submitting}
+                className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-indigo-900/20 mt-4 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Verify Identity
+                {submitting ? "Verifying..." : "Verify Identity"}
               </button>
             </form>
           </div>

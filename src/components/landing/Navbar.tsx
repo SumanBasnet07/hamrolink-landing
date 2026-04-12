@@ -129,12 +129,22 @@ export function Navbar({
             {preLaunch ? nav.cta : (nav.ctaPostLaunch ?? nav.cta)}
           </Link>
         </div>
-        <button
-          onClick={() => setOpen((p) => !p)}
-          className={`md:hidden p-2 ${sc ? "text-gray-700" : "text-white"}`}
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <Link
+            href={ctaHref}
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-white text-[11px] font-black shadow-lg"
+            style={{ background: accent }}
+          >
+            <Sparkles className="w-3 h-3" />
+            {lang === "ne" ? "१५ मिनेटमा" : "15-min Launch"}
+          </Link>
+          <button
+            onClick={() => setOpen((p) => !p)}
+            className={`p-2 ${sc ? "text-gray-700" : "text-white"}`}
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
       <AnimatePresence>
         {open && (

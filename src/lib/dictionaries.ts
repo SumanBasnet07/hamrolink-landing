@@ -21,36 +21,51 @@ export const dictionaries = {
       contact: "Contact",
       signIn: "Sign In",
       cta: "Start for Free",
-      ctaPostLaunch: "Get Started Free",
+      ctaPostLaunch: "Launch in 15 Minutes",
     },
 
     // ── Hero ─────────────────────────────────────────────────────────────────
     hero: {
-      // FEAR-based badge — the digital shift is happening NOW
-      badge: "Nepal's businesses are going digital. Are you ready?",
-
-      // STATUS + URGENCY headline
-      line1: "Your competitor already has",
-      // line2 is injected dynamically per slide
-      line3: "While you're still 'thinking about it'?",
-
-      // FEAR + HOPE subtext
-      subtext:
-        "Customers Google before they visit. International clients judge by your link. Every day without a website is a customer you never knew you lost. HamroLink fixes that in minutes.",
-
-      supportLine:
-        "Look professional. Get found. Never miss a customer — even at 2am.",
-
-      ctaPrimary: "Start for Free",
+      badge: "Free for your first website",
+      topBar: "Permanent free plan • Your own .hamrolink.com domain • No card required",
+      headline: "Turn your Facebook page into\na professional website.\nIn 15 minutes. Free.",
+      subhead: "No coding. No designer. No \"I'll do it next month.\"",
+      ctaPrimary: "Build My Free Website →",
       ctaPrimaryPostLaunch: "Get Started Free",
-      ctaSecondary: "See Real Examples",
+      ctaSecondary: "See Examples",
 
-      // STATUS-driven trust strip
       trust: [
-        "Look more professional instantly",
-        "No coding. No tech knowledge needed.",
-        "Local payments: eSewa & Khalti built-in",
+        "Free subdomain: yourbusiness.hamrolink.com",
+        "eSewa & Khalti built-in",
+        "No credit card required",
       ],
+
+      bridge: {
+        heading: "If you're thinking:",
+        items: [
+          {
+            question: "\"I'm not tech-savvy\"",
+            answer: "If you can post on Facebook, you can use HamroLink.",
+          },
+          {
+            question: "\"Developers are too expensive\"",
+            answer: "NPR 199/month vs NPR 30,000–80,000 one-time.",
+          },
+          {
+            question: "\"I'm too busy\"",
+            answer: "Takes about 15 minutes. Less than today's Facebook scroll.",
+          },
+        ],
+      },
+
+      liveWebsites: [
+        { business: "Thakali Kitchen", url: "hamrokhadya.hamrolink.com", city: "Pokhara" },
+        { business: "Sagarmatha Consultancy", url: "sagarmathaedu.hamrolink.com", city: "Kathmandu" },
+        { business: "Everest Photo Studio", url: "everestphoto.hamrolink.com", city: "Dharan" },
+      ],
+
+      videoThumbnailText: "Watch: a business owner builds a site in 47 seconds",
+      videoThumbnailCta: "Watch 47-second demo",
 
       identityLine:
         "For shops · restaurants · schools · freelancers · consultancies in Nepal",
@@ -973,35 +988,51 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       contact: "सम्पर्क",
       signIn: "साइन इन",
       cta: "नि:शुल्क सुरु गर्नुहोस्",
-      ctaPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
+      ctaPostLaunch: "१५ मिनेटमा सुरु गर्नुहोस्",
     },
 
     // ── Hero ─────────────────────────────────────────────────────────────────
     hero: {
-      // FEAR badge — direct, Nepali style
-      badge: "नेपालका व्यवसायहरू डिजिटल बन्दैछन्। के तपाईं तयार हुनुहुन्छ?",
-
-      // STATUS + FEAR headline
-      line1: "तपाईंका प्रतिस्पर्धीको",
-      line3: "तपाईं चाहिँ अझै 'सोच्दै' हुनुहुन्छ?",
-
-      // FEAR + HOPE — real, direct Nepali copy
-      subtext:
-        "ग्राहकहरू तपाईंको व्यवसायमा आउनुअघि गुगलमा खोज्छन्। विदेशी क्लाइन्टले तपाईंको लिङ्क हेरेर मूल्याङ्कन गर्छन्। वेबसाइट नहुँदा तपाईंले दिनहुँ कति ग्राहक गुमाइरहनुभएको छ, तपाईंलाई पत्तो नै हुँदैन। HamroLink ले यो समस्या मिनेटमै समाधान गर्छ।",
-
-      supportLine:
-        "प्रोफेसनल देखिनुहोस्। इन्टरनेटमा सजिलै भेटिनुहोस्। राति ११ बजे आएको सोधपुछ पनि नछुटाउनुहोस्।",
-
-      ctaPrimary: "नि:शुल्क सुरु गर्नुहोस्",
+      badge: "पहिलो वेबसाइट नि:शुल्क",
+      topBar: "सधैं नि:शुल्क प्लान • आफ्नै .hamrolink.com डोमेन • कार्ड आवश्यक छैन",
+      headline: "तपाईंको फेसबुक पेजलाई\nप्रोफेसनल वेबसाइटमा बदल्नुहोस्।\n१५ मिनेटमा। नि:शुल्क।",
+      subhead: "कुनै कोडिङ होइन। कुनै डिजाइनर होइन। 'पछि गर्छु' पनि होइन।",
+      ctaPrimary: "मेरो नि:शुल्क वेबसाइट बनाउनुहोस् →",
       ctaPrimaryPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
-      ctaSecondary: "उदाहरणहरू हेर्नुहोस्",
+      ctaSecondary: "उदाहरण हेर्नुहोस्",
 
-      // STATUS trust strip
       trust: [
-        "तत्काल प्रोफेसनल देखिनुहोस्",
-        "कुनै कोडिङ वा प्राविधिक ज्ञान नचाहिने",
-        "ई-सेवा र खल्ती (eSewa & Khalti) इन-बिल्ट",
+        "नि:शुल्क सबडोमेन: yourbusiness.hamrolink.com",
+        "eSewa र Khalti इन-बिल्ट",
+        "क्रेडिट कार्ड आवश्यक छैन",
       ],
+
+      bridge: {
+        heading: "यदि तपाईं सोचिरहनुभएको छ:",
+        items: [
+          {
+            question: "\"म धेरै टेक्निकल छैन\"",
+            answer: "यदि तपाईं फेसबुक चलाउन सक्नुहुन्छ भने HamroLink पनि चलाउन सक्नुहुन्छ।",
+          },
+          {
+            question: "\"डेभलपर धेरै महँगो छ\"",
+            answer: "रु १९९/महिना बनाम रु ३०,०००–८०,००० एकपटकको खर्च।",
+          },
+          {
+            question: "\"म धेरै व्यस्त छु\"",
+            answer: "करिब १५ मिनेट लाग्छ। आजको फेसबुक स्क्रोल भन्दा पनि कम।",
+          },
+        ],
+      },
+
+      liveWebsites: [
+        { business: "थकाली किचन", url: "hamrokhadya.hamrolink.com", city: "पोखरा" },
+        { business: "सगरमाथा कन्सल्टेन्सी", url: "sagarmathaedu.hamrolink.com", city: "काठमाडौं" },
+        { business: "एभरेस्ट फोटो स्टुडियो", url: "everestphoto.hamrolink.com", city: "धरान" },
+      ],
+
+      videoThumbnailText: "हेर्नुहोस्: ४७ सेकेन्डमा वेबसाइट बनाउने तरिका",
+      videoThumbnailCta: "४७-सेकेन्ड डेमो हेर्नुहोस्",
 
       identityLine:
         "नेपालका पसल, रेस्टुरेन्ट, स्कुल, फ्रिल्यान्सर र कन्सल्टेन्सीका लागि",
