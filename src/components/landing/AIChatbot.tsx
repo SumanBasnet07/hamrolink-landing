@@ -95,6 +95,9 @@ function getClientId() {
 
 export function AIChatbot({ ne }: { ne: boolean }) {
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileViewportTop, setMobileViewportTop] = useState(0);
+  const [mobileViewportHeight, setMobileViewportHeight] = useState<number | null>(null);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [remaining, setRemaining] = useState<number | null>(20);
@@ -121,6 +124,68 @@ export function AIChatbot({ ne }: { ne: boolean }) {
     if (!listRef.current) return;
     listRef.current.scrollTop = listRef.current.scrollHeight;
   }, [messages, open]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!open || !isMobile) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [open, isMobile]);
+
+  useEffect(() => {
+    if (!open || !isMobile) {
+      setMobileViewportTop(0);
+      setMobileViewportHeight(null);
+      return;
+    }
+
+    const viewport = window.visualViewport;
+    const syncViewport = () => {
+      if (!viewport) return;
+
+      setMobileViewportTop(Math.max(0, Math.floor(viewport.offsetTop)));
+      setMobileViewportHeight(Math.max(320, Math.floor(viewport.height)));
+
+      if (listRef.current) {
+        requestAnimationFrame(() => {
+          if (!listRef.current) return;
+          listRef.current.scrollTop = listRef.current.scrollHeight;
+        });
+      }
+    };
+
+    if (viewport) {
+      syncViewport();
+      viewport.addEventListener("resize", syncViewport);
+      viewport.addEventListener("scroll", syncViewport);
+
+      return () => {
+        viewport.removeEventListener("resize", syncViewport);
+        viewport.removeEventListener("scroll", syncViewport);
+      };
+    }
+
+    const syncWindowHeight = () => {
+      setMobileViewportTop(0);
+      setMobileViewportHeight(Math.max(320, window.innerHeight));
+    };
+
+    syncWindowHeight();
+    window.addEventListener("resize", syncWindowHeight);
+    return () => {
+      window.removeEventListener("resize", syncWindowHeight);
+    };
+  }, [open, isMobile]);
 
   async function sendMessage() {
     const text = input.trim();
@@ -200,9 +265,20 @@ export function AIChatbot({ ne }: { ne: boolean }) {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div
+      className={`fixed z-50 transition-[top] duration-150 ${open && isMobile ? "inset-x-0" : "bottom-6 right-6"}`}
+      style={open && isMobile ? { top: `${mobileViewportTop}px`, bottom: "auto" } : undefined}
+    >
       {open ? (
-        <div className="w-80 max-w-[calc(100vw-1.5rem)] rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl">
+        <div
+          className="w-screen md:w-80 md:max-w-[calc(100vw-1.5rem)] rounded-t-3xl md:rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl flex flex-col h-[80dvh] md:h-[min(75dvh,34rem)]"
+          style={open && isMobile && mobileViewportHeight ? { height: `${mobileViewportHeight}px` } : undefined}
+        >
+          {isMobile ? (
+            <div className="flex justify-center bg-slate-900 pt-2 pb-1">
+              <span className="h-1.5 w-12 rounded-full bg-white/45" aria-hidden="true" />
+            </div>
+          ) : null}
           <div className="px-4 py-3 bg-slate-900 text-white flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Bot className="w-4 h-4" />
@@ -217,7 +293,7 @@ export function AIChatbot({ ne }: { ne: boolean }) {
             {ne ? "आज बाँकी सन्देश:" : "Messages left today:"} {remaining ?? "-"}/20
           </div>
 
-          <div ref={listRef} className="h-80 overflow-y-auto p-3 space-y-2 bg-white">
+          <div ref={listRef} className="flex-1 min-h-0 overflow-y-auto p-3 space-y-2 bg-white">
             {messages.map((m, idx) => (
               <div
                 key={`${m.role}-${idx}`}
@@ -255,7 +331,16 @@ export function AIChatbot({ ne }: { ne: boolean }) {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") sendMessage();
                 }}
+                onFocus={() => {
+                  requestAnimationFrame(() => {
+                    if (!listRef.current) return;
+                    listRef.current.scrollTop = listRef.current.scrollHeight;
+                  });
+                }}
                 disabled={loading || (remaining ?? 1) <= 0}
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="sentences"
                 className="flex-1 h-11 rounded-xl border border-slate-200 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
                 placeholder={
                   (remaining ?? 1) <= 0
