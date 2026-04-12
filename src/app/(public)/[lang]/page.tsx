@@ -253,32 +253,34 @@ function ProcessSection({ lang, hero }: { lang: string; hero: any }) {
   ];
 
   return (
-    <section className="py-24 bg-white border-b border-gray-100 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white border-b border-gray-100 relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-20">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 md:mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 rounded-full text-blue-600 text-base font-semibold mb-4">
             <Zap className="w-4 h-4 text-yellow-500 fill-yellow-500" />
             {lang === "ne" ? "छिटो र सजिलो" : "Fast & Simple"}
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight">
             {hero.process.heading}
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12 relative">
-          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-[2px] bg-gray-100" />
+        <div className="grid md:grid-cols-3 gap-6 md:gap-12 relative">
+          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gray-100" />
           {hero.process.steps.map((s: any, i: number) => {
             const Icon = icons[i];
             return (
-              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="relative z-10 flex flex-col items-center text-center">
-                <div className={`w-24 h-24 rounded-[32px] ${colors[i]} border-2 flex items-center justify-center mb-8 bg-white shadow-xl`}>
-                  <Icon className="w-10 h-10" />
+              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="relative z-10 flex items-start text-left md:flex-col md:items-center md:text-center rounded-3xl border border-gray-100 p-5 sm:p-6 md:p-0 md:border-0 bg-white md:bg-transparent shadow-sm md:shadow-none">
+                <div className={`w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-[32px] ${colors[i]} border-2 flex items-center justify-center mr-4 md:mr-0 mb-0 md:mb-8 bg-white shadow-md md:shadow-xl shrink-0`}>
+                  <Icon className="w-7 h-7 md:w-10 md:h-10" />
                   <div className="absolute -top-3 -right-3 w-10 h-10 rounded-2xl bg-gray-900 text-white flex items-center justify-center font-black">
                     0{i + 1}
                   </div>
                 </div>
-                <h3 className="text-2xl font-black text-gray-900 mb-4">{s.title}</h3>
-                <p className="text-gray-800 text-lg leading-relaxed">{s.desc}</p>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-2 md:mb-4">{s.title}</h3>
+                  <p className="text-gray-800 text-base md:text-lg leading-relaxed">{s.desc}</p>
+                </div>
               </motion.div>
             );
           })}
@@ -1124,24 +1126,29 @@ function ConversionBridge({ hero, ne }: { hero: any; ne: boolean }) {
         </div>
 
         {/* 3-Step Process */}
-        <div className="relative flex flex-col md:flex-row items-start md:items-center gap-0 mb-10 max-w-2xl mx-auto">
+        <div className="relative mb-10 max-w-2xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center">
           {[
             ne ? "Facebook / नाम जडान" : "Connect Facebook",
             ne ? "डिजाइन रोज्नुहोस्" : "Pick a Design",
             ne ? "बेच्न सुरु गर्नुहोस्" : "Start Selling",
           ].map((label, i) => (
             <React.Fragment key={label}>
-              <div className="flex flex-col items-center text-center flex-1">
-                <div className="w-10 h-10 rounded-full bg-amber-500 text-white font-black flex items-center justify-center text-lg shadow-lg mb-2">
+              <div className="relative flex items-center md:flex-1 md:flex-col md:items-center md:text-center py-2 md:py-0">
+                <div className="w-10 h-10 rounded-full bg-amber-500 text-white font-black flex items-center justify-center text-lg shadow-lg shrink-0">
                   {i + 1}
                 </div>
-                <p className="text-sm font-black text-gray-900 leading-tight">{label}</p>
+                <p className="ml-3 md:ml-0 md:mt-2 text-sm font-black text-gray-900 leading-tight text-left md:text-center">{label}</p>
+                {i < 2 && (
+                  <div className="absolute left-5 top-12 h-6 w-0.5 bg-amber-200 md:hidden" />
+                )}
               </div>
               {i < 2 && (
-                <div className="hidden md:block flex-1 h-0.5 bg-amber-200 mt-5 mx-1" />
+                <div className="hidden md:block flex-1 h-0.5 bg-amber-200 mx-1" />
               )}
             </React.Fragment>
           ))}
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-5">

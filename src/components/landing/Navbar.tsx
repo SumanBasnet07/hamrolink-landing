@@ -138,7 +138,7 @@ export function Navbar({
             style={{ background: accent }}
           >
             <Sparkles className="w-3 h-3" />
-            {lang === "ne" ? "१५ मिनेटमा" : "15-min Launch"}
+            {lang === "ne" ? "Start For Free" : "Start For Free"}
           </Link>
           <button
             onClick={() => setOpen((p) => !p)}
