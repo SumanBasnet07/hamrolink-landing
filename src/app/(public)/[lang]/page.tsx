@@ -402,7 +402,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
                 <div className="flex items-end gap-2">
                   <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-sm shrink-0">👤</div>
                   <div className="bg-slate-800 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[75%]">
-                    <p className="text-white text-xs font-semibold">{ne ? "डेलिभरी काठमाड़ू भरि छ कि?" : "Do you deliver all over Kathmandu?"}</p>
+                    <p className="text-white text-xs font-semibold">{ne ? "डेलिभरी काठमाडौं भरि छ कि?" : "Do you deliver all over Kathmandu?"}</p>
                     <span className="text-white/30 text-[9px]">9:14 AM</span>
                   </div>
                 </div>
@@ -412,7 +412,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                   <div className="bg-violet-600/30 border border-violet-500/30 rounded-2xl rounded-br-sm px-3 py-2 max-w-[80%]">
-                    <p className="text-white text-xs font-semibold">{ne ? "हजुर! काठमाड़ूभरि डेलिभरी गर्छौं — रु ८०मा। आज नै अर्डर गर्न मिल्छ!" : "Hajur! We deliver across Kathmandu — only Rs 80. Order now!"}</p>
+                    <p className="text-white text-xs font-semibold">{ne ? "हजुर! काठमाडौं भरि डेलिभरी गर्छौं — रु ८०मा। आज नै अर्डर गर्न मिल्छ!" : "Hajur! We deliver across Kathmandu — only Rs 80. Order now!"}</p>
                     <span className="text-white/30 text-[9px]">9:14 AM • AI</span>
                   </div>
                 </div>
