@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: lang === 'ne' ? 'नीति र सर्तहरू' : 'Policies & Terms',
     description: lang === 'ne' ? 'हाम्रोलिंकका कानुनी सर्त र नीतिहरू।' : 'Legal terms and policies for HamroLink.',
-    robots: { index: false, follow: true }, // Usually legal pages can be noindexed if preferred, but follow is fine.
+    robots: { index: true, follow: true },
   };
 }
 

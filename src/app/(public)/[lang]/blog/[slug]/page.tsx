@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : [],
     },
     alternates: {
-      canonical: `https://hamrolink.com/en/blog/${post.slug}`,
+      canonical: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${post.slug}`,
       languages: {
         en: `https://hamrolink.com/en/blog/${post.slug}`,
         ne: `https://hamrolink.com/ne/blog/${post.slug}`,

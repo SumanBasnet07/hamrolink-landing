@@ -800,7 +800,7 @@ export const dictionaries = {
     aboutPage: {
       title: "About HamroLink | Empowering Nepal's Digital Transformation",
       description:
-        "HamroLink was built in Pakhribas, Dhankuta with a mission to bridge the digital divide. We provide AI-powered tools that help Nepali businesses look professional and compete globally.",
+        "Built in Pakhribas, Dhankuta, HamroLink helps Nepali businesses bridge the digital divide with AI-powered tools to look professional and compete online.",
       badge: "Our Story",
       businessObjectiveTitle: "Our Purpose",
       businessObjective: "Empowering every Nepali business to look professional and competitive in the AI era through high-converting digital presence and automation.",
@@ -1740,7 +1740,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     aboutPage: {
       title: "हाम्रोबारे — HamroLink: व्यवसायिक सफलताको डिजिटल आधार",
       description:
-        "HamroLink काठमाडौंको कुनै कर्पोरेट अफिसबाट सुरु भएको होइन। प्रतिभाशाली नेपाली व्यवसायीहरूले अनलाइनमा प्रोफेसनल नदेखिएको कारणले मात्र ग्राहक गुमाइरहेको देखेर यो पाख्रिबास, धनकुटामा बनाइएको हो।",
+        "पाख्रिबास, धनकुटामा बनेको HamroLink ले नेपाली व्यवसायहरूलाई अनलाइनमा प्रोफेसनल देखिन, डिजिटल दूरी घटाउन र AI टुल्समार्फत प्रतिस्पर्धी बन्न सहयोग गर्छ।",
       badge: "हाम्रो कथा",
       businessObjectiveTitle: "हाम्रो उद्देश्य",
       businessObjective: "हरेक नेपाली व्यवसायलाई अत्याधुनिक एआई र डिजिटल टुल्समार्फत सशक्त बनाउँदै, अनलाइन संसारमा उनीहरूको दरिलो र प्रोफेसनल पहिचान निर्माण गर्नु।",

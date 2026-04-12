@@ -54,10 +54,10 @@ export async function generateMetadata(
   return {
     title: ne
       ? "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन? (र यो किन बदल्नुपर्छ)"
-      : "Why Most Nepali Businesses Still Don't Have Websites | HamroLink",
+      : "Why Nepali Businesses Still Lack Websites",
     description: ne
       ? "नेपालका धेरै व्यवसायहरू अझै फेसबुकमात्र भर पर्छन्। वेबसाइट किन महत्त्वपूर्ण छ र नेपाली व्यवसायहरू कसरी अनलाइन जान सक्छन् भनी जान्नुहोस्।"
-      : "Discover why websites for small business Nepal are essential. Learn why relying only on Facebook hurts your business website Nepal growth.",
+      : "Discover why small-business websites in Nepal are essential and how relying only on Facebook can limit trust, visibility, and long-term growth online.",
     keywords: ne
       ? ["नेपाली व्यवसाय वेबसाइट", "नेपालमा वेबसाइट", "HamroLink", "व्यवसाय अनलाइन नेपाल"]
       : ["website for small business Nepal", "business website Nepal", "website builder Nepal", "HamroLink", "small business website Nepal"],
@@ -67,7 +67,7 @@ export async function generateMetadata(
       siteName: "HamroLink",
       title: ne
         ? "नेपाली व्यवसायहरूसँग वेबसाइट किन छैन?"
-        : "Why Most Nepali Businesses Still Don't Have Websites in Nepal",
+        : "Why Nepali Businesses Still Lack Websites",
       description: ne
         ? "नेपालका धेरै व्यवसायहरू अझै फेसबुकमात्र भर पर्छन्।"
         : "Many businesses in Nepal still rely only on Facebook. Here's why that must change for a business website Nepal.",

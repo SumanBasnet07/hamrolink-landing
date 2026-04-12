@@ -24,8 +24,8 @@ export async function generateMetadata(
   const ne = lang === "ne";
   return {
     title: ne
-      ? "फेसबुक पेज vs वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ"
-      : "Facebook Page vs Website for Nepali Businesses: Why You Need Both",
+      ? "फेसबुक पेज वा वेबसाइट: नेपाली व्यवसायका लागि सही विकल्प"
+      : "Facebook Page or Website for Nepali Businesses",
     description: ne
       ? "धेरै नेपाली व्यवसायहरू केवल फेसबुकमा भर पर्छन्। फेसबुक पेज र वेबसाइटको फरक बुझ्नुहोस् — र दुवै किन चाहिन्छ।"
       : "Relying only on Facebook? Learn the key differences between a Facebook page and a website—and why your Nepali business needs both to grow online.",
@@ -37,8 +37,8 @@ export async function generateMetadata(
       locale: ne ? "ne_NP" : "en_US",
       siteName: "HamroLink",
       title: ne
-        ? "फेसबुक पेज बनाम वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ"
-        : "Facebook Page vs Website for Nepali Businesses: Why You Need Both",
+        ? "फेसबुक पेज वा वेबसाइट: नेपाली व्यवसायका लागि सही विकल्प"
+        : "Facebook Page or Website for Nepali Businesses",
       description: ne
         ? "फेसबुक पेज र वेबसाइटको फरक बुझ्नुहोस् — र दुवै किन चाहिन्छ।"
         : "Many Nepali businesses rely only on Facebook pages. Learn why that's not enough—and why you need both.",

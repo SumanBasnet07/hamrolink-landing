@@ -26,8 +26,8 @@ export async function generateMetadata(
   const ne = lang === "ne";
   return {
     title: ne
-      ? "नेपालको हरेक विद्यालयलाई २०२६ मा वेबसाइट किन चाहिन्छ"
-      : "School Website in Nepal: Why Every School Should Be Online in 2026",
+      ? "नेपालका विद्यालयलाई वेबसाइट किन आवश्यक छ"
+      : "Why Nepali Schools Need a Website in 2026",
     description: ne
       ? "मुखको चर्चा मात्र पर्याप्त छैन। वेबसाइटले कसरी विद्यालयको विश्वसनीयता, भर्ना र अभिभावक सञ्चार सुधार गर्छ भनी जान्नुहोस्।"
       : "Relying only on word-of-mouth? Learn why a professional website is crucial for Nepali schools to improve enrollment and parent communication.",
@@ -39,8 +39,8 @@ export async function generateMetadata(
       locale: ne ? "ne_NP" : "en_US",
       siteName: "HamroLink",
       title: ne
-        ? "नेपालको हरेक विद्यालयलाई २०२६ मा वेबसाइट किन चाहिन्छ"
-        : "School Website in Nepal: Why Every School Should Be Online in 2026",
+        ? "नेपालका विद्यालयलाई वेबसाइट किन आवश्यक छ"
+        : "Why Nepali Schools Need a Website in 2026",
       description: ne
         ? "वेबसाइटले विद्यालयको विश्वसनीयता, भर्ना र अभिभावक सञ्चार कसरी सुधार गर्छ।"
         : "Why a website can transform enrollment, credibility, and parent communication for Nepali schools.",
