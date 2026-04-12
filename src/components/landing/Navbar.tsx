@@ -42,6 +42,8 @@ export function Navbar({
   const companyLinks = [
     { href: `/${lang}/about`, label: nav.about },
     { href: `/${lang}/contact`, label: nav.contact },
+      { href: `/${lang}/blog`, label: nav.blog },
+      { href: `https://app.hamrolink.com/community`, label: nav.community },
   ];
 
   return (

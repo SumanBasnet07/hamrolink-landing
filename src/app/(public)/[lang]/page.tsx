@@ -398,6 +398,24 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
 
               {/* Chat Content — inline Nepali conversation */}
               <div className="flex-1 p-4 overflow-hidden bg-slate-950 space-y-3 flex flex-col justify-end">
+                {/* Earlier customer question */}
+                <div className="flex items-end gap-2">
+                  <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-sm shrink-0">👤</div>
+                  <div className="bg-slate-800 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[75%]">
+                    <p className="text-white text-xs font-semibold">{ne ? "नमस्ते, आज खुला छ?" : "Namaste, are you open today?"}</p>
+                    <span className="text-white/30 text-[9px]">9:13 AM</span>
+                  </div>
+                </div>
+                {/* AI quick reply */}
+                <div className="flex items-end gap-2 flex-row-reverse">
+                  <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="bg-violet-600/30 border border-violet-500/30 rounded-2xl rounded-br-sm px-3 py-2 max-w-[80%]">
+                    <p className="text-white text-xs font-semibold">{ne ? "नमस्ते! हजुर, बिहान ९ देखि बेलुका ८ बजेसम्म खुला छौं।" : "Yes, we are open from 9 AM to 8 PM."}</p>
+                    <span className="text-white/30 text-[9px]">9:13 AM • AI</span>
+                  </div>
+                </div>
                 {/* Customer message */}
                 <div className="flex items-end gap-2">
                   <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-sm shrink-0">👤</div>
@@ -412,7 +430,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                   <div className="bg-violet-600/30 border border-violet-500/30 rounded-2xl rounded-br-sm px-3 py-2 max-w-[80%]">
-                    <p className="text-white text-xs font-semibold">{ne ? "हजुर! काठमाडौं भरि डेलिभरी गर्छौं — रु ८०मा। आज नै अर्डर गर्न मिल्छ!" : "Hajur! We deliver across Kathmandu — only Rs 80. Order now!"}</p>
+                    <p className="text-white text-xs font-semibold">{ne ? "हजुर, काठमाडौंभरि डेलिभरी हुन्छ। डेलिभरी चार्ज रु ८० हो।" : "Yes, we deliver all over Kathmandu. Delivery fee is NPR 80."}</p>
                     <span className="text-white/30 text-[9px]">9:14 AM • AI</span>
                   </div>
                 </div>
@@ -420,8 +438,18 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
                 <div className="flex items-end gap-2">
                   <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-sm shrink-0">👤</div>
                   <div className="bg-slate-800 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[75%]">
-                    <p className="text-white text-xs font-semibold">{ne ? "ठिक छ, अर्डर गर्छु!" : "Perfect, placing my order!"}</p>
+                    <p className="text-white text-xs font-semibold">{ne ? "ठिक छ, म बानेश्वरबाट अर्डर गर्न चाहन्छु।" : "Great, I want to order from Baneshwor."}</p>
                     <span className="text-white/30 text-[9px]">9:15 AM</span>
+                  </div>
+                </div>
+                {/* AI closing message */}
+                <div className="flex items-end gap-2 flex-row-reverse">
+                  <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="bg-violet-600/30 border border-violet-500/30 rounded-2xl rounded-br-sm px-3 py-2 max-w-[80%]">
+                    <p className="text-white text-xs font-semibold">{ne ? "एकदम राम्रो! अर्डर लिंक पठाइदिउँ?" : "Perfect. Want me to send your order link now?"}</p>
+                    <span className="text-white/30 text-[9px]">9:15 AM • AI</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-emerald-400 text-[10px] font-black mt-1">
@@ -830,6 +858,27 @@ function PricingTeaser({ d, lang }: { d: any; lang: string }) {
         { label: "Local payments", Icon: Smartphone },
         { label: "AI assistant", Icon: Bot },
       ];
+  const freePlanList = ne
+    ? [
+        { label: "मोबाइल-रेडी वेबसाइट", included: true },
+        { label: "बेसिक पेजहरू", included: true },
+        { label: "५० इमेलहरू", included: true },
+        {label:".hamrolink.com डोमेन", included: true},
+        {label:"२५० MB स्टोरेज", included: true},
+        { label: "कस्टम डोमेन", included: false },
+        { label: "eSewa / Khalti पेमेन्ट", included: false },
+        { label: "पूर्ण AI सहायक", included: false },
+      ]
+    : [
+        { label: "Mobile-ready website", included: true },
+        { label: "Core pages", included: true },
+        { label: "50 emails", included: true },
+        { label: ".hamrolink.com domain", included: true },
+        { label: "250 MB storage", included: true },
+        { label: "Custom domain", included: false },
+        { label: "eSewa / Khalti payments", included: false },
+        { label: "Full AI assistant", included: false },
+      ];
 
   return (
     <section className="relative py-24 bg-slate-50 overflow-hidden">
@@ -861,13 +910,23 @@ function PricingTeaser({ d, lang }: { d: any; lang: string }) {
           <div className="bg-white p-10 rounded-[3rem] border border-gray-100 shadow-xl group hover:border-indigo-100 transition-all">
             <h3 className="text-2xl font-black mb-1">{ne ? "सधैं नि:शुल्क" : "Free Forever"}</h3>
             <p className="text-gray-500 mb-5 text-sm font-semibold">{ne ? "लन्च गर्नुहोस् र प्लेटफर्म अनुभूति गर्नुहोस्।" : "Launch fast and test real demand."}</p>
-            <div className="text-4xl font-black mb-6 text-gray-900">Rs 0</div>
-            <div className="grid grid-cols-2 gap-2 mb-8">
-              <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2 text-[11px] font-black text-gray-700">{ne ? "नो कार्ड" : "No card"}</div>
-              <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2 text-[11px] font-black text-gray-700">{ne ? "वेबसाइट टेम्पलेट" : "Templates"}</div>
-              <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2 text-[11px] font-black text-gray-700">{ne ? "बेसिक पेजहरू" : "Core pages"}</div>
-              <div className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2 text-[11px] font-black text-gray-700">{ne ? "मोबाइल तयार" : "Mobile-ready"}</div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-[11px] font-black mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              {ne ? "Built-in Branded Marketing" : "Built-in Branded Marketing"}
             </div>
+            <div className="text-4xl font-black mb-6 text-gray-900">Rs 0</div>
+            <ul className="mb-8 mt-1 space-y-2.5">
+              {freePlanList.map((item) => (
+                <li key={item.label} className={`text-sm flex items-center gap-2 ${item.included ? "text-gray-800 font-semibold" : "text-gray-400 font-medium"}`}>
+                  {item.included ? (
+                    <Check className="w-4 h-4 text-emerald-600" />
+                  ) : (
+                    <X className="w-4 h-4 text-gray-400" />
+                  )}
+                  {item.label}
+                </li>
+              ))}
+            </ul>
             <a href={APP_URL} className="block w-full py-4 border-2 border-gray-300 text-gray-800 text-center rounded-2xl font-black hover:border-gray-900 hover:text-gray-900 transition-all bg-white">
               {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
             </a>

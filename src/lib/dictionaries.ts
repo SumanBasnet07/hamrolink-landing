@@ -20,8 +20,10 @@ export const dictionaries = {
       about: "About",
       contact: "Contact",
       signIn: "Sign In",
+      blog: "Blog",
+      community: "Community",
       cta: "Start for Free",
-      ctaPostLaunch: "Launch in 15 Minutes",
+      ctaPostLaunch: "Start for Free",
     },
 
     // ── Hero ─────────────────────────────────────────────────────────────────
@@ -559,7 +561,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "5 pages", ok: true },
-            { t: "25 images · 5 file uploads", ok: true },
+            { t: "250 MB storage", ok: true },
             { t: "50 emails / month", ok: true },
             { t: "yourname.hamrolink.com subdomain", ok: true },
             { t: "15 notes / alerts", ok: true },
@@ -574,7 +576,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "40 pages + 100 blog posts", ok: true },
-            { t: "300 images · 30 file uploads", ok: true },
+            { t: "5 GB storage", ok: true },
             { t: "500 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 80 products (eSewa & Khalti)", ok: true },
@@ -589,7 +591,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "100 pages + 250 blog posts", ok: true },
-            { t: "500 images · 50 file uploads", ok: true },
+            { t: "15 GB storage", ok: true },
             { t: "1000 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 200 products (eSewa & Khalti)", ok: true },
@@ -604,7 +606,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "200 pages + 500 blog posts", ok: true },
-            { t: "2000 images · 100 file uploads", ok: true },
+            { t: "30 GB storage", ok: true },
             { t: "10,000 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 500 products (eSewa & Khalti)", ok: true },
@@ -619,7 +621,7 @@ export const dictionaries = {
           feats: [
             { t: "1 website", ok: true },
             { t: "20 pages + 30 blog posts", ok: true },
-            { t: "150 images · 15 file uploads", ok: true },
+            { t: "1 GB storage", ok: true },
             { t: "250 emails / month", ok: true },
             { t: "Custom domain", ok: true },
             { t: "Online store — 30 products (eSewa & Khalti)", ok: true },
@@ -886,14 +888,14 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       businessName: "HamroLink Digital",
       address: "Pakhribas-04, Dhankuta, Koshi Province, Nepal",
       regIdLabel: "Reg No",
-      regIdValue: "ध-९४५८/०८२/०८३",
+      regIdValue: "ध-9458/082/083",//in english: "Reg No: 9458/082/083",
       panLabel: "PAN",
-      panValue: "६२३२५११९१",
+      panValue: "623251191",//in english: "PAN: 623251191",
       authorityLabel: "E-Commerce Platform ID",
       authorityValue: "001-306/2082/83",
       proprietorLabel: "Proprietor",
       proprietorValue: "Lila Basnet",
-      founderLabel: "Founder",
+      founderLabel: "Founder/Girievance Officer",
       founderValue: "Suman Basnet",
       trust: {
         registeredWith: "Registered with Government of Nepal",
@@ -907,10 +909,12 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           ["Features", "/#features"],
           ["Pricing", "/pricing"],
           ["Success Stories", "/#stories"],
-          ["Contact", "/contact"],
         ],
         Company: [
           ["About", "/about"],
+          ["Contact", "/contact"],
+          ["Blog", "/blog"],
+          ["Community", "https://app.hamrolink.com/community"],
         ],
         Legal: [
           ["Privacy Policy", "/privacy"],
@@ -986,9 +990,11 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       company: "कम्पनी",
       about: "हाम्रोबारे",
       contact: "सम्पर्क",
+      blog: "ब्लग",
+      community: "समुदाय",
       signIn: "साइन इन",
       cta: "नि:शुल्क सुरु गर्नुहोस्",
-      ctaPostLaunch: "१५ मिनेटमा सुरु गर्नुहोस्",
+      ctaPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
     },
 
     // ── Hero ─────────────────────────────────────────────────────────────────
@@ -1512,7 +1518,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "५ पेज", ok: true },
-            { t: "२५ इमेज · ५ फाइल अपलोड", ok: true },
+            { t: "२५० MB स्टोरेज", ok: true },
             { t: "५० इमेल / महिना", ok: true },
             { t: "१५ notes / अलर्टहरू", ok: true },
             { t: "सब्डोमेन (yourname.hamrolink.com)", ok: true },
@@ -1527,7 +1533,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "४० पेज + १०० ब्लग पोस्ट", ok: true },
-            { t: "३०० इमेज · १० फाइल अपलोड", ok: true },
+            { t: "५ GB स्टोरेज", ok: true },
             { t: "५०० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ८० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
@@ -1542,7 +1548,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "१०० पेज + २५० ब्लग पोस्ट", ok: true },
-            { t: "५०० इमेज · ५० फाइल अपलोड", ok: true },
+            { t: "१५ GB स्टोरेज", ok: true },
             { t: "१००० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — २०० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
@@ -1557,7 +1563,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "२०० पेज + ५०० ब्लग पोस्ट", ok: true },
-            { t: "२००० इमेज · १०० फाइल अपलोड", ok: true },
+            { t: "३० GB स्टोरेज", ok: true },
             { t: "१०,००० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ५०० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
@@ -1572,7 +1578,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "२० पेज + ३० ब्लग पोस्ट", ok: true },
-            { t: "१५० इमेज · ५ फाइल अपलोड", ok: true },
+            { t: "१ GB स्टोरेज", ok: true },
             { t: "२५० इमेल / महिना", ok: true },
             { t: "कस्टम डोमेन", ok: true },
             { t: "अनलाइन स्टोर — ३० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
@@ -1833,7 +1839,7 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
       authorityValue: "001-30६/२०८२/८३",
       proprietorLabel: "प्रोप्राइटर",
       proprietorValue: "लिला बस्नेत",
-      founderLabel: "संस्थापक",
+      founderLabel: "संस्थापक / गुनासो सुन्ने अधिकारी",
       founderValue: "सुमन बस्नेत",
       sections: {
         उत्पादन: [
@@ -1841,10 +1847,12 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
           ["विशेषताहरू", "/#features"],
           ["मूल्य", "/pricing"],
           ["सफलताको कथा", "/#stories"],
-          ["सम्पर्क", "/contact"],
         ],
         हाम्रोबारे: [
           ["हाम्रोबारे", "/about"],
+          ["सम्पर्क", "/contact"],
+          ["ब्लग", "/blog"],
+          ["समुदाय", "https://app.hamrolink.com/community"],
         ],
         कानुनी: [
           ["गोपनीयता नीति", "/privacy"],
