@@ -40,10 +40,6 @@ export function SEOHead({
       {/* Canonical */}
       <link rel="canonical" href={fullUrl} />
       
-      {/* Hreflang */}
-      <link rel="alternate" href={`${SITE_URL}/en`} hrefLang="en" />
-      <link rel="alternate" href={`${SITE_URL}/ne`} hrefLang="ne" />
-      
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

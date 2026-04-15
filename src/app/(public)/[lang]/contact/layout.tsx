@@ -20,6 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `https://hamrolink.com/${lang}/contact`,
+      languages: {
+        en: "https://hamrolink.com/en/contact",
+        ne: "https://hamrolink.com/ne/contact",
+        "x-default": "https://hamrolink.com/en/contact",
+      },
     }
   };
 }
