@@ -7,7 +7,6 @@ import { Analytics } from "@/components/SEO/Analytics";
 import SchemaScripts from "@/components/SEO/Schema";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-// Outfit: primary UI font (body, nav, pricing cards, buttons)
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
@@ -15,7 +14,6 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-// Sora: display font — used only for hero h1 headings for premium feel
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
@@ -23,8 +21,6 @@ const sora = Sora({
   weight: ["700", "800"],
 });
 
-// Mukta: Devanagari font — always loaded so Nepali text renders correctly
-// even on English-language pages with mixed content
 const mukta = Mukta({
   subsets: ["devanagari", "latin"],
   variable: "--font-mukta",
@@ -181,11 +177,7 @@ export default async function LangLayout({
   if (!SUPPORTED.includes(rawLang as Lang)) notFound();
 
   const lang     = rawLang as Lang;
-  
-  // Always include all three font variables so:
-  // - Sora is available for .font-display (hero headings)
-  // - Mukta renders Devanagari correctly on any page (mixed content)
-  // - Outfit is the default UI font
+
   const fontClass = `${outfit.variable} ${sora.variable} ${mukta.variable} ${
     lang === "ne" ? "font-mukta" : "font-outfit"
   } font-sans`;
@@ -195,11 +187,6 @@ export default async function LangLayout({
       <head>
         {/* ── Schema ──────────────────────────────────────────────────── */}
         <SchemaScripts />
-
-        {/* ── hreflang for SEO ─────────────────────────────────────────── */}
-        <link rel="alternate" hrefLang="en"        href={`https://hamrolink.com/en`} />
-        <link rel="alternate" hrefLang="ne"        href={`https://hamrolink.com/ne`} />
-        <link rel="alternate" hrefLang="x-default" href={`https://hamrolink.com/en`} />
 
         {/* ── Preconnect ───────────────────────────────────────────────── */}
         <link rel="preconnect"  href="https://fonts.googleapis.com" />
@@ -217,9 +204,6 @@ export default async function LangLayout({
         <meta name="geo.placename" content="Nepal" />
         <meta name="geo.position"  content="27.7172;85.3240" />
         <meta name="ICBM"          content="27.7172, 85.3240" />
-
-        {/* ── Content language ─────────────────────────────────────────── */}
-        <meta httpEquiv="content-language" content={lang === "ne" ? "ne, en" : "en, ne"} />
       </head>
       <body className="antialiased">
         {children}
