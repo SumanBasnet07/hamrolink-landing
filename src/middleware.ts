@@ -1,4 +1,3 @@
-// middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
@@ -32,7 +31,7 @@ function detectLang(req: NextRequest): Lang {
   return DEFAULT_LANG;
 }
 
-export function proxy(req: NextRequest) {
+export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Already has a valid language prefix → do nothing
@@ -46,5 +45,7 @@ export function proxy(req: NextRequest) {
   const url = req.nextUrl.clone();
   url.pathname = `/${lang}${pathname === "/" ? "" : pathname}`;
 
+  // Use 308 for SEO-friendly permanent redirects where appropriate, 
+  // but keep 307 for language detection as it depends on user headers/IP.
   return NextResponse.redirect(url, { status: 307 });
 }

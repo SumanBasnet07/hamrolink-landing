@@ -975,6 +975,20 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       subtext: "Own your audience. 100% reach. 0% algorithms. Build your email list automatically with HamroLink.",
       incoming: "Incoming Feature: Hamro Reach",
     },
+    errors: {
+      notFound: {
+        title: "404 - Page Not Found",
+        heading: "Looks like you're lost.",
+        description: "The page you are looking for doesn't exist or has been moved.",
+        button: "Back to Home",
+      },
+      general: {
+        title: "Error - Something went wrong",
+        heading: "Oops! Unexpected error.",
+        description: "An unexpected error occurred. Our team has been notified.",
+        button: "Try Again",
+      },
+    },
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -1930,6 +1944,20 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
         urgent: "आफ्नो ठाउँ नछुटाउनुहोस्",
         friendly: "हामीसँग जोडिनुहोस्",
         direct: "मेरो वेबसाइट बनाउनुहोस् →",
+      },
+      errors: {
+        notFound: {
+          title: "४०४ - पृष्ठ फेला परेन",
+          heading: "तपाईं हराउनुभएको जस्तो देखिन्छ।",
+          description: "तपाईंले खोजिरहनुभएको पृष्ठ अस्तित्वमा छैन वा सारिएको छ।",
+          button: "होमपेजमा फर्कनुहोस्",
+        },
+        general: {
+          title: "त्रुटि - केही गडबडी भयो",
+          heading: "ओहो! अनपेक्षित त्रुटि।",
+          description: "एउटा अनपेक्षित त्रुटि भयो। हाम्रो टोलीलाई जानकारी गराइएको छ।",
+          button: "फेरि प्रयास गर्नुहोस्",
+        },
       },
   },
 } as const;
