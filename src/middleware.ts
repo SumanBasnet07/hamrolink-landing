@@ -11,29 +11,6 @@ const SUPPORTED_LANGS = ["en", "ne"] as const;
 type Lang = (typeof SUPPORTED_LANGS)[number];
 const DEFAULT_LANG: Lang = "en";
 
-/** Detect language based on location (Nepal) and browser headers */
-function detectLang(req: NextRequest): Lang {
-  // 1. Check for Country Header (Vercel)
-  const country = req.headers.get("x-vercel-ip-country");
-  if (country === "NP") return "ne";
-
-  // 2. Fallback to Accept-Language headers
-  const acceptLang = req.headers.get("accept-language");
-  if (!acceptLang) return DEFAULT_LANG;
-
-  // Split by comma and then semicolon to get just the language codes
-  const langs = acceptLang.split(',').map(part => part.split(';')[0].trim().split('-')[0].toLowerCase());
-  
-  for (const lang of langs) {
-    if (SUPPORTED_LANGS.includes(lang as Lang)) return lang as Lang;
-  }
-
-  return DEFAULT_LANG;
-}
-
-// Basic bot detection to ensure stable SEO routing
-const BOT_AGENTS = /bot|googlebot|crawler|spider|robot|crawling/i;
-
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -45,22 +22,9 @@ export function middleware(req: NextRequest) {
 
   const url = req.nextUrl.clone();
   
-  // --- SEO Bot Bypass ---
-  // Google expects a stable structure (no 307 dynamic redirects).
-  // We rewrite bots to default English so they see "/" as a stable 200 OK page.
-  const userAgent = req.headers.get("user-agent") || "";
-  const isBot = BOT_AGENTS.test(userAgent);
-
-  if (isBot) {
-    url.pathname = `/${DEFAULT_LANG}${pathname === "/" ? "" : pathname}`;
-    return NextResponse.rewrite(url);
-  }
-
-  // --- Normal User UX ---
-  // Root "/" or un-prefixed path is dynamically routed to the matching language.
-  const lang = detectLang(req);
-  url.pathname = `/${lang}${pathname === "/" ? "" : pathname}`;
-
-  // Use 307 for language detection since it varies per user context.
-  return NextResponse.redirect(url, { status: 307 });
+  // Clean SEO Architecture:
+  // We explicitly bind all un-prefixed paths directly to English via invisible rewrite.
+  // We no longer use 307 dynamic language detection redirects to ensure a 100% stable structure for Google.
+  url.pathname = `/${DEFAULT_LANG}${pathname === "/" ? "" : pathname}`;
+  return NextResponse.rewrite(url);
 }
