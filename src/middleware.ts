@@ -31,6 +31,9 @@ function detectLang(req: NextRequest): Lang {
   return DEFAULT_LANG;
 }
 
+// Basic bot detection to ensure stable SEO routing
+const BOT_AGENTS = /bot|googlebot|crawler|spider|robot|crawling/i;
+
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -40,12 +43,24 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Root "/" or any path without a lang prefix → detect and redirect
-  const lang = detectLang(req);
   const url = req.nextUrl.clone();
+  
+  // --- SEO Bot Bypass ---
+  // Google expects a stable structure (no 307 dynamic redirects).
+  // We rewrite bots to default English so they see "/" as a stable 200 OK page.
+  const userAgent = req.headers.get("user-agent") || "";
+  const isBot = BOT_AGENTS.test(userAgent);
+
+  if (isBot) {
+    url.pathname = `/${DEFAULT_LANG}${pathname === "/" ? "" : pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
+  // --- Normal User UX ---
+  // Root "/" or un-prefixed path is dynamically routed to the matching language.
+  const lang = detectLang(req);
   url.pathname = `/${lang}${pathname === "/" ? "" : pathname}`;
 
-  // Use 308 for SEO-friendly permanent redirects where appropriate, 
-  // but keep 307 for language detection as it depends on user headers/IP.
+  // Use 307 for language detection since it varies per user context.
   return NextResponse.redirect(url, { status: 307 });
 }
