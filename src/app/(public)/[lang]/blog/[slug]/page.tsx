@@ -78,11 +78,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : [],
     },
     alternates: {
-      canonical: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${post.slug}`,
+      canonical: ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
       languages: {
-        en: `https://hamrolink.com/en/blog/${post.slug}`,
+        en: `https://hamrolink.com/blog/${post.slug}`,
         ne: `https://hamrolink.com/ne/blog/${post.slug}`,
-        "x-default": `https://hamrolink.com/en/blog/${post.slug}`,
+        "x-default": `https://hamrolink.com/blog/${post.slug}`,
       },
     },
   };

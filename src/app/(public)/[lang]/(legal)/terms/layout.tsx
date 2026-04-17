@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = ne
     ? "HamroLink सेवा प्रयोगका नियम, भुक्तानी, खाता, प्रतिबन्धित सामग्री र कानुनी दायित्वबारे सर्तहरू पढ्नुहोस्।"
     : "Review HamroLink terms for account usage, payments, prohibited content, and legal responsibilities before using the platform.";
-  const path = `https://hamrolink.com/${lang}/terms`;
+  const path = lang === "en" ? `https://hamrolink.com/terms` : `https://hamrolink.com/ne/terms`;
 
   return {
     title,
@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: path,
       languages: {
-        en: "https://hamrolink.com/en/terms",
+        en: "https://hamrolink.com/terms",
         ne: "https://hamrolink.com/ne/terms",
-        "x-default": "https://hamrolink.com/en/terms",
+        "x-default": "https://hamrolink.com/terms",
       },
     },
     openGraph: {

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = ne
     ? "HamroLink का योजना, मूल्य, डोमेन, भुक्तानी, सहायता र AI सुविधाबारे धेरै सोधिने प्रश्नहरूको जवाफ एकै ठाउँमा हेर्नुहोस्।"
     : "Find clear answers to common HamroLink questions about pricing, domains, payments, AI chatbot features, support, and account setup.";
-  const path = `https://hamrolink.com/${lang}/faqs`;
+  const path = lang === "en" ? `https://hamrolink.com/faqs` : `https://hamrolink.com/ne/faqs`;
 
   return {
     title,
@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: path,
       languages: {
-        en: "https://hamrolink.com/en/faqs",
+        en: "https://hamrolink.com/faqs",
         ne: "https://hamrolink.com/ne/faqs",
-        "x-default": "https://hamrolink.com/en/faqs",
+        "x-default": "https://hamrolink.com/faqs",
       },
     },
     openGraph: {

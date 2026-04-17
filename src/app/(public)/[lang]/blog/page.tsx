@@ -26,11 +26,11 @@ export async function generateMetadata(
       ? "नेपाली व्यवसाय र विद्यालयहरूका लागि वेबसाइट, डिजिटल उपस्थिति र अनलाइन वृद्धिबारे व्यावहारिक गाइडहरू।"
       : "Practical guides on websites, digital presence, and online growth for Nepali businesses and schools.",
     alternates: {
-      canonical: `https://hamrolink.com/${lang}/blog`,
+      canonical: lang === "en" ? `https://hamrolink.com/blog` : `https://hamrolink.com/ne/blog`,
       languages: {
-        en: "https://hamrolink.com/en/blog",
+        en: "https://hamrolink.com/blog",
         ne: "https://hamrolink.com/ne/blog",
-        "x-default": "https://hamrolink.com/en/blog",
+        "x-default": "https://hamrolink.com/blog",
       }
     },
     openGraph: {

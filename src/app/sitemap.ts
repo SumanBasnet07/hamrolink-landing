@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const lang of languages) {
     for (const route of routes) {
       sitemapEntries.push({
-        url: `${baseUrl}/${lang}${route}`,
+        url: lang === 'en' ? `${baseUrl}${route}` : `${baseUrl}/${lang}${route}`,
         lastModified,
         changeFrequency: 'weekly',
         priority: route === '' ? 1.0 : route === '/blog' || route === '/docs' ? 0.8 : 0.5,

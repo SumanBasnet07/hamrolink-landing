@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = ne
     ? "HamroLink AI chatbot ले तपाईंको वेबसाइटमा २४/७ ग्राहक प्रश्नहरूको जवाफ दिई बढी लिड र बिक्रीमा मद्दत गर्छ।"
     : "Add HamroLink AI chatbot to answer customer questions instantly, improve lead conversion, and keep your business responsive 24/7.";
-  const path = `https://hamrolink.com/${lang}/ai`;
+  const path = lang === "en" ? `https://hamrolink.com/ai` : `https://hamrolink.com/ne/ai`;
 
   return {
     title,
@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: path,
       languages: {
-        en: "https://hamrolink.com/en/ai",
+        en: "https://hamrolink.com/ai",
         ne: "https://hamrolink.com/ne/ai",
-        "x-default": "https://hamrolink.com/en/ai",
+        "x-default": "https://hamrolink.com/ai",
       },
     },
     openGraph: {

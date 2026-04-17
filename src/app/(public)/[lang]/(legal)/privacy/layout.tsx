@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = ne
     ? "HamroLink मा तपाईंको व्यक्तिगत डेटा कसरी सङ्कलन, प्रयोग र सुरक्षित गरिन्छ भन्ने स्पष्ट जानकारी पढ्नुहोस्।"
     : "Read how HamroLink collects, uses, and protects your personal data, including your rights, security practices, and contact options.";
-  const path = `https://hamrolink.com/${lang}/privacy`;
+  const path = lang === "en" ? `https://hamrolink.com/privacy` : `https://hamrolink.com/ne/privacy`;
 
   return {
     title,
@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: path,
       languages: {
-        en: "https://hamrolink.com/en/privacy",
+        en: "https://hamrolink.com/privacy",
         ne: "https://hamrolink.com/ne/privacy",
-        "x-default": "https://hamrolink.com/en/privacy",
+        "x-default": "https://hamrolink.com/privacy",
       },
     },
     openGraph: {

@@ -55,11 +55,11 @@ export async function generateMetadata(
       ],
     },
     alternates: {
-      canonical: `https://hamrolink.com/${lang}/blog/${SLUG}`,
+      canonical: lang === "en" ? `https://hamrolink.com/blog/${SLUG}` : `https://hamrolink.com/ne/blog/${SLUG}`,
       languages: {
-        "en": `https://hamrolink.com/en/blog/${SLUG}`,
+        "en": `https://hamrolink.com/blog/${SLUG}`,
         "ne": `https://hamrolink.com/ne/blog/${SLUG}`,
-        "x-default": `https://hamrolink.com/en/blog/${SLUG}`,
+        "x-default": `https://hamrolink.com/blog/${SLUG}`,
       },
     },
   };

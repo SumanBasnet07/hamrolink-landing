@@ -76,7 +76,7 @@ export async function generateMetadata({
   const { lang: rawLang } = await params;
   const lang = (SUPPORTED.includes(rawLang as Lang) ? rawLang : "en") as Lang;
   const m    = META[lang];
-  const pageUrl = `${SITE_URL}/${lang}`;
+  const pageUrl = lang === "en" ? SITE_URL : `${SITE_URL}/${lang}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -95,9 +95,9 @@ export async function generateMetadata({
     alternates: {
       canonical:  pageUrl,
       languages: {
-        "en": `${SITE_URL}/en`,
+        "en": SITE_URL,
         "ne": `${SITE_URL}/ne`,
-        "x-default": `${SITE_URL}/en`,
+        "x-default": SITE_URL,
       },
     },
 

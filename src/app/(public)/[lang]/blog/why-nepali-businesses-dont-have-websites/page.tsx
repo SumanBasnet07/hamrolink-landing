@@ -84,11 +84,11 @@ export async function generateMetadata(
       ],
     },
     alternates: {
-      canonical: `https://hamrolink.com/${lang}/blog/why-nepali-businesses-dont-have-websites`,
+      canonical: lang === "en" ? `https://hamrolink.com/blog/why-nepali-businesses-dont-have-websites` : `https://hamrolink.com/ne/blog/why-nepali-businesses-dont-have-websites`,
       languages: {
-        "en": "https://hamrolink.com/en/blog/why-nepali-businesses-dont-have-websites",
+        "en": "https://hamrolink.com/blog/why-nepali-businesses-dont-have-websites",
         "ne": "https://hamrolink.com/ne/blog/why-nepali-businesses-dont-have-websites",
-        "x-default": "https://hamrolink.com/en/blog/why-nepali-businesses-dont-have-websites",
+        "x-default": "https://hamrolink.com/blog/why-nepali-businesses-dont-have-websites",
       },
     },
   };
