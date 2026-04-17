@@ -14,8 +14,17 @@ const DEFAULT_LANG: Lang = "en";
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Already has a valid language prefix → do nothing
   const firstSegment = pathname.split("/")[1];
+
+  // If someone explicitly tries to visit /en or /en/pricing, 
+  // 301 redirect them to the clean, un-prefixed version to prevent duplicate content SEO penalties.
+  if (firstSegment === "en") {
+    const url = req.nextUrl.clone();
+    url.pathname = pathname.replace(/^\/en/, "") || "/";
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
+  // Already has a valid language prefix (e.g. /ne) → do nothing
   if (SUPPORTED_LANGS.includes(firstSegment as Lang)) {
     return NextResponse.next();
   }
@@ -24,7 +33,6 @@ export function middleware(req: NextRequest) {
   
   // Clean SEO Architecture:
   // We explicitly bind all un-prefixed paths directly to English via invisible rewrite.
-  // We no longer use 307 dynamic language detection redirects to ensure a 100% stable structure for Google.
   url.pathname = `/${DEFAULT_LANG}${pathname === "/" ? "" : pathname}`;
   return NextResponse.rewrite(url);
 }
