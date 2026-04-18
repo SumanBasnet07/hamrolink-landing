@@ -3,6 +3,7 @@ export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getAlternates, getOgUrl } from "@/lib/seo";
 import Image from "next/image";
 import {
   ArrowRight, Globe, GraduationCap, Share2,
@@ -25,14 +26,7 @@ export async function generateMetadata(
     description: ne
       ? "नेपाली व्यवसाय र विद्यालयहरूका लागि वेबसाइट, डिजिटल उपस्थिति र अनलाइन वृद्धिबारे व्यावहारिक गाइडहरू।"
       : "Practical guides on websites, digital presence, and online growth for Nepali businesses and schools.",
-    alternates: {
-      canonical: lang === "en" ? `https://hamrolink.com/blog` : `https://hamrolink.com/ne/blog`,
-      languages: {
-        en: "https://hamrolink.com/blog",
-        ne: "https://hamrolink.com/ne/blog",
-        "x-default": "https://hamrolink.com/blog",
-      }
-    },
+    alternates: getAlternates("/blog", lang),
     openGraph: {
       title: ne
         ? "नेपाली व्यवसायका लागि डिजिटल गाइडहरू | HamroLink Digital"
@@ -40,7 +34,7 @@ export async function generateMetadata(
       description: ne
         ? "नेपाली व्यवसाय र विद्यालयहरूका लागि वेबसाइट, डिजिटल उपस्थिति र अनलाइन वृद्धिबारे व्यावहारिक गाइडहरू।"
         : "Practical guides on websites, digital presence, and online growth for Nepali businesses and schools.",
-      url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog`,
+      url: getOgUrl("/blog", lang),
       siteName: "HamroLink Digital",
       images: [
         {

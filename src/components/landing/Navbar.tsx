@@ -31,19 +31,20 @@ export function Navbar({
   }, [forceScrolled]);
 
   const ctaHref = preLaunch ? `/${lang}#waitlist` : "https://app.hamrolink.com";
+  const resolveHref = (path: string) => lang === "en" ? path : `/${lang}${path}`;
 
   const navLinks = [
-    { href: `/${lang}/ai`, label: nav.templates },
-    { href: `/${lang}/features`, label: nav.features },
-    { href: `/${lang}/pricing`, label: nav.pricing },
-    { href: `/${lang}/stories`, label: nav.docs },
+    { href: resolveHref("/ai"), label: nav.templates },
+    { href: resolveHref("/features"), label: nav.features },
+    { href: resolveHref("/pricing"), label: nav.pricing },
+    { href: resolveHref("/stories"), label: nav.docs },
   ];
 
   const companyLinks = [
-    { href: `/${lang}/about`, label: nav.about },
-    { href: `/${lang}/contact`, label: nav.contact },
-      { href: `/${lang}/blog`, label: nav.blog },
-      { href: `https://app.hamrolink.com/community`, label: nav.community },
+    { href: resolveHref("/about"), label: nav.about },
+    { href: resolveHref("/contact"), label: nav.contact },
+    { href: resolveHref("/blog"), label: nav.blog },
+    { href: `https://app.hamrolink.com/community`, label: nav.community },
   ];
 
   return (
@@ -56,7 +57,7 @@ export function Navbar({
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
-          href={`/${lang}`}
+          href={resolveHref("/")}
           className={`flex items-center transition-opacity hover:opacity-90`}
         >
           <img

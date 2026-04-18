@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getAlternates, getOgUrl } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ lang: "en" | "ne" }>;
@@ -18,18 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: {
-      canonical: path,
-      languages: {
-        en: "https://hamrolink.com/features",
-        ne: "https://hamrolink.com/ne/features",
-        "x-default": "https://hamrolink.com/features",
-      },
-    },
+    alternates: getAlternates("/features", lang),
     openGraph: {
       title,
       description,
-      url: path,
+      url: getOgUrl("/features", lang),
       type: "website",
     },
     twitter: {

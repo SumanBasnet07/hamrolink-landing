@@ -9,9 +9,21 @@ import {
 } from "lucide-react";
 import LegalLayout from "../LegalLayout";
 import React from "react";
+import { Metadata } from "next";
+import { getAlternates } from "@/lib/seo";
 
 const UPDATED_EN = "March 25, 2026";
 const UPDATED_NE = "मार्च २५, २०२६";
+
+// ─── Metadata ─────────────────────────────────────────────────────────────────
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: lang === 'ne' ? 'फिर्ता नीति | HamroLink' : 'Refund Policy | HamroLink',
+    description: lang === 'ne' ? 'HamroLink को फिर्ता नीति र नियमहरू बारे जानकारी।' : 'Read HamroLink Refund Policy and credit terms.',
+    alternates: getAlternates("/refund", lang),
+  };
+}
 
 const content = {
   en: [

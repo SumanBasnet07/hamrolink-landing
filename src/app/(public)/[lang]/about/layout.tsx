@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getDictionary } from '@/lib/dictionaries';
+import { getAlternates, getOgUrl } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ lang: 'en' | 'ne' }>;
@@ -13,19 +14,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: ap.title,
     description: ap.description,
+    alternates: getAlternates("/about", lang),
     openGraph: {
       title: ap.title,
       description: ap.description,
-      url: `https://hamrolink.com/${lang}/about`,
+      url: getOgUrl("/about", lang),
     },
-    alternates: {
-      canonical: lang === "en" ? `https://hamrolink.com/about` : `https://hamrolink.com/ne/about`,
-      languages: {
-        en: "https://hamrolink.com/about",
-        ne: "https://hamrolink.com/ne/about",
-        "x-default": "https://hamrolink.com/about",
-      },
-    }
   };
 }
 

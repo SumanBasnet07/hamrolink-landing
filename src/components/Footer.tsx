@@ -78,7 +78,7 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                           </a>
                         ) : (
                           <Link
-                            href={href.startsWith("/") ? `/${lang}${href}` : href}
+                            href={href.startsWith("/") ? (lang === "en" ? href : `/${lang}${href}`) : href}
                             className="text-base text-slate-300 hover:text-white transition-colors font-semibold"
                           >
                             {label}

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getAlternates, getOgUrl } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ lang: 'en' | 'ne' }>;
@@ -18,24 +19,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   };
 
-  const m = metadataMap[lang] || metadataMap.en;
+  const { title, description } = metadataMap[lang] || metadataMap.en;
 
   return {
-    title: m.title,
-    description: m.description,
+    title,
+    description,
+    alternates: getAlternates("/docs", lang),
     openGraph: {
-      title: m.title,
-      description: m.description,
-      url: `https://hamrolink.com/${lang}/docs`,
+      title,
+      description,
+      url: getOgUrl("/docs", lang),
+      type: "website",
     },
-    alternates: {
-      canonical: lang === "en" ? `https://hamrolink.com/docs` : `https://hamrolink.com/ne/docs`,
-      languages: {
-        en: "https://hamrolink.com/docs",
-        ne: "https://hamrolink.com/ne/docs",
-        "x-default": "https://hamrolink.com/docs",
-      },
-    }
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

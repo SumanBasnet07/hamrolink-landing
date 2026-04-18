@@ -12,9 +12,21 @@ import {
 } from "lucide-react";
 import LegalLayout from "../LegalLayout";
 import React from "react";
+import { Metadata } from "next";
+import { getAlternates } from "@/lib/seo";
 
 const UPDATED_EN = "March 25, 2026";
 const UPDATED_NE = "मार्च २५, २०२६";
+
+// ─── Metadata ─────────────────────────────────────────────────────────────────
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: lang === 'ne' ? 'गोपनीयता नीति | HamroLink' : 'Privacy Policy | HamroLink',
+    description: lang === 'ne' ? 'HamroLink को गोपनीयता नीति र डेटा सुरक्षा बारे जानकारी।' : 'Learn about HamroLink Privacy Policy and how we protect your data.',
+    alternates: getAlternates("/privacy", lang),
+  };
+}
 
 // ─── Content ─────────────────────────────────────────────────────────────────
 const content = {
