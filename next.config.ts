@@ -12,17 +12,23 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // First: Remove trailing slashes from ALL paths (except root)
-      {
-        source: '/:path*/',
-        destination: '/:path*',
-        permanent: true, // 301 redirect
-      },
-      // Second: Remove /en/ prefix from all URLs
-      {
-        source: '/en/:path*',
-        destination: '/:path*',
-        permanent: true, // 301 redirect
-      },
+       {
+      source: '/en/:path*/',
+      destination: '/:path*',
+      permanent: true,
+    },
+    {
+      source: '/en/:path*',
+      destination: '/:path*',
+      permanent: true,
+    },
+
+    // Then handle trailing slash globally
+    {
+      source: '/:path*/',
+      destination: '/:path*',
+      permanent: true,
+    },
     ];
   },
 };
