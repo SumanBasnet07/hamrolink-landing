@@ -62,28 +62,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = await getPost(slug);
   if (!post) return { title: "Not Found" };
   const ne = lang === "ne";
+
+  // Clean URL: English blog uses /blog/[slug], Nepali uses /ne/blog/[slug]
+  const title       = ne ? (post.metaTitle_ne || post.title_ne) : (post.metaTitle_en || post.title_en);
+  const description = ne ? (post.metaDescription_ne || post.excerpt_ne) : (post.metaDescription_en || post.excerpt_en);
+  const keywords    = ne ? (post.schema?.keywords_ne || post.tags_ne?.join(", ")) : (post.schema?.keywords_en || post.tags_en?.join(", "));
+  const images      = post.featuredImage
+    ? [{ url: post.featuredImage, width: 1200, height: 630, alt: ne ? post.featuredImageAlt_ne : post.featuredImageAlt_en }]
+    : undefined;
+
   return {
-    title:       ne ? (post.metaTitle_ne || post.title_ne) : (post.metaTitle_en || post.title_en),
-    description: ne ? (post.metaDescription_ne || post.excerpt_ne) : (post.metaDescription_en || post.excerpt_en),
-    keywords:    ne ? (post.schema?.keywords_ne || post.tags_ne?.join(", ")) : (post.schema?.keywords_en || post.tags_en?.join(", ")),
-    openGraph: {
-      type: "article",
-      locale: ne ? "ne_NP" : "en_US",
-      siteName: "HamroLink Digital",
-      title:       ne ? post.title_ne : post.title_en,
-      description: ne ? post.excerpt_ne : post.excerpt_en,
-      url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${post.slug}`,
-      images: post.featuredImage
-        ? [{ url: post.featuredImage, width: 1200, height: 630, alt: ne ? post.featuredImageAlt_ne : post.featuredImageAlt_en }]
-        : [],
-    },
+    title,
+    description,
+    keywords,
     alternates: {
       canonical: ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
       languages: {
-        en: `https://hamrolink.com/blog/${post.slug}`,
-        ne: `https://hamrolink.com/ne/blog/${post.slug}`,
+        en:          `https://hamrolink.com/blog/${post.slug}`,
+        ne:          `https://hamrolink.com/ne/blog/${post.slug}`,
         "x-default": `https://hamrolink.com/blog/${post.slug}`,
       },
+    },
+    openGraph: {
+      type:        "article",
+      locale:      ne ? "ne_NP" : "en_US",
+      siteName:    "HamroLink Digital",
+      title,
+      description,
+      url:         ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
+      ...(images ? { images } : {}),
+    },
+    twitter: {
+      card:        "summary_large_image",
+      title,
+      description,
     },
   };
 }
@@ -116,10 +128,11 @@ function ArticleJsonLd({ post, lang }: { post: any; lang: Lang }) {
     "datePublished": post.schema?.datePublished || (post.publishedAt instanceof Date ? post.publishedAt.toISOString().slice(0, 10) : post.publishedAt?.slice(0, 10)) || (post.createdAt instanceof Date ? post.createdAt.toISOString().slice(0, 10) : post.createdAt?.slice(0, 10)),
     "dateModified":  post.updatedAt instanceof Date ? post.updatedAt.toISOString().slice(0, 10) : post.updatedAt?.slice(0, 10),
     "inLanguage":    ne ? "ne" : "en",
-    "url":           `https://hamrolink.com/${lang}/blog/${post.slug}`,
+    // Use clean canonical URL (no /en/ prefix)
+    "url":           ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":   `https://hamrolink.com/${lang}/blog/${post.slug}`,
+      "@id":   ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
     },
     "keywords": ne
       ? (post.schema?.keywords_ne || post.tags_ne?.join(", "))
@@ -135,9 +148,9 @@ function BreadcrumbJsonLd({ post, lang }: { post: any; lang: Lang }) {
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "HamroLink Digital",         "item": "https://hamrolink.com" },
-      { "@type": "ListItem", "position": 2, "name": ne ? "ब्लग" : "Blog", "item": `https://hamrolink.com/${lang}/blog` },
+      { "@type": "ListItem", "position": 2, "name": ne ? "ब्लग" : "Blog", "item": ne ? `https://hamrolink.com/ne/blog` : `https://hamrolink.com/blog` },
       { "@type": "ListItem", "position": 3, "name": ne ? post.title_ne : post.title_en,
-        "item": `https://hamrolink.com/${lang}/blog/${post.slug}` },
+        "item": ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}` },
     ],
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}/>;

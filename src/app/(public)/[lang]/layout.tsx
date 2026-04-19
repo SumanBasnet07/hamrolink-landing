@@ -92,6 +92,15 @@ export async function generateMetadata({
     creator:   SITE_NAME,
     publisher: SITE_NAME,
 
+    alternates: {
+      canonical: lang === "ne" ? `${SITE_URL}/ne` : SITE_URL,
+      languages: {
+        "en":        SITE_URL,
+        "ne":        `${SITE_URL}/ne`,
+        "x-default": SITE_URL,
+      },
+    },
+
     openGraph: {
       type:            "website",
       locale:          lang === "ne" ? "ne_NP" : "en_US",

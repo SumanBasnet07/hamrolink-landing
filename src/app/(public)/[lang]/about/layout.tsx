@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getDictionary } from '@/lib/dictionaries';
-import { getAlternates, getOgUrl } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ lang: 'en' | 'ne' }>;
@@ -11,16 +11,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const d = getDictionary(lang);
   const ap = d.aboutPage;
 
-  return {
+  return buildMetadata({
     title: ap.title,
     description: ap.description,
-    alternates: getAlternates("/about", lang),
-    openGraph: {
-      title: ap.title,
-      description: ap.description,
-      url: getOgUrl("/about", lang),
-    },
-  };
+    path: "/about",
+    lang,
+  });
 }
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {

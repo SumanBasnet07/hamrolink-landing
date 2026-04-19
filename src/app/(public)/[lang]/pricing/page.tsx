@@ -24,6 +24,8 @@ import {
 import { getDictionary } from "@/lib/dictionaries";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/landing/Navbar";
+import PricingSchema from "@/components/SEO/PricingSchema";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // --- Types ---
 interface PlanFeat {
@@ -157,6 +159,7 @@ export default function PricingPage({ params }: { params: Params }) {
   const p = d.pricing;
   const PRE_LAUNCH = false;
   const accent = "#6366f1";
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const t = (key: string) => {
     const keys = key.split(".");
@@ -359,21 +362,87 @@ export default function PricingPage({ params }: { params: Params }) {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
+      {/* Pricing structured data for Google Rich Results */}
+      <PricingSchema lang={lang} />
+
+      {/* FAQ schema — captures purchase-intent queries, expands SERP real estate */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": lang === "ne" ? "कुन प्लान साना व्यवसायका लागि सबैभन्दा राम्रो छ?" : "Which plan is best for small businesses in Nepal?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": lang === "ne"
+                    ? "Local Start (NPR 199/month) साना पसलहरूका लागि उत्तम छ। Business प्लान (NPR 399/month) AI chatbot र अनलाइन स्टोर सहित पूर्ण सुविधा दिन्छ।"
+                    : "The Local Start plan (NPR 199/month) is ideal for small shops. The Business plan (NPR 399/month) includes AI chatbot, online store, and all professional features."
+                },
+              },
+              {
+                "@type": "Question",
+                "name": lang === "ne" ? "के म कुनै पनि समयमा अपग्रेड गर्न सक्छु?" : "Can I upgrade my plan anytime?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": lang === "ne"
+                    ? "हो, तपाईं जुनसुकै बेला आफ्नो प्लान अपग्रेड वा डाउनग्रेड गर्न सक्नुहुन्छ। कुनै लुकेको शुल्क छैन।"
+                    : "Yes, you can upgrade or downgrade at any time from your dashboard. No hidden fees, no long-term commitments."
+                },
+              },
+              {
+                "@type": "Question",
+                "name": lang === "ne" ? "के मलाई वेबसाइट बनाउन प्राविधिक ज्ञान चाहिन्छ?" : "Do I need technical skills to build a website with HamroLink?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": lang === "ne"
+                    ? "बिल्कुल होइन। यदि तपाईं Facebook प्रयोग गर्न सक्नुहुन्छ भने, तपाईं HamroLink प्रयोग गर्न सक्नुहुन्छ। औसत समय: १५ मिनेट।"
+                    : "No technical skills needed. If you can use Facebook, you can use HamroLink. Average time from signup to live website is under 15 minutes."
+                },
+              },
+              {
+                "@type": "Question",
+                "name": lang === "ne" ? "के निःशुल्क योजनामा AI chatbot समावेश छ?" : "Does the free plan include an AI chatbot?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": lang === "ne"
+                    ? "निःशुल्क योजनामा AI chatbot समावेश छैन। Local Start (NPR 199/mo) देखि सबै भुक्तानी योजनाहरूमा २४/७ AI सहायक समावेश छ।"
+                    : "The free plan does not include AI chatbot. All paid plans from Local Start (NPR 199/mo) and above include the 24/7 AI assistant."
+                },
+              },
+              {
+                "@type": "Question",
+                "name": lang === "ne" ? "के म eSewa र Khalti मार्फत भुक्तानी स्वीकार गर्न सक्छु?" : "Can I accept payments via eSewa and Khalti on my website?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": lang === "ne"
+                    ? "हो। HamroLink का सबै भुक्तानी योजनाहरूमा eSewa र Khalti इन्टिग्रेसन समावेश छ — कुनै छुट्टै सेटअप आवश्यक छैन।"
+                    : "Yes. All paid HamroLink plans include built-in eSewa and Khalti payment integration — no separate setup required."
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
       <Navbar lang={lang} accent={accent} nav={d.nav} forceScrolled={true} />
 
       <main className="flex-1 pt-32 pb-24 relative overflow-hidden">
-        {/* Background Mesh */}
+        {/* Background Mesh — hidden on mobile to protect LCP */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
-          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-100 blur-[120px] opacity-60" />
-          <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] rounded-full bg-indigo-100 blur-[100px] opacity-40" />
-          <div className="absolute -bottom-[5%] left-1/4 w-[35%] h-[35%] rounded-full bg-violet-100 blur-[110px] opacity-50" />
+          <div className="hidden md:block absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-100 blur-[120px] opacity-60" />
+          <div className="hidden md:block absolute top-[20%] -right-[5%] w-[30%] h-[30%] rounded-full bg-indigo-100 blur-[100px] opacity-40" />
+          <div className="hidden md:block absolute -bottom-[5%] left-1/4 w-[35%] h-[35%] rounded-full bg-violet-100 blur-[110px] opacity-50" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-20">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-600 text-xs font-bold mb-4"
             >
@@ -381,7 +450,7 @@ export default function PricingPage({ params }: { params: Params }) {
               {p.badge}
             </motion.div>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-6 tracking-tight"
@@ -394,7 +463,7 @@ export default function PricingPage({ params }: { params: Params }) {
               ))}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-gray-700 text-xl max-w-2xl mx-auto leading-relaxed mb-10 font-medium"
@@ -666,8 +735,45 @@ export default function PricingPage({ params }: { params: Params }) {
             </div>
           </motion.section>
 
+          {/* Internal Links — Topical Authority + Crawl Depth */}
+          <section className="mt-24 border-t border-gray-100 pt-16">
+            <p className="text-center text-xs font-black text-gray-400 uppercase tracking-widest mb-10">Explore HamroLink</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <Link
+                href={`/${lang}/features`}
+                className="group flex flex-col gap-3 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
+              >
+                <span className="text-indigo-600 font-black text-sm uppercase tracking-wider">Platform Features</span>
+                <span className="text-gray-900 font-bold text-lg leading-snug group-hover:text-indigo-700 transition-colors">
+                  See website examples for small businesses in Nepal &rarr;
+                </span>
+                <span className="text-gray-500 text-sm font-medium">AI chatbot, online store, QR code &amp; 12 more tools</span>
+              </Link>
+              <Link
+                href={`/${lang}/stories`}
+                className="group flex flex-col gap-3 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
+              >
+                <span className="text-emerald-600 font-black text-sm uppercase tracking-wider">Success Stories</span>
+                <span className="text-gray-900 font-bold text-lg leading-snug group-hover:text-emerald-700 transition-colors">
+                  How Nepali businesses went professional with HamroLink &rarr;
+                </span>
+                <span className="text-gray-500 text-sm font-medium">Real shops, restaurants &amp; schools — real results</span>
+              </Link>
+              <Link
+                href={`/${lang}/blog`}
+                className="group flex flex-col gap-3 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
+              >
+                <span className="text-violet-600 font-black text-sm uppercase tracking-wider">Blog &amp; Guides</span>
+                <span className="text-gray-900 font-bold text-lg leading-snug group-hover:text-violet-700 transition-colors">
+                  How to build a business website in Nepal — step by step &rarr;
+                </span>
+                <span className="text-gray-500 text-sm font-medium">SEO guides, website tutorials &amp; growth tips</span>
+              </Link>
+            </div>
+          </section>
+
           {/* Bottom Trust Line */}
-          <div className="mt-24 text-center">
+          <div className="mt-16 text-center">
             <p className="text-gray-500 font-bold max-w-2xl mx-auto leading-relaxed italic">
               &quot;{p.footer}&quot;
             </p>

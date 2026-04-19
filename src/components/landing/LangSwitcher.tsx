@@ -96,7 +96,11 @@ export function LangSwitcher({
           aria-label="Language selector"
         >
           {options.map((item) => {
-            const href = `/${item.code}${rest ? `/${rest}` : ""}`;
+            const href = item.code === lang 
+              ? pathname 
+              : item.code === "en" 
+                ? (rest ? `/${rest}` : "/") 
+                : `/${item.code}${rest ? `/${rest}` : ""}`;
             const isActive = item.code === lang;
 
             return (

@@ -38,3 +38,46 @@ export function getOgUrl(path: string, lang: string): string {
   
   return lang === "ne" ? `${SITE_URL}/ne${cleanPath}` : `${SITE_URL}${cleanPath}`;
 }
+
+/**
+ * Single enforced metadata wrapper.
+ * Guarantees canonical, hreflang, og:url, and twitter always stay in sync.
+ * Use this for all page/layout generateMetadata functions.
+ */
+export function buildMetadata({
+  title,
+  description,
+  path,
+  lang,
+  ogType = "website",
+  keywords,
+  images,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  lang: string;
+  ogType?: "website" | "article";
+  keywords?: string | string[];
+  images?: { url: string; width?: number; height?: number; alt?: string }[];
+}): Metadata {
+  return {
+    title,
+    description,
+    ...(keywords ? { keywords } : {}),
+    alternates: getAlternates(path, lang),
+    openGraph: {
+      title,
+      description,
+      url: getOgUrl(path, lang),
+      type: ogType,
+      siteName: "HamroLink",
+      ...(images ? { images } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}

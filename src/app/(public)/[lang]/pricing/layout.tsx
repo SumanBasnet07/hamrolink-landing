@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getDictionary } from '@/lib/dictionaries';
-import { getAlternates, getOgUrl } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ lang: 'en' | 'ne' }>;
@@ -11,16 +11,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const d = getDictionary(lang);
   const pp = d.pricing;
 
-  return {
+  return buildMetadata({
     title: pp.title,
     description: pp.description,
-    alternates: getAlternates("/pricing", lang),
-    openGraph: {
-      title: pp.title,
-      description: pp.description,
-      url: getOgUrl("/pricing", lang),
-    },
-  };
+    path: "/pricing",
+    lang,
+  });
 }
 
 export default function PricingLayout({ children }: { children: React.ReactNode }) {

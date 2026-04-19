@@ -531,7 +531,7 @@ export const dictionaries = {
 
     // ── Pricing ──────────────────────────────────────────────────────────────
     pricing: {
-      title: "Pricing Plans | HamroLink — Professional & Affordable",
+      title: "HamroLink Pricing (2026) - Create websites & Online Stores in Nepal",
       description: "Transparent pricing for every stage of your business. From individual creators to large institutions. Start for free and upgrade anytime.",
       badge: "Less than a dinner out — and it works 24/7",
       heading: "Your 24/7 business presence.\nStarting at NPR 199/month.",
