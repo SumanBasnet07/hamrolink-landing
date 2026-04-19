@@ -34,16 +34,16 @@ export function Navbar({
   const ctaHref = preLaunch ? resolveHref("/#waitlist", lang) : "https://app.hamrolink.com";
 
   const navLinks = [
-    { href: resolveHref("/ai"), label: nav.templates },
-    { href: resolveHref("/features"), label: nav.features },
-    { href: resolveHref("/pricing"), label: nav.pricing },
-    { href: resolveHref("/stories"), label: nav.docs },
+    { href: resolveHref("/ai", lang), label: nav.templates },
+    { href: resolveHref("/features", lang), label: nav.features },
+    { href: resolveHref("/pricing", lang), label: nav.pricing },
+    { href: resolveHref("/stories", lang), label: nav.docs },
   ];
 
   const companyLinks = [
-    { href: resolveHref("/about"), label: nav.about },
-    { href: resolveHref("/contact"), label: nav.contact },
-    { href: resolveHref("/blog"), label: nav.blog },
+    { href: resolveHref("/about", lang), label: nav.about },
+    { href: resolveHref("/contact", lang), label: nav.contact },
+    { href: resolveHref("/blog", lang), label: nav.blog },
     { href: `https://app.hamrolink.com/community`, label: nav.community },
   ];
 
@@ -57,7 +57,7 @@ export function Navbar({
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
-          href={resolveHref("/")}
+          href={resolveHref("/", lang)}
           className={`flex items-center transition-opacity hover:opacity-90`}
         >
           <img
