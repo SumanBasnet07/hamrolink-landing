@@ -905,10 +905,10 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       },
       sections: {
         Product: [
-          ["AI Staff", "/#ai-staff"],
-          ["Features", "/#features"],
+          ["AI Staff", "/ai"],
+          ["Features", "/features"],
           ["Pricing", "/pricing"],
-          ["Success Stories", "/#stories"],
+          ["Success Stories", "/stories"],
         ],
         Company: [
           ["About", "/about"],
@@ -1857,10 +1857,10 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
       founderValue: "सुमन बस्नेत",
       sections: {
         उत्पादन: [
-          ["AI कर्मचारी", "/#ai-staff"],
-          ["विशेषताहरू", "/#features"],
+          ["AI कर्मचारी", "/ai"],
+          ["विशेषताहरू", "/features"],
           ["मूल्य", "/pricing"],
-          ["सफलताको कथा", "/#stories"],
+          ["सफलताको कथा", "/stories"],
         ],
         हाम्रोबारे: [
           ["हाम्रोबारे", "/about"],

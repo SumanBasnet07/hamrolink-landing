@@ -12,6 +12,7 @@ import {
   Clock, Star, CheckCircle, Building2, Users, Camera,
   AlertTriangle, Zap, Lock,
 } from "lucide-react";
+import { resolveHref } from "@/lib/seo";
 
 // ─── Slug constant ────────────────────────────────────────────────────────────
 const SLUG = "facebook-page-vs-website-nepali-businesses";
@@ -42,7 +43,7 @@ export async function generateMetadata(
       description: ne
         ? "फेसबुक पेज र वेबसाइटको फरक बुझ्नुहोस् — र दुवै किन चाहिन्छ।"
         : "Many Nepali businesses rely only on Facebook pages. Learn why that's not enough—and why you need both.",
-      url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+      url: `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
       images: [
         {
           url: "https://hamrolink.com/website_vs_fb.jpg",
@@ -102,10 +103,10 @@ function ArticleSchema({ lang }: { lang: string }) {
     "datePublished": "2026-03-13",
     "dateModified": "2026-03-13",
     "inLanguage": ne ? "ne" : "en",
-    "url": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+    "url": `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+      "@id": `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
     },
     "about": {
       "@type": "Thing",
@@ -140,7 +141,7 @@ function BreadcrumbSchema({ lang }: { lang: string }) {
         "@type": "ListItem",
         "position": 2,
         "name": ne ? "ब्लग" : "Blog",
-        "item": `https://hamrolink.com/${ne ? "ne" : "en"}/blog`,
+        "item": `https://hamrolink.com${resolveHref("/blog", lang)}`,
       },
       {
         "@type": "ListItem",
@@ -148,7 +149,7 @@ function BreadcrumbSchema({ lang }: { lang: string }) {
         "name": ne
           ? "फेसबुक पेज बनाम वेबसाइट: नेपाली व्यवसायलाई दुवै किन चाहिन्छ"
           : "Facebook Page vs Website for Nepali Businesses: Why You Need Both",
-        "item": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+        "item": `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
       },
     ],
   };
@@ -463,8 +464,8 @@ const CONTENT = {
     shareLabel: "Share this article",
     relatedLabel: "You might also find helpful",
     related: [
-      { label: "Why Nepali Businesses Don't Have Websites", href: "/en/blog/why-nepali-businesses-dont-have-websites" },
-      { label: "HamroLink Pricing", href: "/en#pricing" },
+      { label: "Why Nepali Businesses Don't Have Websites", href: resolveHref("/blog/why-nepali-businesses-dont-have-websites", "en") },
+      { label: "HamroLink Pricing", href: resolveHref("/#pricing", "en") },
       { label: "Start for Free", href: "https://app.hamrolink.com" },
     ],
   },
@@ -667,8 +668,8 @@ const CONTENT = {
     shareLabel: "यो लेख साझा गर्नुहोस्",
     relatedLabel: "तपाईंलाई उपयोगी लाग्न सक्छ",
     related: [
-      { label: "नेपाली व्यवसायसँग वेबसाइट किन छैन", href: "/ne/blog/why-nepali-businesses-dont-have-websites" },
-      { label: "HamroLink मूल्य निर्धारण", href: "/ne#pricing" },
+      { label: "नेपlी व्यवसायसँग वेबसाइट किन छैन", href: resolveHref("/blog/why-nepali-businesses-dont-have-websites", "ne") },
+      { label: "HamroLink मूल्य निर्धारण", href: resolveHref("/pricing", "ne") },
       { label: "नि:शुल्क सुरु गर्नुहोस्", href: "https://app.hamrolink.com" },
     ],
   },
@@ -763,9 +764,9 @@ export default async function BlogFacebookVsWebsitePage({ params }: { params: Pr
         <div className="bg-white border-b border-gray-100 sticky top-0 z-40">
           <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
             <nav aria-label="breadcrumb" className="flex items-center gap-1.5 text-xs text-gray-400">
-              <Link href={`/${lang}`} className="hover:text-gray-700 transition-colors font-medium">HamroLink</Link>
+              <Link href={resolveHref("/", lang)} className="hover:text-gray-700 transition-colors font-medium">HamroLink</Link>
               <span>/</span>
-              <Link href={`/${lang}/blog`} className="hover:text-gray-700 transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
+              <Link href={resolveHref("/blog", lang)} className="hover:text-gray-700 transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
               <span>/</span>
               <span className="text-gray-600 font-medium truncate max-w-[180px]">
                 {ne ? "फेसबुक बनाम वेबसाइट" : "Facebook vs Website"}
@@ -773,7 +774,7 @@ export default async function BlogFacebookVsWebsitePage({ params }: { params: Pr
             </nav>
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
               {(["en","ne"] as const).map(l => (
-                <Link key={l} href={`/${l}/blog/${SLUG}`}
+                <Link key={l} href={resolveHref(`/blog/${SLUG}`, l)}
                   className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${lang===l ? "bg-white shadow text-gray-900" : "text-gray-400 hover:text-gray-700"}`}>
                   {l === "en" ? "EN" : "नेपाली"}
                 </Link>

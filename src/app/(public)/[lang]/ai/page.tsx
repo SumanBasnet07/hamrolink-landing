@@ -28,6 +28,7 @@ import {
 import { getDictionary } from "@/lib/dictionaries";
 import { Navbar } from "@/components/landing/Navbar";
 import { Footer } from "@/components/Footer";
+import { resolveHref } from "@/lib/seo";
 
 type Lang = "en" | "ne";
 
@@ -448,7 +449,7 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
                   {copy.primaryCta}
                 </Link>
                 <Link
-                  href={`/${lang}/pricing`}
+                  href={resolveHref("/pricing", lang)}
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl border border-white/12 bg-white/5 hover:bg-white/8 text-white text-base font-bold transition-colors"
                 >
                   {copy.secondaryCta}
@@ -639,7 +640,7 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
                 </div>
                 <p className="text-slate-300 leading-relaxed">{copy.pricingNote}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Link href={`/${lang}/pricing`} className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-3 text-sm font-black text-slate-950 hover:bg-amber-400 transition-colors">
+                  <Link href={resolveHref("/pricing", lang)} className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-3 text-sm font-black text-slate-950 hover:bg-amber-400 transition-colors">
                     {copy.secondaryCta}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -717,7 +718,7 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href={`/${lang}/contact`}
+                  href={resolveHref("/contact", lang)}
                   className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-7 py-4 text-base font-bold text-white hover:bg-white/8 transition-colors"
                 >
                   {lang === "ne" ? "टिमसँग कुरा गर्नुहोस्" : "Talk to the Team"}

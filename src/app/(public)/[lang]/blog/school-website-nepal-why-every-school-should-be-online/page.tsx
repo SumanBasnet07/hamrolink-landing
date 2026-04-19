@@ -12,6 +12,7 @@ import {
   CheckCircle, Building2, Users, Camera, Zap, TrendingUp,
   MessageSquare, Bell, BookOpen, CalendarDays, Shield,
 } from "lucide-react";
+import { resolveHref } from "@/lib/seo";
 
 // ─── Slug ─────────────────────────────────────────────────────────────────────
 const SLUG = "school-website-nepal-why-every-school-should-be-online";
@@ -44,7 +45,7 @@ export async function generateMetadata(
       description: ne
         ? "वेबसाइटले विद्यालयको विश्वसनीयता, भर्ना र अभिभावक सञ्चार कसरी सुधार गर्छ।"
         : "Why a website can transform enrollment, credibility, and parent communication for Nepali schools.",
-      url: `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+      url: `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
       images: [
         {
           url: "https://hamrolink.com/school-website-nepal.jpg",
@@ -97,10 +98,10 @@ function ArticleSchema({ lang }: { lang: string }) {
     "datePublished": DATE_PUBLISHED,
     "dateModified":  DATE_MODIFIED,
     "inLanguage": ne ? "ne" : "en",
-    "url": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+    "url": `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+      "@id": `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
     },
     "about": {
       "@type": "EducationalOrganization",
@@ -121,12 +122,12 @@ function BreadcrumbSchema({ lang }: { lang: string }) {
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "HamroLink", "item": "https://hamrolink.com" },
-      { "@type": "ListItem", "position": 2, "name": ne ? "ब्लग" : "Blog", "item": `https://hamrolink.com/${ne ? "ne" : "en"}/blog` },
+      { "@type": "ListItem", "position": 2, "name": ne ? "ब्लग" : "Blog", "item": `https://hamrolink.com${resolveHref("/blog", lang)}` },
       {
         "@type": "ListItem",
         "position": 3,
         "name": ne ? "नेपालको हरेक विद्यालयलाई वेबसाइट किन चाहिन्छ" : "School Website in Nepal: Why Every School Should Be Online",
-        "item": `https://hamrolink.com/${ne ? "ne" : "en"}/blog/${SLUG}`,
+        "item": `https://hamrolink.com${resolveHref(`/blog/${SLUG}`, lang)}`,
       },
     ],
   };
@@ -617,8 +618,8 @@ const CONTENT = {
     shareLabel: "Share this article",
     relatedLabel: "Related reading",
     related: [
-      { label: "Why Nepali Businesses Don't Have Websites", href: "/en/blog/why-nepali-businesses-dont-have-websites" },
-      { label: "Facebook vs Website for Nepali Businesses",  href: "/en/blog/facebook-page-vs-website-nepali-businesses" },
+      { label: "Why Nepali Businesses Don't Have Websites", href: resolveHref("/blog/why-nepali-businesses-dont-have-websites", "en") },
+      { label: "Facebook vs Website for Nepali Businesses",  href: resolveHref("/blog/facebook-page-vs-website-nepali-businesses", "en") },
       { label: "Start for Free",                              href: "https://app.hamrolink.com" },
     ],
   },

@@ -11,6 +11,7 @@ import {
   Sparkles, ArrowRight, ChevronDown, Wifi, DollarSign,
   Clock, Star, CheckCircle, Building2, Users,
 } from "lucide-react";
+import { resolveHref } from "@/lib/seo";
 
 // ─── Constants & Icon Mapping ────────────────────────────────────────────────
 const ICON_MAP: Record<string, any> = {
@@ -409,8 +410,8 @@ const CONTENT = {
     shareLabel: "Share this article",
     relatedLabel: "Related Articles",
     related: [
-      { label: "HamroLink Pricing", href: "/en#pricing" },
-      { label: "Templates", href: "/en#examples" },
+      { label: "HamroLink Pricing", href: resolveHref("/pricing", "en") },
+      { label: "Templates", href: resolveHref("/ai", "en") },
     ],
   },
 
@@ -552,8 +553,8 @@ const CONTENT = {
     shareLabel: "साझा गर्नुहोस्",
     relatedLabel: "सम्बन्धित लेख",
     related: [
-      { label: "हाम्रो मूल्य", href: "/ne#pricing" },
-      { label: "टेम्प्लेटहरू", href: "/ne#examples" },
+      { label: "हाम्रो मूल्य", href: resolveHref("/pricing", "ne") },
+      { label: "टेम्प्लटहरू", href: resolveHref("/ai", "ne") },
     ],
   },
 };
@@ -599,13 +600,13 @@ export default async function BlogWhyNoWebsitesPage({ params }: { params: Promis
         <div className="bg-white border-b border-gray-100 sticky top-0 z-40">
           <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
             <nav aria-label="breadcrumb" className="flex items-center gap-1.5 text-xs text-gray-400">
-              <Link href={`/${lang}`} className="hover:text-gray-700 transition-colors">HamroLink</Link>
+              <Link href={resolveHref("/", lang)} className="hover:text-gray-700 transition-colors">HamroLink</Link>
               <span>/</span>
               <span className="text-gray-500 font-medium">{ne ? "ब्लग" : "Blog"}</span>
             </nav>
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
               {(["en","ne"] as const).map(l => (
-                <Link key={l} href={`/${l}/blog/why-nepali-businesses-dont-have-websites`}
+                <Link key={l} href={resolveHref("/blog/why-nepali-businesses-dont-have-websites", l)}
                   className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${lang===l ? "bg-white shadow text-gray-900" : "text-gray-400 hover:text-gray-700"}`}>
                   {l === "en" ? "EN" : "नेपाली"}
                 </Link>

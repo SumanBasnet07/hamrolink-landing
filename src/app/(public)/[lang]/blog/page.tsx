@@ -3,7 +3,7 @@ export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAlternates, getOgUrl } from "@/lib/seo";
+import { getAlternates, getOgUrl, resolveHref } from "@/lib/seo";
 import Image from "next/image";
 import {
   ArrowRight, Globe, GraduationCap, Share2,
@@ -158,7 +158,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
       <div className="sticky top-0 z-40 bg-[#0b0f1a]/90 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href={`/${lang}`} className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium">
+            <Link href={resolveHref("/", lang)} className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium">
               <span className="font-black text-white">HamroLink Digital</span>
               <ChevronRight className="w-3.5 h-3.5"/>
             </Link>
@@ -169,7 +169,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 bg-white/8 rounded-lg p-0.5 border border-white/10">
               {(["en","ne"] as const).map(l => (
-                <Link key={l} href={`/${l}/blog`}
+                <Link key={l} href={resolveHref("/blog", l)}
                   className={`px-3 py-1 rounded-md text-xs font-bold transition-all ${lang===l ? "bg-white/15 text-white" : "text-white/40 hover:text-white/70"}`}>
                   {l === "en" ? "EN" : "नेपाली"}
                 </Link>
@@ -234,7 +234,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
 
       {/* ── Featured article (hero card) ────────────────────────────────────── */}
       <div className="max-w-6xl mx-auto px-6 pb-6">
-        <Link href={`/${lang}/blog/${featured.slug}`} className="group block">
+        <Link href={resolveHref(`/blog/${featured.slug}`, lang)} className="group block">
           <div className="relative rounded-3xl overflow-hidden border border-white/8 bg-gradient-to-br from-[#111827] to-[#0f172a] hover:border-white/15 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/20">
             {/* Decorative top accent */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"/>
@@ -314,7 +314,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
             const cc    = CAT_COLORS[post.categoryColor];
             const Icon  = post.icon;
             return (
-              <Link key={post.slug} href={`/${lang}/blog/${post.slug}`} className="group block">
+              <Link key={post.slug} href={resolveHref(`/blog/${post.slug}`, lang)} className="group block">
                 <div
                   className="relative h-full rounded-3xl overflow-hidden border border-white/8 bg-[#111827] hover:border-white/15 transition-all duration-400 hover:shadow-xl flex flex-col"
                   style={{"--post-accent": post.accent} as React.CSSProperties}
@@ -457,7 +457,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
                 {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start for Free"}
                 <ArrowRight className="w-4 h-4"/>
               </Link>
-              <Link href={`/${lang}/pricing`}
+              <Link href={resolveHref("/pricing", lang)}
                 className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 text-white/60 rounded-2xl font-semibold text-sm hover:border-white/30 hover:text-white/80 transition-colors">
                 {ne ? "मूल्य निर्धारण हेर्नुहोस्" : "View Pricing"}
               </Link>
@@ -488,7 +488,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
           {posts.map((post, i) => {
             const Icon = post.icon;
             return (
-              <Link key={post.slug} href={`/${lang}/blog/${post.slug}`} className="group flex items-center gap-4 p-4 rounded-2xl border border-transparent hover:border-white/8 hover:bg-white/3 transition-all">
+              <Link key={post.slug} href={resolveHref(`/blog/${post.slug}`, lang)} className="group flex items-center gap-4 p-4 rounded-2xl border border-transparent hover:border-white/8 hover:bg-white/3 transition-all">
                 <span className="text-white/20 text-sm font-black w-6 text-right shrink-0 tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -520,10 +520,10 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
           <span className="text-white/25">© {new Date().getFullYear()} HamroLink Digital · Built in Nepal 🇳🇵</span>
           <div className="flex gap-6">
             {([
-              [ne ? "गृहपृष्ठ"   : "Home",    `/${lang}`],
-              [ne ? "गोपनीयता"  : "Privacy", `/${lang}/privacy`],
-              [ne ? "सर्तहरू"   : "Terms",   `/${lang}/terms`],
-              [ne ? "सम्पर्क"   : "Contact", `/${lang}#contact`],
+              [ne ? "गृहपृष्ठ"   : "Home",    resolveHref("/", lang)],
+              [ne ? "गोपनीयता"  : "Privacy", resolveHref("/privacy", lang)],
+              [ne ? "सर्तहरू"   : "Terms",   resolveHref("/terms", lang)],
+              [ne ? "सम्पर्क"   : "Contact", resolveHref("/#contact", lang)],
             ] as [string, string][]).map(([label, href]) => (
               <Link key={href} href={href} className="text-white/25 hover:text-white/60 transition-colors">{label}</Link>
             ))}

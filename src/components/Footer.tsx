@@ -46,7 +46,7 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
               Made with love in Nepal
             </p>
             <Link
-              href={ctaHref("/signup")}
+              href={"https://app.hamrolink.com"}
               className="inline-flex items-center gap-2.5 px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white text-sm font-black rounded-2xl transition-all hover:scale-105 shadow-xl shadow-amber-500/25 group"
             >
               <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
@@ -192,7 +192,7 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                   © {new Date().getFullYear()} HamroLink Digital. {d.footer.copyright}
                 </p>
                 <Link
-                  href={ctaHref("/signup")}
+                  href={"https://app.hamrolink.com"}
                   className="inline-flex items-center gap-2 mt-4 text-xs font-black text-blue-500 hover:text-blue-400 uppercase tracking-[0.2em] transition-colors"
                 >
                   <Sparkles className="w-3.5 h-3.5" />

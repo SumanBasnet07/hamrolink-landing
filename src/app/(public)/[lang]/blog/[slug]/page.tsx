@@ -11,6 +11,7 @@ import {
   Clock, Building2, Users, Camera, ArrowRight,
   ChevronDown, Globe, Star, CheckCircle, Sparkles,
 } from "lucide-react";
+import { resolveHref } from "@/lib/seo";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -235,9 +236,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40 transition-all">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
             <nav className="flex items-center gap-1.5 text-sm sm:text-base text-gray-700">
-              <Link href={`/${lang}`} className="hover:text-indigo-600 font-bold transition-colors">HamroLink Digital</Link>
+              <Link href={resolveHref("/", lang)} className="hover:text-indigo-600 font-bold transition-colors">HamroLink Digital</Link>
               <span className="text-gray-400 font-black">/</span>
-              <Link href={`/${lang}/blog`} className="hover:text-indigo-600 font-bold transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
+              <Link href={resolveHref("/blog", lang)} className="hover:text-indigo-600 font-bold transition-colors">{ne ? "ब्लग" : "Blog"}</Link>
               <span className="text-gray-400 font-black">/</span>
               <span className="text-gray-950 font-black truncate max-w-[120px] sm:max-w-[200px]">
                 {ne ? post.category_ne : post.category_en}
@@ -245,7 +246,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </nav>
             <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1 border border-gray-200">
               {(["en","ne"] as const).map((l) => (
-                <Link key={l} href={`/${l}/blog/${post.slug}`}
+                <Link key={l} href={resolveHref(`/blog/${post.slug}`, l)}
                   className={`px-3 py-1.5 rounded-full text-xs sm:text-sm font-black transition-all ${lang===l ? "bg-white shadow text-indigo-700" : "text-gray-600 hover:text-gray-950"}`}>
                   {l === "en" ? "EN" : "नेपाली"}
                 </Link>
@@ -461,13 +462,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                   {ne ? "साझा गर्नुहोस्" : "Share"}
                 </p>
                 <div className="flex items-center gap-2">
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=https://hamrolink.com/${lang}/blog/${post.slug}`}
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=https://hamrolink.com${resolveHref(`/blog/${post.slug}`, lang)}`}
                     target="_blank" rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform text-xs font-black">f</a>
-                  <a href={`https://twitter.com/intent/tweet?url=https://hamrolink.com/${lang}/blog/${post.slug}`}
+                  <a href={`https://twitter.com/intent/tweet?url=https://hamrolink.com${resolveHref(`/blog/${post.slug}`, lang)}`}
                     target="_blank" rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full bg-slate-900 flex items-center justify-center text-white hover:scale-110 transition-transform text-xs font-black">𝕏</a>
-                  <a href={`https://wa.me/?text=https://hamrolink.com/${lang}/blog/${post.slug}`}
+                  <a href={`https://wa.me/?text=https://hamrolink.com${resolveHref(`/blog/${post.slug}`, lang)}`}
                     target="_blank" rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full bg-green-500 flex items-center justify-center text-white hover:scale-110 transition-transform text-xs font-black">W</a>
                 </div>
@@ -483,9 +484,9 @@ export default async function BlogPostPage({ params }: PageProps) {
             <span>© {new Date().getFullYear()} HamroLink Digital · Built in Nepal 🇳🇵</span>
             <div className="flex gap-8">
               {([
-                [ne ? "ब्लग"      : "Blog",    `/${lang}/blog`],
-                [ne ? "गोपनीयता" : "Privacy", `/${lang}/privacy`],
-                [ne ? "सर्तहरू"  : "Terms",   `/${lang}/terms`],
+                [ne ? "ब्लग"      : "Blog",    resolveHref("/blog", lang)],
+                [ne ? "गोपनीयता" : "Privacy", resolveHref("/privacy", lang)],
+                [ne ? "सर्तहरू"  : "Terms",   resolveHref("/terms", lang)],
               ] as [string,string][]).map(([label, href]) => (
                 <Link key={href} href={href} className="hover:text-indigo-600 transition-colors">{label}</Link>
               ))}

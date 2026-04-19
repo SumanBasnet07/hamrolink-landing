@@ -26,6 +26,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/landing/Navbar";
 import PricingSchema from "@/components/SEO/PricingSchema";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { resolveHref } from "@/lib/seo";
 
 // --- Types ---
 interface PlanFeat {
@@ -740,7 +741,7 @@ export default function PricingPage({ params }: { params: Params }) {
             <p className="text-center text-xs font-black text-gray-400 uppercase tracking-widest mb-10">Explore HamroLink</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <Link
-                href={`/${lang}/features`}
+                href={resolveHref("/features", lang)}
                 className="group flex flex-col gap-3 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
               >
                 <span className="text-indigo-600 font-black text-sm uppercase tracking-wider">Platform Features</span>
@@ -750,7 +751,7 @@ export default function PricingPage({ params }: { params: Params }) {
                 <span className="text-gray-500 text-sm font-medium">AI chatbot, online store, QR code &amp; 12 more tools</span>
               </Link>
               <Link
-                href={`/${lang}/stories`}
+                href={resolveHref("/stories", lang)}
                 className="group flex flex-col gap-3 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
               >
                 <span className="text-emerald-600 font-black text-sm uppercase tracking-wider">Success Stories</span>
@@ -760,7 +761,7 @@ export default function PricingPage({ params }: { params: Params }) {
                 <span className="text-gray-500 text-sm font-medium">Real shops, restaurants &amp; schools — real results</span>
               </Link>
               <Link
-                href={`/${lang}/blog`}
+                href={resolveHref("/blog", lang)}
                 className="group flex flex-col gap-3 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
               >
                 <span className="text-violet-600 font-black text-sm uppercase tracking-wider">Blog &amp; Guides</span>

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { getDictionary } from "@/lib/dictionaries";
 import { Footer } from "@/components/Footer";
+import { resolveHref } from "@/lib/seo";
 
 // ─── Pre-launch flag ──────────────────────────────────────────────────────────
 const PRE_LAUNCH = false;
@@ -74,15 +75,15 @@ function Navbar({
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const navLinks = [
-    { href: `/${lang}#ai-staff`, label: nav.templates },
-    { href: `/${lang}#features`, label: nav.features },
-    { href: `/${lang}/pricing`, label: nav.pricing },
-    { href: `/${lang}#stories`, label: nav.docs },
+    { href: resolveHref("/#ai-staff", lang), label: nav.templates },
+    { href: resolveHref("/#features", lang), label: nav.features },
+    { href: resolveHref("/pricing", lang), label: nav.pricing },
+    { href: resolveHref("/#stories", lang), label: nav.docs },
   ];
 
   const companyLinks = [
-    { href: `/${lang}/about`, label: nav.about },
-    { href: `/${lang}/contact`, label: nav.contact },
+    { href: resolveHref("/about", lang), label: nav.about },
+    { href: resolveHref("/contact", lang), label: nav.contact },
   ];
 
   return (
@@ -91,7 +92,7 @@ function Navbar({
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
-          href={`/${lang}`}
+          href={resolveHref("/", lang)}
           className={`flex items-center transition-opacity hover:opacity-90`}
         >
           <img
@@ -594,7 +595,7 @@ export default function AboutPage({ params }: { params: any }) {
 
                 <div className="mt-16">
                   <Link
-                    href={`/${lang}/contact`}
+                    href={resolveHref("/contact", lang)}
                     className="inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-900 rounded-2xl font-black hover:bg-indigo-50 transition-all hover:scale-[1.02] shadow-xl"
                   >
                     Get in touch <ArrowRight className="w-5 h-5" />

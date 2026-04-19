@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, Menu } from "lucide-react";
 import { LangSwitcher } from "./LangSwitcher";
+import { resolveHref } from "@/lib/seo";
 
 export function Navbar({
   accent,
@@ -30,8 +31,7 @@ export function Navbar({
     return () => window.removeEventListener("scroll", fn);
   }, [forceScrolled]);
 
-  const ctaHref = preLaunch ? `/${lang}#waitlist` : "https://app.hamrolink.com";
-  const resolveHref = (path: string) => lang === "en" ? path : `/${lang}${path}`;
+  const ctaHref = preLaunch ? resolveHref("/#waitlist", lang) : "https://app.hamrolink.com";
 
   const navLinks = [
     { href: resolveHref("/ai"), label: nav.templates },

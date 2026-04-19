@@ -81,3 +81,17 @@ export function buildMetadata({
     },
   };
 }
+/**
+ * Centralized internal link resolver.
+ * Ensures English links are clean and Nepali links are prefixed with /ne.
+ */
+export function resolveHref(path: string, lang: string): string {
+  // Normalize: ensure path starts with / and has no trailing slash (unless root)
+  let cleanPath = path.startsWith("/") ? path : `/${path}`;
+  if (cleanPath.length > 1 && cleanPath.endsWith("/")) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+
+  // English (clean) vs Nepali (/ne)
+  return lang === "en" ? cleanPath : `/ne${cleanPath === "/" ? "" : cleanPath}`;
+}

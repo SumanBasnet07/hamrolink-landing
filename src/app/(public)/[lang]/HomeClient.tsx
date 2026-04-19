@@ -68,6 +68,7 @@ import { Navbar } from "@/components/landing/Navbar";
 import { AIChatbot } from "@/components/landing/AIChatbot";
 import { Footer } from "@/components/Footer";
 import { getDictionary } from "@/lib/dictionaries";
+import { resolveHref } from "@/lib/seo";
 
 const PRE_LAUNCH = false;
 const APP_URL = "https://app.hamrolink.com";
@@ -353,7 +354,7 @@ function AIStaffTeaser({ d, lang }: { d: any; lang: string }) {
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               {ne ? "तपाईं सुत्दा पनि ग्राहकलाई जवाफ दिन्छ" : "Answers customers while you sleep — free staff member"}
             </div>
-            <Link href={`/${lang}/ai`} className="inline-flex items-center gap-2 px-8 py-4 bg-violet-600 text-white rounded-2xl font-black hover:scale-105 transition-all shadow-xl shadow-violet-500/20">
+            <Link href={resolveHref("/ai", lang)} className="inline-flex items-center gap-2 px-8 py-4 bg-violet-600 text-white rounded-2xl font-black hover:scale-105 transition-all shadow-xl shadow-violet-500/20">
               {ne ? "AI क्षमताहरू हेर्नुहोस्" : "Explore AI Staff Capabilities"}
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -717,7 +718,7 @@ function FeaturesTeaser({ d, lang }: { d: any; lang: string }) {
            );
             })}
         </div>
-        <Link href={`/${lang}/features`} className="inline-flex items-center gap-2 text-indigo-600 font-black hover:gap-4 transition-all">
+        <Link href={resolveHref("/features", lang)} className="inline-flex items-center gap-2 text-indigo-600 font-black hover:gap-4 transition-all">
            {d.features.teaser.allFeatures} <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
