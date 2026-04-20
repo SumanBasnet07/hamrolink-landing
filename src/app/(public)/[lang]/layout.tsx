@@ -143,12 +143,16 @@ export async function generateMetadata({
     appleWebApp:     { capable: true, title: SITE_NAME, statusBarStyle: "default" },
     formatDetection: { telephone: false },
     category:        "technology",
-    icons: {
+        icons: {
       apple: "/apple-touch-icon.png",
-      shortcut: "/favicon-32x32.png",
+      shortcut: "/favicon-96x96.png",
       other: [
-        { rel: "icon", url: "/favicon.svg" },
+        { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
+        { rel: "icon", type: "image/png", sizes: "16x16", url: "/favicon-16x16.png" },
+        { rel: "icon", type: "image/png", sizes: "32x32", url: "/favicon-32x32.png" },
         { rel: "icon", type: "image/png", sizes: "96x96", url: "/favicon-96x96.png" },
+        { rel: "icon", type: "image/png", sizes: "192x192", url: "/web-app-manifest-192x192.png" },
+        { rel: "icon", type: "image/png", sizes: "512x512", url: "/web-app-manifest-512x512.png" },
       ],
     },
   };
@@ -193,11 +197,13 @@ export default async function LangLayout({
         <link rel="preconnect"  href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://app.hamrolink.com" />
 
-        {/* ── Favicons ─────────────────────────────────────────────────── */}
-        <link rel="icon"             href="/favicon.svg"        type="image/svg+xml" />
-        <link rel="icon"             href="/favicon-96x96.png"  type="image/png" sizes="96x96" />
+                {/* ── Favicons ─────────────────────────────────────────────────── */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest"         href="/site.webmanifest" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         {/* ── Geo (Nepal) ──────────────────────────────────────────────── */}
         <meta name="geo.region"    content="NP" />

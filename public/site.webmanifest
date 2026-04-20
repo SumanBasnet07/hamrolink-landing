@@ -1,6 +1,7 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "HamroLink - AI Website Builder for Nepali Businesses",
+  "short_name": "HamroLink",
+  "description": "Create your business website, rank on Google, and convert more leads with HamroLink's AI tools, chatbot, and local payment support for Nepali entrepreneurs.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -16,6 +17,12 @@
     }
   ],
   "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait",
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
 }
