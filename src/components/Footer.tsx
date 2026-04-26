@@ -9,7 +9,8 @@ import {
   ShieldCheck, 
   Building2, 
   Fingerprint,
-  User
+  User,
+  MessageSquare
 } from "lucide-react";
 
 interface FooterProps {
@@ -185,6 +186,19 @@ export function Footer({ lang, d, PRE_LAUNCH, ctaHref }: FooterProps) {
                     <Phone className="w-5 h-5 text-slate-200" />
                   </div>
                 </a>
+                {d.footer.whatsappLink && (
+                  <a
+                    href={d.footer.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-start lg:justify-end gap-3 text-[#25D366] hover:text-[#20b858] transition-colors group"
+                  >
+                    <span className="font-bold text-lg">{d.footer.whatsappValue}</span>
+                    <div className="w-10 h-10 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center group-hover:bg-[#25D366] transition-colors">
+                      <MessageSquare className="w-5 h-5 text-slate-200" />
+                    </div>
+                  </a>
+                )}
               </div>
               
               <div className="pt-8 border-t border-white/5 w-full">

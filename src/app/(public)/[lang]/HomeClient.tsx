@@ -1075,7 +1075,7 @@ function ConversionBridge({ hero, ne }: { hero: any; ne: boolean }) {
     ? [
         {
           title: "टेक्निकल नभए पनि हुन्छ",
-          desc: "यदि फेसबुक चलाउन सक्नुहुन्छ भने HamroLink पनि सहजै चलाउन सक्नुहुन्छ।",
+          desc: "यदि तपाईं स्मार्टफोन चलाउन सक्नुहुन्छ भने HamroLink पनि सहजै चलाउन सक्नुहुन्छ।",
           Icon: Smartphone,
         },
         {
@@ -1092,7 +1092,7 @@ function ConversionBridge({ hero, ne }: { hero: any; ne: boolean }) {
     : [
         {
           title: "No Technical Skills Needed",
-          desc: "If you can post on Facebook, you can run HamroLink confidently.",
+          desc: "If you can use a smartphone, you can use HamroLink confidently.",
           Icon: Smartphone,
         },
         {
@@ -1130,7 +1130,7 @@ function ConversionBridge({ hero, ne }: { hero: any; ne: boolean }) {
         <div className="relative mb-10 max-w-2xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center">
           {[
-            ne ? "Facebook / नाम जडान" : "Connect Facebook",
+            ne ? "एकाउन्ट बनाउनुहोस्" : "Create Account",
             ne ? "डिजाइन रोज्नुहोस्" : "Pick a Design",
             ne ? "बेच्न सुरु गर्नुहोस्" : "Start Selling",
           ].map((label, i) => (
@@ -1233,8 +1233,8 @@ function TrustMarquee({ ne }: { ne: boolean }) {
 function WhyWebsiteSection({ ne }: { ne: boolean }) {
   const mainTitle = ne ? "Google मा भेटिन्छ" : "Get Found on Google";
   const mainDesc = ne
-    ? "Facebook पोस्टभन्दा वेबसाइटले सर्च ट्राफिक ल्याउँछ। तपाईंको ग्राहक खोज्दा, तपाईंलाई पाउँछन् — प्रतिस्पर्धीलाई होइन।"
-    : "Websites capture search traffic that Facebook posts completely miss. When customers search for your service, they find you — not a competitor.";
+    ? "सामाजिक सञ्जालको पोस्टभन्दा वेबसाइटले सर्च ट्राफिक ल्याउँछ। तपाईंको ग्राहक खोज्दा, तपाईंलाई पाउँछन् — प्रतिस्पर्धीलाई होइन।"
+    : "Websites capture search traffic that social media posts completely miss. When customers search for your service, they find you — not a competitor.";
 
   const sub = ne
     ? [
@@ -1369,14 +1369,7 @@ function TrustSignalsSection({ ne }: { ne: boolean }) {
               <text x="35" y="27" fontFamily="Arial,sans-serif" fontSize="14" fontWeight="700" fill="white">Fonepay</text>
             </svg>
           </div>
-          {/* Facebook */}
-          <div className="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white border border-blue-100 shadow hover:shadow-md hover:scale-105 transition-all cursor-default">
-            <svg viewBox="0 0 140 40" className="h-7 w-auto" xmlns="http://www.w3.org/2000/svg">
-              <rect width="140" height="40" rx="6" fill="#1877F2"/>
-              <text x="10" y="28" fontFamily="Arial Black,sans-serif" fontSize="17" fontWeight="900" fill="white">f</text>
-              <text x="24" y="27" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="700" fill="white">Facebook</text>
-            </svg>
-          </div>
+
           {/* .np Domains */}
           <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-white border border-amber-100 shadow hover:shadow-md hover:scale-105 transition-all cursor-default">
             <Globe className="w-5 h-5 text-amber-500" />
@@ -1427,16 +1420,16 @@ function FAQSection({ ne, lang }: { ne: boolean; lang: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const faqs = ne
     ? [
-        { q: "सुरु गर्न कति समय लाग्छ (Setup Time)?", a: "औसतमा १५ मिनेटभित्र साइट सेटअप सुरु गर्न सकिन्छ।" },
-        { q: "के म मेरो आफ्नै Domain जोड्न सक्छु?", a: "हो, पेड प्लानमा तुरुन्त कनेक्ट गर्न सकिन्छ।" },
-        { q: "नि:शुल्क प्लान (Free Plan) मा के पाइन्छ?", a: "लन्चका लागि चाहिने बेसिक साइट, पेज र टेम्पलेटहरू।" },
-        { q: "समस्या परे नेपाली Support हुन्छ?", a: "हो, नेपालीमा सहायता उपलब्ध छ।" },
+        { q: "सुरु गर्न कति समय लाग्छ (Setup Time)?", a: "मात्र १५ मिनेट। साइन-अप गर्नुहोस्, डिजाइन रोज्नुहोस् र आफ्नो सामग्री थप्नुहोस्।" },
+        { q: "के म मेरो आफ्नै Domain जोड्न सक्छु?", a: "हो, सशुल्क प्लानहरूमा तपाईंले आफ्नो .com वा .com.np डोमेन जोड्न सक्नुहुन्छ।" },
+        { q: "नि:शुल्क प्लान (Free Plan) मा के पाइन्छ?", a: "आफ्नै .hamrolink.com सब-डोमेन, कोर पेजहरू र व्यवसाय सुरु गर्न आवश्यक सबै आधारभूत सुविधाहरू।" },
+        { q: "के यसमा इमेल मार्केटिङ सुविधाहरू छन्?", a: "हो, हाम्रा पेड प्लानहरूमा इन-बिल्ट इमेल सिस्टम समावेश छ जसबाट तपाईंले सिधै अफर र अपडेटहरू पठाउन सक्नुहुन्छ।" },
       ]
     : [
-        { q: "How fast can I launch?", a: "Most businesses can start setup in around 15 minutes." },
-        { q: "Can I connect my .com.np domain?", a: "Yes. You can connect it on paid plans right away." },
-        { q: "What is in the free plan?", a: "Core pages and templates to launch quickly and validate demand." },
-        { q: "Do you offer Nepali support?", a: "Yes. Our team helps in Nepali when you need it." },
+        { q: "How fast can I launch?", a: "You can go from zero to a live professional website in about 15 minutes." },
+        { q: "Can I connect my .com.np domain?", a: "Absolutely. We support custom domains on all paid plans and can help you set them up." },
+        { q: "What is in the free plan?", a: "You get a yourbusiness.hamrolink.com subdomain, basic templates, and all core features to start for free." },
+        { q: "Is there a built-in email system?", a: "Yes. Our platform includes an integrated email system to help you send offers and invoices directly from your dashboard." },
       ];
 
   return (
@@ -1463,7 +1456,7 @@ function FAQSection({ ne, lang }: { ne: boolean; lang: string }) {
                 {ne ? "हामीसँग सिधै WhatsApp मा कुरा गर्नुहोस्।" : "Talk to our team directly on WhatsApp."}
               </p>
               <a
-                href="https://wa.me/08085424538"
+                href="https://wa.me/8085424538"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-4 py-3 bg-[#25D366] text-white rounded-xl text-sm font-black hover:bg-[#20b858] transition-colors shadow-lg shadow-green-200"

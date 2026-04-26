@@ -132,7 +132,7 @@ export async function sendWaitlistSES(
 ): Promise<void> {
   const adminEmail = "hamrolink3@gmail.com";
   const from = "HamroLink <noreply@hamrolink.com>";
-  const facebookUrl = "https://www.facebook.com/profile.php?id=61586183025522";
+  const whatsappUrl = "https://wa.me/8085424538";
 
   // 0. Database Persistence & Reward Assignment
   await connectDB();
@@ -248,12 +248,12 @@ export async function sendWaitlistSES(
             <ul style="padding-left: 20px; color: #4b5563; font-size: 14px; line-height: 1.6; margin: 0;">
               <li>You will receive an email once we process your access.</li>
               <li>Your exclusive bonus will be automatically credited to your account.</li>
-              <li>Stay tuned for our official launch updates on social media.</li>
+              <li>Stay tuned for our official launch updates.</li>
             </ul>
           </div>
 
-          <a href="${facebookUrl}" style="display: block; text-align: center; background-color: #111827; color: #ffffff; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px;">
-            Follow our Journey on Facebook
+          <a href="${whatsappUrl}" style="display: block; text-align: center; background-color: #25D366; color: #ffffff; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px;">
+            Talk to us on WhatsApp
           </a>
         </div>
 
@@ -274,7 +274,7 @@ export async function sendWaitlistSES(
     to: email,
     subject: `Waitlist Confirmed for ${businessName} 🚀`,
     html: htmlContent,
-    body: `Hi ${fullName},\n\nThank you for choosing HamroLink. ${businessName} is officially on the list (#${position}).\n\nYour Reward: ${bonusTitle}\n- ${bonusDetail}\n\nWhat to expect next:\n- You will receive an email once we process your access.\n- Your exclusive bonus will be automatically credited to your account.\n\nFollow our journey on Facebook: ${facebookUrl}`,
+    body: `Hi ${fullName},\n\nThank you for choosing HamroLink. ${businessName} is officially on the list (#${position}).\n\nYour Reward: ${bonusTitle}\n- ${bonusDetail}\n\nWhat to expect next:\n- You will receive an email once we process your access.\n- Your exclusive bonus will be automatically credited to your account.\n\nTalk to us on WhatsApp: ${whatsappUrl}`,
   });
 
   // Mark notified in DB

@@ -30,11 +30,11 @@ export const dictionaries = {
     hero: {
       badge: "Free for your first website",
       topBar: "Permanent free plan • Your own .hamrolink.com domain • No card required",
-      headline: "Turn your Facebook page into\na professional website.\nIn 15 minutes. Free.",
+      headline: "Create a professional website for your Nepali business.\nIn 15 minutes. Free.",
       subhead: "No coding. No designer. No \"I'll do it next month.\"",
       ctaPrimary: "Build My Free Website →",
-      ctaPrimaryPostLaunch: "Get Started Free",
-      ctaSecondary: "See Examples",
+      ctaPrimaryPostLaunch: "Build My Free Website →",
+      ctaSecondary: "Watch Demo",
 
       trust: [
         "Free subdomain: yourbusiness.hamrolink.com",
@@ -47,15 +47,15 @@ export const dictionaries = {
         items: [
           {
             question: "\"I'm not tech-savvy\"",
-            answer: "If you can post on Facebook, you can use HamroLink.",
+            answer: "If you can use a smartphone, you can use HamroLink.",
           },
           {
             question: "\"Developers are too expensive\"",
-            answer: "NPR 199/month vs NPR 30,000–80,000 one-time.",
+            answer: "NPR 199/month vs NPR 30,000+ one-time.",
           },
           {
             question: "\"I'm too busy\"",
-            answer: "Takes about 15 minutes. Less than today's Facebook scroll.",
+            answer: "Takes about 15 minutes. Go live tonight.",
           },
         ],
       },
@@ -97,16 +97,16 @@ export const dictionaries = {
         heading: "From zero to professional in 3 steps.",
         steps: [
           {
-            title: "Pick your template",
-            desc: "Choose from 120+ templates built for Nepali businesses — shops, schools, restaurants, freelancers.",
+            title: "Create Account",
+            desc: "Sign up with your business name in 30 seconds",
           },
           {
-            title: "Add your details",
-            desc: "Your name, logo, services, prices. No coding. It takes minutes, not days.",
+            title: "Pick a Design",
+            desc: "Choose from templates made for Nepali businesses",
           },
           {
-            title: "Go live and get found",
-            desc: "Your website is published. Share the link, print the QR code, and start looking professional.",
+            title: "Start Selling",
+            desc: "Add products, accept payments, go live",
           },
         ],
         footer: "Average time from signup to live website: under 15 minutes.",
@@ -144,7 +144,7 @@ export const dictionaries = {
       perk2Desc: "Get setup guidance and go live faster.",
       perk3Title: "Start at NPR 199/month",
       perk3Desc:
-        "Affordable plans with AI tools included from day one.",
+        "Affordable plans with AI tools and email system included.",
 
       socialProof: "businesses already using HamroLink",
 
@@ -189,20 +189,17 @@ export const dictionaries = {
     // ── Demo video section ───────────────────────────────────────────────────
     video: {
       badge: "Watch it happen",
-      // STATUS headline
-      heading: "From Facebook page to professional website. In minutes.",
+      heading: "From idea to professional website. In minutes.",
       subtext:
-        "This is what your competitors are doing right now. Watch how fast it happens — and what it looks like when it's done.",
+        "This is how fast you can take your business online. Watch how easy it is – and what your website looks like when it's done.",
       steps: [
         "Enter your business name",
-        "Pick a template",
-        "Add your content",
-        "Set up payments",
-        "Website is live — you look professional",
+        "~9s",
+        "Professional. Live. Yours.",
       ],
       finalFrame: "Professional. Live. Yours.",
       src: "/demo.mp4",
-      cta: "Claim My Spot",
+      cta: "Start for Free",
     },
 
     // ── Micro-proof block ────────────────────────────────────────────────────
@@ -276,9 +273,9 @@ export const dictionaries = {
     // Add this as a new section between features and templates in your page
     aiStaff: {
       badge: "Your 24/7 online staff — powered by AI",
-      heading: "Never miss a customer again.\nEven while you sleep.",
+      heading: "Rank higher. Sell more. Never miss a customer.",
       subtext:
-        "Most Nepali businesses lose customers because no one is available to answer at night, on holidays, or during busy hours. Your HamroLink AI assistant handles it for you — automatically.",
+        "Most Nepali businesses lose customers because no one answers at night, on holidays, or during busy hours. Your HamroLink AI assistant handles it for you – automatically.",
       features: [
         {
           title: "Answers questions instantly",
@@ -301,10 +298,9 @@ export const dictionaries = {
           icon: "Globe",
         },
       ],
-      stat: "Businesses with AI chatbots respond to 100% of inquiries. Businesses without them miss up to 67% of after-hours messages.",
-      cta: "Get Your 24/7 AI Staff",
-      // Positioning line — this is the money line
-      tagline: "NPR 399/month hires you a 24/7 employee who never sleeps, never complains, and never misses a customer.",
+      stat: "Why HamroLink is Nepal's best AI website builder:\n- Answers customers 24/7 – even while you sleep\n- Automatically suggests SEO‑friendly product descriptions\n- Helps your site rank on Google for \"best [your service] in Nepal\"\n- Available in Nepali & English\n- Includes built‑in email system – send invoices, offers, and updates directly from your dashboard\n- Nepal‑based pricing – just NPR 199/month (≈ $1.32 USD) – no surprise fees",
+      cta: "Explore AI Staff Capabilities →",
+      tagline: "NPR 199/month hires you a 24/7 employee who never sleeps, never complains, and never misses a customer.",
       twoAm: [
         "2:15 AM: Someone in America needs a Nepal tour package. Your competitor's AI responds. You're sleeping.",
         "3:30 AM: A student in Australia has questions about your consultancy. Your AI answers. You're dreaming.",
@@ -440,27 +436,27 @@ export const dictionaries = {
           desc: "Every site gets a QR code. Print it on menus, visiting cards, banners, packaging. Scan → your professional website.",
         },
         {
-          title: "Email list builder",
-          desc: "Collect customer emails automatically. Send offers, news, and promotions directly to their inbox — not hoping Facebook shows your post.",
+          title: "Local Payments",
+          desc: "Accept eSewa, Khalti, and Fonepay from day one.",
         },
         {
-          title: "Analytics dashboard",
-          desc: "See how many people visited, where they came from, what they clicked. Make decisions like a real business owner.",
+          title: "Built‑in Email System",
+          desc: "Send invoices, promotional offers, and order updates directly from your dashboard – no third‑party tool needed.",
         },
         {
-          title: "Google vs Facebook: The Truth",
-          desc: "Try Googling 'best momo in your city'. You'll see websites, not Facebook pages. Google prioritizes real websites. Your HamroLink site is built to rank. Your Facebook page is invisible to search engines.",
+          title: "Analytics",
+          desc: "Track your growth with a tiny dashboard snapshot.",
         },
       ],
     },
 
     // ── Facebook vs HamroLink ───────────────────────────────────────────────
     comparison: {
-      heading: "Facebook vs. HamroLink",
+      heading: "Own Your Digital Asset",
       subheading:
         "Why 240+ businesses moved beyond just social media.",
       facebook: {
-        title: "Facebook Page",
+        title: "Social Media",
         features: [
           "You don't own the data",
           "Ads distract your customers",
@@ -477,7 +473,7 @@ export const dictionaries = {
           "Owned asset (you are the king)",
         ],
       },
-      cta: "Build Your Owned Asset →",
+      cta: "Build My Free Website →",
     },
 
     // ── Templates section ────────────────────────────────────────────────────
@@ -533,8 +529,8 @@ export const dictionaries = {
     pricing: {
       title: "HamroLink Pricing (2026) - Create websites & Online Stores in Nepal",
       description: "Transparent pricing for every stage of your business. From individual creators to large institutions. Start for free and upgrade anytime.",
-      badge: "Less than a dinner out — and it works 24/7",
-      heading: "Your 24/7 business presence.\nStarting at NPR 199/month.",
+      badge: "Easy to start, designed to scale.",
+      heading: "Pricing that scales with you",
       anchoring: "A developer costs NPR 50,000. A freelancer costs NPR 15,000. HamroLink starts at NPR 199 — with AI tools included.",
       subtext:
         "A web developer charges NPR 30,000–80,000 to build a site. HamroLink gives you a better one — with AI tools included — starting at NPR 199/month.",
@@ -617,16 +613,16 @@ export const dictionaries = {
         },
         {
           name: "Local Start",
-          desc: "Perfect for local shops. NPR 199/month.",
+          desc: "15-day free trial – less than a movie ticket. NPR 199/month.",
           feats: [
             { t: "1 website", ok: true },
             { t: "20 pages + 30 blog posts", ok: true },
             { t: "1 GB storage", ok: true },
             { t: "250 emails / month", ok: true },
-            { t: "Custom domain", ok: true },
-            { t: "Online store — 30 products (eSewa & Khalti)", ok: true },
-            { t: "AI chatbot — 24/7 assistant", ok: true },
-            { t: "10 bookings · 20 notices", ok: true },
+            { t: "Custom domain support", ok: true },
+            { t: "Free .com.np domain integration assistance", ok: true },
+            { t: "eSewa/Khalti payments", ok: true },
+            { t: "AI assistant + built-in email system", ok: true },
             { t: "Remove HamroLink branding", ok: false },
           ],
         },
@@ -721,15 +717,15 @@ export const dictionaries = {
       },
     },
     objections: {
-      tooBusy: "It takes only 15 minutes. Less time than you spend scrolling Facebook tonight.",
-      notTechSavvy: "If you can use Facebook, you can use HamroLink. It's exactly that simple.",
-      expensive: "Losing one client is expensive. NPR 399/month is cheap compared to missed opportunities.",
-      alreadyOnFacebook: "Facebook is a rented space. HamroLink is your own digital property.",
+      tooBusy: "It takes only 15 minutes. Today is the best day to go online.",
+      notTechSavvy: "If you can use a smartphone, you can use HamroLink. It's exactly that simple.",
+      expensive: "Losing one client is expensive. NPR 199/month is an investment in your growth.",
+      alreadyOnFacebook: "Social media is a rented space. HamroLink is your own digital property.",
       questions: {
         tooBusy: "I'm too busy currently.",
         notTechSavvy: "I'm not good with tech.",
         expensive: "Is it really worth the price?",
-        alreadyOnFacebook: "I'm already on Facebook."
+        alreadyOnFacebook: "I'm already on Social Media."
       }
     },
 
@@ -879,24 +875,27 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     // ── Footer ───────────────────────────────────────────────────────────────
     footer: {
       tagline:
-        "Nepal's first AI-powered business presence platform.",
+        "Nepal's #1 AI-powered business presence platform.",
       taglinePostLaunch:
-        "Nepal's first AI-powered business presence platform.",
-      cta: "Start for Free",
-      ctaPostLaunch: "Get Started Free",
+        "Nepal's #1 AI-powered business presence platform.",
+      cta: "Start My 15-Minute Launch",
+      ctaPostLaunch: "Start My 15-Minute Launch",
       copyright: "All rights reserved · Built with ❤️ in Nepal 🇳🇵",
       businessName: "HamroLink Digital",
       address: "Pakhribas-04, Dhankuta, Koshi Province, Nepal",
       regIdLabel: "Reg No",
-      regIdValue: "ध-9458/082/083",//in english: "Reg No: 9458/082/083",
+      regIdValue: "ध-9458/082/083",
       panLabel: "PAN",
-      panValue: "623251191",//in english: "PAN: 623251191",
+      panValue: "623251191",
       authorityLabel: "E-Commerce Platform ID",
       authorityValue: "001-306/2082/83",
       proprietorLabel: "Proprietor",
       proprietorValue: "Lila Basnet",
-      founderLabel: "Founder/Girievance Officer",
+      founderLabel: "Founder/Grievance Officer",
       founderValue: "Suman Basnet",
+      whatsappLabel: "WhatsApp",
+      whatsappValue: "Click to chat",
+      whatsappLink: "https://wa.me/8085424538",
       trust: {
         registeredWith: "Registered with Government of Nepal",
         companyReg: "Company Registration: ध-9458/082/083",
@@ -1013,34 +1012,34 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
     // ── Hero ─────────────────────────────────────────────────────────────────
     hero: {
-      badge: "पहिलो वेबसाइट नि:शुल्क",
-      topBar: "सधैं नि:शुल्क प्लान • आफ्नै .hamrolink.com डोमेन • कार्ड आवश्यक छैन",
-      headline: "तपाईंको फेसबुक पेजलाई\nप्रोफेसनल वेबसाइटमा बदल्नुहोस्।\n१५ मिनेटमा। नि:शुल्क।",
-      subhead: "कुनै कोडिङ होइन। कुनै डिजाइनर होइन। 'पछि गर्छु' पनि होइन।",
+      badge: "पहिलो वेबसाइट बनाउन नि:शुल्क",
+      topBar: "सधैं नि:शुल्क योजना • तपाईंको आफ्नै .hamrolink.com डोमेन • कार्ड आवश्यक छैन",
+      headline: "तपाईंको नेपाली व्यवसायको लागि प्रोफेसनल वेबसाइट बनाउनुहोस्।\nमात्र १५ मिनेटमा। नि:शुल्क।",
+      subhead: "न त कोडिङ चाहिन्छ, न त डिजाइनर। अब कुनै बहाना चल्दैन।",
       ctaPrimary: "मेरो नि:शुल्क वेबसाइट बनाउनुहोस् →",
-      ctaPrimaryPostLaunch: "नि:शुल्क सुरु गर्नुहोस्",
-      ctaSecondary: "उदाहरण हेर्नुहोस्",
+      ctaPrimaryPostLaunch: "मेरो नि:शुल्क वेबसाइट बनाउनुहोस् →",
+      ctaSecondary: "डेमो हेर्नुहोस्",
 
       trust: [
-        "नि:शुल्क सबडोमेन: yourbusiness.hamrolink.com",
-        "eSewa र Khalti इन-बिल्ट",
+        "नि:शुल्क सब-डोमेन: yourbusiness.hamrolink.com",
+        "eSewa र Khalti इन्टिग्रेसन",
         "क्रेडिट कार्ड आवश्यक छैन",
       ],
 
       bridge: {
-        heading: "यदि तपाईं सोचिरहनुभएको छ:",
+        heading: "यदि तपाईं सोच्दै हुनुहुन्छ:",
         items: [
           {
-            question: "\"म धेरै टेक्निकल छैन\"",
-            answer: "यदि तपाईं फेसबुक चलाउन सक्नुहुन्छ भने HamroLink पनि चलाउन सक्नुहुन्छ।",
+            question: "\"मलाई प्रविधिबारे थाहा छैन\"",
+            answer: "यदि तपाईं स्मार्टफोन चलाउन सक्नुहुन्छ भने HamroLink पनि सहजै चलाउन सक्नुहुन्छ।",
           },
           {
-            question: "\"डेभलपर धेरै महँगो छ\"",
-            answer: "रु १९९/महिना बनाम रु ३०,०००–८०,००० एकपटकको खर्च।",
+            question: "\"वेबसाइट बनाउन महँगो पर्छ\"",
+            answer: "रु १९९/महिना बनाम रु ३०,०००+ एकपटकको खर्च।",
           },
           {
-            question: "\"म धेरै व्यस्त छु\"",
-            answer: "करिब १५ मिनेट लाग्छ। आजको फेसबुक स्क्रोल भन्दा पनि कम।",
+            question: "\"मसँग समय छैन\"",
+            answer: "मात्र १५ मिनेट लाग्छ। आजै राति अनलाइन जानुहोस्।",
           },
         ],
       },
@@ -1078,22 +1077,22 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       scrollLabel: "तल स्क्रोल गर्नुहोस्",
 
       process: {
-        heading: "३ चरणमा शून्यबाट प्रोफेसनलसम्म।",
+        heading: "मात्र ३ चरणमा प्रोफेसनल वेबसाइट।",
         steps: [
           {
-            title: "आफ्नो टेम्प्लेट छान्नुहोस्",
-            desc: "नेपाली व्यवसाय—पसल, स्कुल, रेस्टुरेन्ट, फ्रिल्यान्सर—का लागि तयार गरिएका १२०+ टेम्प्लेटमध्येबाट उपयुक्त डिजाइन छान्नुहोस्।",
+            title: "एकाउन्ट बनाउनुहोस्",
+            desc: "३० सेकेन्डमै आफ्नो व्यवसायको नाम राखेर साइन-अप गर्नुहोस्",
           },
           {
-            title: "आफ्नो विवरण राख्नुहोस्",
-            desc: "तपाईंको नाम, लोगो, सेवा र मूल्य राख्नुहोस्। कोडिङ चाहिँदैन। यो काम दिनमा होइन, मिनेटमा सकिन्छ।",
+            title: "डिजाइन रोज्नुहोस्",
+            desc: "नेपाली व्यवसायका लागि बनाइएका विशेष डिजाइनहरू मध्ये एक छान्नुहोस्",
           },
           {
-            title: "लाइभ जानुहोस् र ग्राहक बढाउनुहोस्",
-            desc: "तपाईंको वेबसाइट तयार भयो। लिङ्क सेयर गर्नुहोस्, QR कोड प्रिन्ट गर्नुहोस् र प्रोफेसनल देखिन सुरु गर्नुहोस्।",
+            title: "बेच्न सुरु गर्नुहोस्",
+            desc: "सामानहरू राख्नुहोस्, पेमेन्ट जडान गर्नुहोस् र लाइभ जानुहोस्",
           },
         ],
-        footer: "साइन अप गरेदेखि वेबसाइट लाइभ हुनेसम्मको औसत समय: १५ मिनेटभन्दा कम।",
+        footer: "साइन-अप देखि वेबसाइट लाइभ हुन लाग्ने औसत समय: १५ मिनेट भन्दा कम।",
       },
       generationalHook: "तपाईंको मेहनतले अब एउटा प्रोफेसनल ब्रान्डको पहिचान पाउनुपर्छ।",
       mixedNepali: "तपाईंको business लाई website चाहियो — अहिले नै।",
@@ -1127,7 +1126,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       perk2Desc: "सेटअप सहयोग पाउनुहोस् र छिटो लाइभ जानुहोस्।",
       perk3Title: "रु १९९/महिना बाट सुरु",
       perk3Desc:
-        "पहिलो दिनदेखि AI टुल्ससहित किफायती प्लानहरू उपलब्ध छन्।",
+        "पहिलो दिनदेखि AI टुल्स र इमेल सिस्टमसहित किफायती प्लानहरू उपलब्ध छन्।",
 
       socialProof: "व्यवसायहरू HamroLink प्रयोग गरिरहेका छन्",
 
@@ -1171,19 +1170,17 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     // ── Demo video ───────────────────────────────────────────────────────────
     video: {
       badge: "आफैँ हेर्नुहोस्",
-      heading: "फेसबुक पेजबाट प्रोफेसनल वेबसाइटसम्म। मात्र केही मिनेटमा।",
+      heading: "सपनादेखि प्रोफेसनल वेबसाइटसम्म। मात्र केही मिनेटमा।",
       subtext:
-        "तपाईंका प्रतिस्पर्धीहरू अहिले यही गर्दैछन्। यो काम कति छिटो हुन्छ र तयार भएपछि कस्तो देखिन्छ—आफैँ हेर्नुहोस्।",
+        "यो कति छिटो हुन्छ र तयार भएपछि कस्तो देखिन्छ—आफैँ हेर्नुहोस्।",
       steps: [
         "व्यवसायको नाम राख्नुहोस्",
-        "टेम्प्लेट छान्नुहोस्",
-        "आफ्नो विवरण थप्नुहोस्",
-        "पेमेन्ट सेटअप गर्नुहोस्",
-        "वेबसाइट लाइभ भयो—अब तपाईं प्रोफेसनल देखिनुहुन्छ",
+        "~९s",
+        "प्रोफेसनल। लाइभ। पूर्ण रूपमा तपाईंको आफ्नै।",
       ],
       finalFrame: "प्रोफेसनल। लाइभ। पूर्ण रूपमा तपाईंको आफ्नै।",
       src: "/demo.mp4",
-      cta: "मेरो सिट सुरक्षित गर्नुहोस्",
+      cta: "नि:शुल्क सुरु गर्नुहोस्",
     },
 
     // ── Micro-proof ──────────────────────────────────────────────────────────
@@ -1213,8 +1210,8 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
 
     // ── Who (repositioned as "The Problem") ─────────────────────────────────
     who: {
-      badge: "सन् २०२५ मा नेपाली व्यवसायको यथार्थ",
-      heading: "अब फेसबुक मात्रै\nपर्याप्त छैन।",
+      badge: "सन् २०२६ मा नेपाली व्यवसायको यथार्थ",
+      heading: "अब सोसल मिडिया मात्रै\nपर्याप्त छैन।",
       subtext:
         "युवा ग्राहकहरू व्यवसायमा आउनुअघि गुगलमा खोज्छन्। विदेशी क्लाइन्टहरूले तपाईंको लिङ्क हेरेर मूल्याङ्कन गर्छन्। बढी प्रोफेसनल देखिने प्रतिस्पर्धीहरूले तपाईंका ती ग्राहकहरू लगिरहेका छन्, जसको बारेमा तपाईंलाई पत्तोसम्म हुँदैन।",
       cards: [
@@ -1254,7 +1251,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     // ── AI Staff (NEW) ────────────────────────────────────────────────────────
     aiStaff: {
       badge: "तपाईंको २४/७ अनलाइन स्टाफ — एआई (AI) द्वारा सञ्चालित",
-      heading: "अब कुनै पनि ग्राहक नछुटाउनुहोस्।\nतपाईं सुतिरहेको बेला पनि।",
+      heading: "गुगलमा माथि देखिनुहोस्। बढी बेच्नुहोस्। ग्राहक नछुटाउनुहोस्।",
       subtext:
         "धेरैजसो नेपाली व्यवसायले राति, बिदाको दिन वा व्यस्त समयमा तत्काल जवाफ दिन नसक्दा ग्राहक गुमाउने गर्छन्। HamroLink को एआई असिस्टेन्टले यो काम तपाईंको तर्फबाट स्वचालित रूपमा गर्छ।",
       features: [
@@ -1279,9 +1276,9 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           icon: "Globe",
         },
       ],
-      stat: "एआई च्याटबोट भएका व्यवसायहरूले १००% सोधपुछको जवाफ दिन्छन्। यो सुविधा नभएकाहरूले अफ-आवर (Off-hours) मा आउने ६७% सम्म ग्राहक गुमाउँछन्।",
-      cta: "आफ्नो २४/७ एआई स्टाफ पाउनुहोस्",
-      tagline: "महिनाको मात्र रु ३९९ मा एउटा यस्तो २४/७ कर्मचारी पाउनुहोस् जसले कहिल्यै सुत्दैन, गुनासो गर्दैन र कुनै पनि ग्राहक छुटाउँदैन।",
+      stat: "किन HamroLink नेपालको उत्कृष्ट AI वेबसाइट बिल्डर हो:\n- २४/७ ग्राहकलाई जवाफ दिन्छ – तपाईं सुतिरहेको बेला पनि\n- स्वतः SEO‑मैत्री उत्पादन विवरणहरू तयार गर्छ\n- गुगल सर्चमा माथि आउन मद्दत गर्छ\n- नेपाली र अङ्ग्रेजी दुवै भाषामा उपलब्ध\n- इन-बिल्ट इमेल सिस्टम – ड्यासबोर्डबाटै अफर र बिलहरू पठाउनुहोस्\n- नेपाली मूल्य – मात्र रु १९९/महिना (≈ $1.32 USD) – कुनै लुकेको शुल्क छैन",
+      cta: "एआई क्षमताहरू हेर्नुहोस् →",
+      tagline: "महिनाको मात्र रु १९९ मा एउटा यस्तो २४/७ कर्मचारी पाउनुहोस् जसले कहिल्यै सुत्दैन, गुनासो गर्दैन र कुनै पनि ग्राहक छुटाउँदैन।",
       twoAm: [
         "राति २:१५: अमेरिकाका कोही ग्राहकलाई नेपाल टुर प्याकेज चाहियो। तपाईंको प्रतिस्पर्धीको एआईले जवाफ दिन्छ। तपाईं सुत्नुभएको छ।",
         "राति ३:३०: अस्ट्रेलियामा रहेका विद्यार्थीले कन्सल्टेन्सीबारे प्रश्न सोध्छन्। एआईले जवाफ दिन्छ। तपाईं सपना देख्दै हुनुहुन्छ।",
@@ -1415,25 +1412,29 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           desc: "हरेक वेबसाइटले एउटा QR कोड पाउँछ। यसलाई मेनु, भिजिटिङ कार्ड, ब्यानर वा प्याकेजिङमा प्रिन्ट गर्नुहोस्। स्क्यान गरेपछि सिधै तपाईंको प्रोफेसनल वेबसाइट खुल्छ।",
         },
         {
-          title: "इमेल लिस्ट बिल्डर",
-          desc: "ग्राहकको इमेल स्वतः सङ्कलन गर्नुहोस्। फेसबुकले तपाईंको पोस्ट देखाउला भनेर आश गर्नुको सट्टा, आफ्ना अफर र समाचारहरू सिधै उनीहरूको इनबक्समा पठाउनुहोस्।",
+          title: "स्थानीय भुक्तानी (Local Payments)",
+          desc: "eSewa, Khalti, र Fonepay पहिलो दिनदेखि नै स्वीकार गर्नुहोस्।",
+        },
+        {
+          title: "इन-बिल्ट इमेल सिस्टम",
+          desc: "इन्भ्वाइस, अफर, र अर्डर अपडेटहरू सिधै ड्यासबोर्डबाट पठाउनुहोस् – कुनै थर्ड-पार्टी टुल चाहिँदैन।",
         },
         {
           title: "एनालिटिक्स ड्यासबोर्ड",
-          desc: "कति मानिसले वेबसाइट हेरे, कहाँबाट आए र के-के क्लिक गरे—सबै हेर्नुहोस्। एक वास्तविक व्यवसायीले जस्तै डाटा हेरेर निर्णय लिनुहोस्।",
+          desc: "वेबसाइटमा कति मानिस आए र के हेरे, सबै एकै ठाउँमा हेर्नुहोस्।",
         },
       ],
     },
 
     // ── Facebook vs HamroLink ───────────────────────────────────────────────
     comparison: {
-      heading: "Facebook vs. HamroLink",
+      heading: "आफ्नै डिजिटल सम्पत्ति बनाउनुहोस्",
       subheading:
         "किन २४०+ स्थानीय व्यवसायहरू सामाजिक सञ्जालभन्दा अगाडि बढे।",
       facebook: {
-        title: "फेसबुक पेज",
+        title: "सोसल मिडिया",
         features: [
-          "फेसबुकमा तपाईंको नियन्त्रण हुँदैन",
+          "डाटामा तपाईंको नियन्त्रण हुँदैन",
           "विज्ञापनले ग्राहकको ध्यान भड्काउँछ",
           "गुगल सर्चमा उपस्थिति छैन",
           "भाडाको ठाउँ (जुनसुकै बेला बन्द हुन सक्छ)",
@@ -1448,7 +1449,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
           "वेबसाइटमा तपाईं नै राजा (Owned asset)",
         ],
       },
-      cta: "आफ्नै डिजिटल सम्पत्ति बनाउनुहोस् →",
+      cta: "मेरो नि:शुल्क वेबसाइट बनाउनुहोस् →",
     },
 
     // ── Templates ────────────────────────────────────────────────────────────
@@ -1504,8 +1505,8 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
     pricing: {
       title: "मूल्य र योजनाहरू | HamroLink — व्यवसाय वृद्धिको लागि सुलभ दर",
       description: "आफ्नो व्यवसायिक आवश्यकता अनुसारको प्लान छान्नुहोस्। सस्तो, सुलभ र पारदर्शी मूल्य। कुनै लुकेको शुल्क छैन।",
-      badge: "बाहिर एक छाक खाजा खाएको खर्चभन्दा कम — र यसले २४/७ काम गर्छ",
-      heading: "तपाईंको २४/७ डिजिटल प्रेजेन्स।\nप्रति महिना मात्र रु १९९ बाट सुरु।",
+      badge: "सुरु गर्न सजिलो, बढ्न झन् सजिलो।",
+      heading: "तपाईंको वृद्धिसँगै मिल्ने मूल्य",
       anchoring: "एउटा डेभलपरलाई रु ५०,००० लाग्छ। फ्रिल्यान्सरलाई रु १५,०००। HamroLink रु १९९ बाट सुरु हुन्छ—जसमा AI टुल्स पनि समावेश छन्।",
       subtext:
         "एउटा वेब डेभलपरले साइट बनाउन रु ३०,००० देखि ८०,००० सम्म लिन्छ। HamroLink ले तपाईंलाई AI टुल्ससहितको त्योभन्दा राम्रो वेबसाइट दिन्छ—रु १९९/महिना बाट सुरु।",
@@ -1588,17 +1589,17 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
         },
         {
           name: "Local Start",
-          desc: "स्थानीय पसलहरूका लागि उपयुक्त। रु १९९/महिना।",
+          desc: "१५ दिन नि:शुल्क ट्रायल – मुभी टिकटभन्दा सस्तो। रु १९९/महिना।",
           feats: [
             { t: "१ वेबसाइट", ok: true },
             { t: "२० पेज + ३० ब्लग पोस्ट", ok: true },
             { t: "१ GB स्टोरेज", ok: true },
             { t: "२५० इमेल / महिना", ok: true },
-            { t: "कस्टम डोमेन", ok: true },
-            { t: "अनलाइन स्टोर — ३० प्रडक्ट (ई-सेवा र खल्ती)", ok: true },
-            { t: "एआई च्याटबोट — २४/७ सहायक", ok: true },
-            { t: "१० बुकिङ · २० नोटिस", ok: true },
-            { t: "ब्रान्डिङ हटाउने सुविधा", ok: false },
+            { t: "कस्टम डोमेन सपोर्ट", ok: true },
+            { t: "नि:शुल्क .com.np डोमेन जडानमा सहयोग", ok: true },
+            { t: "ई-सेवा/खल्ती पेमेन्ट", ok: true },
+            { t: "एआई असिस्टेन्ट + इन-बिल्ट इमेल सिस्टम", ok: true },
+            { t: "HamroLink ब्रान्डिङ हटाउने सुविधा", ok: false },
           ],
         },
       ],
@@ -1901,15 +1902,15 @@ HamroLink यही अवस्था बदल्न बनाइएको ह
         desc: "कागजको पर्चा छापेर बाँडेको सम्झिनुहोस्? महँगो, सीमित र एकपटक मात्र काम लाग्ने। तपाईंको HamroLink साइट तपाईंको डिजिटल पर्चा हो—जसको पहुँच असीमित छ र यसले सधैँ काम गर्छ।",
       },
       objections: {
-        tooBusy: "मात्र १५ मिनेट लाग्छ। आज साँझ फेसबुक चलाउने समयभन्दा कम।",
-        notTechSavvy: "यदि तपाईं फेसबुक चलाउन सक्नुहुन्छ भने, HamroLink पनि चलाउन सक्नुहुन्छ। यो त्यति नै सजिलो छ।",
-        expensive: "ग्राहक गुमाउनु महँगो कुरा हो। महिनाको रु ३९९ त एउटा ग्राहक गुमाउनुभन्दा निकै सस्तो छ।",
-        alreadyOnFacebook: "फेसबुक त भाडाको घर जस्तै हो। HamroLink तपाईंको आफ्नै डिजिटल घर हो।",
+        tooBusy: "मात्र १५ मिनेट लाग्छ। आजै राति अनलाइन जाने उत्तम समय हो।",
+        notTechSavvy: "यदि तपाईं स्मार्टफोन चलाउन सक्नुहुन्छ भने HamroLink पनि चलाउन सक्नुहुन्छ। यो त्यति नै सजिलो छ।",
+        expensive: "एउटा ग्राहक गुमाउनु महँगो हो। रु १९९/महिना भनेको तपाईंको व्यवसायको वृद्धिको लागि लगानी हो।",
+        alreadyOnFacebook: "सोसल मिडिया भाडाको ठाउँ हो। HamroLink तपाईंको आफ्नै डिजिटल सम्पत्ति हो।",
         questions: {
-          tooBusy: "म अहिले निकै व्यस्त छु।",
-          notTechSavvy: "म प्रविधिमा खासै जान्ने छैन।",
-          expensive: "के वेबसाइट साच्चै मूल्य अनुसारको छ?",
-          alreadyOnFacebook: "म त फेसबुकमै छु नि।"
+          tooBusy: "म अहिले व्यस्त छु।",
+          notTechSavvy: "म प्रविधिमा राम्रो छैन।",
+          expensive: "के यो साँच्चै मूल्यवान छ?",
+          alreadyOnFacebook: "म पहिले नै सोसल मिडियामा छु।"
         }
       },
       localized: {
