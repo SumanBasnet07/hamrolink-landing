@@ -404,9 +404,9 @@ const pageCopy = {
 function SectionHeading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-xs font-black uppercase tracking-[0.28em] text-amber-300/80 mb-4">{eyebrow}</p>
-      <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">{title}</h2>
-      {body ? <p className="mt-5 text-lg text-slate-300 leading-relaxed">{body}</p> : null}
+      <p className="text-xs font-black uppercase tracking-[0.28em] text-amber-600 mb-4">{eyebrow}</p>
+      <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">{title}</h2>
+      {body ? <p className="mt-5 text-lg text-slate-600 leading-relaxed">{body}</p> : null}
     </div>
   );
 }
@@ -418,26 +418,26 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
   const accent = "#f59e0b";
 
   return (
-    <div className="min-h-screen bg-[#050816] flex flex-col">
-      <Navbar lang={lang} accent={accent} nav={d.nav} forceScrolled={true} />
+    <div className="min-h-screen bg-white flex flex-col">
+      <Navbar lang={lang} accent={accent} nav={d.nav} forceScrolled={true} isLight={true} />
 
-      <main className="flex-1 pt-28 pb-24 overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-[540px] bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.18),transparent_50%),radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.12),transparent_35%)] pointer-events-none" />
+      <main className="flex-1 pt-28 pb-24 overflow-hidden bg-slate-50/50">
+        <div className="absolute inset-x-0 top-0 h-[540px] bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.08),transparent_50%),radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.05),transparent_35%)] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6 space-y-24">
           <section className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/20 bg-amber-400/10 text-amber-200 text-sm font-bold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-200 bg-amber-50 text-amber-700 text-sm font-bold mb-6">
                 <Bot className="w-4 h-4" />
                 {copy.badge}
               </div>
-              <h1 className="text-4xl md:text-6xl font-black text-white leading-[0.95] tracking-tight max-w-4xl">
+              <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-[0.95] tracking-tight max-w-4xl">
                 {copy.title}
               </h1>
-              <p className="mt-6 text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl">
+              <p className="mt-6 text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl">
                 {copy.intro}
               </p>
-              <p className="mt-4 text-base font-semibold text-amber-200/90 max-w-2xl">
+              <p className="mt-4 text-base font-semibold text-amber-700 max-w-2xl">
                 {copy.highlight}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
@@ -450,7 +450,7 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
                 </Link>
                 <Link
                   href={resolveHref("/pricing", lang)}
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl border border-white/12 bg-white/5 hover:bg-white/8 text-white text-base font-bold transition-colors"
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-base font-bold transition-colors"
                 >
                   {copy.secondaryCta}
                   <ArrowRight className="w-4 h-4" />
@@ -464,20 +464,20 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
               transition={{ duration: 0.55, delay: 0.05 }}
               className="relative"
             >
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle,rgba(245,158,11,0.18),transparent_65%)] blur-3xl" />
-              <div className="relative rounded-[2rem] border border-white/10 bg-slate-900/80 backdrop-blur p-5 shadow-2xl">
-                <div className="rounded-[1.6rem] border border-white/8 bg-[#0b1225] overflow-hidden">
-                  <div className="flex items-center justify-between px-5 py-4 border-b border-white/8 bg-white/5">
+              <div className="absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle,rgba(245,158,11,0.1),transparent_65%)] blur-3xl" />
+              <div className="relative rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-200/50">
+                <div className="rounded-[1.6rem] border border-slate-100 bg-slate-50 overflow-hidden">
+                  <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 bg-white">
                     <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-2xl bg-amber-500/15 flex items-center justify-center border border-amber-300/15">
-                        <Bot className="w-5 h-5 text-amber-300" />
+                      <div className="w-11 h-11 rounded-2xl bg-amber-50 flex items-center justify-center border border-amber-100">
+                        <Bot className="w-5 h-5 text-amber-600" />
                       </div>
                       <div>
-                        <p className="text-white font-black leading-none">HamroLink Chatbot</p>
-                        <p className="text-xs text-emerald-300 mt-1">Online 24/7</p>
+                        <p className="text-slate-900 font-black leading-none">HamroLink Chatbot</p>
+                        <p className="text-xs text-emerald-600 mt-1">Online 24/7</p>
                       </div>
                     </div>
-                    <div className="px-3 py-1 rounded-full bg-emerald-400/10 text-emerald-300 text-xs font-bold">
+                    <div className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">
                       {copy.metricLabel}
                     </div>
                   </div>
@@ -488,10 +488,10 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <div className="w-9 h-9 rounded-2xl bg-white/6 flex items-center justify-center shrink-0 mt-1">
-                        <Bot className="w-4 h-4 text-amber-300" />
+                      <div className="w-9 h-9 rounded-2xl bg-white flex items-center justify-center shrink-0 mt-1 shadow-sm">
+                        <Bot className="w-4 h-4 text-amber-600" />
                       </div>
-                      <div className="max-w-[82%] rounded-[1.25rem] rounded-tl-md bg-white/8 px-4 py-3 text-sm text-slate-100 leading-relaxed">
+                      <div className="max-w-[82%] rounded-[1.25rem] rounded-tl-md bg-white px-4 py-3 text-sm text-slate-700 leading-relaxed shadow-sm">
                         {copy.sampleConversation.ai1}
                       </div>
                     </div>
@@ -501,23 +501,23 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <div className="w-9 h-9 rounded-2xl bg-white/6 flex items-center justify-center shrink-0 mt-1">
-                        <Bot className="w-4 h-4 text-amber-300" />
+                      <div className="w-9 h-9 rounded-2xl bg-white flex items-center justify-center shrink-0 mt-1 shadow-sm">
+                        <Bot className="w-4 h-4 text-amber-600" />
                       </div>
-                      <div className="max-w-[82%] rounded-[1.25rem] rounded-tl-md bg-white/8 px-4 py-3 text-sm text-slate-100 leading-relaxed">
+                      <div className="max-w-[82%] rounded-[1.25rem] rounded-tl-md bg-white px-4 py-3 text-sm text-slate-700 leading-relaxed shadow-sm">
                         {copy.sampleConversation.ai2}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 mt-4">
-                  <div className="rounded-[1.5rem] border border-white/8 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.24em] text-slate-400 font-black">{copy.metricLabel}</p>
-                    <p className="text-white font-black text-lg leading-snug mt-2">{copy.metricValue}</p>
+                  <div className="rounded-[1.5rem] border border-slate-100 bg-slate-50 p-4">
+                    <p className="text-xs uppercase tracking-[0.24em] text-slate-500 font-black">{copy.metricLabel}</p>
+                    <p className="text-slate-900 font-black text-lg leading-snug mt-2">{copy.metricValue}</p>
                   </div>
-                  <div className="rounded-[1.5rem] border border-white/8 bg-amber-500/10 p-4">
-                    <p className="text-xs uppercase tracking-[0.24em] text-amber-200/80 font-black">24/7</p>
-                    <p className="text-white font-black text-lg leading-snug mt-2">
+                  <div className="rounded-[1.5rem] border border-amber-100 bg-amber-50 p-4">
+                    <p className="text-xs uppercase tracking-[0.24em] text-amber-600 font-black">24/7</p>
+                    <p className="text-slate-900 font-black text-lg leading-snug mt-2">
                       {lang === "ne" ? "office बन्द हुँदा पनि business live रहन्छ" : "Your business stays responsive after hours, on weekends, and during rush time."}
                     </p>
                   </div>
@@ -530,12 +530,12 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
             <SectionHeading eyebrow={copy.badge} title={copy.whyTitle} body={copy.whyBody} />
             <div className="grid sm:grid-cols-2 gap-4">
               {copy.benefits.map((item, index) => (
-                <div key={item} className="rounded-[1.7rem] border border-white/10 bg-white/5 p-5 shadow-[0_12px_40px_rgba(2,6,23,0.35)]">
-                  <div className="w-11 h-11 rounded-2xl bg-amber-500/12 border border-amber-300/15 flex items-center justify-center mb-4">
-                    <CheckCircle2 className="w-5 h-5 text-amber-300" />
+                <div key={item} className="rounded-[1.7rem] border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center mb-4">
+                    <CheckCircle2 className="w-5 h-5 text-amber-600" />
                   </div>
-                  <p className="text-sm font-black text-slate-500 uppercase tracking-[0.24em] mb-3">0{index + 1}</p>
-                  <p className="text-white text-lg font-bold leading-relaxed">{item}</p>
+                  <p className="text-sm font-black text-slate-400 uppercase tracking-[0.24em] mb-3">0{index + 1}</p>
+                  <p className="text-slate-900 text-lg font-bold leading-relaxed">{item}</p>
                 </div>
               ))}
             </div>
@@ -545,43 +545,43 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
             <SectionHeading eyebrow={copy.badge} title={copy.capabilityTitle} />
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
               {copy.capabilities.map(({ title, body, icon: Icon }) => (
-                <div key={title} className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-6 hover:border-amber-300/20 transition-colors">
-                  <div className="w-12 h-12 rounded-2xl bg-cyan-400/10 border border-cyan-300/15 flex items-center justify-center mb-5">
-                    <Icon className="w-5 h-5 text-cyan-300" />
+                <div key={title} className="rounded-[1.8rem] border border-slate-200 bg-white p-6 hover:border-amber-300/40 transition-colors shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-5">
+                    <Icon className="w-5 h-5 text-cyan-600" />
                   </div>
-                  <h3 className="text-white text-xl font-black tracking-tight mb-3">{title}</h3>
-                  <p className="text-slate-300 leading-relaxed">{body}</p>
+                  <h3 className="text-slate-900 text-xl font-black tracking-tight mb-3">{title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{body}</p>
                 </div>
               ))}
             </div>
           </section>
 
           <section className="grid lg:grid-cols-[0.95fr_1.05fr] gap-10 items-start">
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
               <SectionHeading eyebrow={copy.badge} title={copy.bestForTitle} />
               <div className="grid sm:grid-cols-2 gap-4 mt-8">
                 {copy.bestFor.map(({ label, icon: Icon }) => (
-                  <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/8 bg-slate-950/40 px-4 py-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/6 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-amber-300" />
+                  <div key={label} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
+                    <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm">
+                      <Icon className="w-5 h-5 text-amber-600" />
                     </div>
-                    <span className="text-white font-bold leading-snug">{label}</span>
+                    <span className="text-slate-900 font-bold leading-snug">{label}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-[#0b1328] p-8 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_38%)]" />
+            <div className="rounded-[2rem] border border-slate-200 bg-indigo-50/30 p-8 relative overflow-hidden shadow-sm">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.08),transparent_38%)]" />
               <div className="relative">
                 <SectionHeading eyebrow={copy.badge} title={copy.flowTitle} />
                 <div className="mt-8 space-y-4">
                   {copy.flow.map((step, index) => (
-                    <div key={step} className="flex gap-4 rounded-2xl border border-white/8 bg-white/5 px-4 py-4">
-                      <div className="w-11 h-11 rounded-2xl bg-amber-500 text-slate-950 shrink-0 flex items-center justify-center font-black">
+                    <div key={step} className="flex gap-4 rounded-2xl border border-white bg-white/60 backdrop-blur-sm px-4 py-4 shadow-sm">
+                      <div className="w-11 h-11 rounded-2xl bg-amber-500 text-white shrink-0 flex items-center justify-center font-black">
                         {index + 1}
                       </div>
-                      <p className="text-white font-semibold text-lg leading-relaxed">{step}</p>
+                      <p className="text-slate-900 font-semibold text-lg leading-relaxed">{step}</p>
                     </div>
                   ))}
                 </div>
@@ -590,27 +590,27 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
           </section>
 
           <section className="grid xl:grid-cols-[0.95fr_1.05fr] gap-10">
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
               <SectionHeading eyebrow={copy.badge} title={copy.glanceTitle} />
               <div className="mt-8 grid gap-3">
                 {copy.glance.map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/8 bg-slate-950/35 px-4 py-3">
-                    <ShieldCheck className="w-5 h-5 text-emerald-300 shrink-0" />
-                    <span className="text-white font-semibold">{item}</span>
+                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
+                    <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <span className="text-slate-700 font-semibold">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-amber-300/15 bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(15,23,42,0.82))] p-8">
+            <div className="rounded-[2rem] border border-amber-200 bg-amber-50/50 p-8 shadow-sm">
               <SectionHeading eyebrow={copy.badge} title={copy.enableTitle} />
               <div className="mt-8 grid gap-3">
                 {copy.enableSteps.map((step, index) => (
-                  <div key={step} className="flex gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                    <div className="w-10 h-10 rounded-xl bg-white text-slate-950 shrink-0 flex items-center justify-center font-black text-sm">
+                  <div key={step} className="flex gap-4 rounded-2xl border border-white bg-white/80 px-4 py-4 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500 text-white shrink-0 flex items-center justify-center font-black text-sm">
                       {index + 1}
                     </div>
-                    <p className="text-white font-semibold leading-relaxed">{step}</p>
+                    <p className="text-slate-900 font-semibold leading-relaxed">{step}</p>
                   </div>
                 ))}
               </div>
@@ -618,29 +618,29 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
           </section>
 
           <section className="grid lg:grid-cols-2 gap-10">
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
               <SectionHeading eyebrow={copy.badge} title={copy.checklistTitle} />
               <div className="mt-8 grid gap-3">
                 {copy.checklist.map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/8 bg-slate-950/35 px-4 py-3">
-                    <CheckCircle2 className="w-5 h-5 text-amber-300 shrink-0" />
-                    <span className="text-white font-semibold">{item}</span>
+                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
+                    <span className="text-slate-700 font-semibold">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="rounded-[2rem] border border-white/10 bg-[#0a1120] p-8">
+            <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
               <SectionHeading eyebrow={copy.badge} title={copy.pricingTitle} body={copy.pricingBody} />
-              <div className="mt-8 rounded-[1.6rem] border border-white/8 bg-white/5 p-6">
+              <div className="mt-8 rounded-[1.6rem] border border-slate-100 bg-white p-6 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
-                  <Clock3 className="w-5 h-5 text-amber-300" />
-                  <p className="text-white font-black text-lg">
+                  <Clock3 className="w-5 h-5 text-amber-600" />
+                  <p className="text-slate-900 font-black text-lg">
                     {lang === "ne" ? "Plan अनुसार chatbot access र limits unlock हुन्छन्" : "Chatbot access unlocks by plan and usage limits."}
                   </p>
                 </div>
-                <p className="text-slate-300 leading-relaxed">{copy.pricingNote}</p>
+                <p className="text-slate-600 leading-relaxed">{copy.pricingNote}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Link href={resolveHref("/pricing", lang)} className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-3 text-sm font-black text-slate-950 hover:bg-amber-400 transition-colors">
+                  <Link href={resolveHref("/pricing", lang)} className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-3 text-sm font-black text-white hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200">
                     {copy.secondaryCta}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -653,9 +653,9 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
             <SectionHeading eyebrow={copy.badge} title={copy.tipsTitle} />
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
               {copy.tips.map((tip) => (
-                <div key={tip} className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6">
-                  <PhoneCall className="w-5 h-5 text-cyan-300 mb-4" />
-                  <p className="text-white text-lg font-bold leading-relaxed">{tip}</p>
+                <div key={tip} className="rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-sm">
+                  <PhoneCall className="w-5 h-5 text-cyan-600 mb-4" />
+                  <p className="text-slate-900 text-lg font-bold leading-relaxed">{tip}</p>
                 </div>
               ))}
             </div>
@@ -665,11 +665,11 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
             <SectionHeading eyebrow={copy.badge} title={copy.promptTitle} />
             <div className="grid lg:grid-cols-3 gap-5">
               {copy.promptGroups.map((group) => (
-                <div key={group.title} className="rounded-[1.8rem] border border-white/10 bg-[#0b1328] p-6">
-                  <h3 className="text-white text-xl font-black tracking-tight mb-5">{group.title}</h3>
+                <div key={group.title} className="rounded-[1.8rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                  <h3 className="text-slate-900 text-xl font-black tracking-tight mb-5">{group.title}</h3>
                   <div className="space-y-3">
                     {group.prompts.map((prompt) => (
-                      <div key={prompt} className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-slate-100 font-semibold leading-relaxed">
+                      <div key={prompt} className="rounded-2xl border border-slate-100 bg-white px-4 py-3 text-slate-700 font-semibold leading-relaxed shadow-sm">
                         {prompt}
                       </div>
                     ))}
@@ -683,43 +683,43 @@ export default function AISitePage({ params }: { params: Promise<{ lang: Lang }>
             <div className="space-y-5">
               <SectionHeading eyebrow={copy.badge} title={copy.faqTitle} />
               {copy.faqs.map((item) => (
-                <div key={item.q} className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6">
-                  <h3 className="text-white text-xl font-black tracking-tight mb-3">{item.q}</h3>
-                  <p className="text-slate-300 leading-relaxed text-lg">{item.a}</p>
+                <div key={item.q} className="rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-sm">
+                  <h3 className="text-slate-900 text-xl font-black tracking-tight mb-3">{item.q}</h3>
+                  <p className="text-slate-600 leading-relaxed text-lg">{item.a}</p>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(14,165,233,0.14),rgba(15,23,42,0.9))] p-8 h-fit">
+            <div className="rounded-[2rem] border border-slate-200 bg-indigo-50/50 p-8 h-fit shadow-sm">
               <SectionHeading eyebrow={copy.badge} title={copy.pairTitle} />
               <div className="mt-8 space-y-3">
                 {copy.pairings.map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/5 px-4 py-3">
-                    <BadgeCheck className="w-5 h-5 text-emerald-300 shrink-0" />
-                    <span className="text-white font-semibold leading-relaxed">{item}</span>
+                  <div key={item} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-sm">
+                    <BadgeCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <span className="text-slate-700 font-semibold leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          <section className="rounded-[2.5rem] border border-amber-300/15 bg-[linear-gradient(135deg,rgba(245,158,11,0.16),rgba(15,23,42,0.96))] px-8 py-10 md:px-12 md:py-14 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_44%)]" />
+          <section className="rounded-[2.5rem] border border-amber-200 bg-amber-50 px-8 py-10 md:px-12 md:py-14 text-center relative overflow-hidden shadow-xl shadow-amber-100/50">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.6),transparent_44%)]" />
             <div className="relative max-w-3xl mx-auto">
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-amber-200/80 mb-4">HamroLink Chatbot</p>
-              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">{copy.finalTitle}</h2>
-              <p className="mt-5 text-lg text-slate-200 leading-relaxed">{copy.finalBody}</p>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-amber-700 mb-4">HamroLink Chatbot</p>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">{copy.finalTitle}</h2>
+              <p className="mt-5 text-lg text-slate-700 leading-relaxed">{copy.finalBody}</p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link
                   href="https://app.hamrolink.com"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-7 py-4 text-base font-black text-slate-950 hover:bg-amber-50 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-amber-500 px-7 py-4 text-base font-black text-white hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200"
                 >
                   {copy.finalButton}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href={resolveHref("/contact", lang)}
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-7 py-4 text-base font-bold text-white hover:bg-white/8 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-7 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
                 >
                   {lang === "ne" ? "टिमसँग कुरा गर्नुहोस्" : "Talk to the Team"}
                 </Link>

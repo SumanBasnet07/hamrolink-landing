@@ -13,12 +13,14 @@ export function Navbar({
   nav,
   preLaunch = false,
   forceScrolled = false,
+  isLight = false,
 }: {
   accent: string;
   lang: string;
   nav: any;
   preLaunch?: boolean;
   forceScrolled?: boolean;
+  isLight?: boolean;
 }) {
   const [sc, setSc] = useState(forceScrolled);
   const [open, setOpen] = useState(false);
@@ -50,7 +52,7 @@ export function Navbar({
   return (
     <nav
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        sc
+        sc || isLight
           ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-200"
           : "bg-transparent"
       }`}
@@ -72,7 +74,7 @@ export function Navbar({
               key={label}
               href={href}
               className={`text-base font-bold transition-colors ${
-                sc ? "text-gray-600 hover:text-gray-900" : "text-white/70 hover:text-white"
+                sc || isLight ? "text-gray-600 hover:text-gray-900" : "text-white/70 hover:text-white"
               }`}
             >
               {label}
@@ -87,7 +89,7 @@ export function Navbar({
           >
             <button
               className={`text-base font-bold flex items-center gap-1 transition-colors ${
-                sc ? "text-gray-600 hover:text-gray-900" : "text-white/70 hover:text-white"
+                sc || isLight ? "text-gray-600 hover:text-gray-900" : "text-white/70 hover:text-white"
               }`}
             >
               {nav.company}
@@ -122,7 +124,7 @@ export function Navbar({
           </div>
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <LangSwitcher lang={lang} accent={accent} scrolled={sc} />
+          <LangSwitcher lang={lang} accent={accent} scrolled={sc || isLight} />
           <Link
             href={ctaHref}
             className="flex items-center gap-1.5 px-4 py-2 text-white text-base font-bold rounded-xl transition-all hover:scale-105 shadow-lg"
@@ -143,7 +145,7 @@ export function Navbar({
           </Link>
           <button
             onClick={() => setOpen((p) => !p)}
-            className={`p-2 ${sc ? "text-gray-700" : "text-white"}`}
+            className={`p-2 ${sc || isLight ? "text-gray-700" : "text-white"}`}
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

@@ -1591,28 +1591,28 @@ export default function LandingPage({ params }: { params: any }) {
   const fu = (d = 0) => ({ initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { delay: d } });
 
   return (
-    <div className={`min-h-screen bg-slate-950 flex flex-col font-sans ${ne ? `${mukta.className} leading-relaxed` : ""}`}>
-      <Navbar lang={lang} accent={accent} nav={d.nav} preLaunch={PRE_LAUNCH} />
+    <div className={`min-h-screen bg-white flex flex-col font-sans ${ne ? `${mukta.className} leading-relaxed` : ""}`}>
+      <Navbar lang={lang} accent={accent} nav={d.nav} preLaunch={PRE_LAUNCH} isLight={true} />
 
-      <section className="relative min-h-screen pt-28 pb-20 flex items-center overflow-hidden">
+      <section className="relative min-h-screen pt-28 pb-20 flex items-center overflow-hidden bg-slate-50/50">
         <AnimatePresence mode="wait">
-          <motion.div key={idx} initial={{ opacity: 0 }} animate={{ opacity: 0.15 }} exit={{ opacity: 0 }} className="absolute inset-0 z-0 bg-cover bg-center brightness-50" style={{ backgroundImage: `url(/slide-${idx}.png)` }} />
+          <motion.div key={idx} initial={{ opacity: 0 }} animate={{ opacity: 0.03 }} exit={{ opacity: 0 }} className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: `url(/slide-${idx}.png)` }} />
         </AnimatePresence>
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
              <div className="space-y-8">
                 <motion.div
                   {...fu()}
-                  className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-500/15 border border-emerald-300/25 text-emerald-100 text-xs md:text-sm font-black"
+                  className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs md:text-sm font-black"
                 >
                   {hero.topBar ?? (ne ? "सधैं नि:शुल्क प्लान • आफ्नै डोमेन • कार्ड आवश्यक छैन" : "Permanent free plan • your own domain • no card required")}
                 </motion.div>
 
-                <motion.h1 {...fu(0.05)} className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.06] tracking-tight whitespace-pre-line">
+                <motion.h1 {...fu(0.05)} className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-[1.06] tracking-tight whitespace-pre-line">
                   {hero.headline}
                 </motion.h1>
 
-                <motion.p {...fu(0.1)} className="text-white/80 text-lg md:text-xl font-semibold max-w-2xl leading-relaxed">
+                <motion.p {...fu(0.1)} className="text-slate-600 text-lg md:text-xl font-semibold max-w-2xl leading-relaxed">
                   {hero.subhead}
                 </motion.p>
 
@@ -1626,7 +1626,7 @@ export default function LandingPage({ params }: { params: any }) {
                   </a>
                   <a
                     href="#demo"
-                    className="inline-flex items-center gap-1 text-white/80 hover:text-white font-black text-base underline underline-offset-4 decoration-white/40"
+                    className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-900 font-black text-base underline underline-offset-4 decoration-slate-300"
                   >
                     {ne ? "१ मिनेटमा हेर्नुहोस्" : "See it in 1 minute"}
                   </a>
@@ -1636,17 +1636,17 @@ export default function LandingPage({ params }: { params: any }) {
                 <motion.div {...fu(0.18)} className="flex items-center gap-2.5">
                   <div className="flex -space-x-1.5">
                     {["👨‍💼","👩‍🍳","🧑‍🎨","👨‍💻"].map((e) => (
-                      <span key={e} className="w-7 h-7 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-sm">{e}</span>
+                      <span key={e} className="w-7 h-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-sm">{e}</span>
                     ))}
                   </div>
-                  <p className="text-white/70 text-sm font-bold">
+                  <p className="text-slate-500 text-sm font-bold">
                     {ne ? "नेपाली उद्यमीहरूका लागि बनाइएको" : "New sites being created every week"}
                   </p>
                 </motion.div>
 
                 <motion.div {...fu(0.2)} className="flex flex-wrap gap-2.5">
                   {(hero.trust ?? []).slice(0, 3).map((item: string) => (
-                    <span key={item} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold">
+                    <span key={item} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold">
                       <Check className="w-3.5 h-3.5" />
                       {item}
                     </span>
@@ -1663,7 +1663,7 @@ export default function LandingPage({ params }: { params: any }) {
                   style={{ backgroundColor: SLIDES[idx].accent }}
                 />
                 
-                <div className="relative aspect-square backdrop-blur-3xl bg-white/5 rounded-[5rem] border border-white/10 p-12 overflow-hidden flex items-center justify-center">
+                <div className="relative aspect-square backdrop-blur-3xl bg-slate-50/50 rounded-[5rem] border border-slate-200 p-12 overflow-hidden flex items-center justify-center">
                   <motion.div 
                     key={idx}
                     initial={{ y: 40, opacity: 0, rotateY: 10 }}
