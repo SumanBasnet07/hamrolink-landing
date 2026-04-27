@@ -597,7 +597,7 @@ export default function PricingPage({ params }: { params: Params }) {
                   </div>
 
                   <Link
-                    href={isPro ? `/${lang}/contact` : `https://app.hamrolink.com`}
+                    href="https://app.hamrolink.com"
                     className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-black transition-all hover:scale-[1.02] active:scale-95 ${
                       plan.highlight || isPro
                         ? "bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700"
@@ -606,7 +606,13 @@ export default function PricingPage({ params }: { params: Params }) {
                         : "bg-gray-50 text-gray-900 border border-gray-100 hover:bg-gray-100"
                     }`}
                   >
-                    {isStandard ? p.ctaInstitutional : (price === 0 ? p.ctaFree : p.ctaPaid)}
+                    {isStandard 
+                      ? p.ctaInstitutional 
+                      : (price === 0 
+                          ? p.ctaFree 
+                          : p.ctaPaid.replace("{price}", lang === "ne" ? `रु ${price}` : `NPR ${price}`)
+                        )
+                    }
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </motion.div>

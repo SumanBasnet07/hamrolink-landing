@@ -542,7 +542,7 @@ export const dictionaries = {
       perYear: "/yr",
       approxMonth: "≈ NPR {n}/month",
       ctaFree: "Start Free",
-      ctaPaid: "Start for NPR 199/mo",
+      ctaPaid: "Start for {price}/mo",
       ctaInstitutional: "Try for Free",
       persona: {
         business: "Local Business",
@@ -1518,7 +1518,7 @@ Because in the AI era, looking professional isn't optional anymore. It's surviva
       perYear: "/वर्ष",
       approxMonth: "≈ रु {n}/महिना",
       ctaFree: "नि:शुल्क सुरु गर्नुहोस्",
-      ctaPaid: "रु १९९/महिना बाट सुरु गर्नुहोस्",
+      ctaPaid: "{price}/महिना बाट सुरु गर्नुहोस्",
       ctaInstitutional: "नि:शुल्क प्रयास गर्नुहोस्",
       persona: {
         business: "स्थानीय व्यवसाय",
