@@ -100,40 +100,60 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // ─── JSON-LD components (same as original) ───────────────────────────
 function ArticleJsonLd({ post, lang }: { post: any; lang: Lang }) {
   const ne = lang === "ne";
-  const schema = {
+  // Use full ISO-8601 timestamps (with timezone) so Google does not flag
+  // "Datetime property is missing a time zone" in Rich Results Test.
+  const publishedISO = post.publishedAt || post.createdAt || null;
+  const modifiedISO  = post.updatedAt   || post.publishedAt || post.createdAt || null;
+  const canonicalUrl = ne
+    ? `https://hamrolink.com/ne/blog/${post.slug}`
+    : `https://hamrolink.com/blog/${post.slug}`;
+
+  const schema: Record<string, any> = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline":        ne ? post.title_ne : post.title_en,
-    "description":     ne ? post.excerpt_ne : post.excerpt_en,
-    "image": post.featuredImage ? {
-      "@type": "ImageObject",
-      "url":    post.featuredImage,
-      "width":  1200,
-      "height": 630,
-      "caption": ne ? post.featuredImageAlt_ne : post.featuredImageAlt_en,
-    } : undefined,
+    // BlogPosting is a sub-type of Article — preferred by Google for blog content
+    "@type": "BlogPosting",
+    "headline":    ne ? post.title_ne : post.title_en,
+    "description": ne ? post.excerpt_ne : post.excerpt_en,
     "author": {
       "@type": "Organization",
-      "name":  "HamroLink",
-      "url":   "https://hamrolink.com",
+      "name": "HamroLink",
+      "url":  "https://hamrolink.com",
     },
     "publisher": {
       "@type": "Organization",
       "name":  "HamroLink",
-      "logo":  { "@type": "ImageObject", "url": "https://hamrolink.com/icons/icon-192.png" },
+      "logo":  {
+        "@type": "ImageObject",
+        "url":   "https://hamrolink.com/icons/icon-192.png",
+        "width":  192,
+        "height": 192,
+      },
     },
-    "datePublished": post.publishedAt?.slice(0, 10) || post.createdAt?.slice(0, 10),
-    "dateModified":  post.updatedAt?.slice(0, 10),
+    // Full ISO timestamps preserve timezone → no Google warning
+    "datePublished": publishedISO,
+    "dateModified":  modifiedISO,
     "inLanguage":    ne ? "ne" : "en",
-    "url":           ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
+    "url":           canonicalUrl,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id":   ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}`,
+      "@id":   canonicalUrl,
     },
     "keywords": ne
       ? (post.schema?.keywords_ne || post.tags_ne?.join(", "))
       : (post.schema?.keywords_en || post.tags_en?.join(", ")),
   };
+
+  // Only add image if a featured image is available
+  if (post.featuredImage) {
+    schema["image"] = {
+      "@type":   "ImageObject",
+      "url":     post.featuredImage,
+      "width":   1200,
+      "height":  630,
+      "caption": ne ? post.featuredImageAlt_ne : post.featuredImageAlt_en,
+    };
+  }
+
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}/>;
 }
 
