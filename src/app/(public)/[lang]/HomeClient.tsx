@@ -1561,6 +1561,68 @@ function FinalPushSection({ ne }: { ne: boolean }) {
 }
 
 
+// ─── Floating WhatsApp ────────────────────────────────────────────────────────
+// Sits at bottom-[5.5rem] right-6 (88px from bottom), directly above the AI
+// chatbot button (bottom-6, h-14 = 80px from bottom) with an 8px gap.
+function FloatingWhatsApp({ ne }: { ne: boolean }) {
+  const href = ne
+    ? "https://wa.me/9779816326639?text=नमस्ते%20HamroLink%2C%20म%20वेबसाइट%20बनाउन%20चाहन्छु।"
+    : "https://wa.me/9779816326639?text=Hi%20HamroLink%2C%20I%20want%20to%20build%20a%20website.";
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ne ? "WhatsApp मा सम्पर्क गर्नुहोस्" : "Chat on WhatsApp"}
+      className="fixed bottom-[5.5rem] right-6 z-40 flex items-center gap-2 px-4 py-3 bg-[#25D366] hover:bg-[#20b858] text-white rounded-full shadow-2xl shadow-green-500/30 font-black text-sm transition-all hover:scale-105 active:scale-95"
+    >
+      <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white shrink-0" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <span className="text-sm">{ne ? "WhatsApp" : "WhatsApp"}</span>
+    </a>
+  );
+}
+
+// ─── Sticky Mobile CTA Bar ────────────────────────────────────────────────────
+// z-[35] so AI chatbot (z-50) and WhatsApp (z-40) always render above it.
+function StickyMobileCTA({ ne }: { ne: boolean }) {
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    if (dismissed) return;
+    const onScroll = () => setVisible(window.scrollY > 380);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [dismissed]);
+
+  if (!visible || dismissed) return null;
+
+  return (
+    <div className="fixed bottom-0 inset-x-0 z-[35] md:hidden">
+      <div className="bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-[0_-6px_24px_rgba(0,0,0,0.10)] px-4 py-3 flex items-center gap-3">
+        <a
+          href={APP_URL}
+          className="flex-1 flex items-center justify-center gap-2 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-black text-sm shadow-lg shadow-amber-200/60 transition-colors"
+        >
+          <Sparkles className="w-4 h-4" />
+          {ne ? "नि:शुल्क सुरु गर्नुहोस्" : "Start Free — No Card"}
+          <ArrowRight className="w-4 h-4" />
+        </a>
+        <button
+          onClick={() => setDismissed(true)}
+          className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center shrink-0 transition-colors"
+          aria-label="Dismiss"
+        >
+          <X className="w-4 h-4 text-gray-500" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ─── Landing Page Main ────────────────────────────────────────────────────────
 export default function LandingPage({ params }: { params: any }) {
   const { lang } = React.use(params) as any;
@@ -1632,16 +1694,24 @@ export default function LandingPage({ params }: { params: any }) {
                   </a>
                 </motion.div>
 
-                {/* Social proof */}
-                <motion.div {...fu(0.18)} className="flex items-center gap-2.5">
-                  <div className="flex -space-x-1.5">
-                    {["👨‍💼","👩‍🍳","🧑‍🎨","👨‍💻"].map((e) => (
-                      <span key={e} className="w-7 h-7 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-sm">{e}</span>
-                    ))}
+                {/* Social proof + live activity counter */}
+                <motion.div {...fu(0.18)} className="flex flex-wrap items-center gap-2.5">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200">
+                    <div className="flex -space-x-1.5">
+                      {["👨‍💼","👩‍🍳","🧑‍🎨","👨‍💻"].map((e) => (
+                        <span key={e} className="w-7 h-7 rounded-full bg-white border border-slate-200 flex items-center justify-center text-sm">{e}</span>
+                      ))}
+                    </div>
+                    <p className="text-slate-600 text-xs font-bold">
+                      {ne ? "नेपाली उद्यमीहरूका लागि" : "Nepal entrepreneurs"}
+                    </p>
                   </div>
-                  <p className="text-slate-500 text-sm font-bold">
-                    {ne ? "नेपाली उद्यमीहरूका लागि बनाइएको" : "New sites being created every week"}
-                  </p>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                    <span className="text-emerald-700 text-xs font-black">
+                      {ne ? "यो हप्ता ५२ नयाँ साइट लाइभ" : "52 new sites live this week"}
+                    </span>
+                  </div>
                 </motion.div>
 
                 <motion.div {...fu(0.2)} className="flex flex-wrap gap-2.5">
@@ -1711,6 +1781,10 @@ export default function LandingPage({ params }: { params: any }) {
       <FinalPushSection ne={ne} />
       <Footer lang={lang} d={d} PRE_LAUNCH={PRE_LAUNCH} ctaHref={ctaHref} />
       <ExitIntentOverlay d={d} visible={exitVisible} onClose={() => setExitVisible(false)} />
+      {/* WhatsApp: bottom-[5.5rem] right-6 z-40 — 8px above AI chatbot (bottom-6 h-14 = 80px) */}
+      <FloatingWhatsApp ne={ne} />
+      {/* Sticky mobile CTA: z-[35] so AI (z-50) + WhatsApp (z-40) float above it */}
+      <StickyMobileCTA ne={ne} />
       <AIChatbot ne={ne} />
     </div>
   );
