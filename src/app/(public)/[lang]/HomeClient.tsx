@@ -1566,8 +1566,8 @@ function FinalPushSection({ ne }: { ne: boolean }) {
 // chatbot button (bottom-6, h-14 = 80px from bottom) with an 8px gap.
 function FloatingWhatsApp({ ne }: { ne: boolean }) {
   const href = ne
-    ? "https://wa.me/9779816326639?text=नमस्ते%20HamroLink%2C%20म%20वेबसाइट%20बनाउन%20चाहन्छु।"
-    : "https://wa.me/9779816326639?text=Hi%20HamroLink%2C%20I%20want%20to%20build%20a%20website.";
+    ? "https://wa.me/818085424538?text=नमस्ते%20HamroLink%2C%20म%20वेबसाइट%20बनाउन%20चाहन्छु।"
+    : "https://wa.me/818085424538?text=Hi%20HamroLink%2C%20I%20want%20to%20build%20a%20website.";
   return (
     <a
       href={href}

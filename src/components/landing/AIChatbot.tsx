@@ -105,8 +105,8 @@ export function AIChatbot({ ne }: { ne: boolean }) {
   const [messages, setMessages] = useState<ChatMsg[]>([]);
   const listRef = useRef<HTMLDivElement>(null);
   const whatsappHref = ne
-    ? "https://wa.me/9779816326639?text=नमस्ते%20HamroLink%20team%2C%20मलाई%20chatbot%20बाट%20नपाएको%20सहायता%20चाहिएको%20छ%E0%A5%A4"
-    : "https://wa.me/9779816326639?text=Hi%20HamroLink%20team%2C%20I%20need%20help%20with%20a%20question%20the%20chatbot%20could%20not%20fully%20answer.";
+    ? "https://wa.me/818085424538?text=नमस्ते%20HamroLink%20team%2C%20मलाई%20chatbot%20बाट%20नपाएको%20सहायता%20चाहिएको%20छ%E0%A5%A4"
+    : "https://wa.me/818085424538?text=Hi%20HamroLink%20team%2C%20I%20need%20help%20with%20a%20question%20the%20chatbot%20could%20not%20fully%20answer.";
 
   const welcome = useMemo(
     () =>

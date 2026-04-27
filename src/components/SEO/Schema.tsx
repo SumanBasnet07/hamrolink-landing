@@ -162,13 +162,17 @@ export const softwareApplicationSchema = {
   ]
 };
 
-// ─── LocalBusiness ────────────────────────────────────────────────────────────
+// ─── LocalBusiness ─────────────────────────────────────────────────────────────────────────────────
 export const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "SoftwareApplication"],
+  // Pure LocalBusiness — NOT combined with SoftwareApplication.
+  // Combining dual @types causes Google to require SoftwareApplication fields
+  // (offers, operatingSystem, aggregateRating) on the LocalBusiness node,
+  // generating a critical rich-results error. Keep them as separate scripts.
+  "@type": "LocalBusiness",
   "name": "HamroLink",
   "alternateName": "हाम्रोलिङ्क",
-  "description": "Nepal's AI-powered website builder and business presence platform for small businesses, shops, restaurants, and educational institutions.",
+  "description": "Nepal’s AI-powered website builder and business presence platform for small businesses, shops, restaurants, and educational institutions.",
   "url": "https://hamrolink.com",
   "logo": "https://hamrolink.com/logo.png",
   "image": "https://hamrolink.com/og-image.png",
@@ -202,9 +206,8 @@ export const localBusinessSchema = {
     "name": "Nepal"
   },
   "priceRange": "NPR 0 - NPR 2500/month",
-  "applicationCategory": "BusinessApplication",
   "sameAs": [
-    "https://facebook.com/hamrolink",
+    "https://facebook.com/hamrolinkdigital",
     "https://twitter.com/hamrolink"
   ]
 };
