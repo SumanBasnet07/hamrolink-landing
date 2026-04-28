@@ -1,0 +1,18 @@
+# HamroLink - AI-Powered Website Builder for Nepal
+
+> HamroLink is a SaaS platform allowing Nepali businesses, schools, and individuals to build websites with built-in eSewa/Khalti integration and AI chatbots.
+
+## Core Resources
+- [Pricing](https://hamrolink.com/pricing): Monthly and yearly plans starting from NPR 199. Includes free .com.np assistance.
+- [Features](https://hamrolink.com/features): Drag-and-drop editor, AI staff, QR codes, and school management systems.
+- [Stories](https://hamrolink.com/stories): Case studies of Nepali businesses using HamroLink.
+- [Documentation](https://hamrolink.com/docs): Technical guides for setting up custom domains and stores.
+
+## Recent Guides
+- [Why Nepali Businesses need a Website](https://hamrolink.com/blog/why-nepali-businesses-dont-have-websites)
+- [Facebook Page vs Website](https://hamrolink.com/blog/facebook-page-vs-website-nepali-businesses)
+
+## Local Context
+- Currency: NPR (Nepali Rupees)
+- Payments: eSewa, Khalti, IME Pay supported.
+- Languages: Full support for English and Nepali interfaces.

@@ -2,11 +2,18 @@ import { MetadataRoute } from 'next';
 import { connectDB } from "@/lib/mongodb";
 import BlogPost from "@/models/BlogPost";
 
+/**
+ * HamroLink Sitemap Generator (2026)
+ * This setup ensures English and Nepali pages are linked as alternates
+ * to prevent "Crawled - Currently Not Indexed" errors.
+ */
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://hamrolink.com';
   const lastModified = new Date();
 
-  const staticRoutes = [
+  // 1. Define all your path segments (without language prefixes)
+  const staticPaths = [
     '',
     '/about',
     '/ai',
@@ -22,38 +29,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/blog',
   ];
 
-  // Hardcoded static blog posts
-  const hardcodedBlogPosts = [
+  const hardcodedBlogPaths = [
     '/blog/why-nepali-businesses-dont-have-websites',
     '/blog/facebook-page-vs-website-nepali-businesses',
     '/blog/school-website-nepal-why-every-school-should-be-online',
   ];
 
-  let dynamicBlogPosts: string[] = [];
+  let dynamicBlogPaths: string[] = [];
+
+  // 2. Fetch dynamic slugs from MongoDB
   try {
-    // Fetch dynamic blog posts from database
     await connectDB();
     const posts = await BlogPost.find({ published: true }).select("slug").lean();
-    dynamicBlogPosts = (posts as any[]).map(post => `/blog/${post.slug}`);
+    dynamicBlogPaths = (posts as any[]).map(post => `/blog/${post.slug}`);
   } catch (error) {
     console.error("Failed to fetch blog posts for sitemap:", error);
   }
 
-  const routes = [...staticRoutes, ...hardcodedBlogPosts, ...dynamicBlogPosts];
-  const languages = ['en', 'ne'];
+  // 3. Combine all paths
+  const allPaths = [...staticPaths, ...hardcodedBlogPaths, ...dynamicBlogPaths];
 
-  const sitemapEntries: MetadataRoute.Sitemap = [];
+  // 4. Map paths to the Sitemap format with Hreflang Alternates
+  return allPaths.map((path) => {
+    const enUrl = `${baseUrl}${path}`;
+    const neUrl = `${baseUrl}/ne${path === '' ? '' : path}`;
 
-  for (const lang of languages) {
-    for (const route of routes) {
-      sitemapEntries.push({
-        url: lang === 'en' ? `${baseUrl}${route}` : `${baseUrl}/${lang}${route}`,
-        lastModified,
-        changeFrequency: 'weekly',
-        priority: route === '' ? 1.0 : route === '/blog' || route === '/docs' ? 0.8 : 0.5,
-      });
-    }
-  }
+    // Calculate priority based on path importance
+    let priority = 0.5;
+    if (path === '') priority = 1.0;
+    else if (path === '/pricing' || path === '/features') priority = 0.9;
+    else if (path.startsWith('/blog')) priority = 0.8;
 
-  return sitemapEntries;
+    return {
+      url: enUrl, // Default landing URL for Google
+      lastModified,
+      changeFrequency: 'weekly',
+      priority,
+      alternates: {
+        languages: {
+          en: enUrl,
+          ne: neUrl,
+        },
+      },
+    };
+  });
 }

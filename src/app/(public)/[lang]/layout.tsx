@@ -153,6 +153,7 @@ export async function generateMetadata({
         { rel: "icon", type: "image/png", sizes: "96x96", url: "/favicon-96x96.png" },
         { rel: "icon", type: "image/png", sizes: "192x192", url: "/web-app-manifest-192x192.png" },
         { rel: "icon", type: "image/png", sizes: "512x512", url: "/web-app-manifest-512x512.png" },
+
       ],
     },
   };
@@ -196,6 +197,7 @@ export default async function LangLayout({
         <link rel="preconnect"  href="https://fonts.googleapis.com" />
         <link rel="preconnect"  href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://app.hamrolink.com" />
+        <link rel="llms" href="/llms.txt" />
 
                 {/* ── Favicons ─────────────────────────────────────────────────── */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
