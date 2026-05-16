@@ -14,6 +14,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeRaw from "rehype-raw";
 import LikeCommentSection from "@/components/blog/LikeCommentSection";
+import { BlogPageSchema } from "@/components/SEO/Schema";
 
 // ─── Types ─────────────────────────────────────────────────────────────
 type Lang = "en" | "ne";
@@ -97,96 +98,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── JSON-LD components (same as original) ───────────────────────────
-function ArticleJsonLd({ post, lang }: { post: any; lang: Lang }) {
-  const ne = lang === "ne";
-  // Use full ISO-8601 timestamps (with timezone) so Google does not flag
-  // "Datetime property is missing a time zone" in Rich Results Test.
-  const publishedISO = post.publishedAt || post.createdAt || null;
-  const modifiedISO  = post.updatedAt   || post.publishedAt || post.createdAt || null;
-  const canonicalUrl = ne
-    ? `https://hamrolink.com/ne/blog/${post.slug}`
-    : `https://hamrolink.com/blog/${post.slug}`;
-
-  const schema: Record<string, any> = {
-    "@context": "https://schema.org",
-    // BlogPosting is a sub-type of Article — preferred by Google for blog content
-    "@type": "BlogPosting",
-    "headline":    ne ? post.title_ne : post.title_en,
-    "description": ne ? post.excerpt_ne : post.excerpt_en,
-    "author": {
-      "@type": "Organization",
-      "name": "HamroLink",
-      "url":  "https://hamrolink.com",
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name":  "HamroLink",
-      "logo":  {
-        "@type": "ImageObject",
-        "url":   "https://hamrolink.com/icons/icon-192.png",
-        "width":  192,
-        "height": 192,
-      },
-    },
-    // Full ISO timestamps preserve timezone → no Google warning
-    "datePublished": publishedISO,
-    "dateModified":  modifiedISO,
-    "inLanguage":    ne ? "ne" : "en",
-    "url":           canonicalUrl,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":   canonicalUrl,
-    },
-    "keywords": ne
-      ? (post.schema?.keywords_ne || post.tags_ne?.join(", "))
-      : (post.schema?.keywords_en || post.tags_en?.join(", ")),
-  };
-
-  // Only add image if a featured image is available
-  if (post.featuredImage) {
-    schema["image"] = {
-      "@type":   "ImageObject",
-      "url":     post.featuredImage,
-      "width":   1200,
-      "height":  630,
-      "caption": ne ? post.featuredImageAlt_ne : post.featuredImageAlt_en,
-    };
-  }
-
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}/>;
-}
-
-function BreadcrumbJsonLd({ post, lang }: { post: any; lang: Lang }) {
-  const ne = lang === "ne";
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "HamroLink", "item": "https://hamrolink.com" },
-      { "@type": "ListItem", "position": 2, "name": ne ? "ब्लग" : "Blog", "item": ne ? `https://hamrolink.com/ne/blog` : `https://hamrolink.com/blog` },
-      { "@type": "ListItem", "position": 3, "name": ne ? post.title_ne : post.title_en,
-        "item": ne ? `https://hamrolink.com/ne/blog/${post.slug}` : `https://hamrolink.com/blog/${post.slug}` },
-    ],
-  };
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}/>;
-}
-
-function FAQJsonLd({ post, lang }: { post: any; lang: Lang }) {
-  const ne   = lang === "ne";
-  const faqs = (post.faqs ?? []) as any[];
-  if (!faqs.length) return null;
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map((f) => ({
-      "@type": "Question",
-      "name": ne ? f.question_ne : f.question_en,
-      "acceptedAnswer": { "@type": "Answer", "text": ne ? f.answer_ne : f.answer_en },
-    })),
-  };
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}/>;
-}
 
 // ─── Color map (same) ─────────────────────────────────────────────────
 const CM: Record<string, { bg: string; border: string; text: string; ibg: string }> = {
@@ -240,9 +151,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
-      <ArticleJsonLd  post={post} lang={lang} />
-      <BreadcrumbJsonLd post={post} lang={lang} />
-      <FAQJsonLd      post={post} lang={lang} />
+      <BlogPageSchema post={post} lang={lang} />
 
       <div className="min-h-screen bg-white">
         {/* Sticky top bar (language switcher + breadcrumbs) */}

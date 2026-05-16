@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
 import "@/app/globals.css";
 import { Analytics } from "@/components/SEO/Analytics";
-import SchemaScripts from "@/components/SEO/Schema";
+import GlobalSchema from "@/components/SEO/Schema";
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const outfit = Outfit({
@@ -191,7 +191,7 @@ export default async function LangLayout({
     <html lang={lang === "ne" ? "ne" : "en"} dir="ltr" className={fontClass}>
       <head>
         {/* ── Schema ──────────────────────────────────────────────────── */}
-        <SchemaScripts />
+        <GlobalSchema />
 
         {/* ── Preconnect ───────────────────────────────────────────────── */}
         <link rel="preconnect"  href="https://fonts.googleapis.com" />

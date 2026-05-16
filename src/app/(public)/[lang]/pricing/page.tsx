@@ -24,7 +24,7 @@ import {
 import { getDictionary } from "@/lib/dictionaries";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/landing/Navbar";
-import PricingSchema from "@/components/SEO/PricingSchema";
+import { PricingPageSchema, FAQItem } from "@/components/SEO/Schema";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { resolveHref } from "@/lib/seo";
 
@@ -361,73 +361,42 @@ export default function PricingPage({ params }: { params: Params }) {
     return (order[a.name] ?? 99) - (order[b.name] ?? 99);
   });
 
+  const faqItems: FAQItem[] = [
+    {
+      question: lang === "ne" ? "कुन प्लान साना व्यवसायका लागि सबैभन्दा राम्रो छ?" : "Which plan is best for small businesses in Nepal?",
+      answer: lang === "ne"
+        ? "Local Start (NPR 199/month) साना पसलहरूका लागि उत्तम छ। Business प्लान (NPR 399/month) AI chatbot र अनलाइन स्टोर सहित पूर्ण सुविधा दिन्छ।"
+        : "The Local Start plan (NPR 199/month) is ideal for small shops. The Business plan (NPR 399/month) includes AI chatbot, online store, and all professional features."
+    },
+    {
+      question: lang === "ne" ? "के म कुनै पनि समयमा अपग्रेड गर्न सक्छु?" : "Can I upgrade my plan anytime?",
+      answer: lang === "ne"
+        ? "हो, तपाईं जुनसुकै बेला आफ्नो प्लान अपग्रेड वा डाउनग्रेड गर्न सक्नुहुन्छ। कुनै लुकेको शुल्क छैन।"
+        : "Yes, you can upgrade or downgrade at any time from your dashboard. No hidden fees, no long-term commitments."
+    },
+    {
+      question: lang === "ne" ? "के मलाई वेबसाइट बनाउन प्राविधिक ज्ञान चाहिन्छ?" : "Do I need technical skills to build a website with HamroLink?",
+      answer: lang === "ne"
+        ? "बिल्कुल होइन। यदि तपाईं Facebook प्रयोग गर्न सक्नुहुन्छ भने, तपाईं HamroLink प्रयोग गर्न सक्नुहुन्छ। औसत समय: १५ मिनेट।"
+        : "No technical skills needed. If you can use Facebook, you can use HamroLink. Average time from signup to live website is under 15 minutes."
+    },
+    {
+      question: lang === "ne" ? "के निःशुल्क योजनामा AI chatbot समावेश छ?" : "Does the free plan include an AI chatbot?",
+      answer: lang === "ne"
+        ? "निःशुल्क योजनामा AI chatbot समावेश छैन। Local Start (NPR 199/mo) देखि सबै भुक्तानी योजनाहरूमा २४/७ AI सहायक समावेश छ।"
+        : "The free plan does not include AI chatbot. All paid plans from Local Start (NPR 199/mo) and above include the 24/7 AI assistant."
+    },
+    {
+      question: lang === "ne" ? "के म eSewa र Khalti मार्फत भुक्तानी स्वीकार गर्न सक्छु?" : "Can I accept payments via eSewa and Khalti on my website?",
+      answer: lang === "ne"
+        ? "हो। HamroLink का सबै भुक्तानी योजनाहरूमा eSewa र Khalti इन्ट्रेग्रेसन समावेश छ — कुनै छुट्टै सेटअप आवश्यक छैन।"
+        : "Yes. All paid HamroLink plans include built-in eSewa and Khalti payment integration — no separate setup required."
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* Pricing structured data for Google Rich Results */}
-      <PricingSchema lang={lang} />
-
-      {/* FAQ schema — captures purchase-intent queries, expands SERP real estate */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": lang === "ne" ? "कुन प्लान साना व्यवसायका लागि सबैभन्दा राम्रो छ?" : "Which plan is best for small businesses in Nepal?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": lang === "ne"
-                    ? "Local Start (NPR 199/month) साना पसलहरूका लागि उत्तम छ। Business प्लान (NPR 399/month) AI chatbot र अनलाइन स्टोर सहित पूर्ण सुविधा दिन्छ।"
-                    : "The Local Start plan (NPR 199/month) is ideal for small shops. The Business plan (NPR 399/month) includes AI chatbot, online store, and all professional features."
-                },
-              },
-              {
-                "@type": "Question",
-                "name": lang === "ne" ? "के म कुनै पनि समयमा अपग्रेड गर्न सक्छु?" : "Can I upgrade my plan anytime?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": lang === "ne"
-                    ? "हो, तपाईं जुनसुकै बेला आफ्नो प्लान अपग्रेड वा डाउनग्रेड गर्न सक्नुहुन्छ। कुनै लुकेको शुल्क छैन।"
-                    : "Yes, you can upgrade or downgrade at any time from your dashboard. No hidden fees, no long-term commitments."
-                },
-              },
-              {
-                "@type": "Question",
-                "name": lang === "ne" ? "के मलाई वेबसाइट बनाउन प्राविधिक ज्ञान चाहिन्छ?" : "Do I need technical skills to build a website with HamroLink?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": lang === "ne"
-                    ? "बिल्कुल होइन। यदि तपाईं Facebook प्रयोग गर्न सक्नुहुन्छ भने, तपाईं HamroLink प्रयोग गर्न सक्नुहुन्छ। औसत समय: १५ मिनेट।"
-                    : "No technical skills needed. If you can use Facebook, you can use HamroLink. Average time from signup to live website is under 15 minutes."
-                },
-              },
-              {
-                "@type": "Question",
-                "name": lang === "ne" ? "के निःशुल्क योजनामा AI chatbot समावेश छ?" : "Does the free plan include an AI chatbot?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": lang === "ne"
-                    ? "निःशुल्क योजनामा AI chatbot समावेश छैन। Local Start (NPR 199/mo) देखि सबै भुक्तानी योजनाहरूमा २४/७ AI सहायक समावेश छ।"
-                    : "The free plan does not include AI chatbot. All paid plans from Local Start (NPR 199/mo) and above include the 24/7 AI assistant."
-                },
-              },
-              {
-                "@type": "Question",
-                "name": lang === "ne" ? "के म eSewa र Khalti मार्फत भुक्तानी स्वीकार गर्न सक्छु?" : "Can I accept payments via eSewa and Khalti on my website?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": lang === "ne"
-                    ? "हो। HamroLink का सबै भुक्तानी योजनाहरूमा eSewa र Khalti इन्टिग्रेसन समावेश छ — कुनै छुट्टै सेटअप आवश्यक छैन।"
-                    : "Yes. All paid HamroLink plans include built-in eSewa and Khalti payment integration — no separate setup required."
-                },
-              },
-            ],
-          }),
-        }}
-      />
+      <PricingPageSchema faqItems={faqItems} lang={lang} />
 
       <Navbar lang={lang} accent={accent} nav={d.nav} forceScrolled={true} />
 
