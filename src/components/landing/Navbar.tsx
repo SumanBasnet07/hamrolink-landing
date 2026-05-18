@@ -36,6 +36,7 @@ export function Navbar({
   const ctaHref = preLaunch ? resolveHref("/#waitlist", lang) : "https://app.hamrolink.com";
 
   const navLinks = [
+    { href: resolveHref("/templates", lang), label: lang === "ne" ? "टेम्प्लेटहरू" : "Templates" },
     { href: resolveHref("/ai", lang), label: nav.templates },
     { href: resolveHref("/features", lang), label: nav.features },
     { href: resolveHref("/pricing", lang), label: nav.pricing },
