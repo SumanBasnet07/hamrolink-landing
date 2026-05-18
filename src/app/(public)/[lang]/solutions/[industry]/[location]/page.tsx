@@ -80,7 +80,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function SolutionPage({ params }: PageProps) {
   const { lang, industry, location } = await params;
-  const dict = await getDictionary(lang as any);
+  
+  // Force English fallback if Nepali translations are incomplete for these dynamic pages
+  const effectiveLang = lang === "ne" ? "en" : lang;
+  const dict = await getDictionary(effectiveLang as any);
   const nav = dict.nav;
 
   // 1. Establish Database Connection & Perform Query Guard

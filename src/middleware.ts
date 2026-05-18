@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const config = {
   matcher: [
     // Run on every route EXCEPT _next, api, static files, and already-prefixed paths
-    "/((?!_next|api|admin|images|favicon|icon|apple-touch|site.webmanifest|robots|sitemap|og-image|logo|hero|whatsapp|youtube|.*?\\.[\\w]+$).*)",
+    "/((?!_next|api|images|favicon|icon|apple-touch|site.webmanifest|robots|sitemap|og-image|logo|hero|whatsapp|youtube|.*?\\.[\\w]+$).*)",
   ],
 };
 

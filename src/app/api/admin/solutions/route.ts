@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { Location } from "@/models/Location";
 import { requireAdminSessionOrHeaderSecret } from "@/lib/adminAuth";
+import { revalidatePath } from "next/cache";
 
 export async function GET(request: NextRequest) {
   try {
@@ -52,6 +53,9 @@ export async function POST(request: NextRequest) {
       { upsert: true, new: true }
     );
 
+    // Purge cache to reflect changes immediately on the frontend
+    revalidatePath("/", "layout");
+
     return NextResponse.json({
       success: true,
       location: updatedLocation
@@ -87,6 +91,9 @@ export async function DELETE(request: NextRequest) {
     if (!result) {
       return NextResponse.json({ error: "Location not found" }, { status: 404 });
     }
+
+    // Purge cache to reflect changes immediately on the frontend
+    revalidatePath("/", "layout");
 
     return NextResponse.json({
       success: true,
