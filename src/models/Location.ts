@@ -16,6 +16,7 @@ export interface ILocation extends Document {
   regional_education_hub: string;
   primary_client_demographic: string;
   nearby_hubs: string[];
+  local_landmarks?: string[];
   industries_data: Record<string, IIndustryBlock>;
 }
 
@@ -47,6 +48,10 @@ const LocationSchema = new Schema<ILocation>(
       trim: true,
     },
     nearby_hubs: {
+      type: [String],
+      default: [],
+    },
+    local_landmarks: {
       type: [String],
       default: [],
     },

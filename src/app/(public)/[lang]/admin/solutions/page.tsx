@@ -44,6 +44,10 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
   const [generatedPreview, setGeneratedPreview] = useState<any>(null);
   const [editableJson, setEditableJson] = useState("");
   const [previewError, setPreviewError] = useState("");
+  
+  // Editor mode switcher
+  const [editorMode, setEditorMode] = useState<"ai" | "manual">("ai");
+  const [manualJsonInput, setManualJsonInput] = useState("");
 
   const industriesList = [
     { id: "ecommerce", label: "E-Commerce" },
@@ -60,12 +64,12 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
   const fetchData = async (inputSecret?: string) => {
     setLoading(true);
     setError("");
-    const sec = inputSecret || secret;
+    const sec = inputSecret !== undefined ? inputSecret : secret;
     try {
       const headers: Record<string, string> = {};
       if (sec.trim()) headers["x-admin-secret"] = sec.trim();
 
-      const res = await fetch("/api/admin/solutions", {
+      const res = await fetch(`/api/admin/solutions?t=${Date.now()}`, {
         method: "GET",
         headers,
       });
@@ -73,10 +77,13 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
       
       if (data.error === "Unauthorized") {
         setAuthorized(false);
-        setError("Invalid Admin Secret Key");
+        if (inputSecret !== "") {
+          setError("Invalid Admin Secret Key");
+        }
       } else if (data.success) {
         setLocations(data.locations);
         setAuthorized(true);
+        if (sec.trim()) setSecret(sec.trim());
       }
     } catch (err) {
       setError("Failed to fetch database locations");
@@ -84,6 +91,11 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
       setLoading(false);
     }
   };
+
+  // Auto-fetch using session cookie on mount
+  useEffect(() => {
+    fetchData("");
+  }, []);
 
   // Generate location schema using DeepSeek AI
   const handleAiGenerate = async () => {
@@ -416,97 +428,198 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
               <div className="flex items-center gap-3 border-b border-slate-900 pb-5">
                 <Brain className="w-6 h-6 text-indigo-400 animate-pulse" />
                 <div>
-                  <h2 className="text-lg font-black text-white">DeepSeek Research Assistant</h2>
-                  <p className="text-xs text-slate-500">Automate programmatic SEO metrics creation.</p>
+                  <h2 className="text-lg font-black text-white">Research & Import Wizard</h2>
+                  <p className="text-xs text-slate-500">Configure or paste programmatic SEO metrics.</p>
                 </div>
               </div>
 
-              {/* Input Fields */}
-              <div className="space-y-4">
-                <div>
-                  <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">City Name</label>
-                  <input
-                    type="text"
-                    value={newCityName}
-                    onChange={(e) => setNewCityName(e.target.value)}
-                    placeholder="e.g. Pokhara, Hetauda, Lalitpur"
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Province</label>
-                  <input
-                    type="text"
-                    value={newProvince}
-                    onChange={(e) => setNewProvince(e.target.value)}
-                    placeholder="e.g. Gandaki Province, Bagmati Province"
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
-                  />
-                </div>
-
-                {/* Industries Selection */}
-                <div>
-                  <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Selected Industries</label>
-                  <div className="flex flex-wrap gap-2">
-                    {industriesList.map((ind) => {
-                      const selected = selectedIndustries.includes(ind.id);
-                      return (
-                        <button
-                          key={ind.id}
-                          type="button"
-                          onClick={() => toggleIndustry(ind.id)}
-                          className={`px-3 py-1.5 border text-xs font-bold rounded-lg transition-all ${
-                            selected 
-                              ? "bg-indigo-600/15 border-indigo-500 text-indigo-400 shadow-sm"
-                              : "bg-slate-900 border-slate-800 text-slate-450 text-slate-400 hover:border-slate-700"
-                          }`}
-                        >
-                          {ind.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Unstructured Raw Notes Input */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5" /> Unstructured notes (Optional)
-                    </label>
-                    <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Enriches AI Output</span>
-                  </div>
-                  <textarea
-                    rows={4}
-                    value={rawNotes}
-                    onChange={(e) => setRawNotes(e.target.value)}
-                    placeholder="Paste raw text here... e.g. 'Pokhara has lakeside markets. Cargo delays on Prithvi highway are common. Demographics target travel agents.'"
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm placeholder-slate-600 resize-none font-sans"
-                  />
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-900">
+              {/* Mode Toggle Switcher */}
+              <div className="flex bg-slate-900 p-1.5 rounded-2xl border border-slate-800">
                 <button
-                  onClick={handleAiGenerate}
-                  disabled={generating}
-                  className="w-full py-4 bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-750 text-white font-black rounded-2xl shadow-lg shadow-indigo-600/10 transition-all hover:scale-[1.01] flex items-center justify-center gap-2 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                  type="button"
+                  onClick={() => {
+                    setEditorMode("ai");
+                    setGeneratedPreview(null);
+                    setPreviewError("");
+                  }}
+                  className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${
+                    editorMode === "ai"
+                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+                      : "text-slate-400 hover:text-white"
+                  }`}
                 >
-                  {generating ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
-                      DeepSeek researching local parameters...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-4 h-4" />
-                      Research & Generate solutions data
-                    </>
-                  )}
+                  AI Research
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEditorMode("manual");
+                    setGeneratedPreview(true);
+                    setPreviewError("");
+                    const sample = {
+                      slug: "pakhribas",
+                      city_name: "Pakhribas",
+                      province: "Koshi Province",
+                      regional_education_hub: "Pakhribas Bazaar Corridor",
+                      primary_client_demographic: "agri-entrepreneurs and retail shopkeepers",
+                      nearby_hubs: ["Dharan", "Ilam"],
+                      industries_data: {
+                        ecommerce: {
+                          market_insight: "High demand for online agricultural tools and grocery delivery...",
+                          growth_metric: "35% Growth in Pakhribas Ecommerce",
+                          prominent_local_demand: "eSewa payments, local shipping",
+                          common_operational_hurdle: "Last-mile courier and ward address mapping",
+                          localized_schema_subtext: "E-commerce website builder for Pakhribas",
+                          trust_proof_point: "HamroLink automates delivery dispatches..."
+                        }
+                      }
+                    };
+                    setEditableJson(JSON.stringify(sample, null, 2));
+                    setManualJsonInput(JSON.stringify(sample, null, 2));
+                  }}
+                  className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${
+                    editorMode === "manual"
+                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/10"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Paste JSON
                 </button>
               </div>
+
+              {/* AI Research Mode Input Fields */}
+              {editorMode === "ai" && (
+                <>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">City Name</label>
+                      <input
+                        type="text"
+                        value={newCityName}
+                        onChange={(e) => setNewCityName(e.target.value)}
+                        placeholder="e.g. Pokhara, Hetauda, Lalitpur"
+                        className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Province</label>
+                      <input
+                        type="text"
+                        value={newProvince}
+                        onChange={(e) => setNewProvince(e.target.value)}
+                        placeholder="e.g. Gandaki Province, Bagmati Province"
+                        className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                      />
+                    </div>
+
+                    {/* Industries Selection */}
+                    <div>
+                      <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Selected Industries</label>
+                      <div className="flex flex-wrap gap-2">
+                        {industriesList.map((ind) => {
+                          const selected = selectedIndustries.includes(ind.id);
+                          return (
+                            <button
+                              key={ind.id}
+                              type="button"
+                              onClick={() => toggleIndustry(ind.id)}
+                              className={`px-3 py-1.5 border text-xs font-bold rounded-lg transition-all ${
+                                selected 
+                                  ? "bg-indigo-600/15 border-indigo-500 text-indigo-400 shadow-sm"
+                                  : "bg-slate-900 border-slate-800 text-slate-450 text-slate-400 hover:border-slate-700"
+                              }`}
+                            >
+                              {ind.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Unstructured Raw Notes Input */}
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                          <FileText className="w-3.5 h-3.5" /> Unstructured notes (Optional)
+                        </label>
+                        <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Enriches AI Output</span>
+                      </div>
+                      <textarea
+                        rows={4}
+                        value={rawNotes}
+                        onChange={(e) => setRawNotes(e.target.value)}
+                        placeholder="Paste raw text here... e.g. 'Pokhara has lakeside markets. Cargo delays on Prithvi highway are common. Demographics target travel agents.'"
+                        className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm placeholder-slate-600 resize-none font-sans"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="pt-4 border-t border-slate-900">
+                    <button
+                      onClick={handleAiGenerate}
+                      disabled={generating}
+                      className="w-full py-4 bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-750 text-white font-black rounded-2xl shadow-lg shadow-indigo-600/10 transition-all hover:scale-[1.01] flex items-center justify-center gap-2 text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {generating ? (
+                        <>
+                          <RefreshCw className="w-4 h-4 animate-spin" />
+                          DeepSeek researching local parameters...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4" />
+                          Research & Generate solutions data
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {/* Manual JSON Paste Input Fields */}
+              {editorMode === "manual" && (
+                <div className="space-y-4">
+                  <div className="p-4 bg-indigo-600/5 border border-indigo-500/10 rounded-2xl">
+                    <span className="text-xs font-black text-indigo-400 uppercase tracking-widest block mb-1">Direct Paste Mode</span>
+                    <p className="text-[11px] text-slate-400 leading-relaxed font-semibold">
+                      Paste your custom prepared location JSON into the box below. Click "Format & Load JSON" to preview and save it to the DB.
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Pasted JSON Code</label>
+                    <textarea
+                      rows={12}
+                      value={manualJsonInput}
+                      onChange={(e) => {
+                        setManualJsonInput(e.target.value);
+                        setEditableJson(e.target.value);
+                      }}
+                      placeholder="Paste schema JSON here..."
+                      className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-xs font-mono leading-relaxed placeholder-slate-700"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      try {
+                        const parsed = JSON.parse(manualJsonInput);
+                        setEditableJson(JSON.stringify(parsed, null, 2));
+                        setGeneratedPreview(parsed);
+                        setPreviewError("");
+                      } catch (err) {
+                        setPreviewError("Pasted input is not valid JSON. Please ensure all commas and quotes are valid.");
+                      }
+                    }}
+                    className="w-full py-4 bg-slate-900 border border-slate-850 hover:border-slate-700 text-white font-bold rounded-2xl text-xs flex items-center justify-center gap-2"
+                  >
+                    Format & Load JSON
+                  </button>
+                </div>
+              )}
 
             </div>
 

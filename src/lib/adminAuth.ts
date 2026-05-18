@@ -100,7 +100,7 @@ export function requireAdminSessionOrHeaderSecret(req: NextRequest): NextRespons
 export const adminCookieOptions = {
   name: ADMIN_COOKIE_NAME,
   httpOnly: true,
-  sameSite: "strict" as const,
+  sameSite: "lax" as const,
   secure: process.env.NODE_ENV === "production",
   path: "/",
   maxAge: ADMIN_SESSION_TTL_SECONDS,

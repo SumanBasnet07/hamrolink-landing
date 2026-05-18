@@ -20,7 +20,7 @@ export default function AdminAuthGate({
     async function checkSession() {
       setMounted(true);
       try {
-        const res = await fetch("/api/admin/auth", { method: "GET", cache: "no-store" });
+        const res = await fetch(`/api/admin/auth?t=${Date.now()}`, { method: "GET", cache: "no-store" });
         const data = await res.json();
         if (!active) return;
         setIsAuthenticated(Boolean(data?.authenticated));

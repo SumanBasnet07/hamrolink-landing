@@ -57,7 +57,8 @@ Strict Rules:
 1. Return ONLY the raw JSON block. No markdown, no triple backticks, no comments.
 2. Localize all details to the city of ${cityName} inside ${province || "Nepal"}. Use actual places, challenges, and landmarks (e.g. for Pokhara reference Lakeside, Mahendrapul, or Prithvi highway, for Dharan reference Bhanuchowk or BPKIHS, etc.).
 3. If unstructured raw text notes are provided below, you MUST extract and format them accurately, and enrich any missing fields to be high-density.
-4. Ensure values are realistic and grammatically perfect in English.`;
+4. Ensure values are realistic and grammatically perfect in English.
+5. STRICT DE-HALLUCINATION: Do NOT invent or make up fictional names of local schools, clubs, companies, or landmarks. If you do not have verified, real names of local institutions in this specific town, use professional generic descriptors (e.g., "the secondary schools in Pakhribas" or "local agricultural cooperatives") rather than hallucinating specific names.`;
 
     const userPrompt = rawText 
       ? `Parse and enrich this raw text/notes to build the location document.
