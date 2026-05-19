@@ -9,6 +9,11 @@ export default function BulkIndexer() {
   const [authCode, setAuthCode] = useState<string | null>(null);
   const [isAuthed, setIsAuthed] = useState(false);
 
+  // GSC property — must exactly match what's listed in Search Console
+  const [gscSiteUrl, setGscSiteUrl] = useState('https://hamrolink.com/');
+  const [gscProperties, setGscProperties] = useState<string[]>([]);
+  const [isFetchingProperties, setIsFetchingProperties] = useState(false);
+
   // New State for Sitemap & History Features
   const [history, setHistory] = useState<string[]>([]);
   const [sitemapUrl, setSitemapUrl] = useState('');
@@ -26,7 +31,38 @@ export default function BulkIndexer() {
       setAccessToken(savedToken);
       setIsAuthed(true);
     }
+    const savedSiteUrl = localStorage.getItem('indexer_gsc_site_url');
+    if (savedSiteUrl) setGscSiteUrl(savedSiteUrl);
   }, []);
+
+  // Fetch the list of verified GSC properties for the authed account
+  const handleFetchProperties = async () => {
+    if (!accessToken) {
+      setStatus('❌ Connect your Google account first, then click "Load My GSC Properties".');
+      return;
+    }
+    setIsFetchingProperties(true);
+    try {
+      const res = await fetch('/api/bulk-index/properties', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessToken }),
+      });
+      const data = await res.json();
+      if (data.sites && data.sites.length > 0) {
+        setGscProperties(data.sites);
+        setGscSiteUrl(data.sites[0]);
+        localStorage.setItem('indexer_gsc_site_url', data.sites[0]);
+        setStatus(`✅ Found ${data.sites.length} GSC propert${data.sites.length === 1 ? 'y' : 'ies'}. Selected: ${data.sites[0]}`);
+      } else {
+        setStatus('❌ No GSC properties found for this account. Make sure hamrolink.com is verified in Search Console.');
+      }
+    } catch (e: any) {
+      setStatus(`❌ Failed to fetch properties: ${e.message}`);
+    } finally {
+      setIsFetchingProperties(false);
+    }
+  };
 
   // 1. Generate the OAuth login URL + detect redirect-back auth code
   useEffect(() => {
@@ -132,7 +168,7 @@ export default function BulkIndexer() {
           authCode: authCode,        // Used on first submit, then null
           accessToken: accessToken,  // Used on subsequent submits
           redirectUri,
-          siteUrl: 'https://hamrolink.com/',
+          siteUrl: gscSiteUrl,
         }),
       });
 
@@ -240,9 +276,60 @@ export default function BulkIndexer() {
         </div>
       </div>
 
+      {/* GSC Property Selector */}
+      <div style={{ background: '#fff', padding: '20px', borderRadius: '8px', border: '2px solid #ffc107', marginBottom: '20px' }}>
+        <h2 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '6px' }}>2. Select Your GSC Property <span style={{ color: '#dc3545', fontSize: '13px' }}>← Fix "You do not own this site" error</span></h2>
+        <p style={{ fontSize: '12px', color: '#666', marginBottom: '12px' }}>
+          The property URL must <strong>exactly match</strong> what's in Search Console (e.g. <code>sc-domain:hamrolink.com</code> for Domain properties, or <code>https://hamrolink.com/</code> for URL-prefix properties).
+        </p>
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+          <button
+            onClick={handleFetchProperties}
+            disabled={isFetchingProperties || !isAuthed}
+            style={{ background: '#6f42c1', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: (!isAuthed || isFetchingProperties) ? 'not-allowed' : 'pointer', fontWeight: 'bold', fontSize: '13px', opacity: (!isAuthed || isFetchingProperties) ? 0.6 : 1, whiteSpace: 'nowrap' }}
+          >
+            {isFetchingProperties ? 'Loading...' : '🔍 Load My GSC Properties'}
+          </button>
+          {gscProperties.length > 0 ? (
+            <select
+              value={gscSiteUrl}
+              onChange={(e) => {
+                setGscSiteUrl(e.target.value);
+                localStorage.setItem('indexer_gsc_site_url', e.target.value);
+              }}
+              style={{ flex: 1, padding: '10px', borderRadius: '4px', border: '2px solid #6f42c1', fontSize: '13px', fontWeight: 'bold' }}
+            >
+              {gscProperties.map(p => <option key={p} value={p}>{p}</option>)}
+            </select>
+          ) : (
+            <input
+              type="text"
+              value={gscSiteUrl}
+              onChange={(e) => {
+                setGscSiteUrl(e.target.value);
+                localStorage.setItem('indexer_gsc_site_url', e.target.value);
+              }}
+              style={{ flex: 1, padding: '10px', borderRadius: '4px', border: '1px solid #ccc', fontSize: '13px' }}
+              placeholder="sc-domain:hamrolink.com  OR  https://hamrolink.com/"
+            />
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {['sc-domain:hamrolink.com', 'https://hamrolink.com/', 'https://www.hamrolink.com/'].map(opt => (
+            <button
+              key={opt}
+              onClick={() => { setGscSiteUrl(opt); localStorage.setItem('indexer_gsc_site_url', opt); }}
+              style={{ background: gscSiteUrl === opt ? '#6f42c1' : '#e9ecef', color: gscSiteUrl === opt ? 'white' : '#333', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontFamily: 'monospace' }}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Sitemap fetcher */}
       <div style={{ background: '#fff', padding: '20px', borderRadius: '8px', border: '1px solid #ddd', marginBottom: '20px' }}>
-        <h2 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '12px' }}>2. Fetch Sitemap URLs</h2>
+        <h2 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '12px' }}>3. Fetch Sitemap URLs</h2>
         <div style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
           <input
             type="text"
