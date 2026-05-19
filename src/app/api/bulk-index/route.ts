@@ -62,12 +62,13 @@ export async function POST(request: Request) {
         });
 
         // The API returns urlNotificationMetadata on success
-        const meta = response.data;
+        // Cast to any since googleapis types don't expose latestUpdate directly
+        const meta = response.data as any;
         results.push({
           url,
           status: 'Submitted',
           httpStatus: response.status,
-          latestUpdate: meta.latestUpdate?.notifyTime ?? null,
+          latestUpdate: meta?.latestUpdate?.notifyTime ?? null,
         });
       } catch (urlError: any) {
         const errMsg = urlError?.response?.data?.error?.message || urlError.message;
