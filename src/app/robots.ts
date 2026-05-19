@@ -7,6 +7,11 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/dashboard/', '/api/', '/admin/', '/en/admin/', '/ne/admin/'],
     },
-    sitemap: 'https://hamrolink.com/sitemap.xml',
+    // Both sitemaps declared — main covers static + blog pages,
+    // solutions sitemap covers all dynamically generated pSEO location×industry pages
+    sitemap: [
+      'https://hamrolink.com/sitemap.xml',
+      'https://hamrolink.com/solutions/sitemap.xml',
+    ],
   };
 }

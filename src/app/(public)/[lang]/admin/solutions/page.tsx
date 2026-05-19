@@ -13,11 +13,12 @@ import {
   ChevronRight, 
   RefreshCw, 
   ShieldCheck, 
-  ArrowLeft,
   FileText,
   Save,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Pencil,
+  Link2
 } from "lucide-react";
 
 export default function AdminSolutionsPage({ params }: { params: any }) {
@@ -48,6 +49,21 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
   // Editor mode switcher
   const [editorMode, setEditorMode] = useState<"ai" | "manual">("ai");
   const [manualJsonInput, setManualJsonInput] = useState("");
+
+  // Extra structured hint fields for AI grounding
+  const [newSlug, setNewSlug] = useState("");
+  const [newRegionalHub, setNewRegionalHub] = useState("");
+  const [newDemographic, setNewDemographic] = useState("");
+  const [newNearbyHubs, setNewNearbyHubs] = useState(""); // comma-separated
+  const [newLocalLandmarks, setNewLocalLandmarks] = useState(""); // comma-separated
+
+  // Auto-generate slug from city name (kebab-case)
+  const handleCityNameChange = (value: string) => {
+    setNewCityName(value);
+    if (!newSlug || newSlug === newCityName.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")) {
+      setNewSlug(value.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""));
+    }
+  };
 
   const industriesList = [
     { id: "ecommerce", label: "E-Commerce" },
@@ -117,7 +133,12 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
           cityName: newCityName,
           province: newProvince,
           rawText: rawNotes,
-          selectedIndustries: selectedIndustries
+          selectedIndustries: selectedIndustries,
+          slug: newSlug,
+          regionalHub: newRegionalHub,
+          demographic: newDemographic,
+          nearbyHubs: newNearbyHubs.split(",").map((s) => s.trim()).filter(Boolean),
+          localLandmarks: newLocalLandmarks.split(",").map((s) => s.trim()).filter(Boolean),
         })
       });
       const data = await res.json();
@@ -162,9 +183,14 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
       if (!res.ok) {
         setPreviewError(data.error || "Failed to persist to database");
       } else if (data.success) {
-        // Reset states
+        // Reset all form states
         setNewCityName("");
+        setNewSlug("");
         setNewProvince("");
+        setNewRegionalHub("");
+        setNewDemographic("");
+        setNewNearbyHubs("");
+        setNewLocalLandmarks("");
         setRawNotes("");
         setGeneratedPreview(null);
         setEditableJson("");
@@ -176,6 +202,24 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
     } finally {
       setSaving(false);
     }
+  };
+
+  // Load an existing location into the editor for updating
+  const handleEditLocation = (loc: any) => {
+    const { _id, __v, createdAt, updatedAt, ...cleanLoc } = loc;
+    setNewCityName(cleanLoc.city_name || "");
+    setNewSlug(cleanLoc.slug || "");
+    setNewProvince(cleanLoc.province || "");
+    setNewRegionalHub(cleanLoc.regional_education_hub || "");
+    setNewDemographic(cleanLoc.primary_client_demographic || "");
+    setNewNearbyHubs((cleanLoc.nearby_hubs || []).join(", "));
+    setNewLocalLandmarks((cleanLoc.local_landmarks || []).join(", "));
+    setEditableJson(JSON.stringify(cleanLoc, null, 2));
+    setManualJsonInput(JSON.stringify(cleanLoc, null, 2));
+    setGeneratedPreview(cleanLoc);
+    setPreviewError("");
+    setEditorMode("manual");
+    setActiveTab("create");
   };
 
   // Delete a location from MongoDB
@@ -388,13 +432,22 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
                             </div>
                           </td>
                           <td className="px-8 py-6 text-right">
-                            <button
-                              onClick={() => handleDeleteLocation(loc.slug)}
-                              className="p-3 bg-slate-900 border border-slate-850 rounded-xl text-rose-400 hover:text-white hover:bg-rose-950/20 hover:border-rose-900/40 transition-all active:scale-95 shadow"
-                              title="Delete Location"
-                            >
-                              <Trash2 className="w-4.5 h-4.5" />
-                            </button>
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                onClick={() => handleEditLocation(loc)}
+                                className="p-3 bg-slate-900 border border-slate-850 rounded-xl text-indigo-400 hover:text-white hover:bg-indigo-950/30 hover:border-indigo-800/50 transition-all active:scale-95 shadow"
+                                title="Edit Location"
+                              >
+                                <Pencil className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteLocation(loc.slug)}
+                                className="p-3 bg-slate-900 border border-slate-850 rounded-xl text-rose-400 hover:text-white hover:bg-rose-950/20 hover:border-rose-900/40 transition-all active:scale-95 shadow"
+                                title="Delete Location"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       );
@@ -461,16 +514,17 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
                       city_name: "Pakhribas",
                       province: "Koshi Province",
                       regional_education_hub: "Pakhribas Bazaar Corridor",
-                      primary_client_demographic: "agri-entrepreneurs and retail shopkeepers",
-                      nearby_hubs: ["Dharan", "Ilam"],
+                      primary_client_demographic: "agri-entrepreneurs and retail shopkeepers near Pakhribas Bazar",
+                      nearby_hubs: ["Dharan", "Dhankuta", "Ilam"],
+                      local_landmarks: ["Pakhribas Bazar", "Pakhribas Agricultural Campus", "Chatara Road Junction"],
                       industries_data: {
                         ecommerce: {
-                          market_insight: "High demand for online agricultural tools and grocery delivery...",
-                          growth_metric: "35% Growth in Pakhribas Ecommerce",
-                          prominent_local_demand: "eSewa payments, local shipping",
-                          common_operational_hurdle: "Last-mile courier and ward address mapping",
-                          localized_schema_subtext: "E-commerce website builder for Pakhribas",
-                          trust_proof_point: "HamroLink automates delivery dispatches..."
+                          market_insight: "Demand for online agricultural tools and grocery delivery is rising along the Pakhribas-Dhankuta highway corridor as mobile data improves in the hills.",
+                          growth_metric: "35% Growth in Pakhribas Ecommerce Sector",
+                          prominent_local_demand: "eSewa payment setup, local shipping integration, WhatsApp order alerts, digital product catalogs",
+                          common_operational_hurdle: "Last-mile courier mapping to ward-level addresses in hilly terrain",
+                          localized_schema_subtext: "E-commerce website builder for businesses in Pakhribas, Dhankuta",
+                          trust_proof_point: "HamroLink automates delivery dispatch notifications and provides ward-level address fields so couriers reach customers without phone call delays."
                         }
                       }
                     };
@@ -491,26 +545,86 @@ export default function AdminSolutionsPage({ params }: { params: any }) {
               {editorMode === "ai" && (
                 <>
                   <div className="space-y-4">
+                    {/* Row: City + Slug */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">City Name <span className="text-rose-500">*</span></label>
+                        <input
+                          type="text"
+                          value={newCityName}
+                          onChange={(e) => handleCityNameChange(e.target.value)}
+                          placeholder="e.g. Pokhara"
+                          className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2 flex items-center gap-1"><Link2 className="w-3 h-3" /> URL Slug <span className="text-rose-500">*</span></label>
+                        <input
+                          type="text"
+                          value={newSlug}
+                          onChange={(e) => setNewSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))}
+                          placeholder="e.g. pokhara"
+                          className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm font-mono"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row: Province + Regional Hub */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Province</label>
+                        <input
+                          type="text"
+                          value={newProvince}
+                          onChange={(e) => setNewProvince(e.target.value)}
+                          placeholder="e.g. Gandaki Province"
+                          className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Commercial Hub Label</label>
+                        <input
+                          type="text"
+                          value={newRegionalHub}
+                          onChange={(e) => setNewRegionalHub(e.target.value)}
+                          placeholder="e.g. Lakeside Strip"
+                          className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">City Name</label>
+                      <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Primary Client Demographic</label>
                       <input
                         type="text"
-                        value={newCityName}
-                        onChange={(e) => setNewCityName(e.target.value)}
-                        placeholder="e.g. Pokhara, Hetauda, Lalitpur"
+                        value={newDemographic}
+                        onChange={(e) => setNewDemographic(e.target.value)}
+                        placeholder="e.g. lakeside hotel owners and trekking agencies"
                         className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
                       />
                     </div>
 
-                    <div>
-                      <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Province</label>
-                      <input
-                        type="text"
-                        value={newProvince}
-                        onChange={(e) => setNewProvince(e.target.value)}
-                        placeholder="e.g. Gandaki Province, Bagmati Province"
-                        className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
-                      />
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Nearby Hubs <span className="text-slate-600 font-medium normal-case">(comma-sep)</span></label>
+                        <input
+                          type="text"
+                          value={newNearbyHubs}
+                          onChange={(e) => setNewNearbyHubs(e.target.value)}
+                          placeholder="Hetauda, Birgunj, Bharatpur"
+                          className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-black uppercase tracking-wider text-slate-500 block mb-2">Local Landmarks <span className="text-slate-600 font-medium normal-case">(comma-sep)</span></label>
+                        <input
+                          type="text"
+                          value={newLocalLandmarks}
+                          onChange={(e) => setNewLocalLandmarks(e.target.value)}
+                          placeholder="Lakeside, Mahendrapul, Prithvi Chowk"
+                          className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl focus:outline-none focus:border-indigo-500 text-white text-sm"
+                        />
+                      </div>
                     </div>
 
                     {/* Industries Selection */}

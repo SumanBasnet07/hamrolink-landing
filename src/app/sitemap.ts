@@ -4,8 +4,13 @@ import BlogPost from "@/models/BlogPost";
 
 /**
  * HamroLink Sitemap Generator (2026)
- * This setup ensures English and Nepali pages are linked as alternates
- * to prevent "Crawled - Currently Not Indexed" errors.
+ *
+ * Architecture:
+ * - /sitemap.xml        → This file (covers static pages + blog)
+ * - /solutions/sitemap.xml → Separate dynamic pSEO sitemap (all location×industry pairs)
+ * Both are declared in robots.txt so Googlebot discovers them automatically.
+ *
+ * English/Nepali hreflang alternates ensure the en version is treated as canonical.
  */
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -63,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: enUrl, // Default landing URL for Google
       lastModified,
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority,
       alternates: {
         languages: {
