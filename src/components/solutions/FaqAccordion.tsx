@@ -50,13 +50,9 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
               </span>
             </button>
             <div
-              className={`transition-all duration-300 overflow-hidden ${
-                isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-              }`}
+              className={isOpen ? "px-6 pb-6 pt-0 text-slate-350 text-sm sm:text-base leading-relaxed border-t border-slate-800/40" : "sr-only"}
             >
-              <div className="px-6 pb-6 pt-0 text-slate-350 text-sm sm:text-base leading-relaxed border-t border-slate-800/40">
-                {item.answer}
-              </div>
+              {item.answer}
             </div>
           </div>
         );

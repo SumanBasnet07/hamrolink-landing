@@ -83,8 +83,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const cityName = loc.city_name;
   const capitalizedIndustry = industry.charAt(0).toUpperCase() + industry.slice(1);
   
-  const title = `AI-Powered ${capitalizedIndustry} Website Builder in ${cityName} | HamroLink`;
-  const description = `${industryData.localized_schema_subtext}. Setup instantly in ${cityName} with localized digital payments (eSewa/Khalti) and advanced AI assistant tools.`;
+  // Title formula targets multiple natural keyword variants:
+  // - "AI website builder in [City]" (brand/feature query)
+  // - "[Industry] website builder in [City]" (service query)
+  // - "create [industry] website [City]" (action query — captured via page body)
+  const title = `${capitalizedIndustry} Website Builder in ${cityName} — AI-Powered | HamroLink`;
+  const description = `Create a professional ${industry} website in ${cityName} with HamroLink. ${industryData.localized_schema_subtext}. Includes eSewa, Khalti & Fonepay payments, 24/7 AI chatbot, and free .com.np domain. No coding required.`;
 
   return {
     metadataBase: new URL("https://hamrolink.com"),
@@ -264,24 +268,32 @@ export default async function SolutionPage({ params }: PageProps) {
       ];
   }
 
-  // 3. Dynamic local FAQ definitions derived directly from MongoDB local records
   const faqItems: FAQItem[] = [
     {
+      // Targets: "create [industry] website in [city]", "how to make a [industry] website", "how to build a website in [city]"
+      question: `How do I create a professional ${industry} website in ${cityName}?`,
+      answer: `Creating a ${industry} website in ${cityName} with HamroLink takes under 5 minutes. Choose a pre-designed ${industry} template, enter your business name, and your site goes live instantly — no coding or technical skills needed. You can connect a free .com.np domain or your own custom domain, and start accepting payments via eSewa, Khalti, and Fonepay on day one. This is specifically designed for ${loc.primary_client_demographic || `${industry} businesses`} in ${cityName}.`,
+    },
+    {
+      // Targets: "[industry] website price Nepal", "how much does a website cost in [city]", "free website builder Nepal"
+      question: `How much does it cost to build a ${industry} website in ${cityName}?`,
+      answer: `HamroLink offers a free plan to get started — no credit card required. Paid plans start at NPR 199/month for the Local Start plan, which includes custom domain support, eSewa/Khalti payment integration, and 24/7 AI chatbot. For growing ${industry} businesses in ${cityName}, the Business plan at NPR 399/month adds advanced analytics and removes HamroLink branding. There are no setup fees or long-term commitments.`,
+    },
+    {
+      // Targets: "[industry] website with esewa payment [city]", "khalti website nepal", "website with local payment nepal"
+      question: `Can I accept eSewa and Khalti payments on my ${industry} website in ${cityName}?`,
+      answer: `Yes — eSewa, Khalti, and Fonepay are built directly into every HamroLink website. For ${industry} businesses in ${cityName}, this means customers can pay digitally without any third-party setup. ${industryData.trust_proof_point} This solves the common challenge of "${industryData.common_operational_hurdle}" that many local ${industry} owners in ${cityName} face.`,
+    },
+    {
+      // Targets: "best website builder for [industry] in Nepal", "ai website nepal", "website builder for small business [city]"
+      question: `What is the best website builder for a ${industry} business in ${cityName}?`,
+      answer: `HamroLink is built specifically for Nepali businesses — unlike global website builders like Wix or Squarespace, it includes local payment gateways (eSewa/Khalti), Ncell/NTC-optimized CDN loading, Nepali domain (.com.np) support, and AI chatbot tools trained for local customer queries. For ${industry} businesses in ${cityName}, HamroLink provides a ${industryData.market_insight?.substring(0, 120) || 'hyper-local digital foundation'} — making it the most locally relevant solution available.`,
+    },
+    {
+      // Targets: "do I need registration for online business nepal", "start [industry] online [city]"
       question: `Do I need a formal business registration to launch a ${industry} website in ${cityName}?`,
-      answer: `No, formal registration is not required to launch! With HamroLink's built-in local payment tools, independent professionals and startups in ${cityName} can start accepting local payments via eSewa, Khalti, and Fonepay instantly. This is particularly useful for targeting ${loc.primary_client_demographic || 'local clients'}.`,
+      answer: `No formal registration is required to get started. Independent ${industry} professionals and startups in ${cityName} can launch a website and start accepting local payments immediately. This is especially useful for ${loc.primary_client_demographic || 'local businesses'} who want to establish a digital presence quickly without waiting for business registration paperwork.`,
     },
-    {
-      question: `How can HamroLink help resolve ${cityName}'s common operational hurdle: "${industryData.common_operational_hurdle}"?`,
-      answer: `HamroLink completely automates this. ${industryData.trust_proof_point} This means you no longer lose track of customer requests or experience operational delays, which is a major advantage for businesses in the ${loc.regional_education_hub || cityName}.`,
-    },
-    {
-      question: `Can I connect my own domain and handle local demands like "${industryData.prominent_local_demand}"?`,
-      answer: `Yes! HamroLink is built to optimize setups for regional demand like "${industryData.prominent_local_demand}". You can easily map your own custom domain (e.g., .com) or connect a completely free local .com.np domain. Combined with our 24/7 AI chatbot assistant, you will never miss a local lead.`,
-    },
-    {
-      question: `How fast will my ${industry} site load for mobile users in ${cityName}?`,
-      answer: `All HamroLink pages are rendered statically and served through globally distributed fast CDNs, optimized specifically for Ncell and NTC mobile networks in Nepal. Even in regions with unstable cellular data, your page loads in under a second, ensuring clients in ${cityName} have a seamless experience.`,
-    }
   ];
 
   // 4. Dynamic Structured JSON-LD JSON markup linking both Service and FAQ schemas
@@ -327,6 +339,35 @@ export default async function SolutionPage({ params }: PageProps) {
             "text": item.answer
           }
         }))
+      },
+      {
+        // BreadcrumbList — enables breadcrumb trail in Google SERPs
+        // NOTE: Positions 2 & 3 intentionally omit `item` URL — /solutions and
+        // /solutions/[industry] are not real app routes. Omitting `item` is valid
+        // per schema.org spec; Google renders them as label-only breadcrumb steps.
+        "@type": "BreadcrumbList",
+        "@id": `https://hamrolink.com/solutions/${industry}/${location}/#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamrolink.com" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions" },
+          { "@type": "ListItem", "position": 3, "name": capitalizedIndustry },
+          { "@type": "ListItem", "position": 4, "name": cityName, "item": `https://hamrolink.com/solutions/${industry}/${location}` }
+        ]
+      },
+      {
+        // SoftwareApplication — enables app-specific rich results with pricing
+        "@type": "SoftwareApplication",
+        "@id": "https://hamrolink.com/#software",
+        "name": "HamroLink",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "description": `AI-powered website builder for ${industry} businesses in Nepal. No coding required.`,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR",
+          "description": "Free plan available. Paid plans from NPR 199/month."
+        }
       }
     ]
   };
@@ -475,9 +516,12 @@ export default async function SolutionPage({ params }: PageProps) {
             <span>Regional Digital Transition Analysis</span>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-8 leading-tight max-w-4xl mx-auto">
-            Why {capitalizedIndustry} Operations in {cityName} are Transitioning Beyond Facebook Pages
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight max-w-4xl mx-auto">
+            Why {capitalizedIndustry} Businesses in {cityName} Are Moving Beyond Facebook to Professional Websites
           </h2>
+          <p className="text-slate-500 text-sm font-semibold max-w-2xl mx-auto">
+            Discover why creating a dedicated {industry} website in {cityName} is now a competitive necessity.
+          </p>
         </div>
         
         {layoutStyle === 'grid' ? (
@@ -719,8 +763,10 @@ export default async function SolutionPage({ params }: PageProps) {
             <Zap className="w-3.5 h-3.5" />
             <span>Simple, Transparent Pricing</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">Tailored Plans for Every Growth Stage</h2>
-          <p className="text-slate-400 text-base sm:text-lg font-medium leading-relaxed">No setup fees, no long-term commitments. Upgrade or downgrade anytime.</p>
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+            {capitalizedIndustry} Website Pricing for {cityName} Businesses
+          </h2>
+          <p className="text-slate-400 text-base sm:text-lg font-medium leading-relaxed">No setup fees. No coding required. Launch your {industry} website in {cityName} today.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Starter */}
@@ -887,7 +933,7 @@ export default async function SolutionPage({ params }: PageProps) {
               href="https://app.hamrolink.com/signup"
               className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-sm transition-all hover:scale-[1.03] active:scale-[0.97] shadow-xl shadow-indigo-600/25 flex items-center justify-center gap-2"
             >
-              <span>Get Started Free</span>
+              <span>Create Your {capitalizedIndustry} Website Free</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
@@ -911,7 +957,7 @@ export default async function SolutionPage({ params }: PageProps) {
             <div className="md:col-span-4 flex flex-col items-start gap-4">
               <Link href={`/${lang}`} className="inline-block transition-opacity hover:opacity-90 mb-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/og-image.png" alt="HamroLink" className="h-9 w-auto" />
+                <img src="/logo.png" alt="HamroLink — AI Website Builder Nepal" className="h-9 w-auto" />
               </Link>
               <p className="text-slate-500 text-xs sm:text-sm font-medium leading-relaxed max-w-xs">
                 Nepal&apos;s first AI-powered presence builder. Complete templates, built-in wallets, and automated CRM tools.
