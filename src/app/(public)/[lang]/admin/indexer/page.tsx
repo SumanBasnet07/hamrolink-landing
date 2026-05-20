@@ -59,6 +59,11 @@ export default function BulkIndexer() {
   const [isFetchingSitemap, setIsFetchingSitemap] = useState(false);
   const [gscSiteUrl, setGscSiteUrl] = useState('sc-domain:hamrolink.com');
 
+  // Persistent submission history — persists across sessions
+  const [history, setHistory] = useState<Set<string>>(new Set());
+  const [totalSitemapCount, setTotalSitemapCount] = useState(0); // total in sitemap before filtering
+  const [batchSize, setBatchSize] = useState(200); // max URLs per session (daily quota cap)
+
   // Auth
   const [authUrl, setAuthUrl] = useState('');
   const [isAuthed, setIsAuthed] = useState(false);
@@ -89,7 +94,22 @@ export default function BulkIndexer() {
       if (rt) setRefreshToken(rt);
       setIsAuthed(true);
     }
+
+    // Load persistent submission history
+    try {
+      const h = localStorage.getItem('indexer_submitted_history');
+      if (h) setHistory(new Set(JSON.parse(h)));
+    } catch { /* ignore */ }
   }, []);
+
+  // Save a new batch of submitted URLs to history
+  const addToHistory = (urls: string[]) => {
+    setHistory(prev => {
+      const next = new Set([...prev, ...urls]);
+      localStorage.setItem('indexer_submitted_history', JSON.stringify([...next]));
+      return next;
+    });
+  };
 
   useEffect(() => {
     const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
@@ -137,10 +157,19 @@ export default function BulkIndexer() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const xml = await res.text();
       const doc = new DOMParser().parseFromString(xml, 'text/xml');
-      const locs = Array.from(doc.getElementsByTagName('loc'))
+      const allLocs = Array.from(doc.getElementsByTagName('loc'))
         .map(l => l.textContent?.trim())
         .filter((u): u is string => !!u && !u.endsWith('.xml'));
-      setUrlItems(locs.map(url => ({ url, checkStatus: 'pending', submitStatus: 'none' })));
+
+      setTotalSitemapCount(allLocs.length);
+
+      // Filter out URLs already submitted in previous sessions
+      const newOnly = allLocs.filter(u => !history.has(u));
+
+      // Cap to batchSize (daily quota limit)
+      const batch = newOnly.slice(0, batchSize);
+
+      setUrlItems(batch.map(url => ({ url, checkStatus: 'pending', submitStatus: 'none' })));
       setPhase('idle');
     } catch (e: any) {
       alert(`Failed to fetch sitemap: ${e.message}`);
@@ -262,15 +291,19 @@ export default function BulkIndexer() {
 
       if (data.success) {
         const resultMap = new Map(data.results.map((r: any) => [r.url, r]));
+        const successfulUrls: string[] = [];
         setUrlItems(prev => prev.map(item => {
           const r: any = resultMap.get(item.url);
           if (!r) return item;
+          if (r.status === 'Submitted') successfulUrls.push(item.url);
           return {
             ...item,
             submitStatus: r.status === 'Submitted' ? 'submitted' : 'failed',
             submitError: r.error,
           };
         }));
+        // Persist successfully submitted URLs so they're skipped next session
+        if (successfulUrls.length > 0) addToHistory(successfulUrls);
         setPhase('done');
       } else {
         alert(`Submission error: ${data.error}`);
@@ -356,10 +389,38 @@ export default function BulkIndexer() {
             </button>
           </div>
         )}
+        {/* Batch size + history stats */}
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '12px', flexWrap: 'wrap' }}>
+          <label style={{ fontSize: '12px', color: '#555', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>Batch size:</span>
+            <select value={batchSize} onChange={e => setBatchSize(Number(e.target.value))}
+              style={{ padding: '4px 8px', border: '1px solid #ccc', borderRadius: '4px', fontSize: '12px' }}>
+              <option value={50}>50 URLs</option>
+              <option value={100}>100 URLs</option>
+              <option value={200}>200 URLs (daily max)</option>
+            </select>
+          </label>
+          {history.size > 0 && (
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <span style={{ background: '#fef9c3', color: '#854d0e', padding: '3px 10px', borderRadius: '12px', fontSize: '11px', fontWeight: 'bold' }}>
+                🗂 {history.size} already submitted (lifetime)
+              </span>
+              <button onClick={() => { if (window.confirm('Clear all submission history? This means already-submitted URLs will be eligible for re-submission.')) { setHistory(new Set()); localStorage.removeItem('indexer_submitted_history'); } }}
+                style={{ background: 'none', border: 'none', color: '#dc2626', cursor: 'pointer', fontSize: '11px', textDecoration: 'underline', padding: 0 }}>
+                Clear history
+              </button>
+            </div>
+          )}
+        </div>
         {urlItems.length > 0 && (
-          <p style={{ margin: '10px 0 0', fontSize: '12px', color: '#555' }}>
-            <strong>{urlItems.length}</strong> URLs loaded.
-          </p>
+          <div style={{ marginTop: '10px', padding: '10px 14px', background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '6px', fontSize: '12px', color: '#0369a1' }}>
+            <strong>Loaded {urlItems.length} new URLs</strong> to check this session
+            {totalSitemapCount > 0 && (
+              <span style={{ color: '#64748b', marginLeft: '6px' }}>
+                (sitemap has {totalSitemapCount} total · {history.size} already submitted · {Math.max(0, totalSitemapCount - history.size - urlItems.length)} remaining after today)
+              </span>
+            )}
+          </div>
         )}
       </div>
 
