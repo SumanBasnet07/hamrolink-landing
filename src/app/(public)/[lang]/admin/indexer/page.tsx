@@ -436,30 +436,78 @@ export default function BulkIndexer() {
         </div>
         {/* Save to History panel */}
         {showSaveHistory && (
-          <div style={{ marginTop: '12px', padding: '14px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '6px' }}>
-            <p style={{ margin: '0 0 8px', fontSize: '12px', color: '#78350f', fontWeight: 'bold' }}>
-              💾 Save URLs to History (no submission)
+          <div style={{ marginTop: '12px', padding: '16px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '6px' }}>
+            <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#78350f', fontWeight: 'bold' }}>
+              💾 Save to History — marks URLs as &quot;already submitted&quot;, no API call made
             </p>
-            <p style={{ margin: '0 0 8px', fontSize: '11px', color: '#92400e' }}>
-              Paste URLs you already submitted previously (e.g. from a backup or another device). They will be marked as done and skipped on future sitemap loads — no API call is made.
-            </p>
-            <textarea
-              rows={5}
-              value={saveHistoryText}
-              onChange={e => { setSaveHistoryText(e.target.value); setSaveHistoryMsg(''); }}
-              placeholder={'https://hamrolink.com/solutions/consultancy/kathmandu\nhttps://hamrolink.com/solutions/restaurant/pokhara\n...'}
-              style={{ width: '100%', padding: '8px', border: '1px solid #fcd34d', borderRadius: '4px', fontFamily: 'monospace', fontSize: '11px', boxSizing: 'border-box', resize: 'vertical', background: '#fffef0' }}
-            />
-            <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginTop: '8px' }}>
-              <button onClick={handleSaveToHistory}
-                style={{ background: '#d97706', color: '#fff', border: 'none', padding: '7px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>
-                💾 Save {saveHistoryText.split('\n').filter(l => l.trim()).length || 0} URLs to History
+
+            {/* One-click quick actions */}
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '14px' }}>
+              {urlItems.length > 0 && (
+                <button
+                  onClick={() => {
+                    const urls = urlItems.map(u => u.url);
+                    addToHistory(urls);
+                    setSaveHistoryMsg(`✅ Saved all ${urls.length} loaded URLs to history.`);
+                  }}
+                  style={{ background: '#0369a1', color: '#fff', border: 'none', padding: '8px 14px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}
+                >
+                  📋 Save All {urlItems.length} Loaded URLs
+                </button>
+              )}
+              <button
+                onClick={async () => {
+                  if (!sitemapUrl) { setSaveHistoryMsg('⚠️ Enter a sitemap URL above first.'); return; }
+                  setSaveHistoryMsg('🔄 Fetching sitemap…');
+                  try {
+                    const res = await fetch(sitemapUrl);
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const xml = await res.text();
+                    const doc = new DOMParser().parseFromString(xml, 'text/xml');
+                    const all = Array.from(doc.getElementsByTagName('loc'))
+                      .map(l => l.textContent?.trim())
+                      .filter((u): u is string => !!u && !u.endsWith('.xml'));
+                    addToHistory(all);
+                    setSaveHistoryMsg(`✅ Saved all ${all.length} sitemap URLs to history.`);
+                  } catch (e: any) {
+                    setSaveHistoryMsg(`❌ ${e.message}`);
+                  }
+                }}
+                style={{ background: '#16a34a', color: '#fff', border: 'none', padding: '8px 14px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}
+              >
+                🗺 Import All from Sitemap &amp; Save
               </button>
+            </div>
+
+            {/* Fallback: manual paste */}
+            <div style={{ borderTop: '1px dashed #fcd34d', paddingTop: '12px' }}>
+              <p style={{ margin: '0 0 6px', fontSize: '11px', color: '#92400e' }}>Or paste specific URLs manually (one per line):</p>
+              <textarea
+                rows={4}
+                value={saveHistoryText}
+                onChange={e => { setSaveHistoryText(e.target.value); setSaveHistoryMsg(''); }}
+                placeholder={'https://hamrolink.com/solutions/consultancy/kathmandu\nhttps://hamrolink.com/solutions/restaurant/pokhara'}
+                style={{ width: '100%', padding: '8px', border: '1px solid #fcd34d', borderRadius: '4px', fontFamily: 'monospace', fontSize: '11px', boxSizing: 'border-box', resize: 'vertical', background: '#fffef0' }}
+              />
+              <button
+                onClick={handleSaveToHistory}
+                disabled={!saveHistoryText.trim()}
+                style={{ marginTop: '8px', background: '#d97706', color: '#fff', border: 'none', padding: '7px 14px', borderRadius: '4px', cursor: saveHistoryText.trim() ? 'pointer' : 'not-allowed', fontSize: '12px', fontWeight: 'bold', opacity: saveHistoryText.trim() ? 1 : 0.5 }}
+              >
+                💾 Save {saveHistoryText.split('\n').filter(l => l.trim()).length || 0} URLs
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '10px' }}>
               <button onClick={() => { setShowSaveHistory(false); setSaveHistoryMsg(''); }}
                 style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: '12px', textDecoration: 'underline' }}>
-                Cancel
+                Close
               </button>
-              {saveHistoryMsg && <span style={{ fontSize: '12px', color: saveHistoryMsg.startsWith('✅') ? '#16a34a' : '#dc2626' }}>{saveHistoryMsg}</span>}
+              {saveHistoryMsg && (
+                <span style={{ fontSize: '12px', fontWeight: 'bold', color: saveHistoryMsg.startsWith('✅') ? '#16a34a' : saveHistoryMsg.startsWith('🔄') ? '#0369a1' : '#dc2626' }}>
+                  {saveHistoryMsg}
+                </span>
+              )}
             </div>
           </div>
         )}
