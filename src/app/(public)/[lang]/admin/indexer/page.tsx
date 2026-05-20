@@ -63,6 +63,9 @@ export default function BulkIndexer() {
   const [history, setHistory] = useState<Set<string>>(new Set());
   const [totalSitemapCount, setTotalSitemapCount] = useState(0); // total in sitemap before filtering
   const [batchSize, setBatchSize] = useState(200); // max URLs per session (daily quota cap)
+  const [showSaveHistory, setShowSaveHistory] = useState(false);
+  const [saveHistoryText, setSaveHistoryText] = useState('');
+  const [saveHistoryMsg, setSaveHistoryMsg] = useState('');
 
   // Auth
   const [authUrl, setAuthUrl] = useState('');
@@ -109,6 +112,15 @@ export default function BulkIndexer() {
       localStorage.setItem('indexer_submitted_history', JSON.stringify([...next]));
       return next;
     });
+  };
+
+  // Manually mark URLs as already submitted (no API call — just history save)
+  const handleSaveToHistory = () => {
+    const urls = saveHistoryText.split('\n').map(l => l.trim()).filter(Boolean);
+    if (urls.length === 0) { setSaveHistoryMsg('⚠️ No valid URLs found.'); return; }
+    addToHistory(urls);
+    setSaveHistoryMsg(`✅ Saved ${urls.length} URLs to history. They will be skipped on next sitemap load.`);
+    setSaveHistoryText('');
   };
 
   useEffect(() => {
@@ -405,13 +417,52 @@ export default function BulkIndexer() {
               <span style={{ background: '#fef9c3', color: '#854d0e', padding: '3px 10px', borderRadius: '12px', fontSize: '11px', fontWeight: 'bold' }}>
                 🗂 {history.size} already submitted (lifetime)
               </span>
-              <button onClick={() => { if (window.confirm('Clear all submission history? This means already-submitted URLs will be eligible for re-submission.')) { setHistory(new Set()); localStorage.removeItem('indexer_submitted_history'); } }}
+              <button onClick={() => setShowSaveHistory(v => !v)}
+                style={{ background: showSaveHistory ? '#334155' : '#e2e8f0', color: showSaveHistory ? '#fff' : '#334155', border: 'none', padding: '3px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '11px', fontWeight: 'bold' }}>
+                💾 Save to History
+              </button>
+              <button onClick={() => { if (window.confirm('Clear all submission history? Already-submitted URLs will become eligible for re-submission.')) { setHistory(new Set()); localStorage.removeItem('indexer_submitted_history'); setSaveHistoryMsg(''); } }}
                 style={{ background: 'none', border: 'none', color: '#dc2626', cursor: 'pointer', fontSize: '11px', textDecoration: 'underline', padding: 0 }}>
                 Clear history
               </button>
             </div>
           )}
+          {history.size === 0 && (
+            <button onClick={() => setShowSaveHistory(v => !v)}
+              style={{ background: showSaveHistory ? '#334155' : '#e2e8f0', color: showSaveHistory ? '#fff' : '#334155', border: 'none', padding: '4px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '11px', fontWeight: 'bold' }}>
+              💾 Save to History
+            </button>
+          )}
         </div>
+        {/* Save to History panel */}
+        {showSaveHistory && (
+          <div style={{ marginTop: '12px', padding: '14px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '6px' }}>
+            <p style={{ margin: '0 0 8px', fontSize: '12px', color: '#78350f', fontWeight: 'bold' }}>
+              💾 Save URLs to History (no submission)
+            </p>
+            <p style={{ margin: '0 0 8px', fontSize: '11px', color: '#92400e' }}>
+              Paste URLs you already submitted previously (e.g. from a backup or another device). They will be marked as done and skipped on future sitemap loads — no API call is made.
+            </p>
+            <textarea
+              rows={5}
+              value={saveHistoryText}
+              onChange={e => { setSaveHistoryText(e.target.value); setSaveHistoryMsg(''); }}
+              placeholder={'https://hamrolink.com/solutions/consultancy/kathmandu\nhttps://hamrolink.com/solutions/restaurant/pokhara\n...'}
+              style={{ width: '100%', padding: '8px', border: '1px solid #fcd34d', borderRadius: '4px', fontFamily: 'monospace', fontSize: '11px', boxSizing: 'border-box', resize: 'vertical', background: '#fffef0' }}
+            />
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginTop: '8px' }}>
+              <button onClick={handleSaveToHistory}
+                style={{ background: '#d97706', color: '#fff', border: 'none', padding: '7px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>
+                💾 Save {saveHistoryText.split('\n').filter(l => l.trim()).length || 0} URLs to History
+              </button>
+              <button onClick={() => { setShowSaveHistory(false); setSaveHistoryMsg(''); }}
+                style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: '12px', textDecoration: 'underline' }}>
+                Cancel
+              </button>
+              {saveHistoryMsg && <span style={{ fontSize: '12px', color: saveHistoryMsg.startsWith('✅') ? '#16a34a' : '#dc2626' }}>{saveHistoryMsg}</span>}
+            </div>
+          </div>
+        )}
         {urlItems.length > 0 && (
           <div style={{ marginTop: '10px', padding: '10px 14px', background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '6px', fontSize: '12px', color: '#0369a1' }}>
             <strong>Loaded {urlItems.length} new URLs</strong> to check this session
