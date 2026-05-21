@@ -11,6 +11,7 @@ import { connectDB } from "@/lib/mongodb";
 import { Location } from "@/models/Location";
 import { getDictionary } from "@/lib/dictionaries";
 import { Navbar } from "@/components/landing/Navbar";
+import { JsonLdScript } from "@/components/JsonLdScript";
 
 export const revalidate = 86400; // 24-hr ISR — city counts update when new locations are added
 
@@ -122,9 +123,8 @@ export default async function SolutionsHubPage({ params }: { params: Promise<{ l
   };
 
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="min-h-screen bg-[#080C14] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[#080C14] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+      <JsonLdScript data={jsonLd} />
       <Navbar lang={lang} accent="#6366f1" nav={nav} />
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
@@ -340,7 +340,6 @@ export default async function SolutionsHubPage({ params }: { params: Promise<{ l
           </div>
         </div>
       </footer>
-      </div>
-    </>
+    </div>
   );
 }

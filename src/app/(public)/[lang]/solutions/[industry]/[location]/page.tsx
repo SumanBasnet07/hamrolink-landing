@@ -158,20 +158,28 @@ export default async function SolutionPage({ params }: PageProps) {
 
   switch (industry) {
     case "ecommerce":
+      industryHubWord = "Store";       // "Launch Your Ecommerce Store in Pokhara Today."
+      break;
     case "restaurant":
-      industryHubWord = "Store";
+      industryHubWord = "Website";     // "Launch Your Restaurant Website in Bhojpur Today."
       break;
     case "school":
-      industryHubWord = "Platform";
+      industryHubWord = "Platform";    // "Launch Your School Platform in Dhankuta Today."
       break;
     case "consultancy":
-      industryHubWord = "Portal";
+      industryHubWord = "Portal";      // "Launch Your Consultancy Portal in Biratnagar Today."
       break;
     case "club":
-      industryHubWord = "Network";
+      industryHubWord = "Network";     // "Launch Your Club Network in Kathmandu Today."
+      break;
+    case "portfolio":
+      industryHubWord = "Portfolio";   // "Launch Your Portfolio in Lalitpur Today."
+      break;
+    case "health":
+      industryHubWord = "Clinic";      // "Launch Your Health Clinic in Dharan Today."
       break;
     default:
-      industryHubWord = "Hub";
+      industryHubWord = "Hub";         // "Launch Your Business Hub in [City] Today."
   }
 
   switch (industry) {
@@ -400,7 +408,9 @@ export default async function SolutionPage({ params }: PageProps) {
       textGradient = "from-rose-400 via-rose-300 to-orange-400";
     }
 
-    const textColSpan = layoutStyle === 'centered' ? "lg:col-span-12 items-center text-center max-w-4xl mx-auto" : "lg:col-span-7 flex flex-col items-start text-left";
+    const textColSpan = layoutStyle === 'centered'
+      ? "lg:col-span-12 flex flex-col items-center text-center max-w-4xl mx-auto"
+      : "lg:col-span-7 flex flex-col items-start text-left";
     const mockupColSpan = layoutStyle === 'centered' ? "lg:col-span-12 mt-8" : "lg:col-span-5";
 
     const TextContent = (
