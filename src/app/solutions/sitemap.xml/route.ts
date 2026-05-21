@@ -11,9 +11,29 @@ export async function GET() {
     const locations = await Location.find({}).lean();
     
     const baseUrl = "https://hamrolink.com";
+    const today = new Date().toISOString();
     const sitemapItems: string[] = [];
 
-    // 3. Compile sitemap items dynamically for all location and industry pairs
+    // 1. Solutions hub page
+    sitemapItems.push(`  <url>
+    <loc>${baseUrl}/solutions</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>`);
+
+    // 2. Industry hub pages (8 static routes)
+    const INDUSTRIES = ["ecommerce", "consultancy", "restaurant", "school", "club", "business", "portfolio", "health"];
+    for (const industry of INDUSTRIES) {
+      sitemapItems.push(`  <url>
+    <loc>${baseUrl}/solutions/${industry}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>`);
+    }
+
+    // 3. Location × industry leaf pages
     for (const loc of locations as any[]) {
       if (loc.industries_data) {
         const industries = Object.keys(loc.industries_data);

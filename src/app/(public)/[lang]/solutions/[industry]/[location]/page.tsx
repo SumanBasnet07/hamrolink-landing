@@ -341,17 +341,16 @@ export default async function SolutionPage({ params }: PageProps) {
         }))
       },
       {
-        // BreadcrumbList — enables breadcrumb trail in Google SERPs
-        // NOTE: Positions 2 & 3 intentionally omit `item` URL — /solutions and
-        // /solutions/[industry] are not real app routes. Omitting `item` is valid
-        // per schema.org spec; Google renders them as label-only breadcrumb steps.
+        // BreadcrumbList — Full 4-level hierarchy. All item URLs resolve to real pages:
+        // /solutions → [lang]/solutions/page.tsx
+        // /solutions/[industry] → [lang]/solutions/[industry]/page.tsx (newly created)
         "@type": "BreadcrumbList",
         "@id": `https://hamrolink.com/solutions/${industry}/${location}/#breadcrumb`,
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hamrolink.com" },
-          { "@type": "ListItem", "position": 2, "name": "Solutions" },
-          { "@type": "ListItem", "position": 3, "name": capitalizedIndustry },
-          { "@type": "ListItem", "position": 4, "name": cityName, "item": `https://hamrolink.com/solutions/${industry}/${location}` }
+          { "@type": "ListItem", "position": 1, "name": "Home",                    "item": "https://hamrolink.com" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions",               "item": "https://hamrolink.com/solutions" },
+          { "@type": "ListItem", "position": 3, "name": capitalizedIndustry,       "item": `https://hamrolink.com/solutions/${industry}` },
+          { "@type": "ListItem", "position": 4, "name": cityName,                  "item": `https://hamrolink.com/solutions/${industry}/${location}` }
         ]
       },
       {
